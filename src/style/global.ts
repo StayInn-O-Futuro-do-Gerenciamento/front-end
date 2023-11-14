@@ -31,7 +31,7 @@ export const GlobalStyle = createGlobalStyle`
         --grey-900: #2b2f38;
 
         --orange-50: #fef4e6;
-        --orange-100: #fdddb3;
+        --orange-100: #fdddb3; 
         --orange-200: #fbcc8e;
         --orange-300: #fab55a;
         --orange-400: #f9a63a;
@@ -74,6 +74,11 @@ export const GlobalStyle = createGlobalStyle`
         --green-800: #0a653a;
         --green-900: #084d2d;
 
+        --svg-color-grey: invert(38%) sepia(33%) saturate(256%) hue-rotate(183deg)
+            brightness(93%) contrast(88%);
+        --svg-color-orange:  invert(70%) sepia(71%) saturate(580%) hue-rotate(331deg)
+            brightness(101%) contrast(95%);
+
         --font-family-inter: "Inter", sans-serif;
 
         --border-radius: 8px;
@@ -85,6 +90,7 @@ export const GlobalStyle = createGlobalStyle`
 
         --font-size1: 20px;
         --font-size2: 14px;
+        --font-size3: 26px;
 }
 
 `;
