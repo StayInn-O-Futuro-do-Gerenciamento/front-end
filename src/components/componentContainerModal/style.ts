@@ -23,4 +23,12 @@ export const StyledContainerModal = styled.main`
     background-color: var(--grey-00);
     padding: 16px;
   }
+
+  .modalUpdateGuest {
+    width: 352px;
+    height: 770px;
+    border-radius: var(--border-radius);
+    background-color: var(--grey-00);
+    padding: 16px;
+  }
 `;

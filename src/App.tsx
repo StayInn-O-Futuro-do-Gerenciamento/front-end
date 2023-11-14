@@ -1,5 +1,11 @@
+import { ModalUpdateGuest } from "./components/componentModalUpdateGuest";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <ModalUpdateGuest></ModalUpdateGuest>
+    </>
+  );
 }
 
 export default App;
