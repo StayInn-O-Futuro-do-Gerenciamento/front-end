@@ -8,6 +8,8 @@ export const StyledCardRoom = styled.div`
 
   gap: 5px;
 
+  font-family: var(--font-family-inter);
+
   .outFipe {
     color: transparent;
   }
@@ -82,7 +84,7 @@ export const StyledCardRoom = styled.div`
         font-weight: 600;
         font-family: sans-serif;
 
-        color: var(--orange-400);
+        color: var(--orange-600);
       }
     }
   }
