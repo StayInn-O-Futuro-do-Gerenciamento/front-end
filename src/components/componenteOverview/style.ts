@@ -10,14 +10,13 @@ export const StyledOverview = styled.div`
   width: 1020px;
   height: 135px;
 
-  //   background-color: var(--grey-100);
-
   border-radius: 15px;
 
-  font-family: sans-serif;
+  font-family: var(--font-family-inter);
 
   h3 {
-    font-size: 20px;
+    font-size: var(--font-size1);
+    font-weight: var(--text-weight600);
   }
 
   .infoHotel {

@@ -91,6 +91,7 @@ export const GlobalStyle = createGlobalStyle`
         --font-size1: 20px;
         --font-size2: 14px;
         --font-size3: 26px;
+        --font-size4: 16px;
 }
 
 `;

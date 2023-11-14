@@ -8,4 +8,5 @@ export const StyledHeaderModal = styled.header`
   background-color: var(--color-white-fixed);
   color: var(--grey-800);
   font-weight: var(--text-weight600);
+  font-family: var(--font-family-inter);
 `;

@@ -13,7 +13,11 @@ export const StyledRoom = styled.div`
 
   border-radius: 15px;
 
-  font-family: sans-serif;
+  font-family: var(--font-family-inter);
+  h3 {
+    font-size: var(--font-size1);
+    font-weight: var(--text-weight600);
+  }
 
   gap: 15px;
 
