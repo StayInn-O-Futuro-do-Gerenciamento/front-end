@@ -5,4 +5,5 @@ export const StyledContainerButton = styled.div`
   display: flex;
   justify-content: end;
   gap: 15px;
+  padding-top: 10px;
 `;

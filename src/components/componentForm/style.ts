@@ -29,4 +29,18 @@ export const StyledForm = styled.form`
     border-radius: var(--border-radius);
     border-color: var(--grey-200);
   }
+
+  .phoneNumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .emergencyContacts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
 `;

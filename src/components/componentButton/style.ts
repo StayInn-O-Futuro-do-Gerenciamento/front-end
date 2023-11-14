@@ -41,7 +41,17 @@ export const StyledButton = styled.button<IStyledButtonProps>`
           height: 40px;
           font-size: var(--font-size2);
           border-radius: var(--border-radius);
-          background-color: var(--orange-500);
+          background-color: var(--green-400);
+          color: var(--grey-00);
+          font-weight: var(--text-weight500);
+        `;
+      case "deleteGuest":
+        return css`
+          padding: 9.5px 24px 9.5px 24px;
+          height: 40px;
+          font-size: var(--font-size2);
+          border-radius: var(--border-radius);
+          background-color: var(--red-600);
           color: var(--grey-00);
           font-weight: var(--text-weight500);
         `;
