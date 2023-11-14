@@ -4,11 +4,22 @@ export const StyledCardRoom = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 150px;
+  width: 185px;
+
+  padding: 10px;
 
   gap: 5px;
 
   font-family: var(--font-family-inter);
+
+  border-radius: 8px;
+
+  border: 1px solid var(--grey-100);
+
+  background: var(--grey-00);
+
+  box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.06),
+    0px 1px 3px 0px rgba(16, 24, 40, 0.1);
 
   .outFipe {
     color: transparent;
