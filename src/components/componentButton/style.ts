@@ -23,6 +23,28 @@ export const StyledButton = styled.button<IStyledButtonProps>`
           background-color: var(--grey-00);
           font-weight: var(--text-weight500);
         `;
+      case "cancelModal":
+        return css`
+          height: 40px;
+          padding: 9.5px 24px 9.5px 24px;
+          font-size: var(--font-size2);
+          border-radius: var(--border-radius);
+          border: 1.5px solid var(--grey-400);
+          color: var(--grey-800);
+          background-color: var(--grey-00);
+          font-weight: var(--text-weight500);
+        `;
+
+      case "saveModal":
+        return css`
+          padding: 9.5px 24px 9.5px 24px;
+          height: 40px;
+          font-size: var(--font-size2);
+          border-radius: var(--border-radius);
+          background-color: var(--orange-500);
+          color: var(--grey-00);
+          font-weight: var(--text-weight500);
+        `;
     }
   }}
 `;

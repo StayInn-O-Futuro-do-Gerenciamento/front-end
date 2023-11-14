@@ -15,10 +15,11 @@ export const StyledInput = styled.div`
     width: 100%;
     height: 40px;
     padding-left: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
     font-family: var(--font-family-inter);
     border-radius: var(--border-radius);
-    border-color: var(--grey-200);
+    border: 1.5px solid var(--grey-200);
+    outline: 0;
   }
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
