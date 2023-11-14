@@ -8,8 +8,9 @@ export const StyledRoom = styled.div`
   padding: 16px 20px;
 
   width: 1020px;
+  height: 236px;
 
-  //   background-color: var(--grey-100);
+  // background-color: var(--grey-100);
 
   border-radius: 15px;
 
