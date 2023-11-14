@@ -1,11 +1,5 @@
-import { ModalRegisterGuest } from "./components/componentModalRegisterGuest";
-
 function App() {
-  return (
-    <>
-      <ModalRegisterGuest></ModalRegisterGuest>
-    </>
-  );
+  return <></>;
 }
 
 export default App;
