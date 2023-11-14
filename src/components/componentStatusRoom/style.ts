@@ -9,6 +9,10 @@ export const StyledStatusRoom = styled.div`
 
   gap: 16px;
 
+  padding: 20px 16px;
+
+  border-radius: 15px;
+
   font-family: var(--font-family-inter);
   h3 {
     font-size: var(--font-size1);
@@ -18,6 +22,7 @@ export const StyledStatusRoom = styled.div`
   .container {
     display: flex;
     justify-content: space-between;
+    
 
     .occupied {
       display: flex;
@@ -25,25 +30,80 @@ export const StyledStatusRoom = styled.div`
 
       gap: 8px;
 
-      div {
+      .titleOccupied {
         display: flex;
         justify-content: space-between;
+
         gap: 82px;
 
         h5 {
-          font-size: var(--font-size3);
+          font-size: var(--font-size4);
           font-weight: var(--text-weight600);
+          color: var(--grey-600);
         }
-
-        p {
-          font-size: var(--font-size1);
+        span {
+          font-size: var(--font-size4);
           font-weight: var(--text-weight600);
+          color: var(--grey-600);
+        }
+      }
+
+      .other {
+        display: flex;
+        justify-content: space-between;
+
+        gap: 82px;
+        p {
+          font-size: var(--font-size4);
+          font-weight: var(--text-weight400);
+          color: var(--grey-400);
+        }
+        span {
+          font-size: var(--font-size4);
+          font-weight: var(--text-weight400);
+          color: var(--grey-400);
         }
       }
     }
     .available {
       display: flex;
       flex-direction: column;
+
+      gap: 8px;
+
+      .titleAvailable {
+        display: flex;
+        justify-content: space-between;
+
+        gap: 82px;
+
+        h5 {
+          font-size: var(--font-size4);
+          font-weight: var(--text-weight600);
+          color: var(--grey-600);
+        }
+        span {
+          font-size: var(--font-size4);
+          font-weight: var(--text-weight600);
+          color: var(--grey-600);
+        }
+      }
+
+      .other {
+        display: flex;
+        justify-content: space-between;
+
+        gap: 82px;
+        p {
+          font-size: var(--font-size4);
+          font-weight: var(--text-weight400);
+          color: var(--grey-400);
+        }
+        span {
+          font-size: var(--font-size4);
+          font-weight: var(--text-weight400);
+          color: var(--grey-400);
+        }
     }
   }
 `;

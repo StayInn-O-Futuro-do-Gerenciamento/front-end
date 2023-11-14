@@ -22,33 +22,33 @@ export const StatusRoom = () => {
 
       <div className="container">
         <div className="occupied">
-          <div>
+          <div className="titleOccupied">
             <h5>Quartos ocupados</h5>
             <span>{quartos[0].quantidadeTotalOcupados}</span>
           </div>
-          <div>
+          <div className="other">
             <p>Limpos</p> <span>{quartos[0].limpo}</span>
           </div>
-          <div>
+          <div className="other">
             <p>Sujo</p> <span>{quartos[0].sujo}</span>
           </div>
-          <div>
+          <div className="other">
             <p>Em manutenção</p> <span>{quartos[0].emManutencao}</span>
           </div>
         </div>
 
-        <div>
-          <div className="available">
+        <div className="available">
+          <div className="titleAvailable">
             <h5>Quartos disponiveis</h5>
             <span>{quartos[1].quantidadeTotalDisponiveis}</span>
           </div>
-          <div>
+          <div className="other">
             <p>Limpos</p> <span>{quartos[1].limpo}</span>
           </div>
-          <div>
+          <div className="other">
             <p>Sujo</p> <span>{quartos[1].sujo}</span>
           </div>
-          <div>
+          <div className="other">
             <p>Em manutenção</p> <span>{quartos[1].emManutencao}</span>
           </div>
         </div>
