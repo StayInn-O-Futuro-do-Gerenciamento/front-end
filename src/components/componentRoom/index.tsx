@@ -1,5 +1,3 @@
-// import {} from "./style";
-
 import { CardRoom } from "../componentCardRooms";
 import { StyledRoom } from "./style";
 

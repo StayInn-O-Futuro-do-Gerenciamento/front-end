@@ -4,15 +4,15 @@ export const Overview = () => {
   const dataHotel = {
     checkIn: 50,
     checkOut: 30,
-    totalDeQuartosNoHotel: 100,
-    totalDeQuartosDisponiveis: 70,
-    totalDeQuartosOcupados: 30,
+    totalDeQuartosNoHotel: 60,
+    totalDeQuartosDisponiveis: 142,
+    totalDeQuartosOcupados: 53,
   };
 
   return (
     <StyledOverview>
       <div>
-        <h3>Overview</h3>
+        <h3>Visão geral</h3>
       </div>
       <div className="infoHotel">
         <div className="infos">
@@ -31,7 +31,7 @@ export const Overview = () => {
         </div>
         <div className="infos">
           <div className="infoDetail">
-            <span>Total</span>
+            <span>Total de pessoas</span>
             <p>No hotel</p>
           </div>
           <span>{dataHotel.totalDeQuartosNoHotel}</span>
