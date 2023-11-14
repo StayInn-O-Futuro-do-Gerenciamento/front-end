@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
         list-style: none;
     }
     :root {
+        --grey-00:#FFFFFF;
         --grey-50: #f0f1f3;
         --grey-100: #d0d3d9;
         --grey-200: #b9bdc7;
@@ -34,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
         --orange-200: #fbcc8e;
         --orange-300: #fab55a;
         --orange-400: #f9a63a;
-        --orange-500: #f9a63a;
+        --orange-500: #F79009;
         --orange-600: #e18308;
         --orange-700: #af6606;
         --orange-800: #884f05;
