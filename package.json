@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "animejs": "^3.2.1",
     "axios": "^1.6.1",
     "jsonwebtoken": "^9.0.2",
     "moment": "^2.29.4",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@types/animejs": "^3.1.11",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
