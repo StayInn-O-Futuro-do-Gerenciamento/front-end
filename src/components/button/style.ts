@@ -14,6 +14,15 @@ export const StyledButton = styled.button<IStyledButtonProps>`
           color: var(--grey-00);
           font-weight: var(--text-weight500);
         `;
+
+      case "closeModal":
+        return css`
+          font-size: var(--font-size1);
+          border-radius: var(--border-radius);
+          color: var(--grey-800);
+          background-color: var(--grey-00);
+          font-weight: var(--text-weight500);
+        `;
     }
   }}
 `;
