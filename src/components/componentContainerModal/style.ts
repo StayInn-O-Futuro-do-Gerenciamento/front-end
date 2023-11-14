@@ -31,4 +31,39 @@ export const StyledContainerModal = styled.main`
     background-color: var(--grey-00);
     padding: 16px;
   }
+
+  .modalRegisterGuest {
+    width: 750px;
+    border-radius: var(--border-radius);
+    background-color: var(--grey-00);
+    padding: 16px;
+    height: 650px;
+
+    .hospedeImage {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .containerImage {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  .formRegisterGuest {
+    display: flex;
+    height: 400px;
+    width: 100%;
+    gap: 30px;
+
+    .guestData {
+      width: 50%;
+      height: 410px;
+      overflow-y: auto;
+    }
+
+    .guestAddress {
+      width: 50%;
+    }
+  }
 `;

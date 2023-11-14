@@ -22,14 +22,14 @@ export const ModalUpdateGuest = () => {
           <Input type="text" label="CPF" placeholder="12345678901" />
           <Input type="text" label="PASSPORT" placeholder="123563" />
           <Input type="text" label="Nacionalidade" placeholder="Brasileiro" />
-          <label htmlFor="">
+          <label className="labelContat" htmlFor="">
             <strong>Contato do hospede</strong>
           </label>
           <div className="phoneNumber">
             <Input type="number" placeholder="Celular 1" />
             <Input type="number" placeholder="Celular 2" />
           </div>
-          <label htmlFor="">
+          <label className="labelContat" htmlFor="">
             <strong>Contato de emergência</strong>
           </label>
           <div className="emergencyContacts">

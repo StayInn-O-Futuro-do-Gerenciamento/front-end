@@ -1,9 +1,9 @@
-import { ModalUpdateGuest } from "./components/componentModalUpdateGuest";
+import { ModalRegisterGuest } from "./components/componentModalRegisterGuest";
 
 function App() {
   return (
     <>
-      <ModalUpdateGuest></ModalUpdateGuest>
+      <ModalRegisterGuest></ModalRegisterGuest>
     </>
   );
 }

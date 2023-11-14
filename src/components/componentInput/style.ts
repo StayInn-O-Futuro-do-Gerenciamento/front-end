@@ -9,6 +9,7 @@ export const StyledInput = styled.div`
     font-size: var(--font-size2);
     font-weight: var(--text-weight500);
     font-family: var(--font-family-inter);
+    padding-top: 10px;
   }
 
   input {

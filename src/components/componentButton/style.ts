@@ -55,6 +55,17 @@ export const StyledButton = styled.button<IStyledButtonProps>`
           color: var(--grey-00);
           font-weight: var(--text-weight500);
         `;
+      case "addImageHospede":
+        return css`
+          height: 40px;
+          padding: 4px;
+          font-size: var(--font-size2);
+          border-radius: var(--border-radius);
+          border: 1.5px solid var(--grey-400);
+          color: var(--grey-800);
+          background-color: var(--grey-00);
+          font-weight: var(--text-weight500);
+        `;
     }
   }}
 `;
