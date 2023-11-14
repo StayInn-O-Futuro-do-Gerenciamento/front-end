@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button } from "../button";
+import { Button } from "../componentButton";
 import { StyledReservationBar } from "./style";
 
 export const ReservationBar = () => {
