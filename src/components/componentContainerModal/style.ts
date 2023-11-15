@@ -18,7 +18,7 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateRoom {
     width: 352px;
-    height: 460px;
+    height: 490px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -26,9 +26,62 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateGuest {
     width: 352px;
-    height: 770px;
+    height: 860px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
+  }
+
+  .modalRegisterGuest {
+    width: 750px;
+    border-radius: var(--border-radius);
+    background-color: var(--grey-00);
+    padding: 16px;
+    height: 650px;
+
+    .hospedeImage {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .containerImage {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  .formRegisterGuest {
+    display: flex;
+    height: 400px;
+    width: 100%;
+    gap: 30px;
+
+    .guestData {
+      width: 50%;
+      height: 410px;
+      overflow-y: auto;
+    }
+
+    .guestAddress {
+      width: 50%;
+    }
+  }
+
+  .modalPromotion {
+    width: 400px;
+    border-radius: var(--border-radius);
+    background-color: var(--grey-00);
+    padding: 16px;
+    height: 700px;
+
+    select {
+      width: 100%;
+      height: 40px;
+      padding-left: 10px;
+      margin-top: 10px;
+      font-family: var(--font-family-inter);
+      border-radius: var(--border-radius);
+      border-color: var(--grey-200);
+    }
   }
 `;

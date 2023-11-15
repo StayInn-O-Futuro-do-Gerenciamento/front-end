@@ -2,7 +2,8 @@ import { ChangeEvent } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface iInputProps {
-  type: "text" | "number" | "password" | "email" | "file" | "hidden";
+  type: "text" | "number" | "password" | "email" | "file" | "hidden" | "date";
+  className?: string;
   placeholder?: string;
   label?: string;
   register?: UseFormRegisterReturn;
