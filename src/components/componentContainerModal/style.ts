@@ -18,7 +18,7 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateRoom {
     width: 352px;
-    height: 460px;
+    height: 490px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -26,7 +26,7 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateGuest {
     width: 352px;
-    height: 770px;
+    height: 860px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -65,5 +65,13 @@ export const StyledContainerModal = styled.main`
     .guestAddress {
       width: 50%;
     }
+  }
+
+  .modalPromotion {
+    width: 650px;
+    border-radius: var(--border-radius);
+    background-color: var(--grey-00);
+    padding: 16px;
+    height: 500px;
   }
 `;
