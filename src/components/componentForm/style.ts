@@ -20,6 +20,17 @@ export const StyledForm = styled.form`
     font-family: var(--font-family-inter);
   }
 
+  textarea {
+    width: 100%;
+    height: 80px;
+    padding-left: 10px;
+    font-family: var(--font-family-inter);
+    border-radius: var(--border-radius);
+    border: 1.5px solid var(--grey-200);
+    outline: 0;
+    resize: none; /* Impede o redimensionamento */
+  }
+
   .statusRoom {
     width: 100%;
     height: 40px;

@@ -68,10 +68,20 @@ export const StyledContainerModal = styled.main`
   }
 
   .modalPromotion {
-    width: 650px;
+    width: 400px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
-    height: 500px;
+    height: 700px;
+
+    select {
+      width: 100%;
+      height: 40px;
+      padding-left: 10px;
+      margin-top: 10px;
+      font-family: var(--font-family-inter);
+      border-radius: var(--border-radius);
+      border-color: var(--grey-200);
+    }
   }
 `;
