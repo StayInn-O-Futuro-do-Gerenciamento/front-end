@@ -4,7 +4,6 @@ export const options: ApexCharts.ApexOptions = {
     type: "radialBar",
   },
 
-  series: [80],
   colors: ["#F9A63A"],
 
   plotOptions: {
