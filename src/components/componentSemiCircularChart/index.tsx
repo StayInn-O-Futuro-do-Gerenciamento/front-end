@@ -3,6 +3,7 @@ import { options } from "../../utils";
 import { SemiCircularChartMain } from "./style";
 import ReactApexChart from "react-apexcharts";
 import { floorInfo } from "../../utils/mocks/floor.mocks";
+import anime from "animejs";
 
 interface FloorInfo {
   floor: string;
@@ -22,7 +23,14 @@ export const SemiCircularChart = () => {
       setCurrentFloorIndex(nextIndex);
 
       setSeries([calculateOccupancyPercentage(floorInfo[nextIndex])]);
-    }, 7000);
+      anime({
+        targets: ".chart-title",
+        translateY: ["100%", 0],
+        opacity: [0, 1],
+        duration: 1000,
+        easing: "easeInOutQuad",
+      });
+    }, 3000);
     return () => clearInterval(interval);
   }, [currentFloorIndex]);
 
@@ -32,7 +40,7 @@ export const SemiCircularChart = () => {
 
   return (
     <SemiCircularChartMain>
-      <h3>{floorInfo[currentFloorIndex].floor}</h3>
+      <h3 className="chart-title">{floorInfo[currentFloorIndex].floor}</h3>
       <div>
         <ReactApexChart
           options={options}
