@@ -8,6 +8,7 @@ export const Input = ({
   register,
   defaultValue,
   disable,
+  className,
   onChange,
   onInput,
 }: iInputProps) => {
@@ -17,6 +18,7 @@ export const Input = ({
         <strong>{label}</strong>
       </label>
       <input
+        className={className}
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
