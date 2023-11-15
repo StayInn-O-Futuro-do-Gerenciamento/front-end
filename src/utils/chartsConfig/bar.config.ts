@@ -2,7 +2,7 @@ import { ApexOptions } from "apexcharts";
 
 const currentMonthIndex = new Date().getMonth();
 
-const months = [
+export const months = [
   "JAN",
   "FEV",
   "MAR",
@@ -17,12 +17,12 @@ const months = [
   "DEZ",
 ];
 
-const reorderedMonths = [
+export const reorderedMonths = [
   ...months.slice(currentMonthIndex + 1),
   ...months.slice(0, currentMonthIndex + 1),
 ];
 
-const options: ApexOptions = {
+export const options: ApexOptions = {
   chart: {
     type: "bar",
     height: 350,
@@ -80,5 +80,3 @@ const options: ApexOptions = {
     },
   },
 };
-
-export default options;
