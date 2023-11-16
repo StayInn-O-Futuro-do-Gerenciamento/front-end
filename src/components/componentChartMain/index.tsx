@@ -35,6 +35,8 @@ export const BarChart = () => {
   ];
   return (
     <BarMain>
+      <h3>Status da Ocupação</h3>
+
       <ReactApexChart
         options={options}
         series={series}
