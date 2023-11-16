@@ -1,5 +1,11 @@
+import { FilterPromotion } from "./components/componentFilterPromotion";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <FilterPromotion></FilterPromotion>
+    </>
+  );
 }
 
 export default App;
