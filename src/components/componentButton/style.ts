@@ -66,6 +66,27 @@ export const StyledButton = styled.button<IStyledButtonProps>`
           background-color: var(--grey-00);
           font-weight: var(--text-weight500);
         `;
+
+      case "filterButton":
+        return css`
+          padding: 7.5px 16px 7.5px 16px;
+          font-size: var(--font-size2);
+          border-radius: 100px;
+          border: 1.5px solid var(--grey-300);
+          color: var(--grey-600);
+          background-color: var(--grey-00);
+          font-weight: var(--text-weight500);
+        `;
+
+      case "buttonCreate":
+        return css`
+          padding: 7.5px 16px 7.5px 16px;
+          font-size: var(--font-size2);
+          border-radius: var(--border-radius);
+          color: var(--grey-00);
+          background-color: var(--orange-300);
+          font-weight: var(--text-weight500);
+        `;
     }
   }}
 `;
