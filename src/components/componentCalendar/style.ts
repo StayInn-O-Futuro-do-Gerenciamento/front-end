@@ -5,7 +5,36 @@ export const CalendarMain = styled.div`
   height: 500px;
   margin: 50px 50px;
   font-family: var(--font-family-inter);
-
+  .info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    div {
+      display: flex;
+      gap: 20px;
+      p:first-child {
+        border: 2px solid #e7f8f0;
+        background-color: #e7f8f0;
+        color: #60cf9b;
+        padding: 10px;
+        border-radius: 18px;
+      }
+      p:last-child {
+        border: 2px solid #feeceb;
+        background-color: #feeceb;
+        color: #f5827a;
+        padding: 10px;
+        border-radius: 18px;
+      }
+    }
+    button {
+      padding: 10px;
+      background-color: var(--orange-400);
+      color: var(--grey-50);
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  }
   .checkin-event {
     border: 2px solid #e7f8f0;
     background-color: #e7f8f0;

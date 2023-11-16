@@ -94,6 +94,14 @@ export const CalendarComponent = () => {
 
   return (
     <CalendarMain>
+      <div className="info">
+        <div>
+          <p>Checkin</p>
+          <p>Checkout</p>
+        </div>
+
+        <button>Criar Reserva</button>
+      </div>
       <FullCalendar
         plugins={[dayGridPlugin, timegridPlugin, interactionPlugin]}
         initialView={"dayGridWeek"}
@@ -120,8 +128,8 @@ export const CalendarComponent = () => {
         editable={true}
         eventResizableFromStart={true}
         eventDurationEditable={true}
+        droppable={true}
         eventDrop={handleEventDrop}
-        // eventResize={handleEventResize}
       />
     </CalendarMain>
   );
