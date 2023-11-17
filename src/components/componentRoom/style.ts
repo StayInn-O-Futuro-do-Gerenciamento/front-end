@@ -3,11 +3,11 @@ import styled from "styled-components";
 export const StyledRoom = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  background-color: var(--grey-00);
 
   padding: 16px 20px;
 
-  width: 1020px;
+  width: 70%;
   height: 236px;
 
   // background-color: var(--grey-100);

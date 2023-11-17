@@ -90,7 +90,7 @@ export const Feedback = () => {
 
   useEffect(() => {
     const startIndex = feedbackIndex % feedback.length;
-    const endIndex = (startIndex + 2) % feedback.length; // ajuste para pegar 3 elementos
+    const endIndex = (startIndex + 3) % feedback.length; // ajuste para pegar 3 elementos
 
     setVisibleFeedbacks(feedback.slice(startIndex, endIndex + 1));
   }, [feedbackIndex, feedback]);

@@ -4,10 +4,11 @@ export const StyledOverview = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: var(--grey-00);
 
   padding: 16px 20px;
 
-  width: 1020px;
+  width: 100%;
   height: 135px;
 
   border-radius: 15px;
