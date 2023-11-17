@@ -86,6 +86,11 @@ export const FilterMain = styled.section`
           text-align: center;
           background-color: var(--orange-50);
           color: var(--orange-500);
+
+          &:hover {
+            background-color: var(--orange-500);
+            color: var(--orange-50);
+          }
         }
       }
     }

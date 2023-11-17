@@ -1,11 +1,5 @@
-import { FilterReservation } from "./components/componentFilterResevation";
-
 function App() {
-  return (
-    <>
-      <FilterReservation />
-    </>
-  );
+  return <></>;
 }
 
 export default App;
