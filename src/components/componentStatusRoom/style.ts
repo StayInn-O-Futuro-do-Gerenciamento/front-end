@@ -23,13 +23,12 @@ export const StyledStatusRoom = styled.div`
   .container {
     display: flex;
     justify-content: space-between;
-    
 
     .occupied {
       display: flex;
       flex-direction: column;
 
-      gap: 8px;
+      gap: 20px;
 
       .titleOccupied {
         display: flex;
@@ -70,7 +69,7 @@ export const StyledStatusRoom = styled.div`
       display: flex;
       flex-direction: column;
 
-      gap: 8px;
+      gap: 20px;
 
       .titleAvailable {
         display: flex;
@@ -105,6 +104,7 @@ export const StyledStatusRoom = styled.div`
           font-weight: var(--text-weight400);
           color: var(--grey-400);
         }
+      }
     }
   }
 `;

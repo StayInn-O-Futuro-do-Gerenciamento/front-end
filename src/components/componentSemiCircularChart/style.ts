@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const SemiCircularChartMain = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 25px;
   padding: 20px 16px;
   font-family: var(--font-family-inter);
   background-color: #fff;
@@ -11,33 +12,34 @@ export const SemiCircularChartMain = styled.div`
   height: 340px;
 
   h3 {
-    font-size: var(--font-size1);
+    font-size: var(--font-size3);
     font-weight: var(--text-weight500);
-    margin-bottom: 120px;
   }
-  div {
-    display: flex;
 
+  .div-subtitle {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
     div {
       display: flex;
-      flex-direction: column;
-      div {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 5px;
-        .orange-point {
-          width: 10px;
-          height: 10px;
-          background-color: var(--orange-400);
-          border-radius: 50%;
-        }
-        .grey-point {
-          width: 10px;
-          height: 10px;
-          background-color: var(--grey-100);
-          border-radius: 50%;
-        }
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      p {
+        font-weight: var(--text-weight600);
+        font-size: 18px;
+      }
+      .orange-point {
+        width: 10px;
+        height: 10px;
+        background-color: var(--orange-400);
+        border-radius: 50%;
+      }
+      .grey-point {
+        width: 10px;
+        height: 10px;
+        background-color: var(--grey-100);
+        border-radius: 50%;
       }
     }
   }
