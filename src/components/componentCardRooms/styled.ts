@@ -14,7 +14,7 @@ export const StyledCardRoom = styled.div`
 
   border-radius: 8px;
 
-  border: 1px solid var(--grey-100);
+  border: 1px solid var(--grey-100, #d0d3d9);
 
   background: var(--grey-00);
 

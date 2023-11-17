@@ -15,6 +15,7 @@ export const StyledFeedback = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: var(--grey-00);
 
   width: 396px;
 

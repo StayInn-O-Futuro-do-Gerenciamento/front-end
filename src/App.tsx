@@ -1,5 +1,11 @@
+import { Dashboard } from "./pages/pageDashboard";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
 }
 
 export default App;
