@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const StyledStatusRoom = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: var(--grey-00);
 
   width: 604px;
-  height: 206px;
+  height: 236px;
 
   gap: 16px;
 

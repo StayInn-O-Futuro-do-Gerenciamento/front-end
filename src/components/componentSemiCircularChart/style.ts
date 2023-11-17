@@ -8,11 +8,12 @@ export const SemiCircularChartMain = styled.div`
   background-color: #fff;
   border-radius: var(--border-radius);
   width: 396px;
-  height: 206px;
+  height: 340px;
 
   h3 {
     font-size: var(--font-size1);
     font-weight: var(--text-weight500);
+    margin-bottom: 120px;
   }
   div {
     display: flex;
