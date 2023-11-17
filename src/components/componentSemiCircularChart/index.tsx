@@ -41,24 +41,24 @@ export const SemiCircularChart = () => {
   return (
     <SemiCircularChartMain>
       <h3 className="chart-title">{floorInfo[currentFloorIndex].floor}</h3>
-      <div>
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="radialBar"
-          height={280}
-        />
+      <div className="div-subtitle">
+        <div className="occupied-point">
+          <div className="orange-point"></div>
+          <p>Ocupados</p>
+        </div>
         <div>
-          <div className="occupied-point">
-            <div className="orange-point"></div>
-            <p>Ocupados</p>
-          </div>
-          <div>
-            <div className="grey-point"></div>
-            <p>Livres</p>
-          </div>
+          <div className="grey-point"></div>
+          <p>Livres</p>
         </div>
       </div>
+
+      <ReactApexChart
+        options={options}
+        series={series}
+        type="radialBar"
+        height={350}
+        width={350}
+      />
     </SemiCircularChartMain>
   );
 };
