@@ -1,36 +1,40 @@
+import More from "../../assets/More.svg";
+import { RoomFilteredListStyled } from "./style";
+
 const rooms = [
   {
     roomNumber: "A1",
     roomType: "Básico",
-    roomFloor: "Andar 1",
+    roomFloor: "1",
     roomFacilitys: "Cama, frigobar, corda, facão",
     status: "Limpo",
   },
   {
     roomNumber: "A2",
     roomType: "Básico",
-    roomFloor: "Andar 1",
+    roomFloor: "1",
     roomFacilitys: "Cama, frigobar",
     status: "Sujo",
   },
   {
     roomNumber: "B12",
     roomType: "VIP",
-    roomFloor: "Andar 2",
-    roomFacilitys: "Cama, frigobar, Televisão 12 polegadas, hidromassagem",
+    roomFloor: "2",
+    roomFacilitys:
+      "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
     status: "Em manutenção",
   },
   {
     roomNumber: "A2",
     roomType: "Básico",
-    roomFloor: "Andar 2",
+    roomFloor: "2",
     roomFacilitys: "Cama, frigobar",
     status: "Limpo",
   },
   {
     roomNumber: "D45",
     roomType: "Familia",
-    roomFloor: "Andar 4",
+    roomFloor: "4",
     roomFacilitys: "Cama, frigobar, fogão",
     status: "Sujo",
   },
@@ -38,7 +42,7 @@ const rooms = [
 
 export const RoomFilteredList = () => {
   return (
-    <>
+    <RoomFilteredListStyled>
       <table>
         <thead>
           <th>Quarto</th>
@@ -51,17 +55,20 @@ export const RoomFilteredList = () => {
         <tbody>
           {rooms.map((room) => (
             <tr>
-              <td>{room.roomNumber}</td>
+              <td className="room-number">{room.roomNumber}</td>
               <td>{room.roomType}</td>
+              <td>{room.roomFloor}</td>
+              <td>{room.roomFacilitys}</td>
+              <td>
+                <p className="status">{room.status}</p>
+              </td>
+              <td>
+                <img src={More} alt="Mais" />
+              </td>
             </tr>
           ))}
-          {/* <tr>
-            <td>GAnso</td>
-            <td>OMEU TA MALUCO EITA PORRA</td>
-            <td>12</td>
-          </tr> */}
         </tbody>
       </table>
-    </>
+    </RoomFilteredListStyled>
   );
 };

@@ -17,7 +17,7 @@ export const FilterReservation = () => {
   const addOrRemove = (type: string, operation: string) => {
     if (operation == "minus") {
       if (type == "Adult") {
-        if (numberAdults > 0) {
+        if (numberAdults > 1) {
           setNumberAdults(numberAdults - 1);
         }
       }
