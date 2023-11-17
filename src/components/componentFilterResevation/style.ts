@@ -8,6 +8,9 @@ export const FilterMain = styled.section`
   align-items: center;
   padding: 32px;
   font-family: var(--font-family-inter);
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px -2px rgba(16, 24, 40, 0.06),
+    0px 4px 8px -2px rgba(16, 24, 40, 0.1);
 
   .filter {
     display: flex;
