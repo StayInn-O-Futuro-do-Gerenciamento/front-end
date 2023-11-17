@@ -1,5 +1,11 @@
+import { ComponentListGuest } from "./components/componentListGuest";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <ComponentListGuest />
+    </>
+  );
 }
 
 export default App;
