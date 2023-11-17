@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "../componentButton";
 import { StyledReservationBar } from "./style";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 
 export const ReservationBar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -12,8 +14,10 @@ export const ReservationBar = () => {
 
     return () => clearInterval(timer);
   }, []);
-
-  const formattedDate = currentDate.toLocaleString("pt-BR");
+  moment.locale("pt-br");
+  const formattedDate = moment(currentDate).format(
+    "dddd, D [de] MMMM [de] YYYY, HH:mm:ss"
+  );
 
   return (
     <StyledReservationBar>

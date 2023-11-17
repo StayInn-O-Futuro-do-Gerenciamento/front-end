@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(8px); // Adiciona um leve deslocamento para cima
+    transform: translateY(8px);
   }
   to {
     opacity: 1;
@@ -15,6 +15,7 @@ export const StyledFeedback = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: var(--grey-00);
 
   width: 396px;
 
@@ -29,6 +30,7 @@ export const StyledFeedback = styled.div`
     font-size: var(--font-size1);
     font-weight: var(--text-weight600);
     color: var(--grey-grey-800);
+    margin-bottom: 15px;
   }
 
   .title {
@@ -55,7 +57,7 @@ export const StyledFeedback = styled.div`
 
       width: 364px;
 
-      padding-bottom: 8px;
+      padding-bottom: 10px;
 
       border-bottom: 1px solid var(--grey-100);
 

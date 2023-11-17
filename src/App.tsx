@@ -1,11 +1,6 @@
-import { ComponentListGuest } from "./components/componentListGuest";
+import { Dashboard } from "./pages/pageDashboard";
 
 function App() {
-  return (
-    <>
-      <ComponentListGuest />
-    </>
-  );
+  return <>{<Dashboard />}</>;
 }
-
 export default App;

@@ -56,6 +56,21 @@ export const Feedback = () => {
         quantidadeEstrelas: 5,
         numeroQuarto: "E524",
       },
+      {
+        nomeHospede: "Antonio",
+        quantidadeEstrelas: 2,
+        numeroQuarto: "E524",
+      },
+      {
+        nomeHospede: "Xuxa",
+        quantidadeEstrelas: 5,
+        numeroQuarto: "E524",
+      },
+      {
+        nomeHospede: "Pietro",
+        quantidadeEstrelas: 1,
+        numeroQuarto: "E524",
+      },
     ],
     []
   );
@@ -64,17 +79,17 @@ export const Feedback = () => {
     const intervalId = setInterval(() => {
       anime({
         targets: ".feedback-list li",
-        opacity: [1, 0], // Fade-out
-        translateY: [0, -8], // Move para cima
+        opacity: [1, 0],
+        translateY: [0, -8],
         duration: 500,
         easing: "easeInOutQuad",
         complete: () => {
-          setFeedbackIndex((prevIndex) => (prevIndex + 3) % feedback.length);
+          setFeedbackIndex((prevIndex) => (prevIndex + 2) % feedback.length);
 
           anime({
             targets: ".feedback-list li",
-            opacity: [0, 1], // Fade-in
-            translateY: [8, 0], // Move para baixo
+            opacity: [0, 1],
+            translateY: [8, 0],
             duration: 500,
             easing: "easeInOutQuad",
           });
@@ -82,7 +97,6 @@ export const Feedback = () => {
       });
     }, 5000);
 
-    // Adicionando uma execução inicial para exibir os primeiros feedbacks imediatamente
     setFeedbackIndex(0);
 
     return () => clearInterval(intervalId);
@@ -90,7 +104,7 @@ export const Feedback = () => {
 
   useEffect(() => {
     const startIndex = feedbackIndex % feedback.length;
-    const endIndex = (startIndex + 2) % feedback.length; // ajuste para pegar 3 elementos
+    const endIndex = (startIndex + 3) % feedback.length; // ajuste para pegar 3 elementos
 
     setVisibleFeedbacks(feedback.slice(startIndex, endIndex + 1));
   }, [feedbackIndex, feedback]);
