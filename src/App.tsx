@@ -7,10 +7,10 @@ import { Reservation } from "./pages/pageReservation/inde";
 function App() {
   return (
     <>
-      {/* <Dashboard /> */}
+      <Dashboard />
       {/* <Reservation /> */}
-      {/* <ComponentAddRoom /> */}
-      <FilterPromotion />
+      {/* <FilterPromotion /> */}
+      {/* <ComponentListRateRoom /> */}
     </>
   );
 }
