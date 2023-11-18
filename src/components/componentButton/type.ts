@@ -6,6 +6,7 @@ export interface IButtonProps {
   onClick?: () => void;
   buttonVariation?: string;
   disabled?: boolean;
+  className?: string;
 }
 
 export interface IStyledButtonProps {

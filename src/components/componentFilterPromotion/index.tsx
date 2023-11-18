@@ -1,88 +1,115 @@
 import { Button } from "../componentButton";
 import { StyledFilterPromotion } from "./style";
-import more from "../../assets/More.svg";
+import { TableStyled } from "../../style/tableStyle";
+import { ComponentTableList } from "../componentTableList";
+import { useState } from "react";
 
 export const FilterPromotion = () => {
+  const [selectedButton, setSelectedButton] = useState("");
+
+  const handleButtonClick = (buttonId: string) => {
+    setSelectedButton(buttonId);
+  };
+  const promotions = [
+    {
+      roomNumber: "A1",
+      roomType: "Black Friday",
+      roomFloor: "1°",
+      roomFacilitys: "Cama, frigobar, corda, facão",
+      status: "VIP",
+      avaliabity: "Novo",
+    },
+    {
+      roomNumber: "A2",
+      roomType: "Aniversariante",
+      roomFloor: "1°",
+      roomFacilitys: "Cama, frigobar",
+      status: "Básico",
+      avaliabity: "Cheio",
+    },
+    {
+      roomNumber: "B12",
+      roomType: "VIP",
+      roomFloor: "2°",
+      roomFacilitys:
+        "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
+      status: "900",
+      avaliabity: "5 roomss",
+    },
+    {
+      roomNumber: "A2",
+      roomType: "Básico",
+      roomFloor: "2°",
+      roomFacilitys: "Cama, frigobar",
+      status: "700",
+      avaliabity: "5 roomss",
+    },
+    {
+      roomNumber: "D45",
+      roomType: "Familia",
+      roomFloor: "4°",
+      roomFacilitys: "Cama, frigobar, fogão",
+      status: "800",
+      avaliabity: "5 roomss",
+    },
+  ];
+
   return (
     <StyledFilterPromotion>
       <div className="containerContent">
         <div className="buttonContainer">
-          <Button type="button" buttonVariation="filterButton">
+          <Button
+            className={selectedButton === "continue" ? "selected-btn" : ""}
+            type="button"
+            buttonVariation="filterButton"
+            onClick={() => handleButtonClick("continue")}
+          >
             Continua
           </Button>
-          <Button type="button" buttonVariation="filterButton">
+          <Button
+            className={selectedButton === "finishi" ? "selected-btn" : ""}
+            type="button"
+            buttonVariation="filterButton"
+            onClick={() => handleButtonClick("finishi")}
+          >
             FInalizada
           </Button>
+          <Button
+            className={selectedButton === "full" ? "selected-btn" : ""}
+            type="button"
+            buttonVariation="filterButton"
+            onClick={() => handleButtonClick("full")}
+          >
+            Cheio
+          </Button>
+          <Button
+            className={selectedButton === "inactive" ? "selected-btn" : ""}
+            type="button"
+            buttonVariation="filterButton"
+            onClick={() => handleButtonClick("inactive")}
+          >
+            Inativo
+          </Button>
+          {/* <Button type="button" buttonVariation="filterButton">
+            Disponível
+          </Button> */}
         </div>
         <Button type="button" buttonVariation="buttonCreate">
           Adicionar oferta
         </Button>
       </div>
-
-      <table>
+      <TableStyled>
         <thead>
-          <tr>
-            <td>Referencia da oferta</td>
-            <td>Nome da oferta</td>
-            <td>Reservas restantes</td>
-            <td>Data final</td>
-            <td>Tipo de quarto</td>
-            <td>Status</td>
-          </tr>
+          <th>Referencia da oferta</th>
+          <th>Nome</th>
+          <th>Reservas restantes</th>
+          <th>Data final</th>
+          <th>Tipo</th>
+          <th>Status</th>
+          <th></th>
         </thead>
-        <tbody>
-          <tr>
-            <td>5644</td>
-            <td>Family deal</td>
-            <td>10</td>
-            <td>21/3/23</td>
-            <td>Vip</td>
-            <td className="statusColor">
-              <p>Ogaing</p>
-              <img src={more} />
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td>5644</td>
-            <td>Family deal</td>
-            <td>10</td>
-            <td>21/3/23</td>
-            <td>Vip</td>
-            <td className="statusColor">
-              <p>Ogaing</p>
-              <img src={more} />
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td>5644</td>
-            <td>Family deal</td>
-            <td>10</td>
-            <td>21/3/23</td>
-            <td>Vip</td>
-            <td className="statusColor">
-              <p>Ogaing</p>
-              <img src={more} />
-            </td>
-          </tr>
-        </tbody>
-        <tbody>
-          <tr>
-            <td>5644</td>
-            <td>Family deal</td>
-            <td>10</td>
-            <td>21/3/23</td>
-            <td>Vip</td>
-            <td className="statusColor">
-              <p>Ogaing</p>
-              <img src={more} />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <ComponentTableList list={promotions} />
+      </TableStyled>
     </StyledFilterPromotion>
   );
 };
