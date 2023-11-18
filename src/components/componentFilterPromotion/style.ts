@@ -10,10 +10,19 @@ export const StyledFilterPromotion = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    .clicado {
+      background-color: red;
+    }
   }
   .buttonContainer {
     display: flex;
     gap: 10px;
+
+    .selected-btn {
+      background-color: var(--orange-300);
+      color: var(--grey-00);
+      border: 1px solid var(--orange-100);
+    }
   }
 
   table {

@@ -6,12 +6,14 @@ export const Button = ({
   type,
   onClick,
   buttonVariation,
+  className,
 }: IButtonProps) => {
   return (
     <StyledButton
       type={type}
       onClick={onClick}
       buttonVariation={buttonVariation}
+      className={className}
     >
       {children}
     </StyledButton>
