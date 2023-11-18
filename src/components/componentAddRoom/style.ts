@@ -10,5 +10,11 @@ export const ComponentAddRoomStyle = styled.div`
       display: flex;
       gap: 10px;
     }
+
+    .selected-btn {
+      border: 1px solid var(--orange-500);
+      color: var(--orange-500);
+      background-color: var(--orange-50);
+    }
   }
 `;
