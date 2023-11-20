@@ -37,6 +37,10 @@ export const StyledRoom = styled.div`
     padding-bottom: 25px;
   }
 
+  .swiper-pagination-bullets > span {
+    background-color: var(--orange-600);
+  }
+
   .swiper-slide {
     background: #fff;
     display: flex;
