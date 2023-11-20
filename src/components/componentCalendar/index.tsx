@@ -3,8 +3,9 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timegridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import { CalendarMain } from "./style";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import moment from "moment";
+import { AppContext } from "../../context/appContext";
 
 const reservation = [
   {
@@ -30,6 +31,7 @@ const reservation = [
 ];
 
 export const CalendarComponent = () => {
+  const { handleChangeFunction } = useContext(AppContext);
   const [headerFormatted, setHeaderFormatted] = useState(false);
 
   const events = reservation.flatMap((item) => [
@@ -47,7 +49,7 @@ export const CalendarComponent = () => {
     },
   ]);
 
-  const eventContent = (arg) => {
+  const eventContent = (arg: any) => {
     const { title, start } = arg.event;
 
     const startTime = new Date(start).toLocaleTimeString([], {
@@ -62,7 +64,7 @@ export const CalendarComponent = () => {
     );
   };
 
-  const dayHeaderContent = (arg) => {
+  const dayHeaderContent = (arg: any) => {
     const dateText = arg.text.split(" ")[1].split("/")[0];
     return <span>{dateText}</span>;
   };
@@ -73,7 +75,7 @@ export const CalendarComponent = () => {
     };
   }, []);
 
-  const handleEventDrop = (arg) => {
+  const handleEventDrop = (arg: any) => {
     const { start, title } = arg.event;
     const updatedData = { checkin: "", name: "", type: "" };
 
@@ -100,7 +102,9 @@ export const CalendarComponent = () => {
           <p>Checkout</p>
         </div>
 
-        <button>Criar Reserva</button>
+        <button onClick={() => handleChangeFunction("createReservation", true)}>
+          Criar Reserva
+        </button>
       </div>
       <FullCalendar
         plugins={[dayGridPlugin, timegridPlugin, interactionPlugin]}
@@ -121,7 +125,7 @@ export const CalendarComponent = () => {
           week: "Semana",
           day: "Dia",
         }}
-        height={607}
+        height={727}
         events={events}
         eventContent={eventContent}
         dayHeaderContent={dayHeaderContent}

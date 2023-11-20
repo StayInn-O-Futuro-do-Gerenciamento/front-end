@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CalendarMain = styled.div`
-  width: 937px;
+  width: 95%;
   height: 500px;
   margin: 50px 50px;
   font-family: var(--font-family-inter);
@@ -40,7 +40,7 @@ export const CalendarMain = styled.div`
     background-color: #e7f8f0;
     color: #60cf9b;
     padding: 10px;
-    width: 130px;
+    width: 100%;
     margin-bottom: 10px;
     border-radius: 18px;
     overflow: hidden;
@@ -48,7 +48,7 @@ export const CalendarMain = styled.div`
     cursor: pointer;
     &:hover {
       border: 2px solid var(--green-600);
-      width: 160px;
+
       z-index: 3;
     }
   }
@@ -64,7 +64,7 @@ export const CalendarMain = styled.div`
     background-color: #feeceb;
     color: #f5827a;
     padding: 10px;
-    width: 130px;
+    width: 100%;
     margin-bottom: 10px;
     border-radius: 18px;
     overflow: hidden;
@@ -72,7 +72,7 @@ export const CalendarMain = styled.div`
     cursor: pointer;
     &:hover {
       border: 2px solid var(--red-600);
-      width: 160px;
+
       z-index: 3;
     }
   }

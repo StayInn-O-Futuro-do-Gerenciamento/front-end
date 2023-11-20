@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const FilterMain = styled.section`
-  margin: 20px auto; // depois remover
+  margin: 20px 0;
   display: flex;
   justify-content: space-between;
-  width: 1020px;
+  width: 100%;
   align-items: center;
   padding: 32px;
   font-family: var(--font-family-inter);
