@@ -4,7 +4,7 @@ export const StyledCardRoom = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 185px;
+  width: 230px;
 
   padding: 10px;
 

@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 export const StyledRoom = styled.div`
   display: flex;
   flex-direction: column;
@@ -7,8 +12,7 @@ export const StyledRoom = styled.div`
 
   padding: 16px 20px;
 
-  width: 70%;
-  height: 236px;
+  width: 1000px;
 
   // background-color: var(--grey-100);
 
@@ -25,5 +29,24 @@ export const StyledRoom = styled.div`
   ul {
     display: flex;
     justify-content: space-between;
+  }
+
+  .swiper {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 25px;
+  }
+
+  .swiper-slide {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: var(--grey-300);
   }
 `;

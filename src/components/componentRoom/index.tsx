@@ -1,5 +1,8 @@
+import React from "react";
 import { CardRoom } from "../componentCardRooms";
 import { StyledRoom } from "./style";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 export const Room = () => {
   const quartos = [
@@ -38,17 +41,42 @@ export const Room = () => {
       ocupados: 15,
       precoPorDia: 80.0,
     },
+    {
+      oferta: false,
+      nome: "Quarto Econômico",
+      quantidadeTotal: 40,
+      ocupados: 15,
+      precoPorDia: 80.0,
+    },
+    {
+      oferta: false,
+      nome: "Quarto Econômico",
+      quantidadeTotal: 40,
+      ocupados: 15,
+      precoPorDia: 80.0,
+    },
   ];
 
   return (
     <StyledRoom>
       <h3>Quartos</h3>
 
-      <ul>
+      <Swiper
+        pagination={true}
+        modules={[Pagination]}
+        loop={false}
+        slidesPerView={4}
+        // pagination={{
+        //   nextEl: ".swiper-button-next",
+        //   prevEl: ".swiper-button-prev",
+        // }}
+      >
         {quartos.map((value, index) => (
-          <CardRoom key={index} quartos={value} />
+          <SwiperSlide key={index}>
+            <CardRoom quartos={value} />
+          </SwiperSlide>
         ))}
-      </ul>
+      </Swiper>
     </StyledRoom>
   );
 };
