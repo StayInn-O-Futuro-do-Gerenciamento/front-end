@@ -8,4 +8,5 @@ export interface iAppContextProps {
 export interface iAppContext {
   testState: boolean;
   handleChangeFunction: (state: string, value: boolean) => void;
+  createReservation: boolean;
 }

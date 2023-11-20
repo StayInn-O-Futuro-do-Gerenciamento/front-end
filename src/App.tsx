@@ -8,8 +8,8 @@ import { Reservation } from "./pages/pageReservation/inde";
 function App() {
   return (
     <>
-      <Dashboard />
-      {/* <Reservation /> */}
+      {/* <Dashboard /> */}
+      <Reservation />
       {/* <FilterPromotion /> */}
       {/* <ComponentListRateRoom /> */}
       {/* <Room /> */}
