@@ -66,10 +66,6 @@ export const Room = () => {
         modules={[Pagination]}
         loop={false}
         slidesPerView={4}
-        // pagination={{
-        //   nextEl: ".swiper-button-next",
-        //   prevEl: ".swiper-button-prev",
-        // }}
       >
         {quartos.map((value, index) => (
           <SwiperSlide key={index}>
