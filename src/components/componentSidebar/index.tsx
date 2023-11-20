@@ -10,12 +10,16 @@ import Reservation from "../../assets/sidebar/Reservation.svg";
 import Room from "../../assets/sidebar/Room.svg";
 import { SideBarMain } from "./style";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Sidebar = () => {
-  const [selectedButton, setSelectedButton] = useState("Dashboard");
+  const location = useLocation();
+  const [selectedButton, setSelectedButton] = useState(location.pathname);
+  const navigate = useNavigate();
 
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
+    navigate(buttonId);
   };
   return (
     <SideBarMain>
@@ -26,43 +30,43 @@ export const Sidebar = () => {
       <div className="div-btn">
         <ul>
           <li
-            className={selectedButton === "Dashboard" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Dashboard")}
+            className={selectedButton === "/" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/")}
           >
             <img src={Dashboard} alt="Dashboard" />
             <p>Dashboard</p>
           </li>
           <li
-            className={selectedButton === "Reservation" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Reservation")}
+            className={selectedButton === "/reservation" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/reservation")}
           >
             <img src={Reservation} alt="Reservas" />
             <p>Reservas</p>
           </li>
           <li
-            className={selectedButton === "Report" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Report")}
+            className={selectedButton === "/guests" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/guests")}
           >
             <img src={Report} alt="Hóspede" />
             <p>Hóspedes</p>
           </li>
           <li
-            className={selectedButton === "Room" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Room")}
+            className={selectedButton === "/rooms" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/rooms")}
           >
             <img src={Room} alt="Quartos" />
             <p>Quartos</p>
           </li>
           <li
-            className={selectedButton === "Deals" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Deals")}
+            className={selectedButton === "/offers" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/offers")}
           >
             <img src={Deals} alt="Promoções" />
             <p>Promoções</p>
           </li>
           <li
-            className={selectedButton === "Rate" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Rate")}
+            className={selectedButton === "/rates" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/rates")}
           >
             <img src={Rate} alt="Taxas" />
             <p>Taxas</p>

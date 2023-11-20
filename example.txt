@@ -1,0 +1,47 @@
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/product/:id" element={<ProductPage />} />
+      <Route path="/profile-page" element={<PerfilPage />} />
+      <Route path="/page/:name" element={<ViewUserPage />} />
+      <Route path="/reset-password/:token" element={<ChangePassword />} />
+      <Route path="/*" element={<ErrorPage />} />
+    </Routes>
+  );
+
+  na main:
+  import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import { GlobalStyle } from "./styles/global.ts";
+import { HashRouter } from "react-router-dom";
+import { ScrollToTop } from "./components/scrollTooTop/index.tsx";
+
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <GlobalStyle />
+    <HashRouter>
+      <ScrollToTop />
+      <App />
+    </HashRouter>
+  </React.StrictMode>
+);
+
+app: 
+
+import { UserProvider, ModalProvider } from "./context";
+import { RoutesMain } from "./routes";
+
+function App() {
+  return (
+    <UserProvider>
+      <ModalProvider>
+        <RoutesMain />
+      </ModalProvider>
+    </UserProvider>
+  );
+}
+
+export default App;
