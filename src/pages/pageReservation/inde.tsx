@@ -6,12 +6,17 @@ import { ReservationMain } from "./style";
 import { AppContext } from "../../context/appContext";
 import { FilterReservation } from "../../components/componentFilterResevation";
 import { RoomFilteredList } from "../../components/componentRoomList";
+import { ModalUpdateTypeRoom } from "../../components/componentModalUpdateTypeRoom";
+import { ModalScheduleReservation } from "../../components/componetModalScheduleReservation";
 
 export const Reservation = () => {
-  const { createReservation } = useContext(AppContext);
+  const { createReservation, modalUpdateTypeRoom, modalScheduleReservation } =
+    useContext(AppContext);
 
   return (
     <ReservationMain>
+      {modalUpdateTypeRoom && <ModalUpdateTypeRoom />}
+      {modalScheduleReservation && <ModalScheduleReservation />}
       <Sidebar />
       {!createReservation && (
         <div className="mainContet">
@@ -23,7 +28,7 @@ export const Reservation = () => {
         <div className="mainContet">
           <NavBarSearch />
           <FilterReservation />
-          <RoomFilteredList />
+          <RoomFilteredList modalName="modalScheduleReservation" />
         </div>
       )}
     </ReservationMain>

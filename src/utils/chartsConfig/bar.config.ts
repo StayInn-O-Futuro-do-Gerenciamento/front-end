@@ -26,6 +26,7 @@ export const options: ApexOptions = {
   chart: {
     type: "bar",
     height: 350,
+    toolbar: { show: false },
   },
   plotOptions: {
     bar: {

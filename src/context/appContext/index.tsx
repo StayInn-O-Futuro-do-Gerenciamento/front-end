@@ -13,6 +13,16 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [modalCretePromotion, setModalCreatePromotion] =
     useState<boolean>(false);
   const [modalCreateGuest, setModalCreateGuest] = useState<boolean>(false);
+  const [modalUpdatePromotion, setModalUpdatePromotion] =
+    useState<boolean>(false);
+  const [modalRegisterAttedant, setModalRegisterAttendant] =
+    useState<boolean>(false);
+  const [modalUpdateHotel, setModalUpdateHotel] = useState<boolean>(false);
+  const [modalUpdateTypeRoom, setModalUpdateTypeRoom] =
+    useState<boolean>(false);
+  const [modalCreateRoom, setModalCreateRoom] = useState(false);
+  const [modalScheduleReservation, setModalScheduleReservation] =
+    useState(false);
   const [getReservationState, setGetReservationState] = useState<[]>(
     null as any
   );
@@ -38,6 +48,24 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         break;
       case "modalCreateGuest":
         setModalCreateGuest(value);
+        break;
+      case "modalRegisterAttendant":
+        setModalRegisterAttendant(value);
+        break;
+      case "modalUpdateHotel":
+        setModalUpdateHotel(value);
+        break;
+      case "modalUpdatePromotion":
+        setModalUpdatePromotion(value);
+        break;
+      case "modalUpdateTypeRoom":
+        setModalUpdateTypeRoom(value);
+        break;
+      case "modalCreateRoom":
+        setModalCreateRoom(value);
+        break;
+      case "modalScheduleReservation":
+        setModalScheduleReservation(value);
         break;
     }
   };
@@ -73,6 +101,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getReservationState,
         getRoomState,
         getTypeRoomState,
+        modalRegisterAttedant,
+        modalUpdateHotel,
+        modalUpdatePromotion,
+        modalUpdateTypeRoom,
+        modalCreateRoom,
+        modalScheduleReservation,
       }}
     >
       {children}

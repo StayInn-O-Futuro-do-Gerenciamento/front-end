@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { BarChart } from "../../components/componentChartMain";
 import { ReservationBar } from "../../components/componentCreateReservationBar";
 import { Feedback } from "../../components/componentFeedBack";
@@ -9,7 +8,6 @@ import { Sidebar } from "../../components/componentSidebar";
 import { StatusRoom } from "../../components/componentStatusRoom";
 import { Overview } from "../../components/componenteOverview";
 import { StyledContainerDashboard } from "./style";
-import { AppContext } from "../../context/appContext";
 
 export const Dashboard = () => {
   return (

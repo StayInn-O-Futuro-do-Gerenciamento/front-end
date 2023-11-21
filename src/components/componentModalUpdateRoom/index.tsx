@@ -25,16 +25,14 @@ export const ModalUpdateRoom = () => {
         </HeaderModal>
         <Form>
           <Input
-            type="number"
-            label="Número do quarto"
-            placeholder="0"
-            defaultValue={0}
-          />
-          <Input
             type="text"
             label="Chave secreta"
             placeholder="default value"
           />
+          <label htmlFor="">
+            <strong>Descrição</strong>
+          </label>
+          <textarea placeholder="Descrição do quarto"></textarea>
           <label className="labelSelect" htmlFor="">
             <strong>Disponibilidade</strong>
           </label>
@@ -50,6 +48,7 @@ export const ModalUpdateRoom = () => {
             <option value="Sujo">Sujo</option>
             <option value="Manutenção">Manutenção</option>
           </select>
+
           <ContainerButtonModal>
             <Button
               type="button"

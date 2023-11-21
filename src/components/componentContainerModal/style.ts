@@ -9,6 +9,7 @@ export const StyledContainerModal = styled.main`
   position: fixed;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
 
   /* .modalGuest {
     width: 500px;
@@ -18,15 +19,15 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateRoom {
     width: 352px;
-    height: 490px;
+    height: 520px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
   }
 
   .modalUpdateGuest {
-    width: 352px;
-    height: 860px;
+    width: 750px;
+    height: 550px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -67,21 +68,71 @@ export const StyledContainerModal = styled.main`
     }
   }
 
+  .formUpdateGuest {
+    display: flex;
+    height: 400px;
+    width: 100%;
+    gap: 30px;
+
+    .guestData {
+      width: 50%;
+      height: 410px;
+      overflow-y: auto;
+    }
+
+    .guestAddress {
+      width: 50%;
+    }
+  }
+
   .modalPromotion {
     width: 400px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
     height: 700px;
+  }
+  select {
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+    margin-top: 10px;
+    font-family: var(--font-family-inter);
+    border-radius: var(--border-radius);
+    border-color: var(--grey-200);
+  }
 
-    select {
-      width: 100%;
-      height: 40px;
-      padding-left: 10px;
-      margin-top: 10px;
-      font-family: var(--font-family-inter);
-      border-radius: var(--border-radius);
-      border-color: var(--grey-200);
-    }
+  .modalAddRoom {
+    width: 352px;
+    padding: 16px;
+    background-color: var(--grey-00);
+    border-radius: var(--border-radius);
+  }
+
+  .modalUpdateTypeRoom {
+    width: 352px;
+    padding: 16px;
+    background-color: var(--grey-00);
+    border-radius: var(--border-radius);
+  }
+
+  .modalAddAttendat {
+    width: 352px;
+    padding: 16px;
+    background-color: var(--grey-00);
+    border-radius: var(--border-radius);
+  }
+
+  .modalUpdateHotel {
+    width: 352px;
+    padding: 16px;
+    background-color: var(--grey-00);
+    border-radius: var(--border-radius);
+  }
+  .modalScheduleReservation {
+    width: 352px;
+    padding: 16px;
+    background-color: var(--grey-00);
+    border-radius: var(--border-radius);
   }
 `;

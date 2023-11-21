@@ -72,7 +72,7 @@ export const ComponentListRateRoom = () => {
           <th>Avaliabity</th>
           <th></th>
         </thead>
-        <ComponentTableList list={rooms} />
+        <ComponentTableList list={rooms} modalName="modalUpdateTypeRoom" />
       </TableStyled>
     </ComponentListRateRoomStyle>
   );
