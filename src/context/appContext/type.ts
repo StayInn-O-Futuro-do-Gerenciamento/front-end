@@ -9,4 +9,7 @@ export interface iAppContext {
   testState: boolean;
   handleChangeFunction: (state: string, value: boolean) => void;
   createReservation: boolean;
+  getReservationState: any;
+  getRoomState: any;
+  getTypeRoomState: any;
 }
