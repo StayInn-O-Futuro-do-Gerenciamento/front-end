@@ -45,30 +45,4 @@ export const ComponentListGuestStyle = styled.div`
       }
     }
   }
-  table {
-    width: 100%;
-    background-color: gray;
-    border-collapse: collapse;
-
-    thead {
-      background-color: gray;
-      border: none;
-    }
-    tr {
-      border: none;
-      background-color: var(--grey-00);
-    }
-    th {
-      border: none;
-      background-color: #f7f9fc;
-      text-align: start;
-      padding: 15px;
-      font-weight: 500;
-      color: var(--grey-500);
-    }
-    td {
-      padding: 15px;
-      border-bottom: 1px solid var(--blue-50);
-    }
-  }
 `;

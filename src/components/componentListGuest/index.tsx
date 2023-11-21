@@ -2,6 +2,7 @@ import { ComponentTableList } from "../componentTableList";
 import { ComponentListGuestStyle } from "./style";
 import filterImg from "../../assets/Filter.svg";
 import searchButton from "../../assets/navbar/Search.svg";
+import { TableStyled } from "../../style/tableStyle";
 
 export const ComponentListGuest = () => {
   const guest = [
@@ -49,7 +50,7 @@ export const ComponentListGuest = () => {
           </div>
         </div>
       </div>
-      <table>
+      <TableStyled>
         <thead>
           <tr>
             <th>Reservation ID</th>
@@ -62,7 +63,7 @@ export const ComponentListGuest = () => {
           </tr>
         </thead>
         <ComponentTableList list={guest} />
-      </table>
+      </TableStyled>
     </ComponentListGuestStyle>
   );
 };
