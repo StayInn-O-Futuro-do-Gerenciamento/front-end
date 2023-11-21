@@ -1,13 +1,38 @@
+import { useContext } from "react";
 import { StyledOverview } from "./style";
+import { AppContext } from "../../context/appContext";
 
 export const Overview = () => {
-  const dataHotel = {
-    checkIn: 50,
-    checkOut: 30,
-    totalDeQuartosNoHotel: 60,
-    totalDeQuartosDisponiveis: 142,
-    totalDeQuartosOcupados: 53,
-  };
+  const { getReservationState, getRoomState } = useContext(AppContext);
+
+  if (!getReservationState) {
+    return <div>Loading...</div>;
+  }
+
+  const today = new Date().toISOString().split("T")[0];
+
+  const todaysCheckIns = getReservationState.filter(
+    (reservation: any) => reservation.checkin.split("T")[0] === today
+  );
+  const todaysCheckOuts = getReservationState.filter(
+    (reservation: any) => reservation.checkout.split("T")[0] === today
+  );
+
+  const totalAdults = todaysCheckIns.reduce(
+    (acc: any, reservation: any) => acc + reservation.numberAdults,
+    0
+  );
+  const totalKids = todaysCheckIns.reduce(
+    (acc: any, reservation: any) => acc + reservation.numberKids,
+    0
+  );
+
+  const availableRooms = Array.isArray(getRoomState)
+    ? getRoomState.filter((room) => room.available === true)
+    : [];
+  const unavailableRooms = Array.isArray(getRoomState)
+    ? getRoomState.filter((room) => room.available === false)
+    : [];
 
   return (
     <StyledOverview>
@@ -20,35 +45,35 @@ export const Overview = () => {
             <span>Hoje</span>
             <p>Check-in</p>
           </div>
-          <span>{dataHotel.checkIn}</span>
+          <span>{todaysCheckIns.length}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
             <span>Hoje</span>
             <p>Check-out</p>
           </div>
-          <span>{dataHotel.checkOut}</span>
+          <span>{todaysCheckOuts.length}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
             <span>Total de pessoas</span>
             <p>No hotel</p>
           </div>
-          <span>{dataHotel.totalDeQuartosNoHotel}</span>
+          <span>{totalAdults + totalKids}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
             <span>Total</span>
             <p>Quartos disponiveis</p>
           </div>
-          <span>{dataHotel.totalDeQuartosDisponiveis}</span>
+          <span>{availableRooms.length}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
             <span>Total</span>
             <p>Quartos ocupados</p>
           </div>
-          <span>{dataHotel.totalDeQuartosOcupados}</span>
+          <span>{unavailableRooms.length}</span>
         </div>
       </div>
     </StyledOverview>
