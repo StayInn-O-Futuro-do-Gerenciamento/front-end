@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const TableStyled = styled.table`
   font-family: var(--font-family-inter);
-  width: 100%;
+  width: 98%;
+  margin: 0 20px;
   background-color: gray;
   border-collapse: separate;
   border-spacing: 0;

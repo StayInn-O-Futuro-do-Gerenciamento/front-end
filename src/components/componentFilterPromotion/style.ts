@@ -10,6 +10,7 @@ export const StyledFilterPromotion = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
+    padding: 20px;
   }
   .buttonContainer {
     display: flex;

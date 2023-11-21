@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const CalendarMain = styled.div`
-  width: 95%;
+  width: 100%;
   height: 500px;
-  margin: 50px 50px;
+  padding: 50px 50px;
   font-family: var(--font-family-inter);
   .info {
     display: flex;

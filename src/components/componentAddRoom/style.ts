@@ -4,7 +4,7 @@ export const ComponentAddRoomStyle = styled.div`
   div:nth-child(1) {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 10px;
     align-items: center;
     div:nth-child(1) {
       display: flex;
