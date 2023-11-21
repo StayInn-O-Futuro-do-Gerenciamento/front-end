@@ -109,26 +109,9 @@ export const StyledContainerModal = styled.main`
     border-radius: var(--border-radius);
   }
 
-  .modalUpdateTypeRoom {
-    width: 352px;
-    padding: 16px;
-    background-color: var(--grey-00);
-    border-radius: var(--border-radius);
-  }
-
-  .modalAddAttendat {
-    width: 352px;
-    padding: 16px;
-    background-color: var(--grey-00);
-    border-radius: var(--border-radius);
-  }
-
-  .modalUpdateHotel {
-    width: 352px;
-    padding: 16px;
-    background-color: var(--grey-00);
-    border-radius: var(--border-radius);
-  }
+  .modalUpdateTypeRoom,
+  .modalAddAttendat,
+  .modalUpdateHotel,
   .modalScheduleReservation {
     width: 352px;
     padding: 16px;
