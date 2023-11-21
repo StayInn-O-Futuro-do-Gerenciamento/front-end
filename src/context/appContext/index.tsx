@@ -8,6 +8,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   // Test - Apagar depois
   const [testState, setTestState] = useState<boolean>(true);
   const [createReservation, setCreateReservation] = useState<boolean>(false);
+  const [modalUpdateRoom, setModalUpdateRoom] = useState<boolean>(false);
+  const [modalUpdateGuest, setModalUpdateGuest] = useState<boolean>(false);
+  const [modalCretePromotion, setModalCreatePromotion] =
+    useState<boolean>(false);
+  const [modalCreateGuest, setModalCreateGuest] = useState<boolean>(false);
   const [getReservationState, setGetReservationState] = useState<[]>(
     null as any
   );
@@ -21,6 +26,18 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         break;
       case "createReservation":
         setCreateReservation(value);
+        break;
+      case "modalUpdateRoom":
+        setModalUpdateRoom(value);
+        break;
+      case "modalUpdateGuest":
+        setModalUpdateGuest(value);
+        break;
+      case "modalCreatePromotion":
+        setModalCreatePromotion(value);
+        break;
+      case "modalCreateGuest":
+        setModalCreateGuest(value);
         break;
     }
   };
@@ -49,6 +66,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         testState,
         handleChangeFunction,
         createReservation,
+        modalUpdateRoom,
+        modalUpdateGuest,
+        modalCretePromotion,
+        modalCreateGuest,
         getReservationState,
         getRoomState,
         getTypeRoomState,

@@ -1,17 +1,25 @@
+import { useContext } from "react";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
 import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
+import { AppContext } from "../../context/appContext";
 
 export const ModalUpdateGuest = () => {
+  const { handleChangeFunction } = useContext(AppContext);
+
   return (
     <ContainerModal>
       <div className="modalUpdateGuest">
         <HeaderModal>
           Atualizar Hospede{" "}
-          <Button buttonVariation="closeModal" type="button">
+          <Button
+            buttonVariation="closeModal"
+            type="button"
+            onClick={() => handleChangeFunction("modalUpdateGuest", false)}
+          >
             X
           </Button>
         </HeaderModal>

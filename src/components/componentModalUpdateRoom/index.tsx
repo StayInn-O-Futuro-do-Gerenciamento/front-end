@@ -1,17 +1,25 @@
+import { AppContext } from "../../context/appContext";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
 import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
+import { useContext } from "react";
 
 export const ModalUpdateRoom = () => {
+  const { handleChangeFunction } = useContext(AppContext);
+
   return (
     <ContainerModal>
       <div className="modalUpdateRoom">
         <HeaderModal>
           Atualizar quarto{" "}
-          <Button type="button" buttonVariation="closeModal">
+          <Button
+            type="button"
+            buttonVariation="closeModal"
+            onClick={() => handleChangeFunction("modalUpdateRoom", false)}
+          >
             X
           </Button>
         </HeaderModal>
@@ -43,7 +51,11 @@ export const ModalUpdateRoom = () => {
             <option value="Manutenção">Manutenção</option>
           </select>
           <ContainerButtonModal>
-            <Button type="button" buttonVariation="cancelModal">
+            <Button
+              type="button"
+              buttonVariation="cancelModal"
+              onClick={() => handleChangeFunction("modalUpdateRoom", false)}
+            >
               Cancelar
             </Button>
             <Button type="button" buttonVariation="saveModal">

@@ -1,6 +1,10 @@
 import More from "../../assets/More.svg";
+import { AppContext } from "../../context/appContext";
+import { useContext } from "react";
 
-export const ComponentTableList = ({ list }: { list: any[] }) => {
+export const ComponentTableList = ({ list, modalName }: any) => {
+  const { handleChangeFunction } = useContext(AppContext);
+
   if (!list || list.length === 0) {
     return null;
   }
@@ -29,7 +33,11 @@ export const ComponentTableList = ({ list }: { list: any[] }) => {
             }
           })}
           <td>
-            <img src={More} alt="" />
+            <img
+              src={More}
+              alt=""
+              onClick={() => handleChangeFunction(modalName, true)}
+            />
           </td>
         </tr>
       ))}

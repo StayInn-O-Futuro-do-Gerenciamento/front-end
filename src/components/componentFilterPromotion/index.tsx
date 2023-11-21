@@ -2,10 +2,12 @@ import { Button } from "../componentButton";
 import { StyledFilterPromotion } from "./style";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentTableList } from "../componentTableList";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AppContext } from "../../context/appContext";
 
 export const FilterPromotion = () => {
   const [selectedButton, setSelectedButton] = useState("");
+  const { handleChangeFunction } = useContext(AppContext);
 
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
@@ -94,7 +96,11 @@ export const FilterPromotion = () => {
             Disponível
           </Button> */}
         </div>
-        <Button type="button" buttonVariation="buttonCreate">
+        <Button
+          type="button"
+          buttonVariation="buttonCreate"
+          onClick={() => handleChangeFunction("modalCreatePromotion", true)}
+        >
           Adicionar oferta
         </Button>
       </div>

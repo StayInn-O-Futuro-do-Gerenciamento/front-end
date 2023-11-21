@@ -3,8 +3,12 @@ import { ComponentListGuestStyle } from "./style";
 import filterImg from "../../assets/Filter.svg";
 import searchButton from "../../assets/navbar/Search.svg";
 import { TableStyled } from "../../style/tableStyle";
+import { AppContext } from "../../context/appContext";
+import { useContext } from "react";
 
 export const ComponentListGuest = () => {
+  const { handleChangeFunction } = useContext(AppContext);
+
   const guest = [
     {
       reservation: "#23155",
@@ -40,7 +44,7 @@ export const ComponentListGuest = () => {
           <button>Check out</button>
         </div>
         <div>
-          <div>
+          <div onClick={() => handleChangeFunction("modalCreateGuest", true)}>
             <img src={filterImg} alt="" />
             <p>Filter</p>
           </div>
@@ -62,7 +66,7 @@ export const ComponentListGuest = () => {
             <th></th>
           </tr>
         </thead>
-        <ComponentTableList list={guest} />
+        <ComponentTableList list={guest} modalName="modalUpdateGuest" />
       </TableStyled>
     </ComponentListGuestStyle>
   );

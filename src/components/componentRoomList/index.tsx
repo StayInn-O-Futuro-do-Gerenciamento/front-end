@@ -54,7 +54,7 @@ export const RoomFilteredList = () => {
           <th>Status</th>
           <th></th>
         </thead>
-        <ComponentTableList list={rooms} />
+        <ComponentTableList list={rooms} modalName="modalUpdateRoom" />
       </TableStyled>
     </RoomFilteredListStyled>
   );
