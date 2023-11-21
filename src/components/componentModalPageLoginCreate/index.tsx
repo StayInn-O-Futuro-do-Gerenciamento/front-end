@@ -1,9 +1,15 @@
 import { ComponentModalPageLoginCreateStyle } from "./style";
 import logo from "../../assets/sidebar/Logo.svg";
-import { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const ComponentModalPageLoginCreate = ({ children }) => {
+interface childrenForm {
+  children: ReactNode;
+}
+
+export const ComponentModalPageLoginCreate: React.FC<childrenForm> = ({
+  children,
+}) => {
   const navigate = useNavigate();
   const [currentUrl, setCurrentUrl] = useState<string>("");
 
