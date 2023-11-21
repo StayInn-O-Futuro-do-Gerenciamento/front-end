@@ -9,4 +9,8 @@ export interface iAppContext {
   testState: boolean;
   handleChangeFunction: (state: string, value: boolean) => void;
   createReservation: boolean;
+  modalUpdateRoom: boolean;
+  modalUpdateGuest: boolean;
+  modalCretePromotion: boolean;
+  modalCreateGuest: boolean;
 }

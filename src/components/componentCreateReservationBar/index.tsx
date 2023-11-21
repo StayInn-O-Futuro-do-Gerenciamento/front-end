@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Button } from "../componentButton";
 import { StyledReservationBar } from "./style";
 import moment from "moment";
 import "moment/dist/locale/pt-br";
+import { AppContext } from "../../context/appContext";
 
 export const ReservationBar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const { handleChangeFunction } = useContext(AppContext);
 
   useEffect(() => {
     const timer = setInterval(() => {

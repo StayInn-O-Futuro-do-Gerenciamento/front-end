@@ -5,14 +5,22 @@ import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import profile from "../../assets/profile/perfil.png";
+import { AppContext } from "../../context/appContext";
+import { useContext } from "react";
 
 export const ModalRegisterGuest = () => {
+  const { handleChangeFunction } = useContext(AppContext);
+
   return (
     <ContainerModal>
       <div className="modalRegisterGuest">
         <HeaderModal>
           Cadastrar hospede{" "}
-          <Button buttonVariation="closeModal" type="button">
+          <Button
+            buttonVariation="closeModal"
+            type="button"
+            onClick={() => handleChangeFunction("modalCreateGuest", false)}
+          >
             X
           </Button>
         </HeaderModal>
@@ -84,7 +92,11 @@ export const ModalRegisterGuest = () => {
             </div>
           </div>
           <ContainerButtonModal>
-            <Button buttonVariation="cancelModal" type="button">
+            <Button
+              buttonVariation="cancelModal"
+              type="button"
+              onClick={() => handleChangeFunction("modalCreateGuest", false)}
+            >
               Cancelar
             </Button>
             <Button buttonVariation="saveModal" type="button">

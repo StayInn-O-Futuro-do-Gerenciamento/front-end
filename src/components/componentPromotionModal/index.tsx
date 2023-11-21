@@ -1,17 +1,25 @@
+import { useContext } from "react";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
 import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
+import { AppContext } from "../../context/appContext";
 
 export const ModalPromotion = () => {
+  const { handleChangeFunction } = useContext(AppContext);
+
   return (
     <ContainerModal>
       <div className="modalPromotion">
         <HeaderModal>
           Adicionar promoção
-          <Button buttonVariation="closeModal" type="button">
+          <Button
+            buttonVariation="closeModal"
+            type="button"
+            onClick={() => handleChangeFunction("modalCreatePromotion", false)}
+          >
             X
           </Button>
         </HeaderModal>
@@ -37,7 +45,13 @@ export const ModalPromotion = () => {
             <option value="">Ruim</option>
           </select>
           <ContainerButtonModal>
-            <Button type="button" buttonVariation="cancelModal">
+            <Button
+              type="button"
+              buttonVariation="cancelModal"
+              onClick={() =>
+                handleChangeFunction("modalCreatePromotion", false)
+              }
+            >
               Cancelar
             </Button>
             <Button type="button" buttonVariation="saveModal">
