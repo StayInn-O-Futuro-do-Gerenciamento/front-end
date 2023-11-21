@@ -5,8 +5,13 @@ import { Guest } from "../pages/pageGuests";
 import { Rate } from "../pages/pageRates";
 import { Rooms } from "../pages/pageRooms";
 import { Offer } from "../pages/pageOffers";
+import { AppContext } from "../context/appContext";
+import { useContext } from "react";
+import { ModalRegisterAttendat } from "../components/componentModalRegisterAttendant";
 
 export const RoutesMain = () => {
+  const { modalRegisterAttedant } = useContext(AppContext);
+
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
