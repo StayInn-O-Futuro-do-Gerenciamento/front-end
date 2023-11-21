@@ -16,4 +16,10 @@ export interface iAppContext {
   getReservationState: any;
   getRoomState: any;
   getTypeRoomState: any;
+  modalRegisterAttedant: boolean;
+  modalUpdateHotel: boolean;
+  modalUpdatePromotion: boolean;
+  modalUpdateTypeRoom: boolean;
+  modalCreateRoom: boolean;
+  modalScheduleReservation: boolean;
 }

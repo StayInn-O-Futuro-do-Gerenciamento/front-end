@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button } from "../componentButton";
 import { RoomFilteredList } from "../componentRoomList";
 import { ComponentAddRoomStyle } from "./style";
+import { AppContext } from "../../context/appContext";
 
 export const ComponentAddRoom = () => {
   const [selectedButton, setSelectedButton] = useState("");
+  const { handleChangeFunction } = useContext(AppContext);
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
   };
@@ -38,12 +40,16 @@ export const ComponentAddRoom = () => {
           </Button>
         </div>
         <div>
-          <Button type="button" buttonVariation="buttonCreate">
+          <Button
+            type="button"
+            buttonVariation="buttonCreate"
+            onClick={() => handleChangeFunction("modalCreateRoom", true)}
+          >
             Add Room
           </Button>
         </div>
       </div>
-      <RoomFilteredList />
+      <RoomFilteredList modalName="modalUpdateRoom" />
     </ComponentAddRoomStyle>
   );
 };

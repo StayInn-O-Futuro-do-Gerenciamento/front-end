@@ -7,18 +7,18 @@ import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { AppContext } from "../../context/appContext";
 
-export const ModalPromotion = () => {
+export const ModalUpdatePromotion = () => {
   const { handleChangeFunction } = useContext(AppContext);
 
   return (
     <ContainerModal>
       <div className="modalPromotion">
         <HeaderModal>
-          Adicionar promoção
+          Atualizar oferta
           <Button
             buttonVariation="closeModal"
             type="button"
-            onClick={() => handleChangeFunction("modalCreatePromotion", false)}
+            onClick={() => handleChangeFunction("modalUpdatePromotion", false)}
           >
             X
           </Button>
@@ -49,7 +49,7 @@ export const ModalPromotion = () => {
               type="button"
               buttonVariation="cancelModal"
               onClick={() =>
-                handleChangeFunction("modalCreatePromotion", false)
+                handleChangeFunction("modalUpdatePromotion", false)
               }
             >
               Cancelar

@@ -114,7 +114,10 @@ export const FilterPromotion = () => {
           <th>Status</th>
           <th></th>
         </thead>
-        <ComponentTableList list={promotions} />
+        <ComponentTableList
+          list={promotions}
+          modalName="modalUpdatePromotion"
+        />
       </TableStyled>
     </StyledFilterPromotion>
   );

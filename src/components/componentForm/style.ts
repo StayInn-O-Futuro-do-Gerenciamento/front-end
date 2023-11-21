@@ -24,6 +24,7 @@ export const StyledForm = styled.form`
     width: 100%;
     height: 80px;
     padding-left: 10px;
+    padding-top: 10px;
     font-family: var(--font-family-inter);
     border-radius: var(--border-radius);
     border: 1.5px solid var(--grey-200);

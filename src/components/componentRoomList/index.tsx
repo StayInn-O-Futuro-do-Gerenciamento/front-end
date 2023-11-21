@@ -1,4 +1,3 @@
-import More from "../../assets/More.svg";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentTableList } from "../componentTableList";
 import { RoomFilteredListStyled } from "./style";
@@ -42,7 +41,7 @@ const rooms = [
   },
 ];
 
-export const RoomFilteredList = () => {
+export const RoomFilteredList = ({ modalName }: any) => {
   return (
     <RoomFilteredListStyled>
       <TableStyled>
@@ -54,7 +53,7 @@ export const RoomFilteredList = () => {
           <th>Status</th>
           <th></th>
         </thead>
-        <ComponentTableList list={rooms} modalName="modalUpdateRoom" />
+        <ComponentTableList list={rooms} modalName={modalName} />
       </TableStyled>
     </RoomFilteredListStyled>
   );

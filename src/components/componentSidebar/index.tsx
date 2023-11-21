@@ -11,10 +11,16 @@ import Room from "../../assets/sidebar/Room.svg";
 import { SideBarMain } from "./style";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { AppContext } from "../../context/appContext";
+import { useContext } from "react";
+import { ModalUpdateHotel } from "../componentModalUpdateHotel";
+import { ModalRegisterAttendat } from "../componentModalRegisterAttendant";
 
 export const Sidebar = () => {
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState(location.pathname);
+  const { handleChangeFunction, modalUpdateHotel, modalRegisterAttedant } =
+    useContext(AppContext);
   const navigate = useNavigate();
 
   const handleButtonClick = (buttonId: string) => {
@@ -23,6 +29,8 @@ export const Sidebar = () => {
   };
   return (
     <SideBarMain>
+      {modalUpdateHotel && <ModalUpdateHotel />}
+      {modalRegisterAttedant && <ModalRegisterAttendat />}
       <div className="div-logo">
         <img src={Logo} alt="Logo" />
         <h1>Oasis</h1>
@@ -75,14 +83,14 @@ export const Sidebar = () => {
         <ul>
           <li
             className={selectedButton === "Attendant" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Attendant")}
+            onClick={() => handleChangeFunction("modalRegisterAttendant", true)}
           >
             <img src={Attendant} alt="Cadastro de Atendentes" />
             <p>+ Atendentes</p>
           </li>
           <li
             className={selectedButton === "Hotel" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Hotel")}
+            onClick={() => handleChangeFunction("modalUpdateHotel", true)}
           >
             <img src={Hotel} alt="Edição do Hotel" />
             <p>Edição do Hotel</p>
