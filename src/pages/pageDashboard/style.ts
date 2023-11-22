@@ -9,6 +9,35 @@ export const StyledContainerDashboard = styled.div`
     padding-left: 20px;
   }
 
+  .container-create-hotel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    position: fixed;
+    z-index: 1000;
+    .button-submit {
+      margin-top: 20px;
+    }
+    .container-modal {
+      width: 500px;
+      background-color: white;
+      border-radius: 16px;
+      padding: 20px;
+      div:nth-child(1) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        h2 {
+          color: var(--orange-400);
+        }
+      }
+    }
+  }
+
   .contentDashBoard {
     background-color: #eef0f2;
     padding: 20px;

@@ -5,8 +5,8 @@ import { PageLoginStyle } from "./style";
 import { Input } from "../../components/componentInput";
 
 interface iFormInput {
-  usuario: string;
-  senha: string;
+  name: string;
+  password: string;
 }
 
 export const PageRegister = () => {
@@ -24,7 +24,7 @@ export const PageRegister = () => {
           <Input
             placeholder="Digite seu usuário"
             type="text"
-            register={register("usuario")}
+            register={register("name")}
             label="Usuario"
           />
           ,
@@ -32,7 +32,7 @@ export const PageRegister = () => {
             label="Senha"
             placeholder="Digite sua senha"
             type="password"
-            register={register("senha")}
+            register={register("password")}
           />
           <Button buttonVariation="buttonCreate" type="submit">
             Cadastrar

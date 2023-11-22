@@ -4,6 +4,18 @@ import React from "react";
 export interface iAppContextProps {
   children: React.ReactNode;
 }
+export interface iUser {
+  token: string;
+  type: string;
+}
+export interface iHotel {
+  name: string;
+  street: string;
+  number: string;
+  zipCode: string;
+  city: string;
+  id: string;
+}
 // Typagem das funções/states que serão exportados.
 export interface iAppContext {
   testState: boolean;
@@ -22,4 +34,9 @@ export interface iAppContext {
   modalUpdateTypeRoom: boolean;
   modalCreateRoom: boolean;
   modalScheduleReservation: boolean;
+  loadingButton: boolean;
+  loginUser: (data: any) => void;
+  user: iUser | null;
+  hotel: iHotel | null;
+  createHotel: (data: iHotel) => void;
 }
