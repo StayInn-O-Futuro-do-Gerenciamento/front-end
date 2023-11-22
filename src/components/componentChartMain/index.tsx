@@ -1,16 +1,26 @@
 import ReactApexChart from "react-apexcharts";
+import { useContext } from "react";
 import {
   options,
   months,
   reorderedMonths,
 } from "../../utils/chartsConfig/bar.config";
 import { BarMain } from "./style";
-import { history } from "../../utils/mocks/resevation.mocks";
+import { AppContext } from "../../context/appContext";
 
 export const BarChart = () => {
+  const { getHistoryState } = useContext(AppContext);
+  if (!getHistoryState) {
+    return (
+      <BarMain>
+        <h3>Loading...</h3>
+      </BarMain>
+    );
+  }
+
   const reservationsByMonth = Array.from({ length: 12 }, () => 0);
 
-  history.forEach((reservation) => {
+  getHistoryState.forEach((reservation: any) => {
     const checkinMonth = new Date(reservation.checkin).getMonth();
     reservationsByMonth[checkinMonth]++;
   });
@@ -19,7 +29,7 @@ export const BarChart = () => {
     const monthIndex = months.indexOf(month);
     return reservationsByMonth[monthIndex];
   });
-  const totalReservations = history.length;
+  const totalReservations = getHistoryState.length;
 
   const percentageByMonth = reorderedReservationsByMonth.map((count) =>
     ((count / totalReservations) * 100).toFixed(2)
