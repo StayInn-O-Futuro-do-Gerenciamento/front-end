@@ -4,7 +4,6 @@ import Deals from "../../assets/sidebar/Deals.svg";
 import Attendant from "../../assets/sidebar/attendant.svg";
 import Hotel from "../../assets/sidebar/Hotels.svg";
 import Logout from "../../assets/sidebar/logout.svg";
-import Rate from "../../assets/sidebar/Rate.svg";
 import Report from "../../assets/sidebar/Report.svg";
 import Reservation from "../../assets/sidebar/Reservation.svg";
 import Room from "../../assets/sidebar/Room.svg";
@@ -15,6 +14,7 @@ import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
 import { ModalUpdateHotel } from "../componentModalUpdateHotel";
 import { ModalRegisterAttendat } from "../componentModalRegisterAttendant";
+import { LuBedDouble } from "react-icons/lu";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -76,8 +76,11 @@ export const Sidebar = () => {
             className={selectedButton === "/rates" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("/rates")}
           >
-            <img src={Rate} alt="Taxas" />
-            <p>Taxas</p>
+            <LuBedDouble
+              className="typeRoom"
+              style={{ width: 30, height: 30, color: `#667085` }}
+            />
+            <p>Tipo de Quarto</p>
           </li>
         </ul>
         <ul>

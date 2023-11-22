@@ -22,4 +22,5 @@ export interface iAppContext {
   modalUpdateTypeRoom: boolean;
   modalCreateRoom: boolean;
   modalScheduleReservation: boolean;
+  getGuestState: any;
 }

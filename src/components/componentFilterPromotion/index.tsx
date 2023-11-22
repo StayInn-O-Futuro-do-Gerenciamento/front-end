@@ -7,11 +7,12 @@ import { AppContext } from "../../context/appContext";
 
 export const FilterPromotion = () => {
   const [selectedButton, setSelectedButton] = useState("");
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, getGuestState } = useContext(AppContext);
 
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
   };
+
   const promotions = [
     {
       roomNumber: "A1",
@@ -19,6 +20,7 @@ export const FilterPromotion = () => {
       roomFloor: "1°",
       roomFacilitys: "Cama, frigobar, corda, facão",
       status: "VIP",
+      Quantidade: 5,
       avaliabity: "Novo",
     },
     {
@@ -27,15 +29,16 @@ export const FilterPromotion = () => {
       roomFloor: "1°",
       roomFacilitys: "Cama, frigobar",
       status: "Básico",
+      Quantidade: 5,
       avaliabity: "Cheio",
     },
     {
       roomNumber: "B12",
       roomType: "VIP",
       roomFloor: "2°",
-      roomFacilitys:
-        "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
+      roomFacilitys: "Cama, frigobar, Televisão 12 polegadas, hidromassagem",
       status: "900",
+      Quantidade: 5,
       avaliabity: "5 roomss",
     },
     {
@@ -44,6 +47,7 @@ export const FilterPromotion = () => {
       roomFloor: "2°",
       roomFacilitys: "Cama, frigobar",
       status: "700",
+      Quantidade: 5,
       avaliabity: "5 roomss",
     },
     {
@@ -52,7 +56,8 @@ export const FilterPromotion = () => {
       roomFloor: "4°",
       roomFacilitys: "Cama, frigobar, fogão",
       status: "800",
-      avaliabity: "5 roomss",
+      Quantidade: 5,
+      avaliabity: "Finalizado",
     },
   ];
 
@@ -106,11 +111,12 @@ export const FilterPromotion = () => {
       </div>
       <TableStyled>
         <thead>
-          <th>Referencia da oferta</th>
+          <th>ID da oferta</th>
           <th>Nome</th>
-          <th>Reservas restantes</th>
+          <th>Data de inicio</th>
           <th>Data final</th>
-          <th>Tipo</th>
+          <th>Tipo do Quarto</th>
+          <th>Quartos disponiveis</th>
           <th>Status</th>
           <th></th>
         </thead>

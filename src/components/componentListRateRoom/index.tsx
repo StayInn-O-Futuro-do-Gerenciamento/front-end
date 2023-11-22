@@ -27,7 +27,7 @@ export const ComponentListRateRoom = () => {
       roomType: "VIP",
       roomFloor: "2°",
       roomFacilitys:
-        "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
+        "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
       status: "900",
       avaliabity: "5 roomss",
     },
@@ -40,10 +40,10 @@ export const ComponentListRateRoom = () => {
       avaliabity: "5 roomss",
     },
     {
-      roomNumber: "D45",
-      roomType: "Familia",
-      roomFloor: "4°",
-      roomFacilitys: "Cama, frigobar, fogão",
+      roomNumber: "Familia",
+      roomType: "Natal",
+      roomFloor: "Sem Reembolso",
+      roomFacilitys: "vaso",
       status: "800",
       avaliabity: "5 roomss",
     },
@@ -64,11 +64,11 @@ export const ComponentListRateRoom = () => {
       </div>
       <TableStyled>
         <thead>
-          <th>Room Type</th>
-          <th>Deals</th>
-          <th>Cancelation Politicy</th>
-          <th>Deal Price</th>
-          <th>Rate</th>
+          <th>Tipo de Quarto</th>
+          <th>Oferta</th>
+          <th>Politica de cancelamento</th>
+          <th>Confortos</th>
+          <th>Preço do Quarto</th>
           <th>Avaliabity</th>
           <th></th>
         </thead>
