@@ -16,6 +16,31 @@ export interface iHotel {
   city: string;
   id: string;
 }
+
+export interface iGuestData {
+  name: string;
+  rg: string;
+  cpf: string;
+  passport: string;
+  nationality: string;
+  phoneNumbers: string[];
+  emergencyContacts: iEmergencyContact[];
+  address: iAddress;
+}
+
+export interface iEmergencyContact {
+  name: string;
+  phoneNumber: string;
+}
+
+export interface iAddress {
+  street: string;
+  number: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
+
 // Typagem das funções/states que serão exportados.
 export interface iAppContext {
   testState: boolean;
@@ -41,4 +66,5 @@ export interface iAppContext {
   createHotel: (data: iHotel) => void;
   getGuestState: any;
   getHistoryState: any;
+  registerGuest: (data: iGuestData) => void;
 }

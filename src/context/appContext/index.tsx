@@ -1,5 +1,11 @@
 import { createContext, useEffect, useState } from "react";
-import { iAppContext, iAppContextProps, iHotel, iUser } from "./type";
+import {
+  iAppContext,
+  iAppContextProps,
+  iGuestData,
+  iHotel,
+  iUser,
+} from "./type";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
@@ -105,6 +111,20 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
+  const registerGuest = async (data: iGuestData) => {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    try {
+      const responseRegisterGuest = await api.post("/guest", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      console.log(responseRegisterGuest);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     const getOverview = async () => {
       let token: string = "";
@@ -112,8 +132,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       if (local) {
         token = JSON.parse(local);
       }
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiTWFuYWdlciIsImlhdCI6MTcwMDYxMjExMCwiZXhwIjoxNzAwNjQwOTEwLCJzdWIiOiJmMmRiOGQ2Yi1iMjMzLTQ4M2UtOThlMS1kNmQ0YzY5MTljMzgifQ.jL8b0TZnYQGu5e-HLovu5SObx_GIASUKSh4OehaM5XM";
+
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const listHotel = await api.get("/hotel");
@@ -156,7 +175,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalUpdateTypeRoom,
         modalCreateRoom,
         modalScheduleReservation,
-        loginUser
         loginUser,
         loadingButton,
         user,
@@ -164,6 +182,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         createHotel,
         getGuestState,
         getHistoryState,
+        registerGuest,
       }}
     >
       {children}

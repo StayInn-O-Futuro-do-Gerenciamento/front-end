@@ -8,10 +8,10 @@ export const StyledForm = styled.form`
   background-color: var(--grey-00);
   font-family: var(--font-family-inter);
 
-  /* .errorMessage {
+  .errorMessage {
     font-size: var(--font-size2);
     color: var(--red-600);
-  } */
+  }
 
   label {
     color: var(--grey-800);
