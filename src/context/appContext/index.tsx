@@ -29,6 +29,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getRoomState, setGetRoomState] = useState(null as any);
   const [getTypeRoomState, setGetTypeRoomState] = useState(null as any);
   const [getGuestState, setGetGuestState] = useState(null as any);
+  const [getHistoryState, setGetHistoryState] = useState(null as any);
 
   const handleChangeFunction = (state: string, value: boolean) => {
     switch (state) {
@@ -74,13 +75,13 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   useEffect(() => {
     const getOverview = async () => {
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjA5MTA2LCJleHAiOjE3MDA2Mzc5MDYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.TzCNx3jBG1wvl6idvQ6jZtNt_7tnNrEv8Wr1_Xak5dQ";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiTWFuYWdlciIsImlhdCI6MTcwMDYxMjExMCwiZXhwIjoxNzAwNjQwOTEwLCJzdWIiOiJmMmRiOGQ2Yi1iMjMzLTQ4M2UtOThlMS1kNmQ0YzY5MTljMzgifQ.jL8b0TZnYQGu5e-HLovu5SObx_GIASUKSh4OehaM5XM";
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const resposeReservation = await api.get(`/reservation`);
       setGetReservationState(resposeReservation.data);
 
-      const responseRoom = await api.get(`/room?pageSize=50`);
+      const responseRoom = await api.get(`/room?pageSize=100`);
       setGetRoomState(responseRoom.data);
 
       const responseTypeRoom = await api.get(`/typeRoom`);
@@ -88,6 +89,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseGuest = await api.get(`/guest`);
       setGetGuestState(responseGuest.data);
+
+      const responseHistory = await api.get(`/history`);
+      setGetHistoryState(responseHistory.data);
     };
     getOverview();
   }, []);
@@ -112,6 +116,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalCreateRoom,
         modalScheduleReservation,
         getGuestState,
+        getHistoryState,
       }}
     >
       {children}

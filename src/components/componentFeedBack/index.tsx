@@ -12,7 +12,11 @@ export const Feedback = () => {
   const { getReservationState } = useContext(AppContext);
 
   if (!getReservationState) {
-    return <div>Carregando...</div>;
+    return (
+      <StyledFeedback>
+        <div>Carregando...</div>
+      </StyledFeedback>
+    );
   }
 
   return (

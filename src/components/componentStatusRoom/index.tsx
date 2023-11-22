@@ -6,7 +6,11 @@ export const StatusRoom = () => {
   const { getRoomState } = useContext(AppContext);
 
   if (!getRoomState) {
-    return <div>Loading...</div>;
+    return (
+      <StyledStatusRoom>
+        <div>Loading...</div>
+      </StyledStatusRoom>
+    );
   }
 
   let disponiveis = 0;
