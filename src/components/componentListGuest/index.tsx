@@ -11,7 +11,6 @@ export const ComponentListGuest = () => {
 
   const guest = [
     {
-      reservation: "#23155",
       name: "Quarto Standard",
       roomNumber: 50,
       totalAmount: 20,
@@ -19,7 +18,6 @@ export const ComponentListGuest = () => {
       status: "clean",
     },
     {
-      reservation: "#23255",
       name: "Quarto Standard",
       roomNumber: 50,
       totalAmount: 20,
@@ -27,12 +25,11 @@ export const ComponentListGuest = () => {
       status: "clean",
     },
     {
-      reservation: "#23155",
-      name: "Quarto Standard",
-      roomNumber: 50,
-      totalAmount: 20,
-      amountPaid: 100.0,
-      status: "clean",
+      name: "Maria5",
+      roomNumber: "Peru",
+      totalAmount: 999903859,
+      amountPaid: "123456789",
+      status: "R$ 500",
     },
   ];
 
@@ -57,12 +54,11 @@ export const ComponentListGuest = () => {
       <TableStyled>
         <thead>
           <tr>
-            <th>Reservation ID</th>
-            <th>Name</th>
-            <th>Room Number</th>
-            <th>Total amount</th>
-            <th>Amount Paid</th>
-            <th>Status</th>
+            <th>Nome</th>
+            <th>Nacionalidade</th>
+            <th>Numero</th>
+            <th>RG</th>
+            <th>Total Pago</th>
             <th></th>
           </tr>
         </thead>

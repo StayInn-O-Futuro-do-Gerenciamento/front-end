@@ -28,6 +28,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   );
   const [getRoomState, setGetRoomState] = useState(null as any);
   const [getTypeRoomState, setGetTypeRoomState] = useState(null as any);
+  const [getGuestState, setGetGuestState] = useState(null as any);
 
   const handleChangeFunction = (state: string, value: boolean) => {
     switch (state) {
@@ -73,7 +74,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   useEffect(() => {
     const getOverview = async () => {
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNTcyNzg3LCJleHAiOjE3MDA2MDE1ODcsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.KVu8PTvBizinOFJIPidXf2hqsBMzqITrI3yE_p1QEbg";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjA5MTA2LCJleHAiOjE3MDA2Mzc5MDYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.TzCNx3jBG1wvl6idvQ6jZtNt_7tnNrEv8Wr1_Xak5dQ";
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const resposeReservation = await api.get(`/reservation`);
@@ -84,6 +85,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
+
+      const responseGuest = await api.get(`/guest`);
+      setGetGuestState(responseGuest.data);
     };
     getOverview();
   }, []);
@@ -107,6 +111,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalUpdateTypeRoom,
         modalCreateRoom,
         modalScheduleReservation,
+        getGuestState,
       }}
     >
       {children}

@@ -31,7 +31,7 @@ export const Feedback = () => {
         slidesPerView={4}
         loop={true}
       >
-        {getReservationState.map((item, index) => (
+        {getReservationState.map((item: any, index: any) => (
           <SwiperSlide key={index} style={{ height: 60.5 }}>
             <div className="guest">
               <p style={{ marginTop: 5 }}>{item.guests[0].name}</p>

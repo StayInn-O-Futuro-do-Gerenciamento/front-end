@@ -73,9 +73,9 @@ export const StyledFeedback = styled.section`
   }
 
   .estrela1 {
-    color: var(--orange-600);
+    color: var(--orange-300);
   }
   .estrela2 {
-    color: var(--orange-600);
+    color: var(--orange-300);
   }
 `;

@@ -44,6 +44,11 @@ export const SideBarMain = styled.section`
           height: 30px;
           filter: var(--svg-color-grey);
         }
+        .typeRoom {
+          width: 30px;
+          height: 30px;
+          filter: var(--svg-color-grey);
+        }
         p {
           font-family: var(--font-family-inter);
         }
@@ -56,6 +61,9 @@ export const SideBarMain = styled.section`
         img {
           filter: var(--svg-color-orange);
         }
+        .typeRoom {
+          filter: var(--svg-color-orange);
+        }
       }
       .selected-btn {
         background-color: var(--orange-50);
@@ -63,6 +71,9 @@ export const SideBarMain = styled.section`
           color: var(--orange-400);
         }
         img {
+          filter: var(--svg-color-orange);
+        }
+        .typeRoom {
           filter: var(--svg-color-orange);
         }
       }
