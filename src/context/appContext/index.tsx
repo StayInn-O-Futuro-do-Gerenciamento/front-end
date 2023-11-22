@@ -74,7 +74,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   useEffect(() => {
     const getOverview = async () => {
       const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjA5MTA2LCJleHAiOjE3MDA2Mzc5MDYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.TzCNx3jBG1wvl6idvQ6jZtNt_7tnNrEv8Wr1_Xak5dQ";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjUzMTc2LCJleHAiOjE3MDA2ODE5NzYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.z7YmaV5OeIQGA2UycwGGvvKZhVYzbWWTx5n7dEJKEGQ";
+
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const resposeReservation = await api.get(`/reservation`);
@@ -91,6 +92,26 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     };
     getOverview();
   }, []);
+
+  const getFrankstainHistoryPrice = async (id: any) => {
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjUzMTc2LCJleHAiOjE3MDA2ODE5NzYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.z7YmaV5OeIQGA2UycwGGvvKZhVYzbWWTx5n7dEJKEGQ";
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const response = await api.get(`/history/guest/${id}`);
+
+    let priceTotal = 0;
+
+    response.data.forEach((element: any) => {
+      let room = element.room;
+      let typeRoom = room.typeRoom;
+
+      let price = typeRoom.price;
+
+      priceTotal += parseInt(price);
+    });
+
+    return priceTotal;
+  };
 
   return (
     <AppContext.Provider
@@ -112,6 +133,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalCreateRoom,
         modalScheduleReservation,
         getGuestState,
+        getFrankstainHistoryPrice,
       }}
     >
       {children}

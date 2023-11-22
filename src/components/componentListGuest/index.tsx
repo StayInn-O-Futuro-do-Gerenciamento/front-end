@@ -4,34 +4,45 @@ import filterImg from "../../assets/Filter.svg";
 import searchButton from "../../assets/navbar/Search.svg";
 import { TableStyled } from "../../style/tableStyle";
 import { AppContext } from "../../context/appContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export const ComponentListGuest = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, getGuestState, getFrankstainHistoryPrice } =
+    useContext(AppContext);
 
-  const guest = [
-    {
-      name: "Quarto Standard",
-      roomNumber: 50,
-      totalAmount: 20,
-      amountPaid: 100.0,
-      status: "clean",
-    },
-    {
-      name: "Quarto Standard",
-      roomNumber: 50,
-      totalAmount: 20,
-      amountPaid: 100.0,
-      status: "clean",
-    },
-    {
-      name: "Maria5",
-      roomNumber: "Peru",
-      totalAmount: 999903859,
-      amountPaid: "123456789",
-      status: "R$ 500",
-    },
-  ];
+  const [gestAll, setGestAll] = useState<any>([]); // Use state para armazenar os dados
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!getGuestState) {
+        return;
+      }
+
+      const promises = getGuestState.map(async (element: any) => {
+        let price = await getFrankstainHistoryPrice(element.id);
+
+        return {
+          name: element.name,
+          nacionalidade: element.nationality,
+          rg: element.rg,
+          number: element.phoneNumbers[0],
+          totalPago: price,
+        };
+      });
+
+      // Aguarda todas as solicitações assíncronas
+      const guestData = await Promise.all(promises);
+      setGestAll(guestData); // Atualiza o estado com os dados obtidos
+    };
+
+    fetchData();
+  }, [getGuestState, getFrankstainHistoryPrice]);
+
+  if (!getGuestState) {
+    return <div>Loading...</div>;
+  }
+
+  // console.log(gestAll);
 
   return (
     <ComponentListGuestStyle>
@@ -62,7 +73,7 @@ export const ComponentListGuest = () => {
             <th></th>
           </tr>
         </thead>
-        <ComponentTableList list={guest} modalName="modalUpdateGuest" />
+        <ComponentTableList list={gestAll} modalName="modalUpdateGuest" />
       </TableStyled>
     </ComponentListGuestStyle>
   );

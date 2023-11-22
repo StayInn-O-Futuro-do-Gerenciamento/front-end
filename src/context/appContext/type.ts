@@ -23,4 +23,5 @@ export interface iAppContext {
   modalCreateRoom: boolean;
   modalScheduleReservation: boolean;
   getGuestState: any;
+  getFrankstainHistoryPrice: any;
 }
