@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { iAppContext, iAppContextProps } from "./type";
+import { iAppContext, iAppContextProps, iHotel, iUser } from "./type";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -30,6 +31,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getTypeRoomState, setGetTypeRoomState] = useState(null as any);
   const [getGuestState, setGetGuestState] = useState(null as any);
   const [getHistoryState, setGetHistoryState] = useState(null as any);
+
+  // Fora de teste, REAL
+  const [loadingButton, setLoadingButton] = useState(false);
+  const [user, setUser] = useState<iUser | null>(null);
+  const [hotel, setHotel] = useState<iHotel | null>(null);
 
   const handleChangeFunction = (state: string, value: boolean) => {
     switch (state) {
@@ -72,11 +78,46 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
+  const navigate = useNavigate();
+  const loginUser = async (data: iUser) => {
+    try {
+      setLoadingButton(true);
+      const responseCreate = await api.post("/login", data);
+      setUser(responseCreate.data);
+      localStorage.setItem("token", JSON.stringify(responseCreate.data.token));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingButton(false);
+    }
+  };
+
+  const createHotel = async (data: iHotel) => {
+    try {
+      setLoadingButton(true);
+      const responseCreate = await api.post("/hotel", data);
+      setHotel(responseCreate.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingButton(false);
+    }
+  };
+
   useEffect(() => {
     const getOverview = async () => {
+      let token: string = "";
+      const local = localStorage.getItem("token");
+      if (local) {
+        token = JSON.parse(local);
+      }
       const token =
         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiTWFuYWdlciIsImlhdCI6MTcwMDYxMjExMCwiZXhwIjoxNzAwNjQwOTEwLCJzdWIiOiJmMmRiOGQ2Yi1iMjMzLTQ4M2UtOThlMS1kNmQ0YzY5MTljMzgifQ.jL8b0TZnYQGu5e-HLovu5SObx_GIASUKSh4OehaM5XM";
       api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      const listHotel = await api.get("/hotel");
+      setHotel(listHotel.data[0]);
 
       const resposeReservation = await api.get(`/reservation`);
       setGetReservationState(resposeReservation.data);
@@ -94,7 +135,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       setGetHistoryState(responseHistory.data);
     };
     getOverview();
-  }, []);
+  }, [user]);
 
   return (
     <AppContext.Provider
@@ -115,6 +156,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalUpdateTypeRoom,
         modalCreateRoom,
         modalScheduleReservation,
+        loginUser
+        loginUser,
+        loadingButton,
+        user,
+        hotel,
+        createHotel,
         getGuestState,
         getHistoryState,
       }}

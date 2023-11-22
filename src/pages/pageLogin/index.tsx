@@ -3,17 +3,20 @@ import { Button } from "../../components/componentButton";
 import { ComponentModalPageLoginCreate } from "../../components/componentModalPageLoginCreate";
 import { PageLoginStyle } from "./style";
 import { Input } from "../../components/componentInput";
+import { useContext } from "react";
+import { AppContext } from "../../context/appContext";
 
 interface iFormInput {
-  usuario: string;
-  senha: string;
+  name: string;
+  password: string;
 }
 
 export const PageLogin = () => {
+  const { loginUser, loadingButton } = useContext(AppContext);
   const { register, handleSubmit } = useForm<iFormInput>();
 
   const onSubmit = (data: iFormInput) => {
-    console.log(data);
+    loginUser(data);
   };
 
   return (
@@ -24,7 +27,7 @@ export const PageLogin = () => {
           <Input
             placeholder="Digite seu usuário"
             type="text"
-            register={register("usuario")}
+            register={register("name")}
             label="Usuario"
           />
           ,
@@ -32,10 +35,14 @@ export const PageLogin = () => {
             label="Senha"
             placeholder="Digite sua senha"
             type="password"
-            register={register("senha")}
+            register={register("password")}
           />
-          <Button buttonVariation="buttonCreate" type="submit">
-            Efetuar Login
+          <Button
+            buttonVariation="buttonCreate"
+            type="submit"
+            disabled={loadingButton}
+          >
+            {loadingButton ? "Carregando.." : "Efetuar Login"}
           </Button>
         </form>
       </ComponentModalPageLoginCreate>
