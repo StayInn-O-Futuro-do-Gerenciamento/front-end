@@ -1,53 +1,89 @@
 import { ComponentTableList } from "../componentTableList";
 import { ComponentListGuestStyle } from "./style";
-import filterImg from "../../assets/Filter.svg";
 import searchButton from "../../assets/navbar/Search.svg";
 import { TableStyled } from "../../style/tableStyle";
 import { AppContext } from "../../context/appContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export const ComponentListGuest = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const {
+    handleChangeFunction,
+    getGuestState,
+    getFrankstainHistoryPrice,
+    getReservationState,
+  } = useContext(AppContext);
 
-  const guest = [
-    {
-      name: "Quarto Standard",
-      roomNumber: 50,
-      totalAmount: 20,
-      amountPaid: 100.0,
-      status: "clean",
-    },
-    {
-      name: "Quarto Standard",
-      roomNumber: 50,
-      totalAmount: 20,
-      amountPaid: 100.0,
-      status: "clean",
-    },
-    {
-      name: "Maria5",
-      roomNumber: "Peru",
-      totalAmount: 999903859,
-      amountPaid: "123456789",
-      status: "R$ 500",
-    },
-  ];
+  const [gestAll, setGestAll] = useState<any>([]);
+  const [filteredGuests, setFilteredGuests] = useState<any>([]);
+
+  useEffect(() => {
+    fetchData();
+  }, [getGuestState, getFrankstainHistoryPrice]);
+
+  const fetchData = async () => {
+    if (!getGuestState) {
+      return;
+    }
+
+    const promises = getGuestState.map(async (element: any) => {
+      let price = await getFrankstainHistoryPrice(element.id);
+
+      return {
+        name: element.name,
+        nacionalidade: element.nationality,
+        rg: element.rg,
+        number: element.phoneNumbers[0],
+        totalPago: `R$ ${price}`,
+      };
+    });
+
+    const guestData = await Promise.all(promises);
+    setGestAll(guestData);
+    setFilteredGuests(guestData); // Carregar todos os hóspedes por padrão
+  };
+
+  const handleShowAllGuests = () => {
+    setFilteredGuests(gestAll); // Exibir todos os hóspedes
+  };
+
+  const handleShowGuestsWithReservations = async () => {
+    const promises = getReservationState.map(async (reservation: any) => {
+      let price = await getFrankstainHistoryPrice(reservation.guests[0].id);
+
+      return {
+        name: reservation.guests[0].name,
+        nacionalidade: reservation.guests[0].nationality,
+        rg: reservation.guests[0].rg,
+        number: reservation.guests[0].phoneNumbers[0],
+        totalPago: `R$ ${price}`,
+      };
+    });
+
+    const guestsWithReservations = await Promise.all(promises);
+
+    setFilteredGuests(guestsWithReservations);
+  };
+
+  if (!getGuestState) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <ComponentListGuestStyle>
       <div className="nav-controller-guest">
         <div>
-          <button>Check In</button>
-          <button>Check out</button>
+          <button onClick={handleShowAllGuests}>Todos os Hóspedes</button>
+          <button onClick={handleShowGuestsWithReservations}>
+            Hóspedes com Reservas
+          </button>
         </div>
         <div>
-          <div onClick={() => handleChangeFunction("modalCreateGuest", true)}>
-            <img src={filterImg} alt="" />
-            <p>Filter</p>
-          </div>
           <div>
             <img src={searchButton} alt="" />
             <input placeholder="Search by room number" type="text" />
+          </div>
+          <div onClick={() => handleChangeFunction("modalCreateGuest", true)}>
+            <p>Cadastrar hospedes</p>
           </div>
         </div>
       </div>
@@ -62,7 +98,10 @@ export const ComponentListGuest = () => {
             <th></th>
           </tr>
         </thead>
-        <ComponentTableList list={guest} modalName="modalUpdateGuest" />
+        <ComponentTableList
+          list={filteredGuests}
+          modalName="modalUpdateGuest"
+        />
       </TableStyled>
     </ComponentListGuestStyle>
   );

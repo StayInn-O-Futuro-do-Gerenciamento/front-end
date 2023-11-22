@@ -4,8 +4,10 @@ export const StyledContainerDashboard = styled.div`
   display: flex;
   overflow: hidden;
 
+  max-width: 100%;
+
   .containerMain {
-    width: 100%;
+    width: 90%;
     padding-left: 20px;
   }
 

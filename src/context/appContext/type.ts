@@ -65,6 +65,7 @@ export interface iAppContext {
   hotel: iHotel | null;
   createHotel: (data: iHotel) => void;
   getGuestState: any;
+  getFrankstainHistoryPrice: any;
   getHistoryState: any;
   registerGuest: (data: iGuestData) => void;
 }

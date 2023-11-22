@@ -132,7 +132,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       if (local) {
         token = JSON.parse(local);
       }
-
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const listHotel = await api.get("/hotel");
@@ -155,6 +154,29 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     };
     getOverview();
   }, [user]);
+
+  const getFrankstainHistoryPrice = async (id: any) => {
+    let token: string = "";
+    const local = localStorage.getItem("token");
+    if (local) {
+      token = JSON.parse(local);
+    }
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const response = await api.get(`/history/guest/${id}`);
+
+    let priceTotal = 0;
+
+    response.data.forEach((element: any) => {
+      let room = element.room;
+      let typeRoom = room.typeRoom;
+
+      let price = typeRoom.price;
+
+      priceTotal += parseInt(price);
+    });
+
+    return priceTotal;
+  };
 
   return (
     <AppContext.Provider
@@ -181,6 +203,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         hotel,
         createHotel,
         getGuestState,
+        getFrankstainHistoryPrice,
         getHistoryState,
         registerGuest,
       }}
