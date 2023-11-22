@@ -2,7 +2,7 @@ import { Button } from "../componentButton";
 import { StyledFilterPromotion } from "./style";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentTableList } from "../componentTableList";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { AppContext } from "../../context/appContext";
 
 export const FilterPromotion = () => {
@@ -12,34 +12,6 @@ export const FilterPromotion = () => {
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
   };
-
-  // const [gestAll, setGestAll] = useState<any>([]); // Use state para armazenar os dados
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (!getGuestState) {
-  //       return;
-  //     }
-
-  //     const promises = getGuestState.map(async (element: any) => {
-  //       let price = await getFrankstainHistoryPrice(element.id);
-
-  //       return {
-  //         name: element.name,
-  //         nacionalidade: element.nationality,
-  //         rg: element.rg,
-  //         number: element.phoneNumbers[0],
-  //         totalPago: price,
-  //       };
-  //     });
-
-  //     // Aguarda todas as solicitações assíncronas
-  //     const guestData = await Promise.all(promises);
-  //     setGestAll(guestData); // Atualiza o estado com os dados obtidos
-  //   };
-
-  //   fetchData();
-  // }, [getGuestState, getFrankstainHistoryPrice]);
 
   const promotions = [
     {

@@ -6,7 +6,11 @@ export const Overview = () => {
   const { getReservationState, getRoomState } = useContext(AppContext);
 
   if (!getReservationState) {
-    return <div>Loading...</div>;
+    return (
+      <StyledOverview>
+        <div>Loading...</div>
+      </StyledOverview>
+    );
   }
 
   const today = new Date().toISOString().split("T")[0];
