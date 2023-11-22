@@ -12,7 +12,7 @@ export const StyledRoom = styled.div`
 
   padding: 16px 25px;
 
-  width: 1000px;
+  max-width: 60%;
 
   border-radius: 15px;
 
@@ -25,7 +25,7 @@ export const StyledRoom = styled.div`
   gap: 15px;
 
   .swiper {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     padding-bottom: 25px;
     padding-right: 85px;

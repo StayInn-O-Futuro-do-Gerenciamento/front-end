@@ -7,7 +7,7 @@ import { AppContext } from "../../context/appContext";
 
 export const FilterPromotion = () => {
   const [selectedButton, setSelectedButton] = useState("");
-  const { handleChangeFunction, getGuestState } = useContext(AppContext);
+  const { handleChangeFunction } = useContext(AppContext);
 
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);

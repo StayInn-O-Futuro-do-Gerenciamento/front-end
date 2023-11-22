@@ -112,8 +112,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       if (local) {
         token = JSON.parse(local);
       }
-      const token =
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiTWFuYWdlciIsImlhdCI6MTcwMDYxMjExMCwiZXhwIjoxNzAwNjQwOTEwLCJzdWIiOiJmMmRiOGQ2Yi1iMjMzLTQ4M2UtOThlMS1kNmQ0YzY5MTljMzgifQ.jL8b0TZnYQGu5e-HLovu5SObx_GIASUKSh4OehaM5XM";
+      // const token =
+      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjUzMTc2LCJleHAiOjE3MDA2ODE5NzYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.z7YmaV5OeIQGA2UycwGGvvKZhVYzbWWTx5n7dEJKEGQ";
+
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const listHotel = await api.get("/hotel");
@@ -137,6 +138,29 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     getOverview();
   }, [user]);
 
+  const getFrankstainHistoryPrice = async (id: any) => {
+    let token: string = "";
+    const local = localStorage.getItem("token");
+    if (local) {
+      token = JSON.parse(local);
+    }
+    api.defaults.headers.common.authorization = `Bearer ${token}`;
+    const response = await api.get(`/history/guest/${id}`);
+
+    let priceTotal = 0;
+
+    response.data.forEach((element: any) => {
+      let room = element.room;
+      let typeRoom = room.typeRoom;
+
+      let price = typeRoom.price;
+
+      priceTotal += parseInt(price);
+    });
+
+    return priceTotal;
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -156,13 +180,13 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalUpdateTypeRoom,
         modalCreateRoom,
         modalScheduleReservation,
-        loginUser
         loginUser,
         loadingButton,
         user,
         hotel,
         createHotel,
         getGuestState,
+        getFrankstainHistoryPrice,
         getHistoryState,
       }}
     >
