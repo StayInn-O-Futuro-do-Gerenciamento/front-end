@@ -1,5 +1,11 @@
 import { createContext, useEffect, useState } from "react";
-import { iAppContext, iAppContextProps, iHotel, iUser } from "./type";
+import {
+  iAppContext,
+  iAppContextProps,
+  iGuestData,
+  iHotel,
+  iUser,
+} from "./type";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
@@ -105,6 +111,20 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
+  const registerGuest = async (data: iGuestData) => {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    try {
+      const responseRegisterGuest = await api.post("/guest", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      console.log(responseRegisterGuest);
+    } catch (error) {}
+  };
+
   useEffect(() => {
     const getOverview = async () => {
       let token: string = "";
@@ -112,9 +132,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       if (local) {
         token = JSON.parse(local);
       }
-      // const token =
-      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiQXR0ZW5kYW50IiwiaWF0IjoxNzAwNjUzMTc2LCJleHAiOjE3MDA2ODE5NzYsInN1YiI6IjgyMGZmYTcyLTMzODEtNGUwOS04MTdlLWVjMGRiYzM2ZDRlMiJ9.z7YmaV5OeIQGA2UycwGGvvKZhVYzbWWTx5n7dEJKEGQ";
-
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const listHotel = await api.get("/hotel");
@@ -188,6 +205,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getGuestState,
         getFrankstainHistoryPrice,
         getHistoryState,
+        registerGuest,
       }}
     >
       {children}

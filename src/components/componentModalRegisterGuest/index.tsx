@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
@@ -7,9 +8,25 @@ import { Input } from "../componentInput";
 import profile from "../../assets/profile/perfil.png";
 import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
+import { iGuestData } from "../../context/appContext/type";
+import { registerGuestSchemas } from "../../schemas/schemaGuest";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const ModalRegisterGuest = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, registerGuest } = useContext(AppContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iGuestData>({
+    resolver: zodResolver(registerGuestSchemas),
+  });
+
+  const onSubmit = (data: iGuestData) => {
+    console.log(data);
+    return registerGuest(data);
+  };
 
   return (
     <ContainerModal>
@@ -34,41 +51,124 @@ export const ModalRegisterGuest = () => {
           </div>
         </div>
 
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="formRegisterGuest">
             <div className="guestData">
-              <Input label="nome" type="text" placeholder="Nome do hospede" />
-              <Input label="RG" type="number" placeholder="RG do hospede" />
-              <Input label="CPF" type="number" placeholder="CPF do hospede" />
+              <Input
+                label="nome"
+                type="text"
+                placeholder="Nome do hospede"
+                register={register("name")}
+              />
+              {errors.name ? (
+                <span className="errorMessage">{errors.name.message}</span>
+              ) : (
+                <></>
+              )}
+              <Input
+                label="RG"
+                type="number"
+                placeholder="RG do hospede"
+                register={register("rg")}
+              />
+              {errors.rg ? (
+                <span className="errorMessage">{errors.rg.message}</span>
+              ) : (
+                <></>
+              )}
+              <Input
+                label="CPF"
+                type="number"
+                placeholder="CPF do hospede"
+                register={register("cpf")}
+              />
+              {errors.cpf ? (
+                <span className="errorMessage">{errors.cpf.message}</span>
+              ) : (
+                <></>
+              )}
               <Input
                 label="PASSPORT"
                 type="number"
                 placeholder="PASSPORT do hospede"
+                register={register("passport")}
               />
+              {errors.passport ? (
+                <span className="errorMessage">{errors.passport.message}</span>
+              ) : (
+                <></>
+              )}
               <Input
                 label="Nacionalidade"
                 type="text"
                 placeholder="Nacionalidade do hospede"
+                register={register("nationality")}
               />
+              {errors.nationality ? (
+                <span className="errorMessage">
+                  {errors.nationality.message}
+                </span>
+              ) : (
+                <></>
+              )}
 
               <label htmlFor="">
                 <strong>Contato do hospede</strong>
               </label>
               <div className="phoneNumber">
-                <Input type="number" placeholder="Celular 1" />
-                <Input type="number" placeholder="Celular 2" />
+                <Input
+                  type="number"
+                  placeholder="Celular 1"
+                  register={register("phoneNumbers")}
+                />
+                {errors.phoneNumbers ? (
+                  <span className="errorMessage">
+                    {errors.phoneNumbers.message}
+                  </span>
+                ) : (
+                  <></>
+                )}
+                <Input
+                  type="number"
+                  placeholder="Celular 2"
+                  register={register("phoneNumbers")}
+                />
+                {errors.phoneNumbers ? (
+                  <span className="errorMessage">
+                    {errors.phoneNumbers.message}
+                  </span>
+                ) : (
+                  <></>
+                )}
               </div>
 
               <label htmlFor="">
                 <strong>Contato de emergência</strong>
               </label>
               <div className="emergencyContacts">
-                <Input type="text" placeholder="Nome do contato" />
-                <Input type="number" placeholder="Número do contato" />
+                <Input
+                  type="text"
+                  placeholder="Nome do contato"
+                  register={register("emergencyContacts")}
+                />
+
+                <Input
+                  type="number"
+                  placeholder="Número do contato"
+                  register={register("emergencyContacts")}
+                />
               </div>
               <div className="emergencyContacts">
-                <Input type="text" placeholder="Nome do contato" />
-                <Input type="number" placeholder="Número do contato" />
+                <Input
+                  type="text"
+                  placeholder="Nome do contato"
+                  register={register("emergencyContacts")}
+                />
+                <Input
+                  type="number"
+                  placeholder="Número do contato"
+                  register={register("emergencyContacts")}
+                />
               </div>
             </div>
             <div className="guestAddress">
@@ -77,18 +177,54 @@ export const ModalRegisterGuest = () => {
                 label="Número da residência"
                 type="number"
                 placeholder="Número da residência do hospede"
+                register={register("address.street")}
               />
+              {errors.address?.street ? (
+                <span className="errorMessage">
+                  {errors.address.street.message}
+                </span>
+              ) : (
+                <></>
+              )}
               <Input
                 label="Cidade"
                 type="text"
                 placeholder="Cidade do hospede"
+                register={register("address.city")}
               />
+              {errors.address?.city ? (
+                <span className="errorMessage">
+                  {errors.address.city.message}
+                </span>
+              ) : (
+                <></>
+              )}
               <Input
                 label="Estado"
                 type="text"
                 placeholder="Estado que o hospede reside"
+                register={register("address.state")}
               />
-              <Input label="CEP" type="text" placeholder="CEP do hospede" />
+              {errors.address?.state ? (
+                <span className="errorMessage">
+                  {errors.address.state.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <Input
+                label="CEP"
+                type="text"
+                placeholder="CEP do hospede"
+                register={register("address.zipCode")}
+              />
+              {errors.address?.zipCode ? (
+                <span className="errorMessage">
+                  {errors.address.zipCode.message}
+                </span>
+              ) : (
+                <></>
+              )}
             </div>
           </div>
           <ContainerButtonModal>
@@ -99,7 +235,7 @@ export const ModalRegisterGuest = () => {
             >
               Cancelar
             </Button>
-            <Button buttonVariation="saveModal" type="button">
+            <Button buttonVariation="saveModal" type="submit">
               Salvar
             </Button>
           </ContainerButtonModal>

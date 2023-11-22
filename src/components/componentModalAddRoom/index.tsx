@@ -29,6 +29,7 @@ export const ModalAddRoom = () => {
             <strong>Descrição</strong>
           </label>
           <textarea placeholder="Descrição do quarto"></textarea>
+          <Input type="number" placeholder="Preço do quarto" label="Preço" />
           <label>
             <strong>Disponibilidade</strong>
           </label>
