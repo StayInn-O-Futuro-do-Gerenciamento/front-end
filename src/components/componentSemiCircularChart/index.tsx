@@ -1,17 +1,58 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { options } from "../../utils";
 import { SemiCircularChartMain } from "./style";
 import ReactApexChart from "react-apexcharts";
-import { floorInfo } from "../../utils/mocks/floor.mocks";
 import anime from "animejs";
+import { AppContext } from "../../context/appContext";
 
 interface FloorInfo {
   floor: string;
   occupied: number;
   free: number;
 }
+interface Room {
+  available: boolean;
+  floor: string;
+}
 
 export const SemiCircularChart = () => {
+  const { getRoomState } = useContext(AppContext);
+
+  if (!getRoomState) {
+    return (
+      <SemiCircularChartMain>
+        <h3>LOADING</h3>
+      </SemiCircularChartMain>
+    );
+  }
+  const createFloorInfo = (rooms: Room[]) => {
+    const floors = {};
+
+    rooms.forEach((room: any) => {
+      const floor = room.floor;
+
+      if (!floors[floor]) {
+        floors[floor] = {
+          floor,
+          occupied: 0,
+          free: 0,
+        };
+      }
+
+      if (room.available) {
+        floors[floor].free += 1;
+      } else {
+        floors[floor].occupied += 1;
+      }
+    });
+
+    const floorInfoArray: FloorInfo[] = Object.values(floors);
+
+    return floorInfoArray;
+  };
+
+  const floorInfo: FloorInfo[] = createFloorInfo(getRoomState);
+
   const [currentFloorIndex, setCurrentFloorIndex] = useState(0);
   const [series, setSeries] = useState([
     calculateOccupancyPercentage(floorInfo[0]),
@@ -34,10 +75,14 @@ export const SemiCircularChart = () => {
     return () => clearInterval(interval);
   }, [currentFloorIndex]);
 
-  function calculateOccupancyPercentage(floor: FloorInfo): number {
-    return (floor.occupied / (floor.occupied + floor.free)) * 100;
-  }
+  function calculateOccupancyPercentage(floor: any): number {
+    if (!floor) return 0;
 
+    const occupancyPercentage =
+      (floor.occupied / (floor.occupied + floor.free)) * 100;
+
+    return occupancyPercentage;
+  }
   return (
     <SemiCircularChartMain>
       <h3 className="chart-title">{floorInfo[currentFloorIndex].floor}</h3>

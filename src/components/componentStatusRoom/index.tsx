@@ -6,17 +6,22 @@ export const StatusRoom = () => {
   const { getRoomState } = useContext(AppContext);
 
   if (!getRoomState) {
-    return <div>Loading...</div>;
+    return (
+      <StyledStatusRoom>
+        <div>Loading...</div>
+      </StyledStatusRoom>
+    );
   }
-
-  console.log(getRoomState);
 
   let disponiveis = 0;
   let ocupados = 0;
+
   let limpos = 0;
   let ocupadoLimpo = 0;
+
   let sujos = 0;
   let ocupadoSujo = 0;
+
   let manutencao = 0;
   let ocupadoManutencao = 0;
 
@@ -27,16 +32,16 @@ export const StatusRoom = () => {
         limpos++;
       } else if (room.status === "Sujo") {
         sujos++;
-      } else if (room.status === "Em manutenção") {
+      } else if (room.status === "Em Manutenção") {
         manutencao++;
       }
     } else {
       ocupados++;
       if (room.status === "Limpo") {
         ocupadoLimpo++;
-      } else if (room.status === "Sujos") {
+      } else if (room.status === "Sujo") {
         ocupadoSujo++;
-      } else if (room.status === "Manutenção") {
+      } else if (room.status === "Em Manutenção") {
         ocupadoManutencao++;
       }
     }
@@ -45,7 +50,6 @@ export const StatusRoom = () => {
   return (
     <StyledStatusRoom>
       <h3>Status dos Quartos</h3>
-
       <div className="container">
         <div className="occupied">
           <div className="titleOccupied">
@@ -56,23 +60,22 @@ export const StatusRoom = () => {
             <p>Limpos</p> <span>{ocupadoLimpo}</span>
           </div>
           <div className="other">
-            <p>Sujo</p> <span>{ocupadoSujo}</span>
+            <p>Sujos</p> <span>{ocupadoSujo}</span>
           </div>
           <div className="other">
             <p>Em manutenção</p> <span>{ocupadoManutencao}</span>
           </div>
         </div>
-
         <div className="available">
           <div className="titleAvailable">
-            <h5>Quartos disponiveis</h5>
+            <h5>Quartos disponíveis</h5>
             <span>{disponiveis}</span>
           </div>
           <div className="other">
             <p>Limpos</p> <span>{limpos}</span>
           </div>
           <div className="other">
-            <p>Sujo</p> <span>{sujos}</span>
+            <p>Sujos</p> <span>{sujos}</span>
           </div>
           <div className="other">
             <p>Em manutenção</p> <span>{manutencao}</span>

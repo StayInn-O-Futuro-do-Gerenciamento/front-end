@@ -29,6 +29,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   );
   const [getRoomState, setGetRoomState] = useState(null as any);
   const [getTypeRoomState, setGetTypeRoomState] = useState(null as any);
+  const [getGuestState, setGetGuestState] = useState(null as any);
+  const [getHistoryState, setGetHistoryState] = useState(null as any);
 
   // Fora de teste, REAL
   const [loadingButton, setLoadingButton] = useState(false);
@@ -110,6 +112,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       if (local) {
         token = JSON.parse(local);
       }
+      const token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiTWFuYWdlciIsImlhdCI6MTcwMDYxMjExMCwiZXhwIjoxNzAwNjQwOTEwLCJzdWIiOiJmMmRiOGQ2Yi1iMjMzLTQ4M2UtOThlMS1kNmQ0YzY5MTljMzgifQ.jL8b0TZnYQGu5e-HLovu5SObx_GIASUKSh4OehaM5XM";
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const listHotel = await api.get("/hotel");
@@ -118,11 +122,17 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const resposeReservation = await api.get(`/reservation`);
       setGetReservationState(resposeReservation.data);
 
-      const responseRoom = await api.get(`/room?pageSize=50`);
+      const responseRoom = await api.get(`/room?pageSize=100`);
       setGetRoomState(responseRoom.data);
 
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
+
+      const responseGuest = await api.get(`/guest`);
+      setGetGuestState(responseGuest.data);
+
+      const responseHistory = await api.get(`/history`);
+      setGetHistoryState(responseHistory.data);
     };
     getOverview();
   }, [user]);
@@ -146,11 +156,14 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         modalUpdateTypeRoom,
         modalCreateRoom,
         modalScheduleReservation,
+        loginUser
         loginUser,
         loadingButton,
         user,
         hotel,
         createHotel,
+        getGuestState,
+        getHistoryState,
       }}
     >
       {children}

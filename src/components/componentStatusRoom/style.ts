@@ -5,7 +5,7 @@ export const StyledStatusRoom = styled.div`
   flex-direction: column;
   background-color: var(--grey-00);
 
-  width: 100%;
+  width: 704px;
   height: 236px;
 
   gap: 16px;

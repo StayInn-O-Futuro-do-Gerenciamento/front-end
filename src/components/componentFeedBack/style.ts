@@ -1,23 +1,13 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-`;
-
-export const StyledFeedback = styled.div`
+export const StyledFeedback = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: var(--grey-00);
 
   width: 396px;
+  height: 340px;
 
   padding: 16px 16px 25px 16px;
 
@@ -41,46 +31,51 @@ export const StyledFeedback = styled.div`
     width: 100%;
   }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
+  .swiper {
     width: 100%;
+    height: 100%;
+    padding-bottom: 25px;
+  }
 
-    gap: 16px;
+  .swiper-wrapper {
+    transition-duration: 0ms;
+  }
 
-    li {
+  .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 364px;
+
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid var(--grey-100);
+
+    .guest {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
 
-      width: 364px;
+      gap: 4px;
 
-      padding-bottom: 10px;
+      p {
+        font-size: var(--font-size2);
+        font-weight: var(--text-weight500);
+        color: var(--grey-grey-600);
+      }
 
-      border-bottom: 1px solid var(--grey-100);
-
-      animation: ${fadeIn} 0.7s ease-in-out;
-
-      .guest {
-        display: flex;
-        flex-direction: column;
-
-        gap: 4px;
-
-        p {
-          font-size: var(--font-size2);
-          font-weight: var(--text-weight500);
-          color: var(--grey-grey-600);
-        }
-
-        span {
-          font-size: var(--font-size2);
-          font-weight: var(--text-weight500);
-          color: var(--grey-grey-400);
-        }
+      span {
+        font-size: var(--font-size2);
+        font-weight: var(--text-weight500);
+        color: var(--grey-grey-400);
       }
     }
+  }
+
+  .estrela1 {
+    color: var(--orange-300);
+  }
+  .estrela2 {
+    color: var(--orange-300);
   }
 `;
