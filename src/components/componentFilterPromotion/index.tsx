@@ -2,84 +2,113 @@ import { Button } from "../componentButton";
 import { StyledFilterPromotion } from "./style";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentTableList } from "../componentTableList";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useMemo } from "react";
 import { AppContext } from "../../context/appContext";
 
 export const FilterPromotion = () => {
-  const [selectedButton, setSelectedButton] = useState("");
-  const { handleChangeFunction } = useContext(AppContext);
+  const [selectedButton, setSelectedButton] = useState("all");
+  const { handleChangeFunction, getOfferState } = useContext(AppContext);
 
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
   };
 
-  const promotions = [
-    {
-      roomNumber: "A1",
-      roomType: "Black Friday",
-      roomFloor: "1°",
-      roomFacilitys: "Cama, frigobar, corda, facão",
-      status: "VIP",
-      Quantidade: 5,
-      avaliabity: "Novo",
-    },
-    {
-      roomNumber: "A2",
-      roomType: "Aniversariante",
-      roomFloor: "1°",
-      roomFacilitys: "Cama, frigobar",
-      status: "Básico",
-      Quantidade: 5,
-      avaliabity: "Cheio",
-    },
-    {
-      roomNumber: "B12",
-      roomType: "VIP",
-      roomFloor: "2°",
-      roomFacilitys: "Cama, frigobar, Televisão 12 polegadas, hidromassagem",
-      status: "900",
-      Quantidade: 5,
-      avaliabity: "5 roomss",
-    },
-    {
-      roomNumber: "A2",
-      roomType: "Básico",
-      roomFloor: "2°",
-      roomFacilitys: "Cama, frigobar",
-      status: "700",
-      Quantidade: 5,
-      avaliabity: "5 roomss",
-    },
-    {
-      roomNumber: "D45",
-      roomType: "Familia",
-      roomFloor: "4°",
-      roomFacilitys: "Cama, frigobar, fogão",
-      status: "800",
-      Quantidade: 5,
-      avaliabity: "Finalizado",
-    },
-  ];
+  const [promotions, setPromotions] = useState([]);
+
+  const formatDate = (dateString: any) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("pt-BR");
+  };
+
+  useEffect(() => {
+    if (getOfferState) {
+      const today = new Date();
+
+      const processedPromotions = getOfferState.map((offer: any) => {
+        const availableRoomsCount = offer.typeRoom.reduce(
+          (count: any, roomType: any) => {
+            const availableRooms = roomType.rooms.filter(
+              (room: any) => room.available
+            );
+            return count + availableRooms.length;
+          },
+          0
+        );
+
+        const offerStartDate = new Date(offer.startDate);
+        const offerFinishDate = new Date(offer.finishDate);
+        let status = "";
+
+        if (today < offerStartDate) {
+          status = "Programada";
+        } else if (today >= offerStartDate && today <= offerFinishDate) {
+          status = availableRoomsCount > 0 ? "Válida" : "Cheio";
+        } else {
+          status = "Finalizada";
+        }
+
+        return {
+          id: offer.id,
+          name: offer.offerName,
+          startDate: formatDate(offer.startDate),
+          finishDate: formatDate(offer.finishDate),
+          roomTypeName: offer.typeRoom[0].name,
+          availableRoomsCount: availableRoomsCount,
+          trueRoomStatusesCount: status,
+        };
+      });
+
+      setPromotions(processedPromotions);
+    }
+  }, [getOfferState]);
+
+  const filteredPromotions = useMemo(() => {
+    if (selectedButton === "all") {
+      return promotions;
+    }
+
+    return promotions.filter((promotion) => {
+      if (selectedButton === "ongoing") {
+        return promotion.trueRoomStatusesCount === "Válida";
+      } else if (selectedButton === "finished") {
+        return promotion.trueRoomStatusesCount === "Finalizada";
+      } else if (selectedButton === "full") {
+        return promotion.trueRoomStatusesCount === "Cheio";
+      } else if (selectedButton === "scheduled") {
+        return promotion.trueRoomStatusesCount === "Programada";
+      } else {
+        return true;
+      }
+    });
+  }, [selectedButton, promotions]);
 
   return (
     <StyledFilterPromotion>
       <div className="containerContent">
         <div className="buttonContainer">
           <Button
-            className={selectedButton === "continue" ? "selected-btn" : ""}
+            className={selectedButton === "all" ? "selected-btn" : ""}
             type="button"
             buttonVariation="filterButton"
-            onClick={() => handleButtonClick("continue")}
+            onClick={() => handleButtonClick("all")}
           >
-            Continua
+            Todas
           </Button>
           <Button
-            className={selectedButton === "finishi" ? "selected-btn" : ""}
+            className={selectedButton === "ongoing" ? "selected-btn" : ""}
             type="button"
             buttonVariation="filterButton"
-            onClick={() => handleButtonClick("finishi")}
+            onClick={() => handleButtonClick("ongoing")}
           >
-            FInalizada
+            Em andamento
+          </Button>
+          <Button
+            className={selectedButton === "finished" ? "selected-btn" : ""}
+            type="button"
+            buttonVariation="filterButton"
+            onClick={() => handleButtonClick("finished")}
+          >
+            Finalizadas
           </Button>
           <Button
             className={selectedButton === "full" ? "selected-btn" : ""}
@@ -90,16 +119,13 @@ export const FilterPromotion = () => {
             Cheio
           </Button>
           <Button
-            className={selectedButton === "inactive" ? "selected-btn" : ""}
+            className={selectedButton === "scheduled" ? "selected-btn" : ""}
             type="button"
             buttonVariation="filterButton"
-            onClick={() => handleButtonClick("inactive")}
+            onClick={() => handleButtonClick("scheduled")}
           >
-            Inativo
+            Programadas
           </Button>
-          {/* <Button type="button" buttonVariation="filterButton">
-            Disponível
-          </Button> */}
         </div>
         <Button
           type="button"
@@ -121,7 +147,7 @@ export const FilterPromotion = () => {
           <th></th>
         </thead>
         <ComponentTableList
-          list={promotions}
+          list={filteredPromotions}
           modalName="modalUpdatePromotion"
         />
       </TableStyled>

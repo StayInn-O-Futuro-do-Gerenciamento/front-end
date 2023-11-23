@@ -37,6 +37,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getTypeRoomState, setGetTypeRoomState] = useState(null as any);
   const [getGuestState, setGetGuestState] = useState(null as any);
   const [getHistoryState, setGetHistoryState] = useState(null as any);
+  const [getOfferState, setGetOfferState] = useState(null as any);
   const [getTypeRoomPaginationState, setGetTypeRoomPaginationState] = useState(
     null as any
   );
@@ -145,6 +146,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       if (local) {
         token = JSON.parse(local);
       }
+
       api.defaults.headers.common.authorization = `Bearer ${token}`;
 
       const listHotel = await api.get("/hotel");
@@ -159,36 +161,32 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
 
-      const responseGuest = await api.get(`/guest`);
+      const responseGuest = await api.get(`/guest?pageSize=100`);
       setGetGuestState(responseGuest.data);
 
       const responseHistory = await api.get(`/history`);
       setGetHistoryState(responseHistory.data);
 
+      const responseOffer = await api.get(`/offer`);
+      setGetOfferState(responseOffer.data);
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
     };
     getOverview();
   }, [user]);
 
-  const getFrankstainHistoryPrice = async (id: any) => {
-    let token: string = "";
-    const local = localStorage.getItem("token");
-    if (local) {
-      token = JSON.parse(local);
-    }
-    api.defaults.headers.common.authorization = `Bearer ${token}`;
-    const response = await api.get(`/history/guest/${id}`);
+  const getFrankstainHistoryPrice = (id: any) => {
+    const guestHistory = getHistoryState.filter(
+      (history: any) => history.guest.id === id
+    );
 
     let priceTotal = 0;
 
-    response.data.forEach((element: any) => {
-      let room = element.room;
-      let typeRoom = room.typeRoom;
-
-      let price = typeRoom.price;
-
-      priceTotal += parseInt(price);
+    guestHistory.forEach((history: any) => {
+      if (history.room && history.room.typeRoom) {
+        const { price } = history.room.typeRoom;
+        priceTotal += parseInt(price);
+      }
     });
 
     return priceTotal;
@@ -221,6 +219,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getGuestState,
         getFrankstainHistoryPrice,
         getHistoryState,
+        getOfferState,
         registerGuest,
         getTypeRoomPaginationState,
         getTypeRoomSearchState,
