@@ -105,7 +105,16 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseCreate = await api.post("/login", data);
       setUser(responseCreate.data);
       localStorage.setItem("token", JSON.stringify(responseCreate.data.token));
-      navigate("/dashboard");
+      localStorage.setItem(
+        "userType",
+        JSON.stringify(responseCreate.data.type)
+      );
+
+      if (!hotel) {
+        navigate("/hotel");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -127,7 +136,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
   const registerGuest = async (data: iGuestData) => {
     const token = localStorage.getItem("token");
-    console.log(data);
+
     try {
       const responseRegisterGuest = await api.post("/guest", data, {
         headers: {

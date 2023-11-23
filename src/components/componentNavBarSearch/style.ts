@@ -33,4 +33,9 @@ export const NavBarSearchStyle = styled.div`
       cursor: pointer;
     }
   }
+  .iconUser {
+    width: 40px;
+    height: 40px;
+    color: var(--orange-400);
+  }
 `;
