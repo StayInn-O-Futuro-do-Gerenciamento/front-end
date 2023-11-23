@@ -4,6 +4,50 @@ import { RoomFilteredList } from "../componentRoomList";
 import { ComponentAddRoomStyle } from "./style";
 import { AppContext } from "../../context/appContext";
 
+const allRooms = [
+  {
+    roomNumber: "A1",
+    roomType: "Básico",
+    roomFloor: "1°",
+    roomFacilitys: "Cama, frigobar, corda, facão",
+    disponivel: "Sim",
+    status: "Limpo",
+  },
+  {
+    roomNumber: "A2",
+    roomType: "Básico",
+    roomFloor: "1°",
+    roomFacilitys: "Cama, frigobar",
+    disponivel: "Sim",
+    status: "Sujo",
+  },
+  {
+    roomNumber: "B12",
+    roomType: "VIP",
+    roomFloor: "2°",
+    roomFacilitys:
+      "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
+    disponivel: "Sim",
+    status: "Em manutenção",
+  },
+  {
+    roomNumber: "A2",
+    roomType: "Básico",
+    roomFloor: "2°",
+    roomFacilitys: "Cama, frigobar",
+    disponivel: "Sim",
+    status: "Limpo",
+  },
+  {
+    roomNumber: "D45",
+    roomType: "Familia",
+    roomFloor: "4°",
+    roomFacilitys: "Cama, frigobar, fogão",
+    disponivel: "Sim",
+    status: "Sujo",
+  },
+];
+
 export const ComponentAddRoom = () => {
   const [selectedButton, setSelectedButton] = useState("");
   const { handleChangeFunction } = useContext(AppContext);
@@ -49,7 +93,7 @@ export const ComponentAddRoom = () => {
           </Button>
         </div>
       </div>
-      <RoomFilteredList modalName="modalUpdateRoom" />
+      <RoomFilteredList rooms={allRooms} modalName="modalUpdateRoom" />
     </ComponentAddRoomStyle>
   );
 };

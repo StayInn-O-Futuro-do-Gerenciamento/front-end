@@ -7,42 +7,26 @@ import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { AppContext } from "../../context/appContext";
 
-const reservation = [
-  {
-    name: "Paulo",
-    checkin: "2023-11-15T12:00:00",
-    checkout: "2023-11-19T07:00:00",
-  },
-  {
-    name: "Mariano",
-    checkin: "2023-11-15T13:30:00",
-    checkout: "2023-11-20T07:00:00",
-  },
-  {
-    name: "Maria",
-    checkin: "2023-11-17T12:00:00",
-    checkout: "2023-11-20T07:00:00",
-  },
-  {
-    name: "Amir",
-    checkin: "2023-11-22T12:00:00",
-    checkout: "2023-11-30T07:00:00",
-  },
-];
-
 export const CalendarComponent = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, getReservationState } = useContext(AppContext);
   const [headerFormatted, setHeaderFormatted] = useState(false);
+  if (!getReservationState) {
+    return (
+      <CalendarMain>
+        <h3>Loading...</h3>
+      </CalendarMain>
+    );
+  }
 
-  const events = reservation.flatMap((item) => [
+  const events = getReservationState.flatMap((item: any) => [
     {
-      title: item.name,
+      title: item.guests[0].name,
       start: item.checkin,
       end: item.checkin,
       classNames: ["checkin-event"],
     },
     {
-      title: item.name,
+      title: item.guests[0].name,
       start: item.checkout,
       end: item.checkout,
       classNames: ["checkout-event"],

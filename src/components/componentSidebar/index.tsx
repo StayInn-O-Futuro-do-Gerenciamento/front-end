@@ -38,8 +38,8 @@ export const Sidebar = () => {
       <div className="div-btn">
         <ul>
           <li
-            className={selectedButton === "/" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("/")}
+            className={selectedButton === "/dashboard" ? "selected-btn" : ""}
+            onClick={() => handleButtonClick("/dashboard")}
           >
             <img src={Dashboard} alt="Dashboard" />
             <p>Dashboard</p>
