@@ -1,5 +1,11 @@
 import { createContext, useEffect, useState } from "react";
-import { iAppContext, iAppContextProps, iHotel, iUser } from "./type";
+import {
+  iAppContext,
+  iAppContextProps,
+  iGuestData,
+  iHotel,
+  iUser,
+} from "./type";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 
@@ -32,13 +38,20 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getGuestState, setGetGuestState] = useState(null as any);
   const [getHistoryState, setGetHistoryState] = useState(null as any);
   const [getOfferState, setGetOfferState] = useState(null as any);
+  const [getTypeRoomPaginationState, setGetTypeRoomPaginationState] = useState(
+    null as any
+  );
+  const [getTypeRoomSearchState, setGetTypeRoomSearchState] = useState(
+    null as any
+  );
+  const [getRoomId, setGetRoomId] = useState(null as any);
 
   // Fora de teste, REAL
   const [loadingButton, setLoadingButton] = useState(false);
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
 
-  const handleChangeFunction = (state: string, value: boolean) => {
+  const handleChangeFunction = (state: string, value: boolean | any) => {
     switch (state) {
       case "testState":
         setTestState(value);
@@ -76,6 +89,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       case "modalScheduleReservation":
         setModalScheduleReservation(value);
         break;
+      case "searchOn":
+        setGetTypeRoomSearchState(value);
+        break;
+      case "roomId":
+        setGetRoomId(value);
+        break;
     }
   };
 
@@ -86,7 +105,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseCreate = await api.post("/login", data);
       setUser(responseCreate.data);
       localStorage.setItem("token", JSON.stringify(responseCreate.data.token));
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -104,6 +123,20 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     } finally {
       setLoadingButton(false);
     }
+  };
+
+  const registerGuest = async (data: iGuestData) => {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    try {
+      const responseRegisterGuest = await api.post("/guest", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      console.log(responseRegisterGuest);
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -136,6 +169,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseOffer = await api.get(`/offer`);
       setGetOfferState(responseOffer.data);
+      const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
+      setGetTypeRoomPaginationState(responseRoompagination.data);
     };
     getOverview();
   }, [user]);
@@ -185,6 +220,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getFrankstainHistoryPrice,
         getHistoryState,
         getOfferState,
+        registerGuest,
+        getTypeRoomPaginationState,
+        getTypeRoomSearchState,
+        getRoomId,
       }}
     >
       {children}

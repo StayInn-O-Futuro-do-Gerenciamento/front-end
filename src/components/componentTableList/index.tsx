@@ -36,7 +36,10 @@ export const ComponentTableList = ({ list, modalName }: any) => {
             <img
               src={More}
               alt=""
-              onClick={() => handleChangeFunction(modalName, true)}
+              onClick={() => {
+                handleChangeFunction(modalName, true);
+                handleChangeFunction("roomId", item.id);
+              }}
             />
           </td>
         </tr>

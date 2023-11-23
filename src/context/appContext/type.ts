@@ -16,10 +16,35 @@ export interface iHotel {
   city: string;
   id: string;
 }
+
+export interface iGuestData {
+  name: string;
+  rg: string;
+  cpf: string;
+  passport: string;
+  nationality: string;
+  phoneNumbers: string[];
+  emergencyContacts: iEmergencyContact[];
+  address: iAddress;
+}
+
+export interface iEmergencyContact {
+  name: string;
+  phoneNumber: string;
+}
+
+export interface iAddress {
+  street: string;
+  number: string;
+  city: string;
+  state: string;
+  zipCode: string;
+}
+
 // Typagem das funções/states que serão exportados.
 export interface iAppContext {
   testState: boolean;
-  handleChangeFunction: (state: string, value: boolean) => void;
+  handleChangeFunction: (state: string, value: boolean | any) => void;
   createReservation: boolean;
   modalUpdateRoom: boolean;
   modalUpdateGuest: boolean;
@@ -43,4 +68,8 @@ export interface iAppContext {
   getFrankstainHistoryPrice: any;
   getHistoryState: any;
   getOfferState: any;
+  registerGuest: (data: iGuestData) => void;
+  getTypeRoomPaginationState: any;
+  getTypeRoomSearchState: any;
+  getRoomId: any;
 }
