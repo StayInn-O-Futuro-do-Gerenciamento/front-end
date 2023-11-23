@@ -44,7 +44,7 @@ export interface iAddress {
 // Typagem das funções/states que serão exportados.
 export interface iAppContext {
   testState: boolean;
-  handleChangeFunction: (state: string, value: boolean) => void;
+  handleChangeFunction: (state: string, value: boolean | any) => void;
   createReservation: boolean;
   modalUpdateRoom: boolean;
   modalUpdateGuest: boolean;
@@ -68,4 +68,7 @@ export interface iAppContext {
   getFrankstainHistoryPrice: any;
   getHistoryState: any;
   registerGuest: (data: iGuestData) => void;
+  getTypeRoomPaginationState: any;
+  getTypeRoomSearchState: any;
+  getRoomId: any;
 }

@@ -37,13 +37,20 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getTypeRoomState, setGetTypeRoomState] = useState(null as any);
   const [getGuestState, setGetGuestState] = useState(null as any);
   const [getHistoryState, setGetHistoryState] = useState(null as any);
+  const [getTypeRoomPaginationState, setGetTypeRoomPaginationState] = useState(
+    null as any
+  );
+  const [getTypeRoomSearchState, setGetTypeRoomSearchState] = useState(
+    null as any
+  );
+  const [getRoomId, setGetRoomId] = useState(null as any);
 
   // Fora de teste, REAL
   const [loadingButton, setLoadingButton] = useState(false);
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
 
-  const handleChangeFunction = (state: string, value: boolean) => {
+  const handleChangeFunction = (state: string, value: boolean | any) => {
     switch (state) {
       case "testState":
         setTestState(value);
@@ -81,6 +88,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       case "modalScheduleReservation":
         setModalScheduleReservation(value);
         break;
+      case "searchOn":
+        setGetTypeRoomSearchState(value);
+        break;
+      case "roomId":
+        setGetRoomId(value);
+        break;
     }
   };
 
@@ -91,7 +104,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseCreate = await api.post("/login", data);
       setUser(responseCreate.data);
       localStorage.setItem("token", JSON.stringify(responseCreate.data.token));
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -151,6 +164,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseHistory = await api.get(`/history`);
       setGetHistoryState(responseHistory.data);
+
+      const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
+      setGetTypeRoomPaginationState(responseRoompagination.data);
     };
     getOverview();
   }, [user]);
@@ -206,6 +222,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getFrankstainHistoryPrice,
         getHistoryState,
         registerGuest,
+        getTypeRoomPaginationState,
+        getTypeRoomSearchState,
+        getRoomId,
       }}
     >
       {children}

@@ -6,7 +6,15 @@ import { AppContext } from "../../context/appContext";
 const types = ["Básico", "Familia", "Casal", "VIP"];
 
 export const FilterReservation = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, getTypeRoomState } = useContext(AppContext);
+
+  if (!getTypeRoomState) {
+    return (
+      <FilterMain>
+        <h3>Loading...</h3>
+      </FilterMain>
+    );
+  }
   const [selectedButton, setSelectedButton] = useState("all");
   const [numberAdults, setNumberAdults] = useState(1);
   const [numberChildrens, setNumberChildrens] = useState(0);
@@ -40,11 +48,14 @@ export const FilterReservation = () => {
   };
 
   const handleCheckAvailability = () => {
-    console.log("Tipo de Quarto:", selectedButton);
-    console.log("Check-in:", checkinDate);
-    console.log("Check-out:", checkoutDate);
-    console.log("Adultos:", numberAdults);
-    console.log("Crianças:", numberChildrens);
+    const info = {
+      typeRoom: selectedButton,
+      checkin: checkinDate,
+      checkout: checkoutDate,
+      numberAdults: numberAdults,
+      numberChildrens: numberChildrens,
+    };
+    handleChangeFunction("searchOn", info);
   };
 
   return (
@@ -65,13 +76,13 @@ export const FilterReservation = () => {
             >
               Todos os Quartos
             </li>
-            {types.map((type, index) => (
+            {getTypeRoomState.map((type: any) => (
               <li
-                key={index}
-                className={selectedButton === type ? "selected-btn" : ""}
-                onClick={() => handleButtonClick(type)}
+                key={type.id}
+                className={selectedButton === type.name ? "selected-btn" : ""}
+                onClick={() => handleButtonClick(type.name)}
               >
-                {type}
+                {type.name}
               </li>
             ))}
           </ul>
