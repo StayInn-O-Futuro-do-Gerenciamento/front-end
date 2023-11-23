@@ -38,12 +38,12 @@ export const ComponentModalPageLoginCreate: React.FC<childrenForm> = ({
         </button>
       )}
 
-      <div>
+      <div className="logo">
         <img src={logo} alt="" />
         <p>Oasis</p>
       </div>
       {children}
-      <p>Todos os direitos reservados OASIS HOTEL @2023</p>
+      <p className="direitos">Todos os direitos reservados OASIS HOTEL @2023</p>
     </ComponentModalPageLoginCreateStyle>
   );
 };

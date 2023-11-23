@@ -1,78 +1,64 @@
-import { Button } from "../componentButton";
-import imgFilter from "../../assets/Filter.svg";
 import { ComponentTableList } from "../componentTableList";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentListRateRoomStyle } from "./style";
+import { useContext } from "react";
+import { AppContext } from "../../context/appContext";
 
 export const ComponentListRateRoom = () => {
-  const rooms = [
-    {
-      roomNumber: "A1",
-      roomType: "Básico",
-      roomFloor: "1°",
-      roomFacilitys: "Cama, frigobar, corda, facão",
-      status: "500",
-      avaliabity: "5 roomss",
-    },
-    {
-      roomNumber: "A2",
-      roomType: "Básico",
-      roomFloor: "1°",
-      roomFacilitys: "Cama, frigobar",
-      status: "600",
-      avaliabity: "5 roomss",
-    },
-    {
-      roomNumber: "B12",
-      roomType: "VIP",
-      roomFloor: "2°",
-      roomFacilitys:
-        "Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem Cama, frigobar, Televisão 12 polegadas, hidromassagem ,hidromassagem, hidromassagem, hidromassagem",
-      status: "900",
-      avaliabity: "5 roomss",
-    },
-    {
-      roomNumber: "A2",
-      roomType: "Básico",
-      roomFloor: "2°",
-      roomFacilitys: "Cama, frigobar",
-      status: "700",
-      avaliabity: "5 roomss",
-    },
-    {
-      roomNumber: "Familia",
-      roomType: "Natal",
-      roomFloor: "Sem Reembolso",
-      roomFacilitys: "vaso",
-      status: "800",
-      avaliabity: "5 roomss",
-    },
-  ];
+  const { getTypeRoomState } = useContext(AppContext);
+
+  const extractedData = getTypeRoomState
+    ? getTypeRoomState.map((roomType: any) => {
+        const availableRoomsCount = roomType.rooms.filter(
+          (room: any) => room.available
+        ).length;
+
+        let totalPrice = parseFloat(roomType.price);
+
+        if (roomType.offer && roomType.offer.discount) {
+          const discount = parseFloat(roomType.offer.discount);
+          if (!isNaN(discount)) {
+            totalPrice -= (totalPrice * discount) / 100;
+          }
+        }
+
+        return {
+          name: roomType.name,
+          offerName: roomType.offer ? roomType.offer.offerName : null,
+          rate: roomType.rate,
+          description: roomType.description,
+          price: `R$ ${roomType.price}`,
+          discount:
+            roomType.offer && roomType.offer.discount
+              ? `${roomType.offer.discount}%`
+              : null,
+          totalPriceToPay: `R$ ${totalPrice}`,
+          roomTypeQuantity: roomType.roomTypeQuantity,
+          availableRoomsCount: availableRoomsCount,
+        };
+      })
+    : [];
 
   return (
     <ComponentListRateRoomStyle>
-      <div>
-        <div>
-          <Button type="button" buttonVariation="buttonCreate">
-            Add Rate
-          </Button>
-          <Button type="button" buttonVariation="filterButton">
-            <img src={imgFilter} alt="" />
-            Add Rate
-          </Button>
-        </div>
-      </div>
+      <div></div>
       <TableStyled>
         <thead>
           <th>Tipo de Quarto</th>
           <th>Oferta</th>
           <th>Politica de cancelamento</th>
-          <th>Confortos</th>
+          <th>Descrição</th>
           <th>Preço do Quarto</th>
+          <th>Desconto da Oferta</th>
+          <th>Total a Pagar</th>
+          <th>Total de Quartos</th>
           <th>Avaliabity</th>
           <th></th>
         </thead>
-        <ComponentTableList list={rooms} modalName="modalUpdateTypeRoom" />
+        <ComponentTableList
+          list={extractedData}
+          modalName="modalUpdateTypeRoom"
+        />
       </TableStyled>
     </ComponentListRateRoomStyle>
   );

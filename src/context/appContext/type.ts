@@ -42,4 +42,5 @@ export interface iAppContext {
   getGuestState: any;
   getFrankstainHistoryPrice: any;
   getHistoryState: any;
+  getOfferState: any;
 }

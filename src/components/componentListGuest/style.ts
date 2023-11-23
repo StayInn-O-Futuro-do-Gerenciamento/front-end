@@ -18,12 +18,18 @@ export const ComponentListGuestStyle = styled.div`
         border-radius: 100px;
         background-color: var(--grey-00);
         font-size: var(--font-size4);
+        font-weight: var(--text-weight500);
 
         &:hover {
           border: 1px solid var(--orange-500);
           color: var(--orange-500);
           background-color: var(--orange-50);
         }
+      }
+      .selected-btn {
+        border: 1px solid var(--orange-500);
+        color: var(--orange-500);
+        background-color: var(--orange-50);
       }
     }
     div:nth-child(2) {
@@ -38,13 +44,14 @@ export const ComponentListGuestStyle = styled.div`
       }
       div:nth-child(2) {
         cursor: pointer;
-        padding: 15px 19px;
+        font-weight: var(--text-weight500);
         border-radius: 10px;
         color: var(--grey-00);
         background-color: var(--orange-500);
         border: 1px solid var(--orange-500);
 
         font-family: var(--font-family-inter);
+        font-weight: var(--text-weight500);
 
         &:hover {
           background-color: var(--orange-50);

@@ -27,7 +27,6 @@ export const PageRegister = () => {
             register={register("name")}
             label="Usuario"
           />
-          ,
           <Input
             label="Senha"
             placeholder="Digite sua senha"

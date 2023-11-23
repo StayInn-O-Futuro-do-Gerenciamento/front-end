@@ -30,7 +30,6 @@ export const PageLogin = () => {
             register={register("name")}
             label="Usuario"
           />
-          ,
           <Input
             label="Senha"
             placeholder="Digite sua senha"

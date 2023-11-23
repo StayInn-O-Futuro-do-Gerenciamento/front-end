@@ -15,6 +15,7 @@ export const ComponentListGuest = () => {
 
   const [gestAll, setGestAll] = useState<any>([]);
   const [filteredGuests, setFilteredGuests] = useState<any>([]);
+  const [selectedButton, setSelectedButton] = useState("all");
 
   useEffect(() => {
     fetchData();
@@ -39,29 +40,41 @@ export const ComponentListGuest = () => {
 
     const guestData = await Promise.all(promises);
     setGestAll(guestData);
-    setFilteredGuests(guestData); // Carregar todos os hóspedes por padrão
+    setFilteredGuests(guestData);
   };
 
   const handleShowAllGuests = () => {
-    setFilteredGuests(gestAll); // Exibir todos os hóspedes
+    setFilteredGuests(gestAll);
+    setSelectedButton("all");
   };
 
   const handleShowGuestsWithReservations = async () => {
-    const promises = getReservationState.map(async (reservation: any) => {
-      let price = await getFrankstainHistoryPrice(reservation.guests[0].id);
+    const guestIds = getReservationState.map(
+      (reservation: any) => reservation.guests[0].id
+    );
 
-      return {
-        name: reservation.guests[0].name,
-        nacionalidade: reservation.guests[0].nationality,
-        rg: reservation.guests[0].rg,
-        number: reservation.guests[0].phoneNumbers[0],
-        totalPago: `R$ ${price}`,
-      };
-    });
+    const uniqueGuestIds = [...new Set(guestIds)]; // Remove guest IDs duplicados
 
-    const guestsWithReservations = await Promise.all(promises);
+    const guestsWithReservations: any[] = [];
+
+    for (const guestId of uniqueGuestIds) {
+      const totalPrice = await getFrankstainHistoryPrice(guestId);
+
+      const guestInfo = getReservationState.find(
+        (reservation: any) => reservation.guests[0].id === guestId
+      ).guests[0]; // Pega informações do hóspede
+
+      guestsWithReservations.push({
+        name: guestInfo.name,
+        nacionalidade: guestInfo.nationality,
+        rg: guestInfo.rg,
+        number: guestInfo.phoneNumbers[0],
+        totalPago: `R$ ${totalPrice}`,
+      });
+    }
 
     setFilteredGuests(guestsWithReservations);
+    setSelectedButton("reservation");
   };
 
   if (!getGuestState) {
@@ -72,8 +85,16 @@ export const ComponentListGuest = () => {
     <ComponentListGuestStyle>
       <div className="nav-controller-guest">
         <div>
-          <button onClick={handleShowAllGuests}>Todos os Hóspedes</button>
-          <button onClick={handleShowGuestsWithReservations}>
+          <button
+            className={selectedButton === "all" ? "selected-btn" : ""}
+            onClick={handleShowAllGuests}
+          >
+            Todos os Hóspedes
+          </button>
+          <button
+            className={selectedButton === "reservation" ? "selected-btn" : ""}
+            onClick={handleShowGuestsWithReservations}
+          >
             Hóspedes com Reservas
           </button>
         </div>
