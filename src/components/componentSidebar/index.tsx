@@ -23,10 +23,18 @@ export const Sidebar = () => {
     useContext(AppContext);
   const navigate = useNavigate();
 
+  const userType = localStorage.getItem("userType");
+
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
     navigate(buttonId);
   };
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <SideBarMain>
       {modalUpdateHotel && <ModalUpdateHotel />}
@@ -84,23 +92,29 @@ export const Sidebar = () => {
           </li>
         </ul>
         <ul>
-          <li
-            className={selectedButton === "Attendant" ? "selected-btn" : ""}
-            onClick={() => handleChangeFunction("modalRegisterAttendant", true)}
-          >
-            <img src={Attendant} alt="Cadastro de Atendentes" />
-            <p>+ Atendentes</p>
-          </li>
-          <li
-            className={selectedButton === "Hotel" ? "selected-btn" : ""}
-            onClick={() => handleChangeFunction("modalUpdateHotel", true)}
-          >
-            <img src={Hotel} alt="Edição do Hotel" />
-            <p>Edição do Hotel</p>
-          </li>
+          {JSON.parse(userType!) == "Manager" && (
+            <>
+              <li
+                className={selectedButton === "Attendant" ? "selected-btn" : ""}
+                onClick={() =>
+                  handleChangeFunction("modalRegisterAttendant", true)
+                }
+              >
+                <img src={Attendant} alt="Cadastro de Atendentes" />
+                <p>+ Atendentes</p>
+              </li>
+              <li
+                className={selectedButton === "Hotel" ? "selected-btn" : ""}
+                onClick={() => handleChangeFunction("modalUpdateHotel", true)}
+              >
+                <img src={Hotel} alt="Edição do Hotel" />
+                <p>Edição do Hotel</p>
+              </li>
+            </>
+          )}
           <li
             className={selectedButton === "Logout" ? "selected-btn" : ""}
-            onClick={() => handleButtonClick("Logout")}
+            onClick={logout}
           >
             <img src={Logout} alt="Logout" />
             <p>Logout</p>

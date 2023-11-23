@@ -1,7 +1,7 @@
 import { NavBarSearchStyle } from "./style";
-import notificationImg from "../../assets/navbar/Notification.svg";
+// import notificationImg from "../../assets/navbar/Notification.svg";
 import searchImg from "../../assets/navbar/Search.svg";
-import avatarImg from "../../assets/navbar/Avatar.svg";
+import { LiaUserCircle } from "react-icons/lia";
 
 export const NavBarSearch = () => {
   return (
@@ -11,8 +11,8 @@ export const NavBarSearch = () => {
         <input type="text" placeholder="Procure por quartos e ofertas" />
       </div>
       <div>
-        <img src={notificationImg} alt="" />
-        <img src={avatarImg} alt="" />
+        {/* <img src={notificationImg} alt="" /> */}
+        <LiaUserCircle className="iconUser" />
       </div>
     </NavBarSearchStyle>
   );

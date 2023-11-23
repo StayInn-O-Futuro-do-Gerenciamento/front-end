@@ -1,4 +1,4 @@
-import { ComponentModalPageLoginCreateStyle } from "./style";
+import { ComponentModalPageHotelCreateStyle } from "./style";
 import logo from "../../assets/sidebar/Logo.svg";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ interface childrenForm {
   children: ReactNode;
 }
 
-export const ComponentModalPageLoginCreate: React.FC<childrenForm> = ({
+export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
   children,
 }) => {
   const navigate = useNavigate();
@@ -21,12 +21,9 @@ export const ComponentModalPageLoginCreate: React.FC<childrenForm> = ({
   }, []);
 
   return (
-    <ComponentModalPageLoginCreateStyle>
-      {currentUrl === "/" ? (
-        <button
-          className="button-change-page"
-          onClick={() => navigate("/register")}
-        >
+    <ComponentModalPageHotelCreateStyle>
+      {currentUrl === "/hotel" ? (
+        <button className="button-change-page" onClick={() => navigate("/")}>
           Registrar
         </button>
       ) : (
@@ -41,6 +38,6 @@ export const ComponentModalPageLoginCreate: React.FC<childrenForm> = ({
       </div>
       {children}
       <p className="direitos">Todos os direitos reservados OASIS HOTEL @2023</p>
-    </ComponentModalPageLoginCreateStyle>
+    </ComponentModalPageHotelCreateStyle>
   );
 };

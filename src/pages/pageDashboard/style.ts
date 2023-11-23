@@ -47,6 +47,7 @@ export const StyledContainerDashboard = styled.div`
     flex-direction: column;
     gap: 20px;
     max-width: 100%;
+    border-radius: 16px;
 
     .infoRoomStatus {
       display: flex;

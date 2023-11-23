@@ -9,6 +9,7 @@ import { AppContext } from "../context/appContext";
 import { useContext } from "react";
 import { PageLogin } from "../pages/pageLogin";
 import { PageRegister } from "../pages/pageRegister";
+import { PageHotel } from "../pages/pageHotel";
 
 export const RoutesMain = () => {
   const { modalRegisterAttedant } = useContext(AppContext);
@@ -23,6 +24,7 @@ export const RoutesMain = () => {
       <Route path="/rates" element={<Rate />} />
       <Route path="/" element={<PageLogin />} />
       <Route path="/register" element={<PageRegister />} />
+      <Route path="/hotel" element={<PageHotel />} />
     </Routes>
   );
 };
