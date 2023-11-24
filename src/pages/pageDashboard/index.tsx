@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import { BarChart } from "../../components/componentChartMain";
 import { ReservationBar } from "../../components/componentCreateReservationBar";
 import { Feedback } from "../../components/componentFeedBack";
@@ -8,8 +9,50 @@ import { Sidebar } from "../../components/componentSidebar";
 import { StatusRoom } from "../../components/componentStatusRoom";
 import { Overview } from "../../components/componenteOverview";
 import { StyledContainerDashboard } from "./style";
+import { AppContext } from "../../context/appContext";
+import { api } from "../../services/api";
 
 export const Dashboard = () => {
+  const {
+    setGetTypeRoomState,
+    setGetReservationState,
+    setGetRoomState,
+    setGetGuestState,
+    setGetHistoryState,
+    setGetOfferState,
+  } = useContext(AppContext);
+
+  useEffect(() => {
+    const getOverview = async () => {
+      let token: string = "";
+      const local = localStorage.getItem("token");
+      if (local) {
+        token = JSON.parse(local);
+      }
+
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      const resposeReservation = await api.get(`/reservation`);
+      setGetReservationState(resposeReservation.data);
+
+      const responseRoom = await api.get(`/room?pageSize=1000`);
+      setGetRoomState(responseRoom.data);
+
+      const responseTypeRoom = await api.get(`/typeRoom`);
+      setGetTypeRoomState(responseTypeRoom.data);
+
+      const responseGuest = await api.get(`/guest?pageSize=1000`);
+      setGetGuestState(responseGuest.data);
+
+      const responseHistory = await api.get(`/history`);
+      setGetHistoryState(responseHistory.data);
+
+      const responseOffer = await api.get(`/offer`);
+      setGetOfferState(responseOffer.data);
+    };
+    getOverview();
+  }, []);
+
   return (
     <StyledContainerDashboard>
       <Sidebar />

@@ -10,6 +10,7 @@ import { ModalUpdateTypeRoom } from "../../components/componentModalUpdateTypeRo
 import { ModalScheduleReservation } from "../../components/componetModalScheduleReservation";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
+import { api } from "../../services/api";
 
 export const Reservation = () => {
   const {
@@ -18,12 +19,25 @@ export const Reservation = () => {
     modalScheduleReservation,
     getRoomState,
     getTypeRoomSearchState,
+    setGetReservationState,
   } = useContext(AppContext);
 
   const roomsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   useEffect(() => {
     setCurrentPage(1);
+    let token: string = "";
+    const local = localStorage.getItem("token");
+    if (local) {
+      token = JSON.parse(local);
+    }
+    const getReserva = async () => {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+      const resposeReservation = await api.get(`/reservation`);
+      setGetReservationState(resposeReservation.data);
+    };
+    getReserva();
   }, [getTypeRoomSearchState]);
   if (!getRoomState) {
     return (
