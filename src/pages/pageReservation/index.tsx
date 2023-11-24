@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CalendarComponent } from "../../components/componentCalendar";
 import { NavBarSearch } from "../../components/componentNavBarSearch";
 import { Sidebar } from "../../components/componentSidebar";
@@ -8,6 +8,8 @@ import { FilterReservation } from "../../components/componentFilterResevation";
 import { RoomFilteredList } from "../../components/componentRoomList";
 import { ModalUpdateTypeRoom } from "../../components/componentModalUpdateTypeRoom";
 import { ModalScheduleReservation } from "../../components/componetModalScheduleReservation";
+import Left from "../../assets/Chevron left.svg";
+import Right from "../../assets/Chevron right.svg";
 
 export const Reservation = () => {
   const {
@@ -16,12 +18,13 @@ export const Reservation = () => {
     modalScheduleReservation,
     getRoomState,
     getTypeRoomSearchState,
-    getRoomId,
   } = useContext(AppContext);
 
   const roomsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [getTypeRoomSearchState]);
   if (!getRoomState) {
     return (
       <ReservationMain>
@@ -46,6 +49,7 @@ export const Reservation = () => {
   }));
 
   let filteredRooms = formattedDataArray;
+
   if (getTypeRoomSearchState) {
     filteredRooms = formattedDataArray.filter((room: any) => {
       const { roomType, disponivel, personCount } = room;
@@ -109,8 +113,14 @@ export const Reservation = () => {
             rooms={currentRooms}
             modalName="modalScheduleReservation"
           />
-          <div>
+          <div className="pageDiv">
             <ul className="pagination">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+              >
+                <img src={Left} alt="" />
+              </button>
               {Array.from({ length: totalPages }, (_, index) => (
                 <li
                   key={index + 1}
@@ -120,6 +130,12 @@ export const Reservation = () => {
                   {index + 1}
                 </li>
               ))}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+              >
+                <img src={Right} alt="" />
+              </button>
             </ul>
           </div>
         </div>

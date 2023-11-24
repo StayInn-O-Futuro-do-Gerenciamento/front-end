@@ -2,27 +2,50 @@ import styled from "styled-components";
 
 export const ReservationMain = styled.div`
   display: flex;
+
   .mainContet {
     width: 100%;
+    position: relative;
   }
   .pagination {
+    position: absolute;
+    bottom: 4px;
+    left: 20px;
+    font-family: var(--font-family-inter);
+    font-size: 22px;
+    font-weight: var(--text-weight600);
     margin: 8px 0;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     cursor: pointer;
     list-style: none;
     padding: 0;
     li {
-      padding: 12px;
-      border: 1px solid #ccc;
+      padding: 0 8px;
       margin: 0 4px;
       border-radius: 4px;
     }
+    button {
+      background-color: transparent;
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid var(--orange-500);
+      img {
+        width: 20px;
+        height: 20px;
+        filter: var(--svg-color-orange);
+      }
+    }
+    button:disabled {
+      background-color: var(--grey-100);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
 
     .active {
-      background-color: #007bff;
-      color: #fff;
+      color: var(--orange-400);
+      border-bottom: 0.125rem solid var(--orange-400);
     }
   }
 `;

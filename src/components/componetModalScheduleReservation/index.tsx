@@ -55,7 +55,7 @@ export const ModalScheduleReservation = () => {
       }
       api.defaults.headers.common.authorization = `Bearer ${token}`;
       const response = await api.post(`/reservation`, schedule);
-      console.log(response.data);
+      handleChangeFunction("modalScheduleReservation", false);
     }
   };
 
