@@ -280,7 +280,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const createAttendant = async (data: any) => {
     const token = localStorage.getItem("token");
     try {
-      const responseUpdateTypeRoom = await api.post(`/attendant`, data, {
+      const responseUpdateTypeRoom = await api.patch(`/attendant`, data, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
