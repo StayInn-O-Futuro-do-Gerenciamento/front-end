@@ -271,8 +271,21 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           },
         }
       );
-
       setModalUpdateTypeRoom(false);
+      console.log(responseUpdateTypeRoom);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const createAttendant = async (data: any) => {
+    const token = localStorage.getItem("token");
+    try {
+      const responseUpdateTypeRoom = await api.post(`/attendant`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
 
       console.log(responseUpdateTypeRoom);
     } catch (error) {
@@ -313,11 +326,13 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomSearchState,
         getRoomId,
         createRoom,
+
         updateRoom,
         updateTypeRoom,
         setTest,
         getTypeRoomId,
         test,
+        createAttendant,
         registerManager,
       }}
     >

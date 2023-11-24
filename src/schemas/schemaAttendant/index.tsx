@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const registerAttendantSchemas = z.object({
-  name: z.string().nonempty("Nome é obrigatório"),
-  password: z.string().nonempty("Senha é obrigatória"),
+  name: z.string().min(1, "Nome é obrigatório"),
+  password: z.string().min(1, "Senha é obrigatória"),
 });
 
 export const returnAttendantSchemas = z.object({
