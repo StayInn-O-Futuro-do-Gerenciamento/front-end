@@ -277,6 +277,21 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
+  const createAttendant = async (data: any) => {
+    const token = localStorage.getItem("token");
+    try {
+      const responseUpdateTypeRoom = await api.post(`/attendant`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      console.log(responseUpdateTypeRoom);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -316,7 +331,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         setTest,
         getTypeRoomId,
         test,
-
+        createAttendant,
         registerManager,
       }}
     >
