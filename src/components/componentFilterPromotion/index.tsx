@@ -131,6 +131,7 @@ export const FilterPromotion = () => {
           type="button"
           buttonVariation="buttonCreate"
           onClick={() => handleChangeFunction("modalCreatePromotion", true)}
+          className="offer"
         >
           Adicionar oferta
         </Button>
