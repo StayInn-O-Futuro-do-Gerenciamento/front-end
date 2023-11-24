@@ -1,6 +1,7 @@
 import More from "../../assets/More.svg";
 import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
+import { TableRow } from "./style";
 
 export const ComponentTableList = ({ list, modalName, typeList }: any) => {
   const { handleChangeFunction, getRoomState, setTest } =
@@ -21,9 +22,29 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
     <tbody>
       {list.map((item: any, rowIndex: number) => {
         const { id, ...itemWithoutId } = item;
+        const status = itemWithoutId["status"];
+        const statusPromotion = itemWithoutId["trueRoomStatusesCount"];
+        let statusColor = "";
+
+        if (status === "Limpo") {
+          statusColor = "clean";
+        } else if (status === "Sujo") {
+          statusColor = "dirty";
+        } else if (status === "Em Manutenção") {
+          statusColor = "WIP";
+        }
+        if (statusPromotion == "Programada") {
+          statusColor = "scheduled";
+        } else if (statusPromotion == "Válida") {
+          statusColor = "onGoing";
+        } else if (statusPromotion == "Finalizada") {
+          statusColor = "finished";
+        } else if (statusPromotion == "Cheio") {
+          statusColor = "full";
+        }
 
         return (
-          <tr key={rowIndex}>
+          <TableRow key={rowIndex} statusColor={statusColor}>
             {columns.map((column, colIndex) => {
               if (colIndex === 0) {
                 return (
@@ -34,7 +55,11 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
               } else if (colIndex === columns.length - 1) {
                 return (
                   <td key={colIndex}>
-                    <p className={"status"}>{itemWithoutId[column]}</p>
+                    <p
+                      className={`${status || statusPromotion ? "status" : ""}`}
+                    >
+                      {itemWithoutId[column]}
+                    </p>
                   </td>
                 );
               } else {
@@ -52,7 +77,7 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
                 }}
               />
             </td>
-          </tr>
+          </TableRow>
         );
       })}
     </tbody>
