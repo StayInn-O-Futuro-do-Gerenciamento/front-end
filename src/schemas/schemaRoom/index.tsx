@@ -1,26 +1,23 @@
 import { z } from "zod";
 
 const typeRoomSchemas = z.object({
-  name: z
-    .string()
-    .nonempty("Nome é obrigatório")
-    .max(80, "Máximo 80 caracteres"),
-  description: z.string().nonempty("Descrição obrigatória"),
-  personCount: z.number().min(1, "A contagem de pessoas deve ser pelo menos 1"),
+  name: z.string().min(1, "Nome é obrigatório").max(80, "Máximo 80 caracteres"),
+  description: z.string().min(1, "Descrição obrigatória"),
+  personCount: z.string().min(1, "A contagem de pessoas deve ser pelo menos 1"),
   rate: z.enum(["Flexível", "Restrito", "Sem reembolso"]),
-  confort: z.string().nonempty("Tipo de quarto obrigatório"),
+  confort: z.string().min(1, "Tipo de quarto obrigatório"),
 });
 export const addRoomSchemas = z.object({
-  price: z.number().min(0.01, "Preço deve ser maior que zero"),
+  price: z.string().min(0.01, "Preço deve ser maior que zero"),
   availability: z.enum(["Ocupado", "Disponível"]),
   status: z.enum(["Limpo", "Sujo", "Em Manutenção"]),
-  roomTypeQuantity: z.number().min(1, "Deve conter pelo menos 1 quarto"),
-  typeRoom: typeRoomSchemas.extend({ id: z.string() }),
+  roomTypeQuantity: z.string().min(1, "Deve conter pelo menos 1 quarto"),
+  typeRoom: typeRoomSchemas,
 });
 
-export const UpdateRoomSchemas = z
+export const updateRoomSchemas = z
   .object({
-    description: z.string().nonempty("Descrição obrigatória"),
+    description: z.string().min(1, "Descrição obrigatória"),
     availability: z.enum(["Ocupado", "Disponível"]),
     status: z.enum(["Limpo", "Sujo", "Em Manutenção"]),
   })
@@ -33,6 +30,6 @@ export const roomReturnSchema = addRoomSchemas.extend({
   floor: z.string(),
 });
 
-export type UpdateRoomData = z.infer<typeof UpdateRoomSchemas>;
+export type tUpdateRoomData = z.infer<typeof updateRoomSchemas>;
 
-export type addRoomData = z.infer<typeof addRoomSchemas>;
+export type tAddRoomData = z.infer<typeof addRoomSchemas>;

@@ -4,10 +4,12 @@ import {
   iAppContextProps,
   iGuestData,
   iHotel,
+  iRoom,
   iUser,
 } from "./type";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { tAddRoomData } from "../../schemas/schemaRoom";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -201,6 +203,21 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     return priceTotal;
   };
 
+  const createRoom = async (data: tAddRoomData) => {
+    console.log("Oi");
+    const token = localStorage.getItem("token");
+    console.log(data);
+    try {
+      const responseCreateRoom = await api.post("/room", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      console.log(responseCreateRoom);
+    } catch (error) {}
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -233,6 +250,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomPaginationState,
         getTypeRoomSearchState,
         getRoomId,
+        createRoom,
       }}
     >
       {children}

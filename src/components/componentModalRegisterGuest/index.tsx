@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
@@ -17,10 +17,16 @@ export const ModalRegisterGuest = () => {
 
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm<iGuestData>({
     resolver: zodResolver(registerGuestSchemas),
+  });
+
+  const { fields } = useFieldArray({
+    control,
+    name: "emergencyContacts",
   });
 
   const onSubmit = (data: iGuestData) => {
@@ -116,72 +122,121 @@ export const ModalRegisterGuest = () => {
                 <strong>Contato do hospede</strong>
               </label>
               <div className="phoneNumber">
-                <Input
-                  type="number"
-                  placeholder="Celular 1"
-                  register={register("phoneNumbers")}
-                />
-                {errors.phoneNumbers ? (
-                  <span className="errorMessage">
-                    {errors.phoneNumbers.message}
-                  </span>
-                ) : (
-                  <></>
-                )}
-                <Input
-                  type="number"
-                  placeholder="Celular 2"
-                  register={register("phoneNumbers")}
-                />
-                {errors.phoneNumbers ? (
-                  <span className="errorMessage">
-                    {errors.phoneNumbers.message}
-                  </span>
-                ) : (
-                  <></>
-                )}
+                <div>
+                  <Input
+                    type="number"
+                    placeholder="Celular 1"
+                    register={register("phoneNumbers")}
+                  />
+                  {errors.phoneNumbers ? (
+                    <span className="errorMessage">
+                      {errors.phoneNumbers.message}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                <div>
+                  <Input
+                    type="number"
+                    placeholder="Celular 2"
+                    register={register("phoneNumbers")}
+                  />
+                  {errors.phoneNumbers ? (
+                    <span className="errorMessage">
+                      {errors.phoneNumbers.message}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                </div>
               </div>
 
               <label htmlFor="">
                 <strong>Contato de emergência</strong>
               </label>
               <div className="emergencyContacts">
-                <Input
-                  type="text"
-                  placeholder="Nome do contato"
-                  register={register("emergencyContacts")}
-                />
+                {fields.map((contact, index) => (
+                  <div key={index}>
+                    <Input
+                      type="text"
+                      placeholder="Nome do contato"
+                      register={register(`emergencyContacts.${index}.name`)}
+                    />
+                    {errors.emergencyContacts?.[index]?.name && (
+                      <span className="errorMessage">
+                        {errors.emergencyContacts[index]?.name?.message}
+                      </span>
+                    )}
 
-                <Input
-                  type="number"
-                  placeholder="Número do contato"
-                  register={register("emergencyContacts")}
-                />
+                    <Input
+                      type="number"
+                      placeholder="Número do contato"
+                      register={register(
+                        `emergencyContacts.${index}.phoneNumber`
+                      )}
+                    />
+                    {errors.emergencyContacts?.[index]?.phoneNumber && (
+                      <span className="errorMessage">
+                        {errors.emergencyContacts[index]?.phoneNumber?.message}
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
               <div className="emergencyContacts">
-                <Input
-                  type="text"
-                  placeholder="Nome do contato"
-                  register={register("emergencyContacts")}
-                />
-                <Input
-                  type="number"
-                  placeholder="Número do contato"
-                  register={register("emergencyContacts")}
-                />
+                {fields.map((contact, index) => (
+                  <div key={index}>
+                    <Input
+                      type="text"
+                      placeholder="Nome do contato"
+                      register={register(`emergencyContacts.${index}.name`)}
+                    />
+                    {errors.emergencyContacts?.[index]?.name && (
+                      <span className="errorMessage">
+                        {errors.emergencyContacts[index]?.name?.message}
+                      </span>
+                    )}
+
+                    <Input
+                      type="number"
+                      placeholder="Número do contato"
+                      register={register(
+                        `emergencyContacts.${index}.phoneNumber`
+                      )}
+                    />
+                    {errors.emergencyContacts?.[index]?.phoneNumber && (
+                      <span className="errorMessage">
+                        {errors.emergencyContacts[index]?.phoneNumber?.message}
+                      </span>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
             <div className="guestAddress">
-              <Input label="Rua" type="text" placeholder="Rua do hospede" />
               <Input
-                label="Número da residência"
-                type="number"
-                placeholder="Número da residência do hospede"
+                label="Rua"
+                type="text"
+                placeholder="Rua do hospede"
                 register={register("address.street")}
               />
               {errors.address?.street ? (
                 <span className="errorMessage">
                   {errors.address.street.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <Input
+                label="Número da residência"
+                type="number"
+                placeholder="Número da residência do hospede"
+                register={register("address.number")}
+              />
+              {errors.address?.number ? (
+                <span className="errorMessage">
+                  {errors.address.number.message}
                 </span>
               ) : (
                 <></>

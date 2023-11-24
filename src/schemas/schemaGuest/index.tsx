@@ -2,10 +2,7 @@ import { z } from "zod";
 import { registerAddressSchemas, updateAddressSchemas } from "../schemaAddress";
 
 export const registerGuestSchemas = z.object({
-  name: z
-    .string({ required_error: "Nome é obrigatório" })
-    .max(50, "Máximo 50 caracteres")
-    .min(1, "Nome obrigatório"),
+  name: z.string().max(50, "Máximo 50 caracteres").min(1, "Nome obrigatório"),
   rg: z.string().min(1, "Rg é obrigatória").max(10, "Máximo 10 dígitos"),
   cpf: z.string().min(1, "Cpf é obrigatório").max(11, "Máximo 11 dígitos"),
   passport: z.string().max(6, "Máximo 6 dígitos").min(6, "Mínimo 6 dígitos"),
@@ -16,8 +13,8 @@ export const registerGuestSchemas = z.object({
   phoneNumbers: z.array(z.string()),
   emergencyContacts: z.array(
     z.object({
-      name: z.string(),
-      phoneNumber: z.string(),
+      name: z.string().min(1, "Nome é obrigatório"),
+      phoneNumber: z.string().min(1, "Número obrigatório"),
     })
   ),
   address: registerAddressSchemas,
