@@ -214,6 +214,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         },
       });
 
+      setModalCreateRoom(false);
+
       console.log(responseCreateRoom);
     } catch (error) {}
   };

@@ -23,6 +23,9 @@ export const ModalAddRoom = () => {
   });
 
   const onSubmit = (data: tAddRoomData) => {
+    data.typeRoom.price = Number(data.typeRoom.price);
+    data.typeRoom.roomTypeQuantity = Number(data.typeRoom.roomTypeQuantity);
+    data.typeRoom.personCount = Number(data.typeRoom.personCount);
     console.log(data);
     createRoom(data);
   };
@@ -43,8 +46,8 @@ export const ModalAddRoom = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
-            placeholder="Nome"
-            label="Nome do quarto"
+            placeholder="Ex: vip"
+            label="Tipo de quarto"
             register={register("typeRoom.name")}
           />
           {errors.typeRoom?.name ? (
@@ -69,29 +72,28 @@ export const ModalAddRoom = () => {
             <></>
           )}
           <Input
-            type="number"
-            placeholder="Preço do quarto"
-            label="Preço"
-            register={register("price")}
+            type="text"
+            placeholder="Ex: frigobar, hidromassagem"
+            label="Conforto"
+            register={register("typeRoom.confort")}
           />
-          {errors.price ? (
-            <span className="errorMessage">{errors.price.message}</span>
+          {errors.typeRoom?.confort ? (
+            <span className="errorMessage">
+              {errors.typeRoom?.confort.message}
+            </span>
           ) : (
             <></>
           )}
-          <label>
-            <strong>Disponibilidade</strong>
-          </label>
-          <select {...register("availability")} name="availability">
-            <option disabled selected>
-              Selecionar disponibilidade
-            </option>
-            <option value="Ocupado">Ocupado</option>
-            <option value="Disponível">Disponível</option>{" "}
-          </select>
-
-          {errors.availability ? (
-            <span className="errorMessage">{errors.availability.message}</span>
+          <Input
+            type="number"
+            placeholder="Preço do quarto"
+            label="Preço"
+            register={register("typeRoom.price")}
+          />
+          {errors.typeRoom?.price ? (
+            <span className="errorMessage">
+              {errors.typeRoom?.price.message}
+            </span>
           ) : (
             <></>
           )}
@@ -105,19 +107,14 @@ export const ModalAddRoom = () => {
             </option>
             <option value="Limpo">Limpo</option>
             <option value="Sujo">Sujo</option>{" "}
-            <option value="Manuntencao">Manutenção</option>
+            <option value="Em Manutenção">Em Manutenção</option>
           </select>
           {errors.status ? (
             <span className="errorMessage">{errors.status.message}</span>
           ) : (
             <></>
           )}
-          {/* <Input
-            type="text"
-            placeholder="Tipo de quarto"
-            label="Quarto"
-            register={register("typeRoom.typeRoom")}
-          /> */}
+
           <Input
             type="number"
             placeholder="Contagem de pessoas"
@@ -153,11 +150,11 @@ export const ModalAddRoom = () => {
             type="number"
             placeholder="Número de quartos"
             label="Número de quartos"
-            register={register("roomTypeQuantity")}
+            register={register("typeRoom.roomTypeQuantity")}
           />
-          {errors.roomTypeQuantity ? (
+          {errors.typeRoom?.roomTypeQuantity ? (
             <span className="errorMessage">
-              {errors.roomTypeQuantity.message}
+              {errors.typeRoom?.roomTypeQuantity.message}
             </span>
           ) : (
             <></>
@@ -170,7 +167,9 @@ export const ModalAddRoom = () => {
             >
               Cancelar
             </Button>
-            <button type="submit">Adicionar</button>
+            <Button buttonVariation="saveModal" type="submit">
+              Adicionar
+            </Button>
           </ContainerButtonModal>
         </Form>
       </div>

@@ -45,7 +45,7 @@ export interface iAddress {
 export interface iRoomType {
   name: string;
   description: string;
-  comfort: string;
+  confort: string;
   price: number;
   personCount: number;
   rate: string;
