@@ -1,11 +1,15 @@
 import { ComponentTableList } from "../componentTableList";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentListRateRoomStyle } from "./style";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../context/appContext";
+import Left from "../../assets/Chevron left.svg";
+import Right from "../../assets/Chevron right.svg";
 
 export const ComponentListRateRoom = () => {
   const { getTypeRoomState } = useContext(AppContext);
+  const roomsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
   const extractedData = getTypeRoomState
     ? getTypeRoomState.map((roomType: any) => {
@@ -40,6 +44,15 @@ export const ComponentListRateRoom = () => {
       })
     : [];
 
+  const indexOfLastRoom = currentPage * roomsPerPage;
+  const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
+  let currentRooms = extractedData.slice(indexOfFirstRoom, indexOfLastRoom);
+  let totalPages = Math.ceil(extractedData.length / roomsPerPage);
+
+  const handlePageChange = (page: any) => {
+    setCurrentPage(page);
+  };
+
   return (
     <ComponentListRateRoomStyle>
       <div></div>
@@ -57,11 +70,34 @@ export const ComponentListRateRoom = () => {
           <th></th>
         </thead>
         <ComponentTableList
-          list={extractedData}
+          list={currentRooms}
           modalName="modalUpdateTypeRoom"
           typeList="typeRoomId"
         />
       </TableStyled>
+      <ul className="pagination">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          <img src={Left} alt="" />
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <li
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </li>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          <img src={Right} alt="" />
+        </button>
+      </ul>
     </ComponentListRateRoomStyle>
   );
 };

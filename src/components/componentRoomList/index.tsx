@@ -7,7 +7,6 @@ export const RoomFilteredList = ({ rooms, modalName }: any) => {
     <RoomFilteredListStyled>
       <TableStyled>
         <thead>
-          <th>Id do Quarto</th>
           <th>Quarto</th>
           <th>Tipo</th>
           <th>Andar</th>
