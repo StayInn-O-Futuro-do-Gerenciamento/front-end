@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { Button } from "../../components/componentButton";
-import { PageLoginStyle } from "./style";
+import { PageHotelStyle } from "./style";
 import { Input } from "../../components/componentInput";
 import { useContext } from "react";
 import { AppContext } from "../../context/appContext";
@@ -13,16 +13,16 @@ export const PageHotel = () => {
 
   const navigate = useNavigate();
 
-  if (hotel) {
-    navigate("/");
-  }
+  // if (hotel) {
+  //   navigate("/");
+  // }
 
   const onSubmit = (data: any) => {
     createHotel(data);
   };
 
   return (
-    <PageLoginStyle>
+    <PageHotelStyle>
       <ComponentModalPageHotelCreate>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Criar um hotel</h2>
@@ -56,6 +56,18 @@ export const PageHotel = () => {
             register={register("city")}
             label="Cidade"
           />
+          <Input
+            placeholder="Ex: Numero de quartos"
+            type="number"
+            register={register("numberRoomsTotal")}
+            label="Numero total de quartos"
+          />
+          <Input
+            placeholder="Ex: Quantidade de quartos por andar"
+            type="number"
+            register={register("roomsPerFloor")}
+            label="Quantidade de quartos por andar"
+          />
           <Button
             className="button-submit"
             buttonVariation="buttonCreate"
@@ -66,6 +78,6 @@ export const PageHotel = () => {
           </Button>
         </form>
       </ComponentModalPageHotelCreate>
-    </PageLoginStyle>
+    </PageHotelStyle>
   );
 };

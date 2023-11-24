@@ -14,6 +14,8 @@ export interface iHotel {
   number: string;
   zipCode: string;
   city: string;
+  numberRoomsTotal: number;
+  roomsPerFloor: number;
   id: string;
 }
 

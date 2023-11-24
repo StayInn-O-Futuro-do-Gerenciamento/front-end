@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import background from "../../assets/background-pages-dashboard.gif";
 
-export const PageLoginStyle = styled.div`
+export const PageHotelStyle = styled.div`
   background-image: url(${background});
   background-position: center;
   background-size: 100%;
@@ -14,7 +14,7 @@ export const PageLoginStyle = styled.div`
 
   form {
     input {
-      height: 60px;
+      height: 45px;
       background-color: #d9d9d9;
       padding: 0px 10px;
       border: none;
@@ -24,7 +24,7 @@ export const PageLoginStyle = styled.div`
     }
     button {
       margin-top: 20px;
-      height: 60px;
+      height: 45px;
       font-size: 24px;
       font-weight: 700;
       margin-bottom: 20px;

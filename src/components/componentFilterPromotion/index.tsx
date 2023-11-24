@@ -6,19 +6,9 @@ import { useState, useContext, useEffect, useMemo } from "react";
 import { AppContext } from "../../context/appContext";
 
 export const FilterPromotion = () => {
-  const [selectedButton, setSelectedButton] = useState("all");
   const { handleChangeFunction, getOfferState } = useContext(AppContext);
-
-  const handleButtonClick = (buttonId: string) => {
-    setSelectedButton(buttonId);
-  };
-
-  const [promotions, setPromotions] = useState([]);
-
-  const formatDate = (dateString: any) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("pt-BR");
-  };
+  const [selectedButton, setSelectedButton] = useState("all");
+  const [promotions, setPromotions] = useState<any>([]) as any;
 
   useEffect(() => {
     if (getOfferState) {
@@ -67,7 +57,7 @@ export const FilterPromotion = () => {
       return promotions;
     }
 
-    return promotions.filter((promotion) => {
+    return promotions.filter((promotion: any) => {
       if (selectedButton === "ongoing") {
         return promotion.trueRoomStatusesCount === "Válida";
       } else if (selectedButton === "finished") {
@@ -81,6 +71,22 @@ export const FilterPromotion = () => {
       }
     });
   }, [selectedButton, promotions]);
+  if (!getOfferState) {
+    return (
+      <StyledFilterPromotion>
+        <h3>Loading...</h3>
+      </StyledFilterPromotion>
+    );
+  }
+
+  const handleButtonClick = (buttonId: string) => {
+    setSelectedButton(buttonId);
+  };
+
+  const formatDate = (dateString: any) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("pt-BR");
+  };
 
   return (
     <StyledFilterPromotion>
