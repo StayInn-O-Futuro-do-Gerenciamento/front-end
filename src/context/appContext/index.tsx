@@ -51,8 +51,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     null as any
   );
 
-  console.log(getTypeRoomState);
-
   const [getRoomId, setGetRoomId] = useState(null as any);
   const [getTypeRoomId, setGetTypeRoomId] = useState(null as any);
 
