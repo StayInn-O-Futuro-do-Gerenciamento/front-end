@@ -129,6 +129,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       setLoadingButton(true);
       const responseCreate = await api.post("/hotel", data);
       setHotel(responseCreate.data);
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -145,10 +146,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
-
-      console.log(responseRegisterGuest);
     } catch (error) {}
   };
+
   const registerManager = async (data: iGuestData) => {
     try {
       const responseRegisterManager = await api.post("/manager", data);
@@ -188,6 +188,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseOffer = await api.get(`/offer`);
       setGetOfferState(responseOffer.data);
+
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
     };
@@ -214,15 +215,13 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const createRoom = async (data: tAddRoomData) => {
     console.log("Oi");
     const token = localStorage.getItem("token");
-    console.log(data);
+
     try {
       const responseCreateRoom = await api.post("/room", data, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
-
-      console.log(responseCreateRoom);
     } catch (error) {}
   };
 
