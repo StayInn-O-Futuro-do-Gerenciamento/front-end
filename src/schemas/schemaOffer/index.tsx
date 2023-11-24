@@ -3,7 +3,7 @@ import { z } from "zod";
 export const addOfferSchemas = z.object({
   offerName: z
     .string()
-    .nonempty("Nome obrigatório")
+    .min(1, "Nome obrigatório")
     .max(80, "Máximo 80 caracteres"),
   offerDescription: z.string().nonempty("Descrição obrigatória"),
   discount: z.number().min(0.01, "Desconto deve ser maior que zero"),
@@ -16,9 +16,9 @@ export const updateOfferSchemas = z
   .object({
     offerName: z
       .string()
-      .nonempty("Nome obrigatório")
+      .min(1, "Nome obrigatório")
       .max(80, "Máximo 80 caracteres"),
-    offerDescription: z.string().nonempty("Descrição obrigatória"),
+    offerDescription: z.string().min(1, "Descrição obrigatória"),
     discount: z.number().min(0.01, "Desconto deve ser maior que zero"),
     startDate: z.date(),
     finishDate: z.date(),

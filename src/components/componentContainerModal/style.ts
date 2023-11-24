@@ -19,7 +19,7 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateRoom {
     width: 352px;
-    height: 520px;
+    height: 400px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;

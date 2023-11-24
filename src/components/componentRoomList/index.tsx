@@ -7,7 +7,6 @@ export const RoomFilteredList = ({ rooms, modalName }: any) => {
     <RoomFilteredListStyled>
       <TableStyled>
         <thead>
-          <th>Id do Quarto</th>
           <th>Quarto</th>
           <th>Tipo</th>
           <th>Andar</th>
@@ -17,7 +16,11 @@ export const RoomFilteredList = ({ rooms, modalName }: any) => {
           <th>Status</th>
           <th></th>
         </thead>
-        <ComponentTableList list={rooms} modalName={modalName} />
+        <ComponentTableList
+          list={rooms}
+          modalName={modalName}
+          typeList="roomId"
+        />
       </TableStyled>
     </RoomFilteredListStyled>
   );

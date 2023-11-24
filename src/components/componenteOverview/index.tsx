@@ -14,6 +14,7 @@ export const Overview = () => {
       </StyledOverview>
     );
   }
+  console.log(getRoomState);
 
   const today = new Date().toISOString().split("T")[0];
 

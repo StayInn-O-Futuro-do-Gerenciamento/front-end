@@ -1,4 +1,6 @@
+import { useForm } from "react-hook-form";
 import { AppContext } from "../../context/appContext";
+import { tUpdateTypeRoomData } from "../../schemas/schemaRoom";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
@@ -8,7 +10,19 @@ import { Input } from "../componentInput";
 import { useContext } from "react";
 
 export const ModalUpdateTypeRoom = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, updateTypeRoom, getTypeRoomSearchState } =
+    useContext(AppContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<tUpdateTypeRoomData>({});
+
+  const onSubmit = (data: tUpdateTypeRoomData) => {
+    console.log(data);
+    updateTypeRoom(data);
+  };
   return (
     <ContainerModal>
       <div className="modalUpdateTypeRoom">
@@ -23,27 +37,42 @@ export const ModalUpdateTypeRoom = () => {
           </Button>
         </HeaderModal>
 
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             label="Nome"
             placeholder="Nome do tipo do quarto"
             type="text"
+            register={register("name")}
           />
           <Input
             label="Descrição"
             placeholder="Descrição de quarto"
             type="text"
+            register={register("description")}
+          />
+          <Input
+            type="number"
+            placeholder="Contagem de pessoas"
+            label="Pessoas"
+            register={register("personCount")}
+          />
+          <Input
+            type="number"
+            placeholder="Número de quartos"
+            label="Número de quartos"
+            register={register("roomTypeQuantity")}
           />
           <Input
             label="Conforto"
             placeholder="Conforto do tipo de quarto"
             type="text"
+            register={register("confort")}
           />
           <Input label="Preço" placeholder="Preço do quarto" type="number" />
           <label>
             <strong>Política de cancelamento</strong>
           </label>
-          <select className="">
+          <select className="" {...register("rate")}>
             <option disabled selected>
               Selecionar política
             </option>
@@ -60,7 +89,7 @@ export const ModalUpdateTypeRoom = () => {
             >
               Cancelar
             </Button>
-            <Button buttonVariation="saveModal" type="button">
+            <Button buttonVariation="saveModal" type="submit">
               Salvar
             </Button>
           </ContainerButtonModal>

@@ -4,6 +4,8 @@ import searchButton from "../../assets/navbar/Search.svg";
 import { TableStyled } from "../../style/tableStyle";
 import { AppContext } from "../../context/appContext";
 import { useContext, useEffect, useState } from "react";
+import Left from "../../assets/Chevron left.svg";
+import Right from "../../assets/Chevron right.svg";
 
 export const ComponentListGuest = () => {
   const {
@@ -16,6 +18,8 @@ export const ComponentListGuest = () => {
   const [gestAll, setGestAll] = useState<any>([]);
   const [filteredGuests, setFilteredGuests] = useState<any>([]);
   const [selectedButton, setSelectedButton] = useState("all");
+  const roomsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     fetchData();
@@ -49,11 +53,12 @@ export const ComponentListGuest = () => {
   };
 
   const handleShowGuestsWithReservations = async () => {
+    setCurrentPage(1);
     const guestIds = getReservationState.map(
       (reservation: any) => reservation.guests[0].id
     );
 
-    const uniqueGuestIds = [...new Set(guestIds)]; // Remove guest IDs duplicados
+    const uniqueGuestIds = [...new Set(guestIds)];
 
     const guestsWithReservations: any[] = [];
 
@@ -62,7 +67,7 @@ export const ComponentListGuest = () => {
 
       const guestInfo = getReservationState.find(
         (reservation: any) => reservation.guests[0].id === guestId
-      ).guests[0]; // Pega informações do hóspede
+      ).guests[0];
 
       guestsWithReservations.push({
         name: guestInfo.name,
@@ -80,6 +85,15 @@ export const ComponentListGuest = () => {
   if (!getGuestState) {
     return <div>Loading...</div>;
   }
+
+  const indexOfLastRoom = currentPage * roomsPerPage;
+  const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
+  let currentRooms = filteredGuests.slice(indexOfFirstRoom, indexOfLastRoom);
+  let totalPages = Math.ceil(filteredGuests.length / roomsPerPage);
+
+  const handlePageChange = (page: any) => {
+    setCurrentPage(page);
+  };
 
   return (
     <ComponentListGuestStyle>
@@ -119,11 +133,31 @@ export const ComponentListGuest = () => {
             <th></th>
           </tr>
         </thead>
-        <ComponentTableList
-          list={filteredGuests}
-          modalName="modalUpdateGuest"
-        />
+        <ComponentTableList list={currentRooms} modalName="modalUpdateGuest" />
       </TableStyled>
+      <ul className="pagination">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          <img src={Left} alt="" />
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <li
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+            className={currentPage === index + 1 ? "active" : ""}
+          >
+            {index + 1}
+          </li>
+        ))}
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          <img src={Right} alt="" />
+        </button>
+      </ul>
     </ComponentListGuestStyle>
   );
 };
