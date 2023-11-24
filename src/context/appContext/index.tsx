@@ -272,6 +272,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         }
       );
 
+      setModalUpdateTypeRoom(false);
+
       console.log(responseUpdateTypeRoom);
     } catch (error) {
       console.log(error);

@@ -18,6 +18,25 @@ export const addRoomSchemas = z.object({
   typeRoom: typeRoomSchemas,
 });
 
+export const updateTypeRoomSchemas = z
+  .object({
+    name: z
+      .string()
+      .min(1, "Nome é obrigatório")
+      .max(80, "Máximo 80 caracteres"),
+    description: z.string().min(1, "Descrição obrigatória"),
+    personCount: z
+      .number()
+      .or(z.string().min(0.01, "A contagem de pessoas deve ser pelo menos 1")),
+    rate: z.enum(["Flexível", "Restrito", "Sem reembolso"]),
+    confort: z.string().min(1, "Tipo de quarto obrigatório"),
+    roomTypeQuantity: z
+      .number()
+      .or(z.string().min(1, "Deve conter pelo menos 1 quarto")),
+    price: z.number().or(z.string().min(0.01, "Preço deve ser maior que zero")),
+  })
+  .partial();
+
 export const updateRoomSchemas = z
   .object({
     // description: z.string().min(1, "Descrição obrigatória"),
