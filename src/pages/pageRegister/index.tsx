@@ -3,6 +3,8 @@ import { Button } from "../../components/componentButton";
 import { ComponentModalPageLoginCreate } from "../../components/componentModalPageLoginCreate";
 import { PageLoginStyle } from "./style";
 import { Input } from "../../components/componentInput";
+import { AppContext } from "../../context/appContext";
+import { useContext } from "react";
 
 interface iFormInput {
   name: string;
@@ -10,10 +12,11 @@ interface iFormInput {
 }
 
 export const PageRegister = () => {
+  const { registerManager } = useContext(AppContext);
   const { register, handleSubmit } = useForm<iFormInput>();
 
   const onSubmit = (data: iFormInput) => {
-    console.log(data);
+    registerManager(data);
   };
 
   return (
