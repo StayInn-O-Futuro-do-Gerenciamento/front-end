@@ -10,42 +10,50 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
     return null;
   }
 
-  const columns = Object.keys(list[0]);
+  let newList: any = [];
+  list.map((item: any) => {
+    const { id, ...itemWithoutId } = item;
+    newList.push(itemWithoutId);
+  });
+  const columns = Object.keys(newList[0]);
 
   return (
     <tbody>
-      {list.map((item: any, rowIndex: number) => (
-        <tr key={rowIndex}>
-          {columns.map((column, colIndex) => {
-            if (colIndex === 0) {
-              return (
-                <td key={colIndex} className={"firstNumber"}>
-                  {item[column]}
-                </td>
-              );
-            } else if (colIndex === columns.length - 1) {
-              return (
-                <td key={colIndex}>
-                  <p className={"status"}>{item[column]}</p>
-                </td>
-              );
-            } else {
-              return <td key={colIndex}>{item[column]}</td>;
-            }
-          })}
-          <td>
-            <img
-              src={More}
-              alt=""
-              onClick={() => {
-                handleChangeFunction(modalName, true);
-                handleChangeFunction(typeList, item.id);
-                // setTest(item.secretKey!);
-              }}
-            />
-          </td>
-        </tr>
-      ))}
+      {list.map((item: any, rowIndex: number) => {
+        const { id, ...itemWithoutId } = item;
+
+        return (
+          <tr key={rowIndex}>
+            {columns.map((column, colIndex) => {
+              if (colIndex === 0) {
+                return (
+                  <td key={colIndex} className={"firstNumber"}>
+                    {itemWithoutId[column]}
+                  </td>
+                );
+              } else if (colIndex === columns.length - 1) {
+                return (
+                  <td key={colIndex}>
+                    <p className={"status"}>{itemWithoutId[column]}</p>
+                  </td>
+                );
+              } else {
+                return <td key={colIndex}>{itemWithoutId[column]}</td>;
+              }
+            })}
+            <td>
+              <img
+                src={More}
+                alt=""
+                onClick={() => {
+                  handleChangeFunction(modalName, true);
+                  handleChangeFunction(typeList, item.id);
+                }}
+              />
+            </td>
+          </tr>
+        );
+      })}
     </tbody>
   );
 };

@@ -162,6 +162,14 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       console.log(responseRegisterGuest);
     } catch (error) {}
   };
+  const registerManager = async (data: iGuestData) => {
+    try {
+      const responseRegisterManager = await api.post("/manager", data);
+    } catch (error) {
+    } finally {
+      navigate("/");
+    }
+  };
 
   useEffect(() => {
     const getOverview = async () => {
@@ -304,11 +312,14 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomSearchState,
         getRoomId,
         createRoom,
+
         updateRoom,
         updateTypeRoom,
         setTest,
         getTypeRoomId,
         test,
+
+        registerManager,
       }}
     >
       {children}

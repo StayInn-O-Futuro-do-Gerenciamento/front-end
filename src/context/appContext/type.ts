@@ -19,6 +19,8 @@ export interface iHotel {
   number: string;
   zipCode: string;
   city: string;
+  numberRoomsTotal: number;
+  roomsPerFloor: number;
   id: string;
 }
 
@@ -104,4 +106,5 @@ export interface iAppContext {
   setTest: any;
   test: any;
   getTypeRoomId: string;
+  registerManager: any;
 }
