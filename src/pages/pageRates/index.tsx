@@ -3,12 +3,26 @@ import { ModalUpdateTypeRoom } from "../../components/componentModalUpdateTypeRo
 import { NavBarSearch } from "../../components/componentNavBarSearch";
 import { Sidebar } from "../../components/componentSidebar";
 import { AppContext } from "../../context/appContext";
+import { api } from "../../services/api";
 import { RateMain } from "./style";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 export const Rate = () => {
-  const { modalUpdateTypeRoom } = useContext(AppContext);
+  const { modalUpdateTypeRoom, setGetTypeRoomState } = useContext(AppContext);
+  useEffect(() => {
+    let token: string = "";
+    const local = localStorage.getItem("token");
+    if (local) {
+      token = JSON.parse(local);
+    }
 
+    const getHospede = async () => {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+      const responseTypeRoom = await api.get(`/typeRoom`);
+      setGetTypeRoomState(responseTypeRoom.data);
+    };
+    getHospede();
+  }, []);
   return (
     <RateMain>
       {modalUpdateTypeRoom && <ModalUpdateTypeRoom />}

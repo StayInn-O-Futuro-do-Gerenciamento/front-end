@@ -11,9 +11,11 @@ export const PageHotel = () => {
   const { createHotel, loadingButton, hotel } = useContext(AppContext);
   const { register, handleSubmit } = useForm();
 
+  const typeToken = localStorage.getItem("userType");
+
   const navigate = useNavigate();
 
-  if (hotel) {
+  if (hotel && JSON.parse(typeToken!) === "Attendant") {
     navigate("/");
   }
 

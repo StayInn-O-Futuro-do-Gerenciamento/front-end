@@ -108,4 +108,11 @@ export interface iAppContext {
   test: any;
   getTypeRoomId: string;
   registerManager: any;
+  scheduleReservation: any;
+  setGetReservationState: React.Dispatch<React.SetStateAction<any>>;
+  setGetGuestState: React.Dispatch<React.SetStateAction<any>>;
+  setGetRoomState: React.Dispatch<React.SetStateAction<any>>;
+  setGetOfferState: React.Dispatch<React.SetStateAction<any>>;
+  setGetTypeRoomState: React.Dispatch<React.SetStateAction<any>>;
+  setGetHistoryState: React.Dispatch<React.SetStateAction<any>>;
 }

@@ -8,6 +8,10 @@ import { AppContext } from "../../context/appContext";
 export const Room = () => {
   const { getTypeRoomState } = useContext(AppContext);
 
+  if (!getTypeRoomState || getTypeRoomState.length === 0) {
+    return <StyledRoom>Adicione os quartos</StyledRoom>;
+  }
+
   return (
     <StyledRoom>
       <h3>Quartos</h3>

@@ -18,7 +18,7 @@ interface Room {
 export const SemiCircularChart = () => {
   const { getRoomState } = useContext(AppContext);
 
-  if (!getRoomState) {
+  if (!getRoomState || getRoomState.length === 0) {
     return (
       <SemiCircularChartMain>
         <h3>LOADING</h3>

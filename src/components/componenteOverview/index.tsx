@@ -3,15 +3,18 @@ import { StyledOverview } from "./style";
 import { AppContext } from "../../context/appContext";
 
 export const Overview = () => {
-  const { getReservationState, getRoomState } = useContext(AppContext);
+  const { getReservationState, getRoomState, hotel } = useContext(AppContext);
 
-  if (!getReservationState) {
+  console.log(hotel);
+
+  if (!getReservationState || !getRoomState) {
     return (
       <StyledOverview>
         <div>Loading...</div>
       </StyledOverview>
     );
   }
+  console.log(getRoomState);
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -37,6 +40,8 @@ export const Overview = () => {
   const unavailableRooms = Array.isArray(getRoomState)
     ? getRoomState.filter((room) => room.available === false)
     : [];
+
+  const roomCount = hotel?.numberRoomsTotal;
 
   return (
     <StyledOverview>
@@ -70,7 +75,9 @@ export const Overview = () => {
             <span>Total</span>
             <p>Quartos disponiveis</p>
           </div>
-          <span>{availableRooms.length}</span>
+          <span>
+            {availableRooms.length === 0 ? roomCount : availableRooms.length}
+          </span>
         </div>
         <div className="infos">
           <div className="infoDetail">

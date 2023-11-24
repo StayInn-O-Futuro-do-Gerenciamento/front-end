@@ -14,6 +14,7 @@ import {
   tUpdateRoomData,
   tUpdateTypeRoomData,
 } from "../../schemas/schemaRoom";
+import moment from "moment";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -140,6 +141,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       setLoadingButton(true);
       const responseCreate = await api.post("/hotel", data);
       setHotel(responseCreate.data);
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     } finally {
@@ -156,10 +158,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
-
-      console.log(responseRegisterGuest);
     } catch (error) {}
   };
+
   const registerManager = async (data: iGuestData) => {
     try {
       const responseRegisterManager = await api.post("/manager", data);
@@ -185,13 +186,13 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const resposeReservation = await api.get(`/reservation`);
       setGetReservationState(resposeReservation.data);
 
-      const responseRoom = await api.get(`/room?pageSize=100`);
+      const responseRoom = await api.get(`/room?pageSize=1000`);
       setGetRoomState(responseRoom.data);
 
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
 
-      const responseGuest = await api.get(`/guest?pageSize=100`);
+      const responseGuest = await api.get(`/guest?pageSize=1000`);
       setGetGuestState(responseGuest.data);
 
       const responseHistory = await api.get(`/history`);
@@ -199,11 +200,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseOffer = await api.get(`/offer`);
       setGetOfferState(responseOffer.data);
+
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
     };
     getOverview();
-  }, [user]);
+  }, []);
 
   const getFrankstainHistoryPrice = (id: any) => {
     const guestHistory = getHistoryState.filter(
@@ -225,17 +227,17 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const createRoom = async (data: tAddRoomData) => {
     console.log("Oi");
     const token = localStorage.getItem("token");
-    console.log(data);
+
     try {
       const responseCreateRoom = await api.post("/room", data, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
+      const responseRoom = await api.get(`/room?pageSize=100`);
+      setGetRoomState(responseRoom.data);
 
       setModalCreateRoom(false);
-
-      console.log(responseCreateRoom);
     } catch (error) {}
   };
 
@@ -248,6 +250,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
+      const responseRoom = await api.get(`/room?pageSize=100`);
+      setGetRoomState(responseRoom.data);
 
       setModalUpdateRoom(false);
 
@@ -260,7 +264,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const updateTypeRoom = async (data: tUpdateTypeRoomData) => {
     const token = localStorage.getItem("token");
     console.log(data);
-    console.log(getTypeRoomId);
     try {
       const responseUpdateTypeRoom = await api.patch(
         `typeRoom/${getTypeRoomId}`,
@@ -271,10 +274,47 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           },
         }
       );
-      setModalUpdateTypeRoom(false);
+      const responseTypeRoom = await api.get(`/typeRoom`);
+      setGetTypeRoomState(responseTypeRoom.data);
+
       console.log(responseUpdateTypeRoom);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const scheduleReservation = async (guest: any) => {
+    if (
+      getTypeRoomSearchState.checkin &&
+      getTypeRoomSearchState.checkout &&
+      getRoomId
+    ) {
+      const formattedCheckin = moment(getTypeRoomSearchState.checkin).format(
+        "YYYY-MM-DDTHH:mm:ss"
+      );
+
+      const formattedCheckout = moment(getTypeRoomSearchState.checkout).format(
+        "YYYY-MM-DDTHH:mm:ss"
+      );
+      const schedule = {
+        checkin: formattedCheckin,
+        checkout: formattedCheckout,
+        numberAdults: getTypeRoomSearchState.numberAdults,
+        numberKids: getTypeRoomSearchState.numberChildrens,
+        room: getRoomId,
+        guest: guest,
+      };
+      let token: string = "";
+      const local = localStorage.getItem("token");
+      if (local) {
+        token = JSON.parse(local);
+      }
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
+      const response = await api.post(`/reservation`, schedule);
+      handleChangeFunction("modalScheduleReservation", false);
+
+      const resposeReservation = await api.get(`/reservation`);
+      setGetReservationState(resposeReservation.data);
     }
   };
 
@@ -286,11 +326,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
-
-      console.log(responseUpdateTypeRoom);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
@@ -326,14 +362,20 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomSearchState,
         getRoomId,
         createRoom,
-
         updateRoom,
         updateTypeRoom,
         setTest,
         getTypeRoomId,
         test,
-        createAttendant,
         registerManager,
+        scheduleReservation,
+        setGetReservationState,
+        createAttendant,
+        setGetGuestState,
+        setGetRoomState,
+        setGetOfferState,
+        setGetTypeRoomState,
+        setGetHistoryState,
       }}
     >
       {children}

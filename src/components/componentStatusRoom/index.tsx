@@ -5,7 +5,7 @@ import { AppContext } from "../../context/appContext";
 export const StatusRoom = () => {
   const { getRoomState } = useContext(AppContext);
 
-  if (!getRoomState) {
+  if (!getRoomState || getRoomState.length === 0) {
     return (
       <StyledStatusRoom>
         <div>Loading...</div>
