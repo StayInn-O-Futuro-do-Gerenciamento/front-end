@@ -1,4 +1,6 @@
+import { useForm } from "react-hook-form";
 import { AppContext } from "../../context/appContext";
+import { tUpdateRoomData } from "../../schemas/schemaRoom";
 import { Button } from "../componentButton";
 import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
@@ -6,9 +8,26 @@ import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { useContext } from "react";
+import { iUpdateRoom } from "../../context/appContext/type";
 
 export const ModalUpdateRoom = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, updateRoom, getRoomState, test } =
+    useContext(AppContext);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<tUpdateRoomData>({});
+
+  const onSubmit = (data: tUpdateRoomData) => {
+    if (data.available === "Ocupado") {
+      data.available = false;
+    } else if (data.available === "Disponível") {
+      data.available = true;
+    }
+    updateRoom(data);
+  };
 
   return (
     <ContainerModal>
@@ -23,30 +42,32 @@ export const ModalUpdateRoom = () => {
             X
           </Button>
         </HeaderModal>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
             label="Chave secreta"
             placeholder="default value"
+            disable
+            defaultValue={test?.status}
           />
-          <label htmlFor="">
-            <strong>Descrição</strong>
-          </label>
-          <textarea placeholder="Descrição do quarto"></textarea>
           <label className="labelSelect" htmlFor="">
             <strong>Disponibilidade</strong>
           </label>
-          <select className="statusRoom" name="" id="">
-            <option value="Disponivel">Disponível</option>
+          <select className="statusRoom" id="" {...register("available")}>
+            <option value="Disponível">Disponível</option>
             <option value="Ocupado">Ocupado</option>
           </select>
           <label className="labelSelect" htmlFor="">
             <strong>Status</strong>
           </label>
-          <select className="statusRoom" name="" id="">
+          <select
+            defaultValue={getRoomState}
+            className="statusRoom"
+            {...register("status")}
+          >
             <option value="Limpo">Limpo</option>
             <option value="Sujo">Sujo</option>
-            <option value="Manutenção">Manutenção</option>
+            <option value="Em Manutenção">Em Manutenção</option>
           </select>
 
           <ContainerButtonModal>
