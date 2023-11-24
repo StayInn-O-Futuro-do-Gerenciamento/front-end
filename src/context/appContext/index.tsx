@@ -9,7 +9,11 @@ import {
 } from "./type";
 import { api } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { tAddRoomData } from "../../schemas/schemaRoom";
+import {
+  tAddRoomData,
+  tUpdateRoomData,
+  tUpdateTypeRoomData,
+} from "../../schemas/schemaRoom";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -46,12 +50,18 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getTypeRoomSearchState, setGetTypeRoomSearchState] = useState(
     null as any
   );
+
+  console.log(getTypeRoomState);
+
   const [getRoomId, setGetRoomId] = useState(null as any);
+  const [getTypeRoomId, setGetTypeRoomId] = useState(null as any);
 
   // Fora de teste, REAL
   const [loadingButton, setLoadingButton] = useState(false);
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
+
+  const [test, setTest] = useState();
 
   const handleChangeFunction = (state: string, value: boolean | any) => {
     switch (state) {
@@ -96,6 +106,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         break;
       case "roomId":
         setGetRoomId(value);
+        break;
+      case "typeRoomId":
+        setGetTypeRoomId(value);
         break;
     }
   };
@@ -220,6 +233,44 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     } catch (error) {}
   };
 
+  const updateRoom = async (data: tUpdateRoomData) => {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    try {
+      const responseUpdateRoom = await api.patch(`room/${getRoomId}`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      setModalUpdateRoom(false);
+
+      console.log(responseUpdateRoom);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateTypeRoom = async (data: tUpdateTypeRoomData) => {
+    const token = localStorage.getItem("token");
+    console.log(data);
+    try {
+      const responseUpdateTypeRoom = await api.patch(
+        `typeRoom/${getTypeRoomId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token!)}`,
+          },
+        }
+      );
+
+      console.log(responseUpdateTypeRoom);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -253,6 +304,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomSearchState,
         getRoomId,
         createRoom,
+        updateRoom,
+        updateTypeRoom,
+        setTest,
+        getTypeRoomId,
+        test,
       }}
     >
       {children}

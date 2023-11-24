@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { boolean, z } from "zod";
 
 const typeRoomSchemas = z.object({
   name: z.string().min(1, "Nome é obrigatório").max(80, "Máximo 80 caracteres"),
@@ -21,18 +21,13 @@ export const addRoomSchemas = z.object({
 export const updateRoomSchemas = z
   .object({
     // description: z.string().min(1, "Descrição obrigatória"),
-    availability: z.enum(["Ocupado", "Disponível"]),
+    available: z.enum(["Ocupado", "Disponível"]).or(z.boolean()),
     status: z.enum(["Limpo", "Sujo", "Em Manutenção"]),
   })
   .partial();
 
-export const roomReturnSchema = addRoomSchemas.extend({
-  id: z.string(),
-  roomNumber: z.string(),
-  secretKey: z.string(),
-  floor: z.string(),
-});
-
 export type tUpdateRoomData = z.infer<typeof updateRoomSchemas>;
+
+export type tUpdateTypeRoomData = z.infer<typeof typeRoomSchemas>;
 
 export type tAddRoomData = z.infer<typeof addRoomSchemas>;

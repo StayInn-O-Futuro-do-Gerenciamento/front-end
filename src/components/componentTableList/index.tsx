@@ -2,8 +2,9 @@ import More from "../../assets/More.svg";
 import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
 
-export const ComponentTableList = ({ list, modalName }: any) => {
-  const { handleChangeFunction } = useContext(AppContext);
+export const ComponentTableList = ({ list, modalName, typeList }: any) => {
+  const { handleChangeFunction, getRoomState, setTest } =
+    useContext(AppContext);
 
   if (!list || list.length === 0) {
     return null;
@@ -38,7 +39,8 @@ export const ComponentTableList = ({ list, modalName }: any) => {
               alt=""
               onClick={() => {
                 handleChangeFunction(modalName, true);
-                handleChangeFunction("roomId", item.id);
+                handleChangeFunction(typeList, item.id);
+                // setTest(item.secretKey!);
               }}
             />
           </td>

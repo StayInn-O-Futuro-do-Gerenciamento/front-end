@@ -1,5 +1,9 @@
 import React from "react";
-import { tAddRoomData } from "../../schemas/schemaRoom";
+import {
+  tAddRoomData,
+  tUpdateRoomData,
+  tUpdateTypeRoomData,
+} from "../../schemas/schemaRoom";
 
 // Typagem do children
 export interface iAppContextProps {
@@ -58,6 +62,11 @@ export interface iRoom {
   typeRoom: iRoomType;
 }
 
+export interface iUpdateRoom {
+  available: boolean;
+  status: string | boolean;
+}
+
 // Typagem das funções/states que serão exportados.
 export interface iAppContext {
   testState: boolean;
@@ -90,4 +99,9 @@ export interface iAppContext {
   getTypeRoomSearchState: any;
   getRoomId: any;
   createRoom: (data: tAddRoomData) => void;
+  updateRoom: (data: tUpdateRoomData) => void;
+  updateTypeRoom: (data: tUpdateTypeRoomData) => void;
+  setTest: any;
+  test: any;
+  getTypeRoomId: string;
 }
