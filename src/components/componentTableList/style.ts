@@ -14,4 +14,10 @@ export const ComponentTableListStyle = styled.tbody`
     width: max-content;
     padding: 3px 8px 3px 8px;
   }
+  .colum1 {
+    display: none;
+  }
+  #colum1 {
+    display: none;
+  }
 `;

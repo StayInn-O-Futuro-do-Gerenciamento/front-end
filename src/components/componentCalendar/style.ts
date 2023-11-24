@@ -53,6 +53,40 @@ export const CalendarMain = styled.div`
     }
   }
 
+  .fc-scrollgrid-liquid {
+    overflow: hidden;
+  }
+  th {
+    .fc-scroller-harness {
+      .fc-scroller {
+        overflow: hidden !important;
+      }
+    }
+  }
+
+  .fc-scroller {
+    overflow-y: auto;
+    max-height: 727px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--orange-400) var(--grey-50);
+  }
+
+  .fc-scroller::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .fc-scroller::-webkit-scrollbar-thumb {
+    background-color: var(--orange-400);
+    border-radius: 6px;
+  }
+
+  .fc-scroller::-webkit-scrollbar-track {
+    background-color: var(--grey-50);
+  }
+  .fc-daygrid-body {
+    overflow: hidden;
+  }
+
   .fc-day-today {
     background-color: transparent !important;
   }
@@ -132,10 +166,7 @@ export const CalendarMain = styled.div`
   .fc th {
     border-style: none;
   }
-  .fc-scroller,
-  .fc-scroller-liquid-absolute {
-    overflow: hidden !important;
-  }
+
   .fc-col-header-cell-cushion {
     padding: 10px 20px;
     color: var(--orange-600);

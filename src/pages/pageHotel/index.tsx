@@ -13,9 +13,9 @@ export const PageHotel = () => {
 
   const navigate = useNavigate();
 
-  // if (hotel) {
-  //   navigate("/");
-  // }
+  if (hotel) {
+    navigate("/");
+  }
 
   const onSubmit = (data: any) => {
     createHotel(data);

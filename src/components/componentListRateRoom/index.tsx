@@ -23,6 +23,7 @@ export const ComponentListRateRoom = () => {
         }
 
         return {
+          id: roomType.id,
           name: roomType.name,
           offerName: roomType.offer ? roomType.offer.offerName : null,
           rate: roomType.rate,
@@ -52,7 +53,7 @@ export const ComponentListRateRoom = () => {
           <th>Desconto da Oferta</th>
           <th>Total a Pagar</th>
           <th>Total de Quartos</th>
-          <th>Avaliabity</th>
+          <th>Disponíveis</th>
           <th></th>
         </thead>
         <ComponentTableList
