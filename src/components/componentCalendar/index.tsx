@@ -10,6 +10,10 @@ import { AppContext } from "../../context/appContext";
 export const CalendarComponent = () => {
   const { handleChangeFunction, getReservationState } = useContext(AppContext);
   const [headerFormatted, setHeaderFormatted] = useState(false);
+  useEffect(() => {
+    console.log("getReservationState atualizado:", getReservationState);
+  }, [getReservationState]);
+
   if (!getReservationState) {
     return (
       <CalendarMain>
@@ -52,12 +56,6 @@ export const CalendarComponent = () => {
     const dateText = arg.text.split(" ")[1].split("/")[0];
     return <span>{dateText}</span>;
   };
-
-  useEffect(() => {
-    return () => {
-      setHeaderFormatted(false);
-    };
-  }, []);
 
   const handleEventDrop = (arg: any) => {
     const { start, title } = arg.event;
