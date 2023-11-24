@@ -59,6 +59,7 @@ export const ComponentListRateRoom = () => {
         <ComponentTableList
           list={extractedData}
           modalName="modalUpdateTypeRoom"
+          typeList="typeRoomId"
         />
       </TableStyled>
     </ComponentListRateRoomStyle>

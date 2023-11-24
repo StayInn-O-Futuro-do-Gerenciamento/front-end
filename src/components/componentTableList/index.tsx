@@ -48,6 +48,7 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
                 onClick={() => {
                   handleChangeFunction(modalName, true);
                   handleChangeFunction(typeList, item.id);
+                  console.log(typeList);
                 }}
               />
             </td>

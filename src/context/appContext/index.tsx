@@ -51,7 +51,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     null as any
   );
 
-  console.log(getTypeRoomState);
+  // console.log(getTypeRoomState.id);
 
   const [getRoomId, setGetRoomId] = useState(null as any);
   const [getTypeRoomId, setGetTypeRoomId] = useState(null as any);
@@ -262,6 +262,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const updateTypeRoom = async (data: tUpdateTypeRoomData) => {
     const token = localStorage.getItem("token");
     console.log(data);
+    console.log(getTypeRoomId);
     try {
       const responseUpdateTypeRoom = await api.patch(
         `typeRoom/${getTypeRoomId}`,
@@ -312,13 +313,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomSearchState,
         getRoomId,
         createRoom,
-
         updateRoom,
         updateTypeRoom,
         setTest,
         getTypeRoomId,
         test,
-
         registerManager,
       }}
     >
