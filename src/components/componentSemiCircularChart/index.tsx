@@ -81,7 +81,7 @@ export const SemiCircularChart = () => {
     const occupancyPercentage =
       (floor.occupied / (floor.occupied + floor.free)) * 100;
 
-    return occupancyPercentage;
+    return Number(occupancyPercentage.toFixed(2));
   }
   return (
     <SemiCircularChartMain>
