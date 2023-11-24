@@ -72,6 +72,7 @@ export const ComponentListRateRoom = () => {
         <ComponentTableList
           list={currentRooms}
           modalName="modalUpdateTypeRoom"
+          typeList="typeRoomId"
         />
       </TableStyled>
       <ul className="pagination">

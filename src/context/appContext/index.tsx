@@ -260,6 +260,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const updateTypeRoom = async (data: tUpdateTypeRoomData) => {
     const token = localStorage.getItem("token");
     console.log(data);
+    console.log(getTypeRoomId);
     try {
       const responseUpdateTypeRoom = await api.patch(
         `typeRoom/${getTypeRoomId}`,
@@ -270,6 +271,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           },
         }
       );
+
+      setModalUpdateTypeRoom(false);
 
       console.log(responseUpdateTypeRoom);
     } catch (error) {
@@ -310,13 +313,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         getTypeRoomSearchState,
         getRoomId,
         createRoom,
-
         updateRoom,
         updateTypeRoom,
         setTest,
         getTypeRoomId,
         test,
-
         registerManager,
       }}
     >
