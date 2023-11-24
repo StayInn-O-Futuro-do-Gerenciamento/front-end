@@ -57,7 +57,7 @@ export const ModalUpdateRoom = () => {
             >
               Cancelar
             </Button>
-            <Button type="button" buttonVariation="saveModal">
+            <Button type="submit" buttonVariation="saveModal">
               Salvar
             </Button>
           </ContainerButtonModal>
