@@ -20,6 +20,11 @@ export const ComponentModalPageLoginCreateStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    .errorMessage {
+      font-size: var(--font-size2);
+      color: var(--red-600);
+    }
   }
 
   h2 {

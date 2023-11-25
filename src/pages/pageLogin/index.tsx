@@ -5,6 +5,8 @@ import { PageLoginStyle } from "./style";
 import { Input } from "../../components/componentInput";
 import { useContext } from "react";
 import { AppContext } from "../../context/appContext";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerLoginSchemas } from "../../schemas/schemaLogin";
 
 interface iFormInput {
   name: string;
@@ -13,7 +15,11 @@ interface iFormInput {
 
 export const PageLogin = () => {
   const { loginUser, loadingButton } = useContext(AppContext);
-  const { register, handleSubmit } = useForm<iFormInput>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<iFormInput>({ resolver: zodResolver(registerLoginSchemas) });
 
   const onSubmit = (data: iFormInput) => {
     loginUser(data);
@@ -30,12 +36,22 @@ export const PageLogin = () => {
             register={register("name")}
             label="Usuario"
           />
+          {errors.name ? (
+            <span className="errorMessage">{errors.name.message}</span>
+          ) : (
+            <></>
+          )}
           <Input
             label="Senha"
             placeholder="Digite sua senha"
             type="password"
             register={register("password")}
           />
+          {errors.password ? (
+            <span className="errorMessage">{errors.password.message}</span>
+          ) : (
+            <></>
+          )}
           <Button
             buttonVariation="buttonCreate"
             type="submit"
