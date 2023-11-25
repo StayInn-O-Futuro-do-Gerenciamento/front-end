@@ -19,6 +19,11 @@ export const ComponentModalPageHotelCreateStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+
+    .errorMessage {
+      font-size: var(--font-size2);
+      color: var(--red-600);
+    }
   }
 
   h2 {
@@ -28,17 +33,17 @@ export const ComponentModalPageHotelCreateStyle = styled.div`
     font-family: var(--font-family-inter);
     font-weight: var(--text-weight400);
 
-    margin-top: 40px;
+    margin-top: 20px;
   }
 
   strong {
     font-family: var(--font-family-inter);
     font-weight: var(--text-weight600);
-    font-size: var(--font-size4);
+    font-size: var(--font-size2);
   }
 
   input {
-    height: 55px;
+    height: 40 px;
   }
   input::placeholder {
     font-size: var(--font-size4);
@@ -57,15 +62,24 @@ export const ComponentModalPageHotelCreateStyle = styled.div`
     gap: 5px;
     margin: 0 auto;
     img {
-      width: 60px;
+      width: 35px;
     }
     p {
-      font-size: 35px;
+      font-size: 25px;
 
       color: var(--orange-400);
     }
   }
   .direitos {
     margin: 0 auto;
+  }
+  .button-submit {
+    margin-top: 10px;
+    height: 45px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 10px;
+
+    font-size: var(--font-size);
   }
 `;
