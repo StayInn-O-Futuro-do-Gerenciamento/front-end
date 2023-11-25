@@ -2,10 +2,11 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timegridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { CalendarMain } from "./style";
+import { CalendarMain, LoadingBaseStyle } from "./style";
 import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { AppContext } from "../../context/appContext";
+import ReactLoading from "react-loading";
 
 export const CalendarComponent = () => {
   const { handleChangeFunction, getReservationState } = useContext(AppContext);
@@ -16,9 +17,14 @@ export const CalendarComponent = () => {
 
   if (!getReservationState) {
     return (
-      <CalendarMain>
-        <h3>Loading...</h3>
-      </CalendarMain>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
 

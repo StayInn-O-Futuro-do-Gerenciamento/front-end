@@ -44,3 +44,15 @@ export const SemiCircularChartMain = styled.div`
     }
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  font-family: var(--font-family-inter);
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  width: 396px;
+  height: 340px;
+`;

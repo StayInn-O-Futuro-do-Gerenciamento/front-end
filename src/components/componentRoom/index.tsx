@@ -1,15 +1,25 @@
 import { useContext } from "react";
 import { CardRoom } from "../componentCardRooms";
-import { StyledRoom } from "./style";
+import { LoadingBaseStyle, StyledRoom } from "./style";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { AppContext } from "../../context/appContext";
+import ReactLoading from "react-loading";
 
 export const Room = () => {
   const { getTypeRoomState } = useContext(AppContext);
 
   if (!getTypeRoomState || getTypeRoomState.length === 0) {
-    return <StyledRoom>Adicione os quartos</StyledRoom>;
+    return (
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"bubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
+    );
   }
 
   return (

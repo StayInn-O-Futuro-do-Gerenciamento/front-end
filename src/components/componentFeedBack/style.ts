@@ -79,3 +79,15 @@ export const StyledFeedback = styled.section`
     color: var(--orange-300);
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--grey-00);
+  font-family: var(--font-family-inter);
+  width: 396px;
+  height: 340px;
+  border-radius: 8px;
+  padding-top: 150px;
+`;

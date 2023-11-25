@@ -1,15 +1,29 @@
 import { ComponentTableList } from "../componentTableList";
 import { TableStyled } from "../../style/tableStyle";
-import { ComponentListRateRoomStyle } from "./style";
+import { ComponentListRateRoomStyle, LoadingBaseStyle } from "./style";
 import { useContext, useState } from "react";
 import { AppContext } from "../../context/appContext";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
+import ReactLoading from "react-loading";
 
 export const ComponentListRateRoom = () => {
   const { getTypeRoomState } = useContext(AppContext);
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+
+  if (!getComputedStyle) {
+    return (
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
+    );
+  }
 
   const extractedData = getTypeRoomState
     ? getTypeRoomState.map((roomType: any) => {

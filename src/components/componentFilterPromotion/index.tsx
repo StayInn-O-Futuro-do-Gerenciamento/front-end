@@ -1,11 +1,12 @@
 import { Button } from "../componentButton";
-import { StyledFilterPromotion } from "./style";
+import { LoadingBaseStyle, StyledFilterPromotion } from "./style";
 import { TableStyled } from "../../style/tableStyle";
 import { ComponentTableList } from "../componentTableList";
 import { useState, useContext, useEffect, useMemo } from "react";
 import { AppContext } from "../../context/appContext";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
+import ReactLoading from "react-loading";
 
 export const FilterPromotion = () => {
   const { handleChangeFunction, getOfferState } = useContext(AppContext);
@@ -79,9 +80,14 @@ export const FilterPromotion = () => {
 
   if (!getOfferState) {
     return (
-      <StyledFilterPromotion>
-        <h3>Loading...</h3>
-      </StyledFilterPromotion>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
 

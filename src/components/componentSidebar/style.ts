@@ -20,6 +20,7 @@ export const SideBarMain = styled.section`
     img {
       width: 54px;
       height: 50px;
+      filter: var(--svg-color-orange);
     }
   }
   .div-btn {
@@ -78,5 +79,10 @@ export const SideBarMain = styled.section`
         }
       }
     }
+  }
+  .copyrigth {
+    font-family: var(--font-family-inter);
+    font-size: 14px;
+    text-align: center;
   }
 `;

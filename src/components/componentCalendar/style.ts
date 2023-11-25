@@ -183,3 +183,15 @@ export const CalendarMain = styled.div`
     border-radius: 18px;
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  font-family: var(--font-family-inter);
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  width: 100%;
+  height: 500px;
+`;

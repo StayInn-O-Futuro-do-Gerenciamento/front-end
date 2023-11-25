@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { StyledOverview } from "./style";
+import { LoadingBaseStyle, StyledOverview } from "./style";
 import { AppContext } from "../../context/appContext";
+import ReactLoading from "react-loading";
 
 export const Overview = () => {
   const { getReservationState, getRoomState, hotel } = useContext(AppContext);
@@ -9,12 +10,16 @@ export const Overview = () => {
 
   if (!getReservationState || !getRoomState) {
     return (
-      <StyledOverview>
-        <div>Loading...</div>
-      </StyledOverview>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"bubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
-  console.log(getRoomState);
 
   const today = new Date().toISOString().split("T")[0];
 

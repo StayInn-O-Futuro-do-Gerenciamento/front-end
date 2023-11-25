@@ -86,3 +86,13 @@ export const StyledFilterPromotion = styled.div`
     }
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  font-family: var(--font-family-inter);
+  width: 100%;
+  height: 90vh;
+`;
