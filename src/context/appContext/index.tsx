@@ -321,12 +321,29 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const createAttendant = async (data: any) => {
     const token = localStorage.getItem("token");
     try {
-      const responseUpdateTypeRoom = await api.post(`/attendant`, data, {
+      const responseCreateAttendant = await api.post(`/attendant`, data, {
         headers: {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
     } catch (error) {}
+  };
+
+  const createOffer = async (data: any) => {
+    const token = localStorage.getItem("token");
+    try {
+      const responseCreateOffer = await api.post(`/offer`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+
+      const responseOffer = await api.get(`/offer`);
+      setGetOfferState(responseOffer.data);
+      handleChangeFunction("modalCreatePromotion", false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -376,6 +393,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         setGetOfferState,
         setGetTypeRoomState,
         setGetHistoryState,
+        createOffer,
       }}
     >
       {children}
