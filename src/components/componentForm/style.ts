@@ -55,4 +55,7 @@ export const StyledForm = styled.form`
     justify-content: center;
     gap: 15px;
   }
+  /* .partirForm {
+    display: flex;
+  } */
 `;
