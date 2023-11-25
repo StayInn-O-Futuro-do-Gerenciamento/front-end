@@ -116,4 +116,6 @@ export interface iAppContext {
   setGetTypeRoomState: React.Dispatch<React.SetStateAction<any>>;
   setGetHistoryState: React.Dispatch<React.SetStateAction<any>>;
   createOffer: (data: any) => void;
+  toggleDarkMode: () => void;
+  darkMode: boolean;
 }

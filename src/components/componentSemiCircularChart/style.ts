@@ -6,13 +6,14 @@ export const SemiCircularChartMain = styled.div`
   gap: 25px;
   padding: 20px 16px;
   font-family: var(--font-family-inter);
-  background-color: #fff;
+  background-color: var(--grey-00);
   border-radius: var(--border-radius);
   width: 396px;
   height: 340px;
 
   h3 {
     font-size: var(--font-size3);
+    color: var(--grey-700);
     font-weight: var(--text-weight500);
   }
 
@@ -28,6 +29,7 @@ export const SemiCircularChartMain = styled.div`
       p {
         font-weight: var(--text-weight600);
         font-size: 18px;
+        color: var(--grey-700);
       }
       .orange-point {
         width: 10px;

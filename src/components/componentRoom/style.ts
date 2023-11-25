@@ -20,12 +20,13 @@ export const StyledRoom = styled.div`
   h3 {
     font-size: var(--font-size1);
     font-weight: var(--text-weight600);
+    color: var(--grey-700);
   }
 
   gap: 15px;
 
   .swiper {
-    max-width: 100%;
+    width: 100%;
     height: 100%;
     padding-bottom: 25px;
     padding-right: 85px;
@@ -36,7 +37,7 @@ export const StyledRoom = styled.div`
   }
 
   .swiper-slide {
-    background: #fff;
+    background: var(--grey-00);
     display: flex;
     align-items: center;
     width: 100%;

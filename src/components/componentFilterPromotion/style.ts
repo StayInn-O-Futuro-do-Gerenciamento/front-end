@@ -18,6 +18,22 @@ export const StyledFilterPromotion = styled.div`
     display: flex;
     gap: 10px;
 
+    button {
+      cursor: pointer;
+      border: 1px solid var(--grey-300);
+      padding: 11.5px 16px;
+      color: var(--grey-700);
+      border-radius: 100px;
+      background-color: var(--grey-inputBack-00);
+      font-size: var(--font-size2);
+      font-weight: var(--text-weight500);
+      &:hover {
+        border: 1px solid var(--orange-500);
+        color: var(--orange-500);
+        background-color: var(--orange-50);
+      }
+    }
+
     .selected-btn {
       border: 1px solid var(--orange-500);
       color: var(--orange-500);
@@ -27,7 +43,7 @@ export const StyledFilterPromotion = styled.div`
   .offer {
     height: 45px;
 
-    color: var(--grey-00);
+    color: var(--grey-button-00);
 
     font-family: var(--font-family-inter);
     font-size: var(--font-size4);

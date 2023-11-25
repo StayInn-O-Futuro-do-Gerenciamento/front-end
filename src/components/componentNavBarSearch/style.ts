@@ -5,7 +5,7 @@ export const NavBarSearchStyle = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  div:nth-child(1) {
+  .div1 {
     display: flex;
     align-items: center;
     width: 300px;
@@ -26,11 +26,25 @@ export const NavBarSearchStyle = styled.div`
       outline: none;
     }
   }
-  div:nth-child(2) {
+  .div2 {
     display: flex;
     gap: 20px;
+    align-items: center;
+
     img {
       cursor: pointer;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+
+      .react-switch {
+        react-switch-bg {
+        }
+        .react-switch-handle {
+        }
+      }
     }
   }
   .iconUser {

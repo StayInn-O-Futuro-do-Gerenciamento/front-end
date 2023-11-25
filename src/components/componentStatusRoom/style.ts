@@ -18,6 +18,7 @@ export const StyledStatusRoom = styled.div`
   h3 {
     font-size: var(--font-size1);
     font-weight: var(--text-weight600);
+    color: var(--grey-700);
   }
 
   .container {

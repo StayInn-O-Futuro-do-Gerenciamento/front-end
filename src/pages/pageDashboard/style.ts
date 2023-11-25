@@ -9,6 +9,8 @@ export const StyledContainerDashboard = styled.div`
   .containerMain {
     width: 90%;
     padding-left: 20px;
+
+    background: var(--grey-00);
   }
 
   .container-create-hotel {
@@ -41,7 +43,7 @@ export const StyledContainerDashboard = styled.div`
   }
 
   .contentDashBoard {
-    background-color: #eef0f2;
+    background-color: var(--grey-50);
     padding: 20px;
     display: flex;
     flex-direction: column;

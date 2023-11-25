@@ -1,3 +1,6 @@
+const yAxisLabelColor = "var(--grey-700)";
+const barAxisLabelColor = "var(--grey-50)";
+
 export const options: ApexCharts.ApexOptions = {
   chart: {
     height: 280,
@@ -15,7 +18,7 @@ export const options: ApexCharts.ApexOptions = {
         size: "60%",
       },
       track: {
-        background: "#d0d3d9",
+        background: barAxisLabelColor,
       },
 
       dataLabels: {
@@ -27,7 +30,7 @@ export const options: ApexCharts.ApexOptions = {
         },
         value: {
           offsetY: 5,
-          color: "#2b2f38",
+          color: yAxisLabelColor,
           fontSize: "30px",
           show: true,
         },

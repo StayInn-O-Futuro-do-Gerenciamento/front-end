@@ -15,11 +15,11 @@ export const ComponentListGuestStyle = styled.div`
       button {
         cursor: pointer;
         border: 1px solid var(--grey-300);
-        padding: 7.5px 16px;
-        color: var(--grey-300);
+        padding: 13px 16px;
+        color: var(--grey-700);
         border-radius: 100px;
-        background-color: var(--grey-00);
-        font-size: var(--font-size4);
+        background-color: var(--grey-inputBack-00);
+        font-size: var(--font-size2);
         font-weight: var(--text-weight500);
 
         &:hover {
@@ -28,6 +28,7 @@ export const ComponentListGuestStyle = styled.div`
           background-color: var(--orange-50);
         }
       }
+
       .selected-btn {
         border: 1px solid var(--orange-500);
         color: var(--orange-500);
@@ -48,7 +49,7 @@ export const ComponentListGuestStyle = styled.div`
         cursor: pointer;
         font-weight: var(--text-weight500);
         border-radius: 10px;
-        color: var(--grey-00);
+        color: var(--grey-button-00);
         background-color: var(--orange-500);
         border: 1px solid var(--orange-500);
 

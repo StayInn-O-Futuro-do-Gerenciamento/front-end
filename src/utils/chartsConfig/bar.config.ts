@@ -1,6 +1,9 @@
 import { ApexOptions } from "apexcharts";
 
 const currentMonthIndex = new Date().getMonth();
+const xAxisLabelColor = "var(--grey-700)";
+const yAxisLabelColor = "var(--grey-700)";
+const barAxisLabelColor = "var(--grey-50)";
 
 export const months = [
   "JAN",
@@ -44,11 +47,19 @@ export const options: ApexOptions = {
   },
   xaxis: {
     categories: reorderedMonths,
+    labels: {
+      style: {
+        colors: yAxisLabelColor,
+      },
+    },
   },
   yaxis: {
     labels: {
       formatter: function (value) {
         return value + "%";
+      },
+      style: {
+        colors: xAxisLabelColor,
       },
     },
     min: 0,

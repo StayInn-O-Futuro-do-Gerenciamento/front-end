@@ -6,10 +6,11 @@ export const ReservationMain = styled.div`
   .mainContet {
     width: 100%;
     position: relative;
+    background-color: var(--grey-00);
   }
   .pagination {
     position: absolute;
-    bottom: 4px;
+    bottom: 17px;
     left: 20px;
     font-family: var(--font-family-inter);
     font-size: 22px;
@@ -25,6 +26,7 @@ export const ReservationMain = styled.div`
       padding: 0 8px;
       margin: 0 4px;
       border-radius: 4px;
+      color: var(--grey-300);
     }
     button {
       background-color: transparent;

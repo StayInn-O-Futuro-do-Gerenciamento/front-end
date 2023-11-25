@@ -45,7 +45,6 @@ export const Feedback = () => {
             <div className="guest">
               <p style={{ marginTop: 5 }}>{item.guests[0].name}</p>
               <span>
-                {/* Renderizar ícones de estrelas com base no número de estrelas */}
                 {[...Array(item.feedBack)].map((_, i) => (
                   <FaStar className="estrela1" key={i} />
                 ))}

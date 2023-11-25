@@ -9,6 +9,7 @@ export const BarMain = styled.div`
   font-family: var(--font-family-inter);
   h3 {
     margin-bottom: 20px;
+    color: var(--grey-700);
   }
 `;
 
