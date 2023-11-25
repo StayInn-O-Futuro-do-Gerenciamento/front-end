@@ -57,3 +57,12 @@ export const ComponentListRateRoomStyle = styled.div`
     }
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  font-family: var(--font-family-inter);
+  height: 90vh;
+`;

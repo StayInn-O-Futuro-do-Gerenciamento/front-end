@@ -62,3 +62,15 @@ export const StyledOverview = styled.div`
     }
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  font-family: var(--font-family-inter);
+  background-color: var(--grey-00);
+  border-radius: var(--border-radius);
+  width: 100%;
+  height: 135px;
+`;

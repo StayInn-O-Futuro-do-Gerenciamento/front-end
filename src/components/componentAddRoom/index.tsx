@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import { Button } from "../componentButton";
 import { RoomFilteredList } from "../componentRoomList";
-import { ComponentAddRoomStyle } from "./style";
+import { ComponentAddRoomStyle, LoadingBaseStyle } from "./style";
 import { AppContext } from "../../context/appContext";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
+import ReactLoading from "react-loading";
 
 export const ComponentAddRoom = () => {
   const [selectedButton, setSelectedButton] = useState("allRooms");
@@ -18,9 +19,14 @@ export const ComponentAddRoom = () => {
 
   if (!getRoomState) {
     return (
-      <ComponentAddRoomStyle>
-        <h3>Loading...</h3>
-      </ComponentAddRoomStyle>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
 

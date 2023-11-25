@@ -12,7 +12,7 @@ export const StyledRoom = styled.div`
 
   padding: 16px 25px;
 
-  max-width: 60%;
+  width: 60%;
 
   border-radius: 15px;
 
@@ -51,4 +51,16 @@ export const StyledRoom = styled.div`
   .swiper-button-prev {
     color: var(--grey-300);
   }
+`;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family-inter);
+  background-color: var(--grey-00);
+  border-radius: var(--border-radius);
+  width: 60%;
+  height: 230px;
+  padding-top: 75px;
 `;

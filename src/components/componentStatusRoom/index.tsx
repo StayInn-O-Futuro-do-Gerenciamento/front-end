@@ -1,15 +1,21 @@
 import { useContext } from "react";
-import { StyledStatusRoom } from "./style";
+import { LoadingBaseStyle, StyledStatusRoom } from "./style";
 import { AppContext } from "../../context/appContext";
+import ReactLoading from "react-loading";
 
 export const StatusRoom = () => {
   const { getRoomState } = useContext(AppContext);
 
   if (!getRoomState || getRoomState.length === 0) {
     return (
-      <StyledStatusRoom>
-        <div>Loading...</div>
-      </StyledStatusRoom>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"bubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
 

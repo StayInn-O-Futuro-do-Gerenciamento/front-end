@@ -108,3 +108,15 @@ export const StyledStatusRoom = styled.div`
     }
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+  font-family: var(--font-family-inter);
+  background-color: #fff;
+  border-radius: 15px;
+  width: 100%;
+  height: 236px;
+`;

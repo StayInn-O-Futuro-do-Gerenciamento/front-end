@@ -1,9 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { options } from "../../utils";
-import { SemiCircularChartMain } from "./style";
+import { LoadingBaseStyle, SemiCircularChartMain } from "./style";
 import ReactApexChart from "react-apexcharts";
 import anime from "animejs";
 import { AppContext } from "../../context/appContext";
+import ReactLoading from "react-loading";
 
 interface FloorInfo {
   floor: string;
@@ -20,11 +21,17 @@ export const SemiCircularChart = () => {
 
   if (!getRoomState || getRoomState.length === 0) {
     return (
-      <SemiCircularChartMain>
-        <h3>LOADING</h3>
-      </SemiCircularChartMain>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"bubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
+
   const createFloorInfo = (rooms: Room[]) => {
     const floors = {};
 

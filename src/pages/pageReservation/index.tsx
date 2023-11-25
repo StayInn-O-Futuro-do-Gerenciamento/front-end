@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { CalendarComponent } from "../../components/componentCalendar";
 import { NavBarSearch } from "../../components/componentNavBarSearch";
 import { Sidebar } from "../../components/componentSidebar";
-import { ReservationMain } from "./style";
+import { LoadingBaseStyle, ReservationMain } from "./style";
 import { AppContext } from "../../context/appContext";
 import { FilterReservation } from "../../components/componentFilterResevation";
 import { RoomFilteredList } from "../../components/componentRoomList";
@@ -11,6 +11,7 @@ import { ModalScheduleReservation } from "../../components/componetModalSchedule
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
 import { api } from "../../services/api";
+import ReactLoading from "react-loading";
 
 export const Reservation = () => {
   const {
@@ -43,9 +44,16 @@ export const Reservation = () => {
     return (
       <ReservationMain>
         <Sidebar />
+        <NavBarSearch />
         <div className="mainContet">
-          <NavBarSearch />
-          <h3>Loading...</h3>
+          <LoadingBaseStyle>
+            <ReactLoading
+              type={"spinningBubbles"}
+              color={" #f9a63a"}
+              height={233}
+              width={150}
+            />
+          </LoadingBaseStyle>
         </div>
       </ReservationMain>
     );

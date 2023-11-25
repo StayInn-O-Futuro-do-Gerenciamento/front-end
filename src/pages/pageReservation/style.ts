@@ -49,3 +49,13 @@ export const ReservationMain = styled.div`
     }
   }
 `;
+
+export const LoadingBaseStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 350px;
+  font-family: var(--font-family-inter);
+  background-color: #fff;
+  border-radius: var(--border-radius);
+`;

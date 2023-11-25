@@ -1,4 +1,3 @@
-import Logo from "../../assets/sidebar/Logo.svg";
 import Dashboard from "../../assets/sidebar/Dashboard.svg";
 import Deals from "../../assets/sidebar/Deals.svg";
 import Attendant from "../../assets/sidebar/attendant.svg";
@@ -19,8 +18,12 @@ import { LuBedDouble } from "react-icons/lu";
 export const Sidebar = () => {
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState(location.pathname);
-  const { handleChangeFunction, modalUpdateHotel, modalRegisterAttedant } =
-    useContext(AppContext);
+  const {
+    handleChangeFunction,
+    modalUpdateHotel,
+    modalRegisterAttedant,
+    hotel,
+  } = useContext(AppContext);
   const navigate = useNavigate();
 
   const userType = localStorage.getItem("userType");
@@ -29,7 +32,7 @@ export const Sidebar = () => {
     setSelectedButton(buttonId);
     navigate(buttonId);
   };
-
+  console.log(hotel);
   const logout = () => {
     localStorage.clear();
     navigate("/");
@@ -40,8 +43,8 @@ export const Sidebar = () => {
       {modalUpdateHotel && <ModalUpdateHotel />}
       {modalRegisterAttedant && <ModalRegisterAttendat />}
       <div className="div-logo">
-        <img src={Logo} alt="Logo" />
-        <h1>Oasis</h1>
+        <img src={Hotel} alt="Logo" />
+        <h1>{hotel && hotel.name}</h1>
       </div>
       <div className="div-btn">
         <ul>
@@ -121,6 +124,7 @@ export const Sidebar = () => {
           </li>
         </ul>
       </div>
+      <p className="copyrigth">StayInn @2023</p>
     </SideBarMain>
   );
 };

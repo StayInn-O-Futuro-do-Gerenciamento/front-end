@@ -1,11 +1,12 @@
 import { ComponentTableList } from "../componentTableList";
-import { ComponentListGuestStyle } from "./style";
+import { ComponentListGuestStyle, LoadingBaseStyle } from "./style";
 import searchButton from "../../assets/navbar/Search.svg";
 import { TableStyled } from "../../style/tableStyle";
 import { AppContext } from "../../context/appContext";
 import { useContext, useEffect, useState } from "react";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
+import ReactLoading from "react-loading";
 
 export const ComponentListGuest = () => {
   const {
@@ -83,7 +84,16 @@ export const ComponentListGuest = () => {
   };
 
   if (!getGuestState) {
-    return <div>Loading...</div>;
+    return (
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"spinningBubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
+    );
   }
 
   const indexOfLastRoom = currentPage * roomsPerPage;

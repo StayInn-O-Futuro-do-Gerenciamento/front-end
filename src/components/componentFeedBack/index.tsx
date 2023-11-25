@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import More from "../../assets/More.svg";
-import { StyledFeedback } from "./style";
+import { LoadingBaseStyle, StyledFeedback } from "./style";
 import { AppContext } from "../../context/appContext";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-
+import ReactLoading from "react-loading";
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 
@@ -13,9 +13,14 @@ export const Feedback = () => {
 
   if (!getReservationState) {
     return (
-      <StyledFeedback>
-        <div>Carregando...</div>
-      </StyledFeedback>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"bubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
 

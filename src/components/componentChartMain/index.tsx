@@ -5,16 +5,22 @@ import {
   months,
   reorderedMonths,
 } from "../../utils/chartsConfig/bar.config";
-import { BarMain } from "./style";
+import { BarMain, LoadingBaseStyle } from "./style";
 import { AppContext } from "../../context/appContext";
+import ReactLoading from "react-loading";
 
 export const BarChart = () => {
   const { getHistoryState } = useContext(AppContext);
   if (!getHistoryState) {
     return (
-      <BarMain>
-        <h3>Loading...</h3>
-      </BarMain>
+      <LoadingBaseStyle>
+        <ReactLoading
+          type={"bubbles"}
+          color={" #f9a63a"}
+          height={233}
+          width={150}
+        />
+      </LoadingBaseStyle>
     );
   }
 
