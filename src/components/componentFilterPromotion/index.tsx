@@ -94,7 +94,6 @@ export const FilterPromotion = () => {
     return date.toLocaleDateString("pt-BR");
   };
 
-  console.log(filteredPromotions);
   const indexOfLastRoom = currentPage * roomsPerPage;
   const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
   let currentRooms = filteredPromotions.slice(

@@ -115,4 +115,5 @@ export interface iAppContext {
   setGetOfferState: React.Dispatch<React.SetStateAction<any>>;
   setGetTypeRoomState: React.Dispatch<React.SetStateAction<any>>;
   setGetHistoryState: React.Dispatch<React.SetStateAction<any>>;
+  createOffer: (data: any) => void;
 }
