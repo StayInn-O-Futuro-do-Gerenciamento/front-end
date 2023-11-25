@@ -62,6 +62,13 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
   const [test, setTest] = useState();
 
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+    setDarkMode(!darkMode);
+  };
+
   const handleChangeFunction = (state: string, value: boolean | any) => {
     switch (state) {
       case "testState":
@@ -394,6 +401,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         setGetTypeRoomState,
         setGetHistoryState,
         createOffer,
+        toggleDarkMode,
+        darkMode,
       }}
     >
       {children}

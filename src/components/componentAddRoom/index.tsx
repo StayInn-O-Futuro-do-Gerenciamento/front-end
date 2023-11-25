@@ -74,7 +74,7 @@ export const ComponentAddRoom = () => {
   return (
     <ComponentAddRoomStyle>
       <div>
-        <div>
+        <div className="buttons">
           <Button
             type="button"
             buttonVariation="filterButton"
@@ -110,13 +110,13 @@ export const ComponentAddRoom = () => {
             )
           </Button>
         </div>
-        <div>
+        <div className="buttonadd">
           <Button
             type="button"
             buttonVariation="buttonCreate"
             onClick={() => handleChangeFunction("modalCreateRoom", true)}
           >
-            Add Room
+            Adicionar Quartos
           </Button>
         </div>
       </div>

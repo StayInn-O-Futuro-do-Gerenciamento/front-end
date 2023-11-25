@@ -8,12 +8,13 @@ export const TableStyled = styled.table`
   border-collapse: separate;
   border-spacing: 0;
   border-radius: var(--border-radius);
-  border-right: 1px solid #e8f1fd;
-  border-left: 1px solid #e8f1fd;
+  border-top: 1px solid var(--grey-700);
+  border-right: 1px solid var(--grey-700);
+  border-left: 1px solid var(--grey-700);
   overflow: hidden;
 
   thead {
-    background-color: gray;
+    background-color: var(--grey-00);
     border: none;
   }
   tr {
@@ -22,15 +23,17 @@ export const TableStyled = styled.table`
   }
   th {
     border: none;
-    background-color: #f7f9fc;
+    background-color: var(--grey-50);
     text-align: start;
     padding: 15px;
     font-weight: 500;
-    color: var(--grey-500);
+    color: var(--grey-700);
   }
   td {
     padding: 15px;
-    border-bottom: 1px solid var(--blue-50);
+    border-bottom: 1px solid var(--grey-700);
+    color: var(--grey-700);
+
     img {
       cursor: pointer;
     }

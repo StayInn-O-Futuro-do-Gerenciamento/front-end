@@ -16,11 +16,17 @@ export const StyledFeedback = styled.section`
   border-radius: 8px;
 
   font-family: var(--font-family-inter);
+  p {
+    font-size: var(--font-size2);
+    font-weight: var(--text-weight500);
+    color: var(--grey-700);
+  }
   h3 {
     font-size: var(--font-size1);
     font-weight: var(--text-weight600);
     color: var(--grey-grey-800);
     margin-bottom: 15px;
+    color: var(--grey-700);
   }
 
   .title {
@@ -57,18 +63,6 @@ export const StyledFeedback = styled.section`
       flex-direction: column;
 
       gap: 4px;
-
-      p {
-        font-size: var(--font-size2);
-        font-weight: var(--text-weight500);
-        color: var(--grey-grey-600);
-      }
-
-      span {
-        font-size: var(--font-size2);
-        font-weight: var(--text-weight500);
-        color: var(--grey-grey-400);
-      }
     }
   }
 

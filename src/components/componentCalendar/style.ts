@@ -13,16 +13,16 @@ export const CalendarMain = styled.div`
       display: flex;
       gap: 20px;
       p:first-child {
-        border: 2px solid #e7f8f0;
-        background-color: #e7f8f0;
-        color: #60cf9b;
+        border: 2px solid var(--green-50);
+        background-color: var(--green-50);
+        color: var(--green-600);
         padding: 10px;
         border-radius: 18px;
       }
       p:last-child {
-        border: 2px solid #feeceb;
-        background-color: #feeceb;
-        color: #f5827a;
+        border: 2px solid var(--red-50);
+        background-color: var(--red-50);
+        color: var(--red-600);
         padding: 10px;
         border-radius: 18px;
       }
@@ -30,15 +30,15 @@ export const CalendarMain = styled.div`
     button {
       padding: 10px;
       background-color: var(--orange-400);
-      color: var(--grey-50);
+      color: var(--grey-button-00);
       border-radius: 8px;
       font-size: 16px;
     }
   }
   .checkin-event {
-    border: 2px solid #e7f8f0;
-    background-color: #e7f8f0;
-    color: #60cf9b;
+    border: 2px solid var(--green-50);
+    background-color: var(--green-50);
+    color: var(--green-600);
     padding: 10px;
     width: 100%;
     margin-bottom: 10px;
@@ -91,12 +91,12 @@ export const CalendarMain = styled.div`
     background-color: transparent !important;
   }
   .fc-daygrid-day-frame:hover {
-    background-color: #f8f8ff;
+    background-color: var(--grey-calendar-00);
   }
   .checkout-event {
-    border: 2px solid #feeceb;
-    background-color: #feeceb;
-    color: #f5827a;
+    border: 2px solid var(--red-50);
+    background-color: var(--red-50);
+    color: var(--red-600);
     padding: 10px;
     width: 100%;
     margin-bottom: 10px;
@@ -174,7 +174,7 @@ export const CalendarMain = styled.div`
     font-weight: bold;
     font-size: 18px;
     margin-bottom: 15px;
-    border: 2px solid white;
+    border: 2px solid var(--grey-00);
   }
 
   .fc-day-today .fc-col-header-cell-cushion {

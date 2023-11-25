@@ -21,7 +21,7 @@ export const StyledReservationBar = styled.div`
   .cResevation {
     height: 40px;
 
-    color: var(--grey-00);
+    color: var(--grey-button-00);
 
     font-family: var(--font-family-inter);
     font-size: var(--font-size4);

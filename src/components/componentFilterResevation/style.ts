@@ -17,10 +17,11 @@ export const FilterMain = styled.section`
     width: 36px;
     height: 36px;
     padding: 5px;
-    background-color: var(--orange-50);
+    background-color: var(--svg-color-grey2);
     border: 2px solid var(--orange-500);
     border-radius: 10px;
     cursor: pointer;
+    filter: var(--svg-color-grey1);
   }
   .filterContent {
     display: flex; //Mudanças da imagen
@@ -37,19 +38,23 @@ export const FilterMain = styled.section`
           cursor: pointer;
           border: 1px solid var(--grey-300);
           padding: 7.5px 16px;
-          color: var(--grey-300);
+          color: var(--grey-700);
           border-radius: 100px;
+          background-color: var(--grey-inputBack-00);
+          font-size: var(--font-size5);
 
           &:hover {
             border: 1px solid var(--orange-500);
             color: var(--orange-500);
             background-color: var(--orange-50);
+            font-size: var(--font-size5);
           }
         }
         .selected-btn {
           border: 1px solid var(--orange-500);
           color: var(--orange-500);
           background-color: var(--orange-50);
+          font-size: var(--font-size5);
         }
       }
       .filter-forms {
@@ -69,6 +74,8 @@ export const FilterMain = styled.section`
             border-radius: 10px;
             border: 2px solid var(--grey-200);
             outline: 0;
+            background: var(--grey-inputBack-00);
+            color: var(--grey-700);
           }
         }
       }
@@ -112,7 +119,7 @@ export const FilterMain = styled.section`
     .check-rooms {
       padding: 15px 19px;
       border-radius: 10px;
-      color: var(--grey-00);
+      color: var(--grey-button-00);
       background-color: var(--orange-500);
       font-size: 16px;
       &:hover {

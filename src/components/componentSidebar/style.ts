@@ -6,6 +6,8 @@ export const SideBarMain = styled.section`
   display: flex;
   flex-direction: column;
 
+  background: var(--grey-00);
+
   .div-logo {
     display: flex;
     align-items: center;
@@ -52,6 +54,7 @@ export const SideBarMain = styled.section`
         }
         p {
           font-family: var(--font-family-inter);
+          color: var(--grey-500);
         }
       }
       li:hover {
