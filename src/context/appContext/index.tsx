@@ -60,7 +60,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
 
-  const [test, setTest] = useState();
+  const [fetchUpdateData, setFetchUpdateData] = useState();
 
   const [darkMode, setDarkMode] = useState(false);
 
@@ -286,6 +286,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       );
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
+      setModalUpdateTypeRoom(false);
 
       console.log(responseUpdateTypeRoom);
     } catch (error) {
@@ -391,9 +392,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         createRoom,
         updateRoom,
         updateTypeRoom,
-        setTest,
+        setFetchUpdateData,
         getTypeRoomId,
-        test,
+        fetchUpdateData,
         registerManager,
         scheduleReservation,
         setGetReservationState,

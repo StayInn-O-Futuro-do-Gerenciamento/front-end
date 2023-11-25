@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { TableRow } from "./style";
 
 export const ComponentTableList = ({ list, modalName, typeList }: any) => {
-  const { handleChangeFunction, getRoomState, setTest } =
+  const { handleChangeFunction, getRoomState, setFetchUpdateData } =
     useContext(AppContext);
 
   if (!list || list.length === 0) {
@@ -74,6 +74,7 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
                   handleChangeFunction(modalName, true);
                   handleChangeFunction(typeList, item.id);
                   console.log(typeList);
+                  setFetchUpdateData(item);
                 }}
               />
             </td>
