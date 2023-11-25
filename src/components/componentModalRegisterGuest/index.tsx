@@ -7,20 +7,25 @@ import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import profile from "../../assets/profile/perfil.png";
 import { AppContext } from "../../context/appContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { iGuestData } from "../../context/appContext/type";
-import { registerGuestSchemas } from "../../schemas/schemaGuest";
+import {
+  registerGuestData,
+  registerGuestSchemas,
+} from "../../schemas/schemaGuest";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export const ModalRegisterGuest = () => {
   const { handleChangeFunction, registerGuest } = useContext(AppContext);
+  const [indexes, setIndexes] = useState<any>([]) as any;
+  const [counter, setCounter] = useState<any>(0) as any;
 
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<iGuestData>({
+  } = useForm<registerGuestData>({
     resolver: zodResolver(registerGuestSchemas),
   });
 
@@ -29,9 +34,29 @@ export const ModalRegisterGuest = () => {
     name: "emergencyContacts",
   });
 
-  const onSubmit = (data: iGuestData) => {
-    console.log(data);
-    return registerGuest(data);
+  const onSubmit = (data: registerGuestData) => {
+    const { phoneNumbers: phone1, phoneNumber2: phone2, ...requestData } = data;
+    const guestData: iGuestData = {
+      ...requestData,
+      phoneNumbers: [phone1, phone2],
+    };
+    console.log(guestData);
+    registerGuest(guestData);
+  };
+
+  const addEmergencyContact = () => {
+    setIndexes((prevIndexes: any) => [...prevIndexes, counter]);
+    setCounter((prevCounter: any) => prevCounter + 1);
+  };
+  const removeEmergencyContact = (index: any) => () => {
+    setIndexes((prevIndexes: any) => [
+      ...prevIndexes.filter((item: any) => item !== index),
+    ]);
+    setCounter((prevCounter: any) => prevCounter - 1);
+  };
+
+  const clearEmergencyContact = () => {
+    setIndexes([]);
   };
 
   return (
@@ -48,20 +73,11 @@ export const ModalRegisterGuest = () => {
           </Button>
         </HeaderModal>
 
-        <div className="hospedeImage">
-          <img src={profile} className="containerImage"></img>
-          <div>
-            <Button buttonVariation="addImageHospede" type="button">
-              Adicionar foto
-            </Button>
-          </div>
-        </div>
-
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="formRegisterGuest">
             <div className="guestData">
               <Input
-                label="nome"
+                label="Nome"
                 type="text"
                 placeholder="Nome do hospede"
                 register={register("name")}
@@ -118,9 +134,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
 
-              <label htmlFor="">
-                <strong>Contato do hospede</strong>
-              </label>
+              <div>
+                <h5>Contato do hospede</h5>
+              </div>
               <div className="phoneNumber">
                 <div>
                   <Input
@@ -140,11 +156,11 @@ export const ModalRegisterGuest = () => {
                   <Input
                     type="number"
                     placeholder="Celular 2"
-                    register={register("phoneNumbers")}
+                    register={register("phoneNumber2")}
                   />
-                  {errors.phoneNumbers ? (
+                  {errors.phoneNumber2 ? (
                     <span className="errorMessage">
-                      {errors.phoneNumbers.message}
+                      {errors.phoneNumber2.message}
                     </span>
                   ) : (
                     <></>
@@ -156,7 +172,14 @@ export const ModalRegisterGuest = () => {
                 <strong>Contato de emergência</strong>
               </label>
               <div className="emergencyContacts">
-                {fields.map((contact, index) => (
+                <button
+                  type="button"
+                  onClick={addEmergencyContact}
+                  className="contactBase"
+                >
+                  Adicionar Contanto
+                </button>
+                {indexes.map((index: any) => (
                   <div key={index}>
                     <Input
                       type="text"
@@ -181,37 +204,22 @@ export const ModalRegisterGuest = () => {
                         {errors.emergencyContacts[index]?.phoneNumber?.message}
                       </span>
                     )}
+                    <button
+                      type="button"
+                      onClick={removeEmergencyContact(index)}
+                      className="removeContact"
+                    >
+                      Remover Contanto
+                    </button>
                   </div>
                 ))}
-              </div>
-              <div className="emergencyContacts">
-                {fields.map((contact, index) => (
-                  <div key={index}>
-                    <Input
-                      type="text"
-                      placeholder="Nome do contato"
-                      register={register(`emergencyContacts.${index}.name`)}
-                    />
-                    {errors.emergencyContacts?.[index]?.name && (
-                      <span className="errorMessage">
-                        {errors.emergencyContacts[index]?.name?.message}
-                      </span>
-                    )}
-
-                    <Input
-                      type="number"
-                      placeholder="Número do contato"
-                      register={register(
-                        `emergencyContacts.${index}.phoneNumber`
-                      )}
-                    />
-                    {errors.emergencyContacts?.[index]?.phoneNumber && (
-                      <span className="errorMessage">
-                        {errors.emergencyContacts[index]?.phoneNumber?.message}
-                      </span>
-                    )}
-                  </div>
-                ))}
+                <button
+                  type="button"
+                  onClick={clearEmergencyContact}
+                  className="contactBase"
+                >
+                  Limpar Contatos
+                </button>
               </div>
             </div>
             <div className="guestAddress">

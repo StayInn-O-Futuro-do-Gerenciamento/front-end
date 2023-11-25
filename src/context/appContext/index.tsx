@@ -165,6 +165,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
+      const responseGuest = await api.get(`/guest?pageSize=2000`);
+      setGetGuestState(responseGuest.data);
+      handleChangeFunction("modalCreateGuest", false);
     } catch (error) {}
   };
 
@@ -199,7 +202,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
 
-      const responseGuest = await api.get(`/guest?pageSize=1000`);
+      const responseGuest = await api.get(`/guest?pageSize=2000`);
       setGetGuestState(responseGuest.data);
 
       const responseHistory = await api.get(`/history`);
