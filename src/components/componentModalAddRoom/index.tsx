@@ -7,7 +7,6 @@ import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { useContext } from "react";
-import { iRoom } from "../../context/appContext/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { tAddRoomData, addRoomSchemas } from "../../schemas/schemaRoom";
 
