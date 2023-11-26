@@ -44,121 +44,127 @@ export const ModalAddRoom = () => {
           </Button>
         </HeaderModal>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            type="text"
-            placeholder="Ex: vip"
-            label="Tipo de quarto"
-            register={register("typeRoom.name")}
-          />
-          {errors.typeRoom?.name ? (
-            <span className="errorMessage">
-              {errors.typeRoom?.name.message}
-            </span>
-          ) : (
-            <></>
-          )}
-          <label>
-            <strong>Descrição</strong>
-          </label>
-          <textarea
-            placeholder="Descrição do quarto"
-            {...register("typeRoom.description")}
-          ></textarea>
-          {errors.typeRoom?.description ? (
-            <span className="errorMessage">
-              {errors.typeRoom?.description.message}
-            </span>
-          ) : (
-            <></>
-          )}
-          <Input
-            type="text"
-            placeholder="Ex: frigobar, hidromassagem"
-            label="Conforto"
-            register={register("typeRoom.confort")}
-          />
-          {errors.typeRoom?.confort ? (
-            <span className="errorMessage">
-              {errors.typeRoom?.confort.message}
-            </span>
-          ) : (
-            <></>
-          )}
-          <Input
-            type="number"
-            placeholder="Preço do quarto"
-            label="Preço"
-            register={register("typeRoom.price")}
-          />
-          {errors.typeRoom?.price ? (
-            <span className="errorMessage">
-              {errors.typeRoom?.price.message}
-            </span>
-          ) : (
-            <></>
-          )}
+          <div className="partirForm">
+            <div className="div1">
+              <Input
+                type="text"
+                placeholder="Ex: vip"
+                label="Tipo de quarto"
+                register={register("typeRoom.name")}
+              />
+              {errors.typeRoom?.name ? (
+                <span className="errorMessage">
+                  {errors.typeRoom?.name.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <Input
+                type="text"
+                placeholder="Descrição do quarto"
+                label="Descrição"
+                register={register("typeRoom.description")}
+              />
+              {errors.typeRoom?.description ? (
+                <span className="errorMessage">
+                  {errors.typeRoom?.description.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <Input
+                type="text"
+                placeholder="Ex: frigobar, hidromassagem"
+                label="Conforto"
+                register={register("typeRoom.confort")}
+              />
+              {errors.typeRoom?.confort ? (
+                <span className="errorMessage">
+                  {errors.typeRoom?.confort.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <label>
+                <strong>Status</strong>
+              </label>
+              <select {...register("status")} name="status">
+                <option disabled selected>
+                  Selecionar status
+                </option>
+                <option value="Limpo">Limpo</option>
+                <option value="Sujo">Sujo</option>{" "}
+                <option value="Em Manutenção">Em Manutenção</option>
+              </select>
+              {errors.status ? (
+                <span className="errorMessage">{errors.status.message}</span>
+              ) : (
+                <></>
+              )}
+            </div>
+            <div className="div2">
+              <Input
+                type="number"
+                placeholder="Preço do quarto"
+                label="Preço"
+                register={register("typeRoom.price")}
+              />
+              {errors.typeRoom?.price ? (
+                <span className="errorMessage">
+                  {errors.typeRoom?.price.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <Input
+                type="number"
+                placeholder="Contagem de pessoas"
+                label="Pessoas"
+                register={register("typeRoom.personCount")}
+              />
+              {errors.typeRoom?.personCount ? (
+                <span className="errorMessage">
+                  {errors.typeRoom?.personCount.message}
+                </span>
+              ) : (
+                <></>
+              )}
 
-          <label>
-            <strong>Status</strong>
-          </label>
-          <select {...register("status")} name="status">
-            <option disabled selected>
-              Selecionar status
-            </option>
-            <option value="Limpo">Limpo</option>
-            <option value="Sujo">Sujo</option>{" "}
-            <option value="Em Manutenção">Em Manutenção</option>
-          </select>
-          {errors.status ? (
-            <span className="errorMessage">{errors.status.message}</span>
-          ) : (
-            <></>
-          )}
-
-          <Input
-            type="number"
-            placeholder="Contagem de pessoas"
-            label="Pessoas"
-            register={register("typeRoom.personCount")}
-          />
-          {errors.typeRoom?.personCount ? (
-            <span className="errorMessage">
-              {errors.typeRoom?.personCount.message}
-            </span>
-          ) : (
-            <></>
-          )}
-          <label>
-            <strong>Política de cancelamento</strong>
-          </label>
-          <select {...register("typeRoom.rate")} name="rate">
-            {/* <option disabled selected>
+              <Input
+                type="number"
+                placeholder="Número de quartos"
+                label="Número de quartos"
+                register={register("typeRoom.roomTypeQuantity")}
+              />
+              {errors.typeRoom?.roomTypeQuantity ? (
+                <span className="errorMessage">
+                  {errors.typeRoom?.roomTypeQuantity.message}
+                </span>
+              ) : (
+                <></>
+              )}
+              <label>
+                <strong>Política de cancelamento</strong>
+              </label>
+              <select {...register("typeRoom.rate")} name="rate">
+                {/* <option disabled selected>
               Selecionar política
             </option> */}
-            <option value="Flexível">Flexível</option>
-            <option value="Restrito">Restrito</option>{" "}
-            <option value="Sem Reembolso">Sem reembolso</option>
-          </select>
+                <option value="Flexível">Flexível</option>
+                <option value="Restrito">Restrito</option>{" "}
+                <option value="Sem Reembolso">Sem reembolso</option>
+              </select>
 
-          {errors.typeRoom?.rate ? (
-            <span className="errorMessage">{errors.typeRoom.rate.message}</span>
-          ) : (
-            <></>
-          )}
+              {errors.typeRoom?.rate ? (
+                <span className="errorMessage">
+                  {errors.typeRoom.rate.message}
+                </span>
+              ) : (
+                <></>
+              )}
+            </div>
+          </div>
 
-          <Input
-            type="number"
-            placeholder="Número de quartos"
-            label="Número de quartos"
-            register={register("typeRoom.roomTypeQuantity")}
-          />
-          {errors.typeRoom?.roomTypeQuantity ? (
-            <span className="errorMessage">
-              {errors.typeRoom?.roomTypeQuantity.message}
-            </span>
-          ) : (
-            <></>
-          )}
           <ContainerButtonModal>
             <Button
               buttonVariation="cancelModal"

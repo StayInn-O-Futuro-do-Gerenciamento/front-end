@@ -104,8 +104,8 @@ export interface iAppContext {
   updateRoom: (data: tUpdateRoomData) => void;
   updateTypeRoom: (data: tUpdateTypeRoomData) => void;
   createAttendant: (data: any) => void;
-  setTest: any;
-  test: any;
+  setFetchUpdateData: any;
+  fetchUpdateData: any;
   getTypeRoomId: string;
   registerManager: any;
   scheduleReservation: any;

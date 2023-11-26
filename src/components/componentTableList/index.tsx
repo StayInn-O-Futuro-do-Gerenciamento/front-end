@@ -5,7 +5,7 @@ import { TableRow } from "./style";
 import { FaStar, FaRegStar } from "react-icons/fa";
 
 export const ComponentTableList = ({ list, modalName, typeList }: any) => {
-  const { handleChangeFunction, getRoomState, setTest } =
+  const { handleChangeFunction, getRoomState, setFetchUpdateData } =
     useContext(AppContext);
 
   if (!list || list.length === 0) {
@@ -92,6 +92,7 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
                 onClick={() => {
                   handleChangeFunction(modalName, true);
                   handleChangeFunction(typeList, item.id);
+                  setFetchUpdateData(item);
                 }}
               />
             </td>

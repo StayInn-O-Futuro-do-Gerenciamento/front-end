@@ -13,7 +13,7 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateRoom {
     width: 352px;
-    height: 400px;
+    height: 320px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -150,7 +150,7 @@ export const StyledContainerModal = styled.main`
   }
 
   .modalAddRoom {
-    width: 352px;
+    width: 750px;
     padding: 16px;
     background-color: var(--grey-00);
     border-radius: var(--border-radius);
@@ -164,5 +164,21 @@ export const StyledContainerModal = styled.main`
     padding: 16px;
     background-color: var(--grey-00);
     border-radius: var(--border-radius);
+  }
+
+  .modalUpdateTypeRoom {
+    width: 750px;
+  }
+
+  .partirForm {
+    display: flex;
+    gap: 20px;
+    .div1,
+    .div2 {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
   }
 `;
