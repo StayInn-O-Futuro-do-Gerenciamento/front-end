@@ -6,9 +6,36 @@ import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { AppContext } from "../../context/appContext";
+import { useForm } from "react-hook-form";
 
 export const ModalUpdatePromotion = () => {
-  const { handleChangeFunction } = useContext(AppContext);
+  const { handleChangeFunction, getTypeRoomState, updateOffer } =
+    useContext(AppContext);
+
+  if (!getTypeRoomState) {
+    return (
+      <ContainerModal>
+        <h3>Loading</h3>
+      </ContainerModal>
+    );
+  }
+
+  const { register, handleSubmit } = useForm<any>({});
+
+  const onSubmit = (data: any) => {
+    if (data.discount !== "") {
+      data.discount = Number(data.discount);
+    }
+    const dataBody = Object.fromEntries(
+      Object.entries(data).filter(([key, value]) => value !== "")
+    );
+
+    if (Object.keys(dataBody).length > 0) {
+      updateOffer(dataBody);
+    } else {
+      console.log("Objeto vazio, não enviado.");
+    }
+  };
 
   return (
     <ContainerModal>
@@ -23,27 +50,37 @@ export const ModalUpdatePromotion = () => {
             X
           </Button>
         </HeaderModal>
-        <Form>
-          <Input type="text" label="Nome" placeholder="Nome da oferta" />
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            type="text"
+            label="Nome"
+            placeholder="Nome da oferta"
+            register={register("offerName")}
+          />
           <label>
             <strong>Descrição</strong>
           </label>
-          <textarea placeholder="Descrição da oferta"></textarea>
-          <Input type="number" label="Desconto" placeholder="0%" />
-          <Input type="date" label="Data de início" />
-          <Input type="date" label="Data de término" />
+          <textarea
+            {...register("offerDescription")}
+            placeholder="Descrição da oferta"
+          ></textarea>
+          <Input
+            type="number"
+            label="Desconto"
+            placeholder="0%"
+            register={register("discount")}
+          />
+          <Input
+            type="date"
+            label="Data de início"
+            register={register("startDate")}
+          />
+          <Input
+            type="date"
+            label="Data de término"
+            register={register("finishDate")}
+          />
 
-          <label className="labelSelect" htmlFor="">
-            <strong>Tipo de quarto</strong>
-          </label>
-          <select name="" id="">
-            <option value="" disabled selected>
-              Selecionar tipo
-            </option>
-            <option value="">Vip</option>
-            <option value="">Bom</option>
-            <option value="">Ruim</option>
-          </select>
           <ContainerButtonModal>
             <Button
               type="button"
@@ -54,7 +91,7 @@ export const ModalUpdatePromotion = () => {
             >
               Cancelar
             </Button>
-            <Button type="button" buttonVariation="saveModal">
+            <Button type="submit" buttonVariation="saveModal">
               Salvar
             </Button>
           </ContainerButtonModal>

@@ -12,4 +12,6 @@ export interface iInputProps {
   value?: string | number;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onInput?: (event: ChangeEvent<HTMLInputElement>) => void;
+  min?: any;
+  max?: any;
 }

@@ -3,10 +3,9 @@ import { useContext, useState } from "react";
 import Back from "../../assets/Chevron left.svg";
 import { AppContext } from "../../context/appContext";
 
-const types = ["Básico", "Familia", "Casal", "VIP"];
-
 export const FilterReservation = () => {
   const { handleChangeFunction, getTypeRoomState } = useContext(AppContext);
+  const userType = localStorage.getItem("userType");
 
   if (!getTypeRoomState) {
     return (
@@ -127,9 +126,14 @@ export const FilterReservation = () => {
             </div>
           </div>
         </div>
-        <button className="check-rooms" onClick={handleCheckAvailability}>
-          Checar Disponibilidade
-        </button>
+        {JSON.parse(userType!) == "Attendant" && (
+          <button className="check-rooms" onClick={handleCheckAvailability}>
+            Checar Disponibilidade
+          </button>
+        )}
+        {JSON.parse(userType!) !== "Attendant" && (
+          <h3 className="Warning">Chame um atendente para reservar</h3>
+        )}
       </div>
     </FilterMain>
   );

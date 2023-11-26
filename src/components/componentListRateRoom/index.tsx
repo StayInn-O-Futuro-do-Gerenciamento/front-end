@@ -12,7 +12,7 @@ export const ComponentListRateRoom = () => {
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
-  if (!getComputedStyle) {
+  if (!getTypeRoomState) {
     return (
       <LoadingBaseStyle>
         <ReactLoading
