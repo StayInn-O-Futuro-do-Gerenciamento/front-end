@@ -159,9 +159,15 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   };
 
   const createHotel = async (data: iHotel) => {
+    const token = localStorage.getItem("token");
+
     try {
       setLoadingButton(true);
-      const responseCreate = await api.post("/hotel", data);
+      const responseCreate = await api.post("/hotel", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
       setHotel(responseCreate.data);
       navigate("/dashboard");
 
