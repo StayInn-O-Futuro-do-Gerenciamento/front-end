@@ -278,7 +278,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         },
       });
 
-      const responseRoom = await api.get(`/room?pageSize=100`);
+      const responseRoom = await api.get(`/room?pageSize=1000`);
       setGetRoomState(responseRoom.data);
 
       toast.success("Cadastro de quarto com sucesso!");

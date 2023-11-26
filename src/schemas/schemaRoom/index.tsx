@@ -9,6 +9,9 @@ const typeRoomSchemas = z.object({
   rate: z.enum(["Flexível", "Restrito", "Sem reembolso"]),
   confort: z.string().min(1, "Tipo de quarto obrigatório"),
   price: z.number().or(z.string().min(0.01, "Preço deve ser maior que zero")),
+  roomTypeQuantity: z
+    .number()
+    .or(z.string().min(1, "Quantidade deve ser maior que zero")),
 });
 export const addRoomSchemas = z.object({
   status: z.enum(["Limpo", "Sujo", "Em Manutenção"]),
