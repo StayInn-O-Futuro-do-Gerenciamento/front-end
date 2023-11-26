@@ -18,16 +18,16 @@ ${({ theme }) => {
           box-sizing: border-box;
           &::-webkit-scrollbar {
             width: 12px;
-           }
+          }
 
-            &::-webkit-scrollbar-thumb {
+          &::-webkit-scrollbar-thumb {
             background-color: var(--orange-400);
             border-radius: 6px;
-        }
+          }
 
-            &::-webkit-scrollbar-track {
-         background-color: var(--grey-50);
-         }
+          &::-webkit-scrollbar-track {
+            background-color: var(--grey-50);
+          }
         }
 
         button {
@@ -56,7 +56,6 @@ ${({ theme }) => {
           --grey-calendar-00: #f8f8ff;
           --grey-inputBack-00: #f0f1f3;
           --grey-lineTable-00: #f0f1f3;
-
 
           --orange-50: #fef4e6;
           --orange-100: #fdddb3;
@@ -105,9 +104,11 @@ ${({ theme }) => {
           --svg-color-grey: invert(38%) sepia(33%) saturate(256%)
             hue-rotate(183deg) brightness(93%) contrast(88%);
 
-          --svg-color-grey1: invert(98%) sepia(1%) saturate(3317%) hue-rotate(184deg) brightness(91%) contrast(86%);
+          --svg-color-grey1: invert(98%) sepia(1%) saturate(3317%)
+            hue-rotate(184deg) brightness(91%) contrast(86%);
 
-          --svg-color-grey2:  invert(100%) sepia(100%) saturate(0%) hue-rotate(194deg) brightness(101%) contrast(102%)
+          --svg-color-grey2: invert(100%) sepia(100%) saturate(0%)
+            hue-rotate(194deg) brightness(101%) contrast(102%);
 
           --svg-color-orange: invert(70%) sepia(71%) saturate(580%)
             hue-rotate(331deg) brightness(101%) contrast(95%);

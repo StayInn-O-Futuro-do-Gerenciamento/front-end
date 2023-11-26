@@ -15,6 +15,8 @@ import { ModalUpdateHotel } from "../componentModalUpdateHotel";
 import { ModalRegisterAttendat } from "../componentModalRegisterAttendant";
 import { LuBedDouble, LuListChecks, LuLogIn, LuLogOut } from "react-icons/lu";
 import logo from "../../assets/sidebar/Logo.svg";
+import { PiWhatsappLogo } from "react-icons/pi";
+
 export const Sidebar = () => {
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState(location.pathname);
@@ -130,8 +132,12 @@ export const Sidebar = () => {
                 <p>+ Atendentes</p>
               </li>
               <li onClick={() => navigate("/wpp")}>
-                <img src={wppImg} alt="Conectar WhatsApp" />
-                <p>Conectar WhatsApp</p>
+                {/* <img src={wppImg} alt="Conectar WhatsApp" /> */}
+                <PiWhatsappLogo
+                  className="typeRoom"
+                  style={{ width: 30, height: 30, color: `#667085` }}
+                />
+                <p>WhatsApp</p>
               </li>
             </>
           )}
