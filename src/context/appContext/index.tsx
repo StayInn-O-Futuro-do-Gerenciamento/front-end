@@ -14,6 +14,7 @@ import {
   tUpdateTypeRoomData,
 } from "../../schemas/schemaRoom";
 import moment from "moment";
+import { toast } from "react-toastify";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -137,12 +138,18 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         JSON.stringify(responseCreate.data.type)
       );
 
+      toast.success("Login feito com sucesso!");
       if (!hotel) {
-        navigate("/hotel");
+        setTimeout(() => {
+          navigate("/hotel");
+        }, 2000);
       } else {
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 2000);
       }
     } catch (error) {
+      toast.error("Nome ou senha incorretos!");
       console.log(error);
     } finally {
       setLoadingButton(false);
@@ -155,7 +162,14 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseCreate = await api.post("/hotel", data);
       setHotel(responseCreate.data);
       navigate("/dashboard");
+
+      toast.success("Cadastro de Hotel com sucesso!");
+
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
     } catch (error) {
+      toast.error("Não foi possivel concluir o cadastro!");
       console.log(error);
     } finally {
       setLoadingButton(false);
@@ -173,14 +187,22 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       });
       const responseGuest = await api.get(`/guest?pageSize=2000`);
       setGetGuestState(responseGuest.data);
+
+      toast.success("Cadastro de hóspede com sucesso!");
+
       handleChangeFunction("modalCreateGuest", false);
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Não foi possivel concluir o cadastro!");
+    }
   };
 
   const registerManager = async (data: iGuestData) => {
     try {
       const responseRegisterManager = await api.post("/manager", data);
+
+      toast.success("Cadastro de gerente com sucesso!");
     } catch (error) {
+      toast.error("Não foi possivel concluir o cadastro!");
     } finally {
       navigate("/");
     }
@@ -242,7 +264,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   };
 
   const createRoom = async (data: tAddRoomData) => {
-    console.log("Oi");
     const token = localStorage.getItem("token");
 
     try {
@@ -251,16 +272,21 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
+
       const responseRoom = await api.get(`/room?pageSize=100`);
       setGetRoomState(responseRoom.data);
 
+      toast.success("Cadastro de quarto com sucesso!");
+
       setModalCreateRoom(false);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao cadastrar o quarto.");
+    }
   };
 
   const updateRoom = async (data: tUpdateRoomData) => {
     const token = localStorage.getItem("token");
-    console.log(data);
     try {
       const responseUpdateRoom = await api.patch(`room/${getRoomId}`, data, {
         headers: {
@@ -269,18 +295,17 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       });
       const responseRoom = await api.get(`/room?pageSize=100`);
       setGetRoomState(responseRoom.data);
+      toast.success("Atualização do quarto realizada com sucesso!");
 
       setModalUpdateRoom(false);
-
-      console.log(responseUpdateRoom);
     } catch (error) {
       console.log(error);
+      toast.error("Erro na atualização do quarto.");
     }
   };
 
-  const updateTypeRoom = async (data: tUpdateTypeRoomData) => {
+  const updateTypeRoom = async (data: any) => {
     const token = localStorage.getItem("token");
-    console.log(data);
     try {
       const responseUpdateTypeRoom = await api.patch(
         `typeRoom/${getTypeRoomId}`,
@@ -291,13 +316,16 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           },
         }
       );
+      handleChangeFunction("modalUpdateTypeRoom", false);
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
+      toast.success("Tipo de quarto alterado com sucesso!");
       setModalUpdateTypeRoom(false);
 
       console.log(responseUpdateTypeRoom);
     } catch (error) {
       console.log(error);
+      toast.error("Erro no alteração do tipo de quarto.");
     }
   };
 
@@ -333,6 +361,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const resposeReservation = await api.get(`/reservation`);
       setGetReservationState(resposeReservation.data);
+      toast.success("Solicitação realizada com sucesso!");
+    } else {
+      toast.info("Preencha todos os campos para prosseguir!");
     }
   };
 
@@ -344,7 +375,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           Authorization: `Bearer ${JSON.parse(token!)}`,
         },
       });
-    } catch (error) {}
+      toast.success("Cadastro de Atendente com sucesso!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao cadastrar o atendente.");
+    }
   };
 
   const createOffer = async (data: any) => {
@@ -359,8 +394,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseOffer = await api.get(`/offer`);
       setGetOfferState(responseOffer.data);
       handleChangeFunction("modalCreatePromotion", false);
+      toast.success("Oferta criada com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Erro ao cadastrar a oferta.");
     }
   };
 
@@ -380,9 +417,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseReservation = await api.get(`/reservation`);
       setGetReservationState(responseReservation.data);
       handleChangeFunction("updateReservation", false);
-      console.log(responseGetReservation);
+      toast.info("Alteração realizada com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Erro na alteração da reserva!");
     }
   };
 
@@ -411,6 +449,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         const responseReservation = await api.get(`/reservation`);
         setGetReservationState(responseReservation.data);
         handleChangeFunction("updateReservation", false);
+        toast.success("Reserva deletada com sucesso!");
       }
     } catch (error) {
       console.log(error);
@@ -429,9 +468,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseOffer = await api.get(`/reservation`);
       setGetReservationState(responseOffer.data);
       handleChangeFunction("updateReservation", false);
-      console.log(responseGetOffer);
+      toast.success("Oferta atualizada com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Erro ao atualizar a oferta!");
     }
   };
 

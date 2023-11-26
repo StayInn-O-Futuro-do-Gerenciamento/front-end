@@ -48,8 +48,9 @@ export const ModalUpdateReservation = () => {
           <Input
             type="number"
             label="Feedback"
+            placeholder="0 a 5"
             register={register("feedBack")}
-            min={1}
+            min={0}
             max={5}
           />
 

@@ -7,6 +7,7 @@ import Right from "../../assets/Chevron right.svg";
 import ReactLoading from "react-loading";
 import { ComponentListReservationStyle, LoadingBaseStyle } from "./style";
 import moment from "moment";
+import { toast } from "react-toastify";
 
 export const ComponentListReservation = () => {
   const { getReservationState, deleteReservation } = useContext(AppContext);
@@ -31,7 +32,11 @@ export const ComponentListReservation = () => {
     const reservationCheckout = new Date(reservation.checkout);
 
     if (reservationCheckout < actualDate) {
-      deleteReservation(reservation.id);
+      if (reservation.id === reservation.id) {
+        deleteReservation(reservation.id);
+      } else {
+        toast.error("Erro ao deletar a reserva!");
+      }
     }
     const peopleCount =
       Number(reservation.numberAdults) + Number(reservation.numberKids);

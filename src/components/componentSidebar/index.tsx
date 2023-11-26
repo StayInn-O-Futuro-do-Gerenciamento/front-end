@@ -2,7 +2,6 @@ import Dashboard from "../../assets/sidebar/Dashboard.svg";
 import Deals from "../../assets/sidebar/Deals.svg";
 import Attendant from "../../assets/sidebar/attendant.svg";
 import Hotel from "../../assets/sidebar/Hotels.svg";
-import Logout from "../../assets/sidebar/logout.svg";
 import Report from "../../assets/sidebar/Report.svg";
 import Reservation from "../../assets/sidebar/Reservation.svg";
 import Room from "../../assets/sidebar/Room.svg";
@@ -14,7 +13,7 @@ import { useContext } from "react";
 import { ModalUpdateHotel } from "../componentModalUpdateHotel";
 import { ModalRegisterAttendat } from "../componentModalRegisterAttendant";
 import { LuBedDouble, LuListChecks, LuLogIn, LuLogOut } from "react-icons/lu";
-
+import logo from "../../assets/sidebar/Logo.svg";
 export const Sidebar = () => {
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState(location.pathname);
@@ -143,7 +142,10 @@ export const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <p className="copyrigth">StayInn @2023</p>
+      <p className="copyrigth">
+        <img src={logo} alt="logo sistema" />
+        StayInn @2023
+      </p>
     </SideBarMain>
   );
 };

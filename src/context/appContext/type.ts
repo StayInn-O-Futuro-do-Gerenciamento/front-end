@@ -102,7 +102,7 @@ export interface iAppContext {
   getRoomId: any;
   createRoom: (data: tAddRoomData) => void;
   updateRoom: (data: tUpdateRoomData) => void;
-  updateTypeRoom: (data: tUpdateTypeRoomData) => void;
+  updateTypeRoom: (data: any) => void;
   createAttendant: (data: any) => void;
   setFetchUpdateData: any;
   fetchUpdateData: any;

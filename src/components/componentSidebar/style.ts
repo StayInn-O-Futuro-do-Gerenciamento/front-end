@@ -87,5 +87,12 @@ export const SideBarMain = styled.section`
     font-family: var(--font-family-inter);
     font-size: 14px;
     text-align: center;
+    color: var(--grey-500);
+    padding: 0 0 5px 0;
+
+    img {
+      width: 20px;
+      height: 15px;
+    }
   }
 `;

@@ -13,7 +13,6 @@ export const StyledContainerModal = styled.main`
 
   .modalUpdateRoom {
     width: 352px;
-    height: 320px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -32,17 +31,6 @@ export const StyledContainerModal = styled.main`
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 10px 15px 20px 15px;
-
-    .hospedeImage {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      .containerImage {
-        width: 100px;
-        height: 100px;
-      }
-    }
   }
   .formRegisterGuest {
     display: flex;
@@ -69,8 +57,12 @@ export const StyledContainerModal = styled.main`
       }
       h5 {
         margin-top: 8px;
+        color: var(--grey-700);
+        font-weight: var(--text-weight700);
+        font-size: var(--font-size2);
       }
       .emergencyContacts {
+        margin-top: 8px;
         display: flex;
         flex-direction: column;
         width: 100%;
