@@ -61,6 +61,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [test, setTest] = useState();
   const [fetchUpdateData, setFetchUpdateData] = useState();
   const [darkMode, setDarkMode] = useState(false);
+  const [qrCodeWpp, setQrCodeWpp] = useState("");
+  const [instanceWpp, setInstanceWpp] = useState("");
 
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -241,6 +243,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
+
+      const responseListInstance = await api.get(`wpp`);
+      setInstanceWpp(responseListInstance.data.instanceName);
     };
 
     getOverview();
@@ -475,6 +480,18 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
+  const createInstance = async () => {
+    try {
+      setLoadingButton(true);
+      const responseInstance = await api.post(`/wpp`);
+      setQrCodeWpp(responseInstance.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingButton(false);
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -529,6 +546,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         updateReservation,
         deleteReservation,
         updateOffer,
+        createInstance,
+        qrCodeWpp,
+        instanceWpp,
       }}
     >
       {children}
