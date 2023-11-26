@@ -40,7 +40,6 @@ export const ModalRegisterGuest = () => {
       ...requestData,
       phoneNumbers: [phone1, phone2],
     };
-    console.log(guestData);
     registerGuest(guestData);
   };
 

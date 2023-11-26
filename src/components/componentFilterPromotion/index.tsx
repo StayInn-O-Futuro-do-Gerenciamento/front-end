@@ -181,6 +181,7 @@ export const FilterPromotion = () => {
         <ComponentTableList
           list={currentRooms}
           modalName="modalUpdatePromotion"
+          typeList="offerId"
         />
       </TableStyled>
       <ul className="pagination">

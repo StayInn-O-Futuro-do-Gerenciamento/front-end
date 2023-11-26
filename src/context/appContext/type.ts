@@ -118,4 +118,8 @@ export interface iAppContext {
   createOffer: (data: any) => void;
   toggleDarkMode: () => void;
   darkMode: boolean;
+  modalUpdateReservation: boolean;
+  updateReservation: (data: any) => void;
+  deleteReservation: (data?: any) => void;
+  updateOffer: (data: any) => void;
 }

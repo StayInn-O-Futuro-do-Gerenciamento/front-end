@@ -11,12 +11,6 @@ export const StyledContainerModal = styled.main`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
 
-  /* .modalGuest {
-    width: 500px;
-    padding: 30px;
-    background-color: white;
-  } */
-
   .modalUpdateRoom {
     width: 352px;
     height: 320px;

@@ -6,8 +6,6 @@ import ReactLoading from "react-loading";
 export const Overview = () => {
   const { getReservationState, getRoomState, hotel } = useContext(AppContext);
 
-  console.log(hotel);
-
   if (!getReservationState || !getRoomState) {
     return (
       <LoadingBaseStyle>

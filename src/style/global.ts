@@ -16,6 +16,18 @@ ${({ theme }) => {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
+          &::-webkit-scrollbar {
+            width: 12px;
+           }
+
+            &::-webkit-scrollbar-thumb {
+            background-color: var(--orange-400);
+            border-radius: 6px;
+        }
+
+            &::-webkit-scrollbar-track {
+         background-color: var(--grey-50);
+         }
         }
 
         button {
@@ -122,6 +134,18 @@ ${({ theme }) => {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
+          &::-webkit-scrollbar {
+            width: 12px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background-color: var(--orange-400);
+            border-radius: 6px;
+          }
+
+          &::-webkit-scrollbar-track {
+            background-color: var(--grey-50);
+          }
         }
 
         button {

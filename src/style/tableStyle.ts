@@ -42,7 +42,10 @@ export const TableStyled = styled.table`
   .firstNumber {
     font-weight: var(--text-weight700);
   }
-  /* .status {
-    
-  } */
+  .estrela1 {
+    color: var(--orange-300);
+  }
+  .estrela2 {
+    color: var(--orange-300);
+  }
 `;
