@@ -5,6 +5,7 @@ import Hotel from "../../assets/sidebar/Hotels.svg";
 import Report from "../../assets/sidebar/Report.svg";
 import Reservation from "../../assets/sidebar/Reservation.svg";
 import Room from "../../assets/sidebar/Room.svg";
+import wppImg from "../../assets/wpp-img.svg";
 import { SideBarMain } from "./style";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -127,6 +128,10 @@ export const Sidebar = () => {
               >
                 <img src={Attendant} alt="Cadastro de Atendentes" />
                 <p>+ Atendentes</p>
+              </li>
+              <li onClick={() => navigate("/wpp")}>
+                <img src={wppImg} alt="Conectar WhatsApp" />
+                <p>Conectar WhatsApp</p>
               </li>
             </>
           )}

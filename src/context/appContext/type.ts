@@ -122,4 +122,7 @@ export interface iAppContext {
   updateReservation: (data: any) => void;
   deleteReservation: (data?: any) => void;
   updateOffer: (data: any) => void;
+  createInstance: () => void;
+  qrCodeWpp: string;
+  instanceWpp: string;
 }

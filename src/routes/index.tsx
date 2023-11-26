@@ -11,6 +11,7 @@ import { PageLogin } from "../pages/pageLogin";
 import { PageRegister } from "../pages/pageRegister";
 import { PageHotel } from "../pages/pageHotel";
 import { ReservationList } from "../pages/pageReservationList";
+import { PageWpp } from "../pages/pageWpp";
 
 export const RoutesMain = () => {
   const { modalRegisterAttedant } = useContext(AppContext);
@@ -25,6 +26,7 @@ export const RoutesMain = () => {
       <Route path="/rates" element={<Rate />} />
       <Route path="/" element={<PageLogin />} />
       <Route path="/register" element={<PageRegister />} />
+      <Route path="/wpp" element={<PageWpp />} />
       <Route path="/hotel" element={<PageHotel />} />
       <Route path="/reservationList" element={<ReservationList />} />
     </Routes>
