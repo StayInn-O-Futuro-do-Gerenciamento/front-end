@@ -5,7 +5,7 @@ import { PageLoginStyle } from "./style";
 import { Input } from "../../components/componentInput";
 import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
-import { registerRegisterManagerSchemas } from "../../schemas/schemaRegister";
+import { registerRegisterManagerSchemas } from "../../schemas/schemaRoom/schemaRegister";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 interface iFormInput {
