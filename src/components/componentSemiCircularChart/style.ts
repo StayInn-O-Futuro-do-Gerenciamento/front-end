@@ -53,7 +53,7 @@ export const LoadingBaseStyle = styled.div`
   align-items: center;
   padding-top: 150px;
   font-family: var(--font-family-inter);
-  background-color: #fff;
+  background-color: var(--grey-00);
   border-radius: var(--border-radius);
   width: 396px;
   height: 340px;

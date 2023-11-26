@@ -2,7 +2,6 @@ import Dashboard from "../../assets/sidebar/Dashboard.svg";
 import Deals from "../../assets/sidebar/Deals.svg";
 import Attendant from "../../assets/sidebar/attendant.svg";
 import Hotel from "../../assets/sidebar/Hotels.svg";
-import Logout from "../../assets/sidebar/logout.svg";
 import Report from "../../assets/sidebar/Report.svg";
 import Reservation from "../../assets/sidebar/Reservation.svg";
 import Room from "../../assets/sidebar/Room.svg";
@@ -13,8 +12,8 @@ import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
 import { ModalUpdateHotel } from "../componentModalUpdateHotel";
 import { ModalRegisterAttendat } from "../componentModalRegisterAttendant";
-import { LuBedDouble } from "react-icons/lu";
-
+import { LuBedDouble, LuListChecks, LuLogIn, LuLogOut } from "react-icons/lu";
+import logo from "../../assets/sidebar/Logo.svg";
 export const Sidebar = () => {
   const location = useLocation();
   const [selectedButton, setSelectedButton] = useState(location.pathname);
@@ -32,7 +31,6 @@ export const Sidebar = () => {
     setSelectedButton(buttonId);
     navigate(buttonId);
   };
-  console.log(hotel);
   const logout = () => {
     localStorage.clear();
     navigate("/");
@@ -93,10 +91,34 @@ export const Sidebar = () => {
             />
             <p>Tipo de Quarto</p>
           </li>
+          <li
+            className={
+              selectedButton === "/reservationList" ? "selected-btn" : ""
+            }
+            onClick={() => handleButtonClick("/reservationList")}
+          >
+            <LuListChecks
+              className="typeRoom"
+              style={{ width: 30, height: 30, color: `#667085` }}
+            />
+            <p>Lista Reservas</p>
+          </li>
         </ul>
         <ul>
           {JSON.parse(userType!) == "Manager" && (
             <>
+              <li
+                className={
+                  selectedButton === "LoginAttendent" ? "selected-btn" : ""
+                }
+                onClick={() => handleButtonClick("/")}
+              >
+                <LuLogIn
+                  className="typeRoom"
+                  style={{ width: 30, height: 30, color: `#667085` }}
+                />
+                <p>Login</p>
+              </li>
               <li
                 className={selectedButton === "Attendant" ? "selected-btn" : ""}
                 onClick={() =>
@@ -106,25 +128,24 @@ export const Sidebar = () => {
                 <img src={Attendant} alt="Cadastro de Atendentes" />
                 <p>+ Atendentes</p>
               </li>
-              <li
-                className={selectedButton === "Hotel" ? "selected-btn" : ""}
-                onClick={() => handleChangeFunction("modalUpdateHotel", true)}
-              >
-                <img src={Hotel} alt="Edição do Hotel" />
-                <p>Edição do Hotel</p>
-              </li>
             </>
           )}
           <li
             className={selectedButton === "Logout" ? "selected-btn" : ""}
             onClick={logout}
           >
-            <img src={Logout} alt="Logout" />
+            <LuLogOut
+              className="typeRoom"
+              style={{ width: 30, height: 30, color: `#667085` }}
+            />
             <p>Logout</p>
           </li>
         </ul>
       </div>
-      <p className="copyrigth">StayInn @2023</p>
+      <p className="copyrigth">
+        <img src={logo} alt="logo sistema" />
+        StayInn @2023
+      </p>
     </SideBarMain>
   );
 };

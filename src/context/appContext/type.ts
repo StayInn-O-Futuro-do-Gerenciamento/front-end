@@ -104,8 +104,8 @@ export interface iAppContext {
   updateRoom: (data: tUpdateRoomData) => void;
   updateTypeRoom: (data: any) => void;
   createAttendant: (data: any) => void;
-  setTest: any;
-  test: any;
+  setFetchUpdateData: any;
+  fetchUpdateData: any;
   getTypeRoomId: string;
   registerManager: any;
   scheduleReservation: any;
@@ -118,4 +118,8 @@ export interface iAppContext {
   createOffer: (data: any) => void;
   toggleDarkMode: () => void;
   darkMode: boolean;
+  modalUpdateReservation: boolean;
+  updateReservation: (data: any) => void;
+  deleteReservation: (data?: any) => void;
+  updateOffer: (data: any) => void;
 }

@@ -4,7 +4,6 @@ import {
   iAppContextProps,
   iGuestData,
   iHotel,
-  iRoom,
   iUser,
 } from "./type";
 import { api } from "../../services/api";
@@ -20,7 +19,6 @@ import { toast } from "react-toastify";
 export const AppContext = createContext({} as iAppContext);
 
 export const AppProviders = ({ children }: iAppContextProps) => {
-  // Test - Apagar depois
   const [testState, setTestState] = useState<boolean>(true);
   const [createReservation, setCreateReservation] = useState<boolean>(false);
   const [modalUpdateRoom, setModalUpdateRoom] = useState<boolean>(false);
@@ -36,9 +34,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [modalUpdateTypeRoom, setModalUpdateTypeRoom] =
     useState<boolean>(false);
   const [modalCreateRoom, setModalCreateRoom] = useState(false);
+  const [modalUpdateReservation, setModalUpdateReservation] = useState(false);
   const [modalScheduleReservation, setModalScheduleReservation] =
     useState(false);
-  const [getReservationState, setGetReservationState] = useState<[]>(
+  const [getReservationState, setGetReservationState] = useState<[any]>(
     null as any
   );
   const [getRoomState, setGetRoomState] = useState(null as any);
@@ -52,17 +51,15 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [getTypeRoomSearchState, setGetTypeRoomSearchState] = useState(
     null as any
   );
-
   const [getRoomId, setGetRoomId] = useState(null as any);
   const [getTypeRoomId, setGetTypeRoomId] = useState(null as any);
-
-  // Fora de teste, REAL
+  const [getReservationId, setReservationId] = useState(null as any);
+  const [getOfferId, setOfferId] = useState(null as any);
   const [loadingButton, setLoadingButton] = useState(false);
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
-
   const [test, setTest] = useState();
-
+  const [fetchUpdateData, setFetchUpdateData] = useState();
   const [darkMode, setDarkMode] = useState(false);
 
   const toggleDarkMode = () => {
@@ -116,6 +113,15 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         break;
       case "typeRoomId":
         setGetTypeRoomId(value);
+        break;
+      case "updateReservation":
+        setModalUpdateReservation(value);
+        break;
+      case "reservationId":
+        setReservationId(value);
+        break;
+      case "offerId":
+        setOfferId(value);
         break;
     }
   };
@@ -236,6 +242,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
     };
+
     getOverview();
   }, []);
 
@@ -313,6 +320,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
       toast.success("Tipo de quarto alterado com sucesso!");
+      setModalUpdateTypeRoom(false);
+
+      console.log(responseUpdateTypeRoom);
     } catch (error) {
       console.log(error);
       toast.error("Erro no alteração do tipo de quarto.");
@@ -391,6 +401,80 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
+  const updateReservation = async (data: tUpdateTypeRoomData) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const responseGetReservation = await api.patch(
+        `reservation/${getReservationId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token!)}`,
+          },
+        }
+      );
+      const responseReservation = await api.get(`/reservation`);
+      setGetReservationState(responseReservation.data);
+      handleChangeFunction("updateReservation", false);
+      toast.info("Alteração realizada com sucesso!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro na alteração da reserva!");
+    }
+  };
+
+  const deleteReservation = async (id?: any) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      if (id) {
+        const responseGetReservation = await api.delete(`reservation/${id}`, {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token!)}`,
+          },
+        });
+        const responseReservation = await api.get(`/reservation`);
+        setGetReservationState(responseReservation.data);
+        handleChangeFunction("updateReservation", false);
+      } else {
+        const responseGetReservation = await api.delete(
+          `reservation/${getReservationId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(token!)}`,
+            },
+          }
+        );
+        const responseReservation = await api.get(`/reservation`);
+        setGetReservationState(responseReservation.data);
+        handleChangeFunction("updateReservation", false);
+        toast.success("Reserva deletada com sucesso!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateOffer = async (data: any) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const responseGetOffer = await api.patch(`offer/${getOfferId}`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+      const responseOffer = await api.get(`/reservation`);
+      setGetReservationState(responseOffer.data);
+      handleChangeFunction("updateReservation", false);
+      toast.success("Oferta atualizada com sucesso!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao atualizar a oferta!");
+    }
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -426,9 +510,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         createRoom,
         updateRoom,
         updateTypeRoom,
-        setTest,
+        setFetchUpdateData,
         getTypeRoomId,
-        test,
+        fetchUpdateData,
         registerManager,
         scheduleReservation,
         setGetReservationState,
@@ -441,6 +525,10 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         createOffer,
         toggleDarkMode,
         darkMode,
+        modalUpdateReservation,
+        updateReservation,
+        deleteReservation,
+        updateOffer,
       }}
     >
       {children}

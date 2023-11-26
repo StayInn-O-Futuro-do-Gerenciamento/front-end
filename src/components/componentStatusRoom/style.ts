@@ -116,7 +116,7 @@ export const LoadingBaseStyle = styled.div`
   align-items: center;
   padding-top: 70px;
   font-family: var(--font-family-inter);
-  background-color: #fff;
+  background-color: var(--grey-00);
   border-radius: 15px;
   width: 100%;
   height: 236px;

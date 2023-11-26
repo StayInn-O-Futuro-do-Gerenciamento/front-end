@@ -11,15 +11,8 @@ export const StyledContainerModal = styled.main`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
 
-  /* .modalGuest {
-    width: 500px;
-    padding: 30px;
-    background-color: white;
-  } */
-
   .modalUpdateRoom {
     width: 352px;
-    height: 400px;
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 16px;
@@ -38,17 +31,6 @@ export const StyledContainerModal = styled.main`
     border-radius: var(--border-radius);
     background-color: var(--grey-00);
     padding: 10px 15px 20px 15px;
-
-    .hospedeImage {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      .containerImage {
-        width: 100px;
-        height: 100px;
-      }
-    }
   }
   .formRegisterGuest {
     display: flex;
@@ -75,8 +57,12 @@ export const StyledContainerModal = styled.main`
       }
       h5 {
         margin-top: 8px;
+        color: var(--grey-700);
+        font-weight: var(--text-weight700);
+        font-size: var(--font-size2);
       }
       .emergencyContacts {
+        margin-top: 8px;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -156,7 +142,7 @@ export const StyledContainerModal = styled.main`
   }
 
   .modalAddRoom {
-    width: 352px;
+    width: 750px;
     padding: 16px;
     background-color: var(--grey-00);
     border-radius: var(--border-radius);
@@ -170,5 +156,21 @@ export const StyledContainerModal = styled.main`
     padding: 16px;
     background-color: var(--grey-00);
     border-radius: var(--border-radius);
+  }
+
+  .modalUpdateTypeRoom {
+    width: 750px;
+  }
+
+  .partirForm {
+    display: flex;
+    gap: 20px;
+    .div1,
+    .div2 {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
   }
 `;

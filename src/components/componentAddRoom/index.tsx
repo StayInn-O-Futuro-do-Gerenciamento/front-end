@@ -16,6 +16,7 @@ export const ComponentAddRoom = () => {
     setCurrentPage(1);
     setSelectedButton(buttonId);
   };
+  const userType = localStorage.getItem("userType");
 
   if (!getRoomState) {
     return (
@@ -110,15 +111,17 @@ export const ComponentAddRoom = () => {
             )
           </Button>
         </div>
-        <div className="buttonadd">
-          <Button
-            type="button"
-            buttonVariation="buttonCreate"
-            onClick={() => handleChangeFunction("modalCreateRoom", true)}
-          >
-            Adicionar Quartos
-          </Button>
-        </div>
+        {JSON.parse(userType!) !== "Attendant" && (
+          <div className="buttonadd">
+            <Button
+              type="button"
+              buttonVariation="buttonCreate"
+              onClick={() => handleChangeFunction("modalCreateRoom", true)}
+            >
+              Adicionar Quartos
+            </Button>
+          </div>
+        )}
       </div>
       <RoomFilteredList rooms={currentRooms} modalName="modalUpdateRoom" />
 

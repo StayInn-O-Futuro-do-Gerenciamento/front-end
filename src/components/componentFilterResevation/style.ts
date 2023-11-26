@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const FilterMain = styled.section`
   margin: 20px 20px;
   display: flex;
-  flex-direction: column; //Mudanças da imagen
-  gap: 15px; //Mudanças da imagen
+  flex-direction: column;
+  gap: 15px;
   width: 98%;
   padding: 32px;
   font-family: var(--font-family-inter);
@@ -13,7 +13,6 @@ export const FilterMain = styled.section`
     0px 4px 8px -2px rgba(16, 24, 40, 0.1);
 
   .back {
-    //Mudanças da imagen
     width: 36px;
     height: 36px;
     padding: 5px;
@@ -24,9 +23,9 @@ export const FilterMain = styled.section`
     filter: var(--svg-color-grey1);
   }
   .filterContent {
-    display: flex; //Mudanças da imagen
-    justify-content: space-between; //Mudanças da imagen
-    align-items: center; //Mudanças da imagen
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     .filter {
       display: flex;
       flex-direction: column;
@@ -127,6 +126,12 @@ export const FilterMain = styled.section`
         color: var(--orange-500);
         border: 2px solid var(--orange-500);
       }
+    }
+    .Warning {
+      color: var(--orange-500);
+      border: 2px solid var(--orange-500);
+      padding: 8px;
+      border-radius: 10px;
     }
   }
 `;

@@ -11,6 +11,8 @@ export const Input = ({
   className,
   onChange,
   onInput,
+  min,
+  max,
 }: iInputProps) => {
   return (
     <StyledInput>
@@ -26,6 +28,8 @@ export const Input = ({
         onInput={onInput}
         disabled={disable}
         {...register}
+        min={min}
+        max={max}
       />
     </StyledInput>
   );

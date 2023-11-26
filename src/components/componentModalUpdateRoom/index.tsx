@@ -6,18 +6,16 @@ import { ContainerButtonModal } from "../componentContainerButtonModal";
 import { ContainerModal } from "../componentContainerModal";
 import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
-import { Input } from "../componentInput";
 import { useContext } from "react";
-import { iUpdateRoom } from "../../context/appContext/type";
 
 export const ModalUpdateRoom = () => {
-  const { handleChangeFunction, updateRoom, getRoomState, test } =
+  const { handleChangeFunction, updateRoom, fetchUpdateData } =
     useContext(AppContext);
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {},
   } = useForm<tUpdateRoomData>({});
 
   const onSubmit = (data: tUpdateRoomData) => {
@@ -43,13 +41,6 @@ export const ModalUpdateRoom = () => {
           </Button>
         </HeaderModal>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            type="text"
-            label="Chave secreta"
-            placeholder="default value"
-            disable
-            defaultValue={test?.status}
-          />
           <label className="labelSelect" htmlFor="">
             <strong>Disponibilidade</strong>
           </label>
@@ -61,7 +52,7 @@ export const ModalUpdateRoom = () => {
             <strong>Status</strong>
           </label>
           <select
-            defaultValue={getRoomState}
+            defaultValue={fetchUpdateData.status}
             className="statusRoom"
             {...register("status")}
           >

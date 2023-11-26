@@ -2,14 +2,31 @@ import More from "../../assets/More.svg";
 import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
 import { TableRow } from "./style";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 export const ComponentTableList = ({ list, modalName, typeList }: any) => {
-  const { handleChangeFunction, getRoomState, setTest } =
+  const { handleChangeFunction, getRoomState, setFetchUpdateData } =
     useContext(AppContext);
 
   if (!list || list.length === 0) {
     return null;
   }
+
+  const renderFeedback = (feedback: number) => {
+    const starArray = [...Array(feedback)].map((_, i) => (
+      <FaStar className="estrela1" key={i} />
+    ));
+    const emptyStarArray = [...Array(5 - feedback)].map((_, i) => (
+      <FaRegStar className="estrela2" key={i} />
+    ));
+
+    return (
+      <span>
+        {starArray}
+        {emptyStarArray}
+      </span>
+    );
+  };
 
   let newList: any = [];
   list.map((item: any) => {
@@ -58,7 +75,9 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
                     <p
                       className={`${status || statusPromotion ? "status" : ""}`}
                     >
-                      {itemWithoutId[column]}
+                      {column === "feedBack"
+                        ? renderFeedback(Number(itemWithoutId[column]))
+                        : itemWithoutId[column]}
                     </p>
                   </td>
                 );
@@ -73,7 +92,7 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
                 onClick={() => {
                   handleChangeFunction(modalName, true);
                   handleChangeFunction(typeList, item.id);
-                  console.log(typeList);
+                  setFetchUpdateData(item);
                 }}
               />
             </td>

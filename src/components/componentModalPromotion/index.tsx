@@ -39,7 +39,7 @@ export const ModalPromotion = () => {
     data.finishDate = new Date(data.finishDate);
     data.startDate = moment(data.startDate).format("YYYY-MM-DDTHH:mm:ss");
     data.finishDate = moment(data.finishDate).format("YYYY-MM-DDTHH:mm:ss");
-  
+
     createOffer(data);
   };
 
