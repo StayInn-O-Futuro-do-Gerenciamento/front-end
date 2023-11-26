@@ -12,25 +12,35 @@ export const PageHotelStyle = styled.div`
   align-items: center;
   justify-content: center;
 
-  form {
-    input {
-      height: 45px;
-      background-color: #d9d9d9;
-      padding: 0px 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 20px;
-      width: 100% !important;
+  div {
+    background-color: var(--grey-00);
+
+    form {
+      input {
+        height: 45px;
+        background-color: var(--grey-50);
+        padding: 0px 10px;
+        border: none;
+        border-radius: 10px;
+        font-size: 20px;
+        width: 100% !important;
+      }
+      button {
+        margin-top: 20px;
+        height: 45px;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      label {
+        width: 100%;
+      }
     }
-    button {
-      margin-top: 20px;
-      height: 45px;
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 20px;
+    h2 {
+      color: var(--grey-700);
     }
-    label {
-      width: 100%;
+    p {
+      color: var(--grey-700);
     }
   }
 `;

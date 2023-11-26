@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { RoutesMain } from "./routes";
 import { GlobalStyle } from "./style/global";
 import { AppContext } from "./context/appContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { darkMode } = useContext(AppContext);
@@ -19,6 +21,19 @@ function App() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={darkTheme as "dark" | "light"}
+      />
+
       <GlobalStyle theme={themeObject} />
       <RoutesMain />
     </>
