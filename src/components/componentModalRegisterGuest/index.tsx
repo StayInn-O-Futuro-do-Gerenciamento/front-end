@@ -5,7 +5,6 @@ import { ContainerModal } from "../componentContainerModal";
 import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
-import profile from "../../assets/profile/perfil.png";
 import { AppContext } from "../../context/appContext";
 import { useContext, useState } from "react";
 import { iGuestData } from "../../context/appContext/type";
@@ -35,7 +34,11 @@ export const ModalRegisterGuest = () => {
   });
 
   const onSubmit = (data: registerGuestData) => {
-    const { phoneNumbers: phone1, phoneNumber2: phone2, ...requestData } = data;
+    const {
+      phoneNumbers: phone1,
+      phoneNumbers2: phone2,
+      ...requestData
+    } = data;
     const guestData: iGuestData = {
       ...requestData,
       phoneNumbers: [phone1, phone2],
@@ -155,11 +158,11 @@ export const ModalRegisterGuest = () => {
                   <Input
                     type="number"
                     placeholder="Celular 2"
-                    register={register("phoneNumber2")}
+                    register={register("phoneNumbers2")}
                   />
-                  {errors.phoneNumber2 ? (
+                  {errors.phoneNumbers2 ? (
                     <span className="errorMessage">
-                      {errors.phoneNumber2.message}
+                      {errors.phoneNumbers2.message}
                     </span>
                   ) : (
                     <></>

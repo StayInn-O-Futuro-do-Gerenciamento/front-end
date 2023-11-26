@@ -11,7 +11,7 @@ export const registerGuestSchemas = z.object({
     .min(1, "Nacionalidade obrigatória")
     .max(15, "Máximo 15 caracteres"),
   phoneNumbers: z.string().min(1, "Celular necessario"),
-  phoneNumber2: z.string(),
+  phoneNumbers2: z.string(),
   emergencyContacts: z.array(
     z.object({
       name: z.string().min(1, "Nome é obrigatório"),
