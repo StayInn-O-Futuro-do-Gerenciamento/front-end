@@ -44,8 +44,8 @@ export const Reservation = () => {
     return (
       <ReservationMain>
         <Sidebar />
-        <NavBarSearch />
         <div className="mainContet">
+          <NavBarSearch />
           <LoadingBaseStyle>
             <ReactLoading
               type={"spinningBubbles"}

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BarMain = styled.div`
-  width: 60%;
+  width: 63%;
   height: 340px;
   background-color: var(--grey-00);
   border-radius: var(--border-radius);
@@ -18,7 +18,7 @@ export const LoadingBaseStyle = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 150px;
-  width: 60%;
+  width: 63%;
   height: 340px;
   background-color: var(--grey-00);
   border-radius: var(--border-radius);

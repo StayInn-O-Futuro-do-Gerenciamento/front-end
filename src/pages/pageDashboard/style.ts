@@ -5,6 +5,7 @@ export const StyledContainerDashboard = styled.div`
   overflow: hidden;
 
   max-width: 100%;
+  background: var(--grey-00);
 
   .containerMain {
     width: 90%;
