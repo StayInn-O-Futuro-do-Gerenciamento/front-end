@@ -25,7 +25,7 @@ export const Reservation = () => {
 
   const roomsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const maxVisibleButtons = 10;
+  const maxVisibleButtons = 3;
   useEffect(() => {
     setCurrentPage(1);
     let token: string = "";
@@ -147,13 +147,13 @@ export const Reservation = () => {
             modalName="modalScheduleReservation"
           />
           <div className="pageDiv">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <img src={Left} alt="" />
+            </button>
             <ul className="pagination">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                <img src={Left} alt="" />
-              </button>
               {pageButtons.map((page, index) => (
                 <li
                   key={index}
@@ -163,13 +163,13 @@ export const Reservation = () => {
                   {page}
                 </li>
               ))}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                <img src={Right} alt="" />
-              </button>
             </ul>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <img src={Right} alt="" />
+            </button>
           </div>
         </div>
       )}

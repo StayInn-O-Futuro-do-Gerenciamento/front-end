@@ -37,7 +37,7 @@ export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
         <p>Oasis</p>
       </div>
       {children}
-      <p className="direitos">Todos os direitos reservados StayInn @2023</p>
+      <p className="direitos">Todos os direitos reservados StayINN @2023</p>
     </ComponentModalPageHotelCreateStyle>
   );
 };
