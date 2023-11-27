@@ -19,20 +19,33 @@ export const Overview = () => {
     );
   }
 
-  const today = new Date().toISOString().split("T")[0];
+  const currentDate = new Date();
 
-  const todaysCheckIns = getReservationState.filter(
-    (reservation: any) => reservation.checkin.split("T")[0] === today
-  );
-  const todaysCheckOuts = getReservationState.filter(
-    (reservation: any) => reservation.checkout.split("T")[0] === today
+  const guestsCurrentlyInHotel = getReservationState.filter(
+    (reservation: any) => {
+      const checkinDate = new Date(reservation.checkin.split("T")[0]);
+      const checkoutDate = new Date(reservation.checkout.split("T")[0]);
+
+      return checkinDate <= currentDate && checkoutDate >= currentDate;
+    }
   );
 
-  const totalAdults = todaysCheckIns.reduce(
+  const todaysCheckIns = guestsCurrentlyInHotel.filter(
+    (reservation: any) =>
+      reservation.checkin.split("T")[0] ===
+      currentDate.toISOString().split("T")[0]
+  );
+  const todaysCheckOuts = guestsCurrentlyInHotel.filter(
+    (reservation: any) =>
+      reservation.checkout.split("T")[0] ===
+      currentDate.toISOString().split("T")[0]
+  );
+
+  const totalAdults = guestsCurrentlyInHotel.reduce(
     (acc: any, reservation: any) => acc + reservation.numberAdults,
     0
   );
-  const totalKids = todaysCheckIns.reduce(
+  const totalKids = guestsCurrentlyInHotel.reduce(
     (acc: any, reservation: any) => acc + reservation.numberKids,
     0
   );

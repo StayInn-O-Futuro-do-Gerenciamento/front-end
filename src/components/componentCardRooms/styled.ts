@@ -64,8 +64,13 @@ export const StyledCardRoom = styled.div`
       font-size: 16px;
       font-weight: 600;
       font-family: sans-serif;
+      max-width: 185px;
+      max-height: 20px;
+      line-height: 24px;
 
       color: var(--grey-600);
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .pOccupied {

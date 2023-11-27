@@ -15,12 +15,22 @@ export const PageWpp = () => {
       <div className="mainContet">
         <NavBarSearch />
         <div className="container-connect">
-          <h3>Conectar WhatsApp</h3>
+          <h2>Conectar WhatsApp</h2>
           {instanceWpp ? (
             <h2>WhatsApp Conectado</h2>
           ) : !qrCodeWpp ? (
-            <div>
-              <h2>Envie mensagens de confirmação para seus hóspedes!</h2>
+            <div className="div1">
+              <h3>Envie mensagens de confirmação para seus hóspedes!</h3>
+
+              <div>
+                <div>
+                  <p>1. Clique no botão de conectar WhatsApp</p>
+                </div>
+                <div>
+                  <p>2. Escaneie o QRcode</p>
+                </div>
+              </div>
+
               <Button
                 className="button-submit"
                 buttonVariation="buttonCreate"
@@ -28,11 +38,13 @@ export const PageWpp = () => {
                 onClick={createInstance}
                 disabled={loadingButton}
               >
-                {loadingButton ? "Carregando.." : "Criar instância"}
+                {loadingButton ? "Carregando.." : "Conectar WhatsApp"}
               </Button>
             </div>
           ) : (
-            <img className="qrCodeImg" src={qrCodeWpp} alt="codeQR" />
+            <div className="qrcode">
+              <img className="qrCodeImg" src={qrCodeWpp} alt="codeQR" />
+            </div>
           )}
         </div>
       </div>
