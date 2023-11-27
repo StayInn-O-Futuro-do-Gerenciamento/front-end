@@ -217,13 +217,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
           },
         }
       );
-      setGetGuestState(responseUpdateGuest.data);
 
-      toast.success("Cadastro de hóspede com sucesso!");
+      toast.success("Hospede atualizado com sucesso!");
 
-      handleChangeFunction("modalCreateGuest", false);
+      handleChangeFunction("modalUpdateGuest", false);
     } catch (error) {
-      toast.error("Não foi possivel concluir o cadastro!");
+      toast.error("Não foi possivel atualizar o hospede!");
     }
   };
 

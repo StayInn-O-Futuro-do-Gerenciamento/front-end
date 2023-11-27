@@ -36,6 +36,7 @@ export const ComponentListGuest = () => {
       let price = await getFrankstainHistoryPrice(element.id);
 
       return {
+        id: element.id,
         name: element.name,
         nacionalidade: element.nationality,
         rg: element.rg,
@@ -72,6 +73,7 @@ export const ComponentListGuest = () => {
       ).guests[0];
 
       guestsWithReservations.push({
+        id: element.id,
         name: guestInfo.name,
         nacionalidade: guestInfo.nationality,
         rg: guestInfo.rg,
@@ -146,7 +148,11 @@ export const ComponentListGuest = () => {
             <th></th>
           </tr>
         </thead>
-        <ComponentTableList list={currentRooms} modalName="modalUpdateGuest" />
+        <ComponentTableList
+          list={currentRooms}
+          modalName="modalUpdateGuest"
+          typeList="getGuestId"
+        />
       </TableStyled>
       <ul className="pagination">
         <button
