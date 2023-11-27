@@ -15,7 +15,8 @@ export const StyledStatusRoom = styled.div`
   border-radius: 15px;
 
   font-family: var(--font-family-inter);
-  h3 {
+  h3,
+  h2 {
     font-size: var(--font-size1);
     font-weight: var(--text-weight600);
     color: var(--grey-700);

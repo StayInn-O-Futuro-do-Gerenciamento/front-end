@@ -25,6 +25,7 @@ export const Reservation = () => {
 
   const roomsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
+  const maxVisibleButtons = 10;
   useEffect(() => {
     setCurrentPage(1);
     let token: string = "";
@@ -116,6 +117,16 @@ export const Reservation = () => {
     setCurrentPage(page);
   };
 
+  const maxPagesToLeft = Math.floor(maxVisibleButtons / 2);
+  const maxPagesToRight = Math.ceil(maxVisibleButtons / 2);
+  const startPage = Math.max(1, currentPage - maxPagesToLeft);
+  const endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
+
+  const pageButtons = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index
+  );
+
   return (
     <ReservationMain>
       {modalUpdateTypeRoom && <ModalUpdateTypeRoom />}
@@ -143,13 +154,13 @@ export const Reservation = () => {
               >
                 <img src={Left} alt="" />
               </button>
-              {Array.from({ length: totalPages }, (_, index) => (
+              {pageButtons.map((page, index) => (
                 <li
-                  key={index + 1}
-                  onClick={() => handlePageChange(index + 1)}
-                  className={currentPage === index + 1 ? "active" : ""}
+                  key={index}
+                  onClick={() => handlePageChange(page)}
+                  className={currentPage === page ? "active" : ""}
                 >
-                  {index + 1}
+                  {page}
                 </li>
               ))}
               <button
