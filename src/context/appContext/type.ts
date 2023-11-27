@@ -4,6 +4,7 @@ import {
   tUpdateRoomData,
   tUpdateTypeRoomData,
 } from "../../schemas/schemaRoom";
+import { tUpdateGuestData } from "../../schemas/schemaGuest";
 
 // Typagem do children
 export interface iAppContextProps {
@@ -97,6 +98,7 @@ export interface iAppContext {
   getHistoryState: any;
   getOfferState: any;
   registerGuest: (data: iGuestData) => void;
+  updateGuest: (data: tUpdateGuestData) => void;
   getTypeRoomPaginationState: any;
   getTypeRoomSearchState: any;
   getRoomId: any;
@@ -125,4 +127,5 @@ export interface iAppContext {
   createInstance: () => void;
   qrCodeWpp: string;
   instanceWpp: string;
+  getGuestId: string;
 }

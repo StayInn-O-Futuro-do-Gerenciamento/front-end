@@ -38,7 +38,8 @@ export const updateGuestSchemas = z
       .string()
       .min(1, "Nacionalidade obrigatória")
       .max(15, "Máximo 15 caracteres"),
-    phoneNumbers: z.array(z.string()),
+    phoneNumbers: z.string().min(1, "Celular necessario"),
+    phoneNumbers2: z.string(),
     emergencyContacts: z.array(
       z.object({
         name: z.string(),
@@ -55,5 +56,7 @@ export const guestReturnSchema = registerGuestSchemas.extend({
     id: z.string(),
   }),
 });
+
+export type tUpdateGuestData = z.infer<typeof updateGuestSchemas>;
 
 export type registerGuestData = z.infer<typeof registerGuestSchemas>;
