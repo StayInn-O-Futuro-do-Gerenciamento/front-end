@@ -128,4 +128,5 @@ export interface iAppContext {
   qrCodeWpp: string;
   instanceWpp: string;
   getGuestId: string;
+  updateOfferAuto: (data: any, id: any) => void;
 }

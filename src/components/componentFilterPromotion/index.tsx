@@ -9,17 +9,26 @@ import Right from "../../assets/Chevron right.svg";
 import ReactLoading from "react-loading";
 
 export const FilterPromotion = () => {
-  const { handleChangeFunction, getOfferState } = useContext(AppContext);
+  const { handleChangeFunction, getOfferState, updateOfferAuto } =
+    useContext(AppContext);
   const [selectedButton, setSelectedButton] = useState("all");
   const [promotions, setPromotions] = useState<any>([]);
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const userType = localStorage.getItem("userType");
 
   useEffect(() => {
     if (getOfferState) {
       const today = new Date();
 
       const processedPromotions = getOfferState.map((offer: any) => {
+        const actualDate = new Date();
+        const offerDate = new Date(offer.finishDate);
+        if (offerDate < actualDate) {
+          if (offer.typeRoom.length > 0) {
+            updateOfferAuto({ typeRoom: null }, offer.id);
+          }
+        }
         const availableRoomsCount = offer.typeRoom.reduce(
           (count: any, roomType: any) => {
             const availableRooms = roomType.rooms.filter(
@@ -157,14 +166,16 @@ export const FilterPromotion = () => {
             Programadas
           </Button>
         </div>
-        <Button
-          type="button"
-          buttonVariation="buttonCreate"
-          onClick={() => handleChangeFunction("modalCreatePromotion", true)}
-          className="offer"
-        >
-          Adicionar oferta
-        </Button>
+        {JSON.parse(userType!) !== "Attendant" && (
+          <Button
+            type="button"
+            buttonVariation="buttonCreate"
+            onClick={() => handleChangeFunction("modalCreatePromotion", true)}
+            className="offer"
+          >
+            Adicionar oferta
+          </Button>
+        )}
       </div>
       <TableStyled>
         <thead>

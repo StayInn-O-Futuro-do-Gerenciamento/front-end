@@ -8,12 +8,30 @@ import { RateMain } from "./style";
 import { useContext, useEffect } from "react";
 
 export const Rate = () => {
-  const { modalUpdateTypeRoom, setGetTypeRoomState } = useContext(AppContext);
+  const {
+    modalUpdateTypeRoom,
+    setGetTypeRoomState,
+    getOfferState,
+    updateOfferAuto,
+  } = useContext(AppContext);
   useEffect(() => {
     let token: string = "";
     const local = localStorage.getItem("token");
     if (local) {
       token = JSON.parse(local);
+    }
+    if (getOfferState) {
+      getOfferState.forEach((offer: any) => {
+        const actualDate = new Date();
+        const offerDate = new Date(offer.finishDate);
+        if (offerDate < actualDate) {
+          console.log(offer);
+          if (offer.typeRoom.length > 0) {
+            console.log("aaa");
+            updateOfferAuto({ typeRoom: null }, offer.id);
+          }
+        }
+      });
     }
 
     const getHospede = async () => {
@@ -21,6 +39,7 @@ export const Rate = () => {
       const responseTypeRoom = await api.get(`/typeRoom`);
       setGetTypeRoomState(responseTypeRoom.data);
     };
+
     getHospede();
   }, []);
   return (

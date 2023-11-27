@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const PageWppStyle = styled.div`
   display: flex;
+  font-family: var(--font-family-inter);
   .mainContet {
     width: 100%;
     background: var(--grey-00);
