@@ -6,7 +6,7 @@ import ReactLoading from "react-loading";
 export const StatusRoom = () => {
   const { getRoomState } = useContext(AppContext);
 
-  if (!getRoomState || getRoomState.length === 0) {
+  if (!getRoomState) {
     return (
       <LoadingBaseStyle>
         <ReactLoading
@@ -16,6 +16,14 @@ export const StatusRoom = () => {
           width={150}
         />
       </LoadingBaseStyle>
+    );
+  }
+
+  if (getRoomState.length === 0) {
+    return (
+      <StyledStatusRoom>
+        <h2>Não Há Quartos no momento</h2>
+      </StyledStatusRoom>
     );
   }
 

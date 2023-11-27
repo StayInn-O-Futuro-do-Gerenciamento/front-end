@@ -8,8 +8,7 @@ import ReactLoading from "react-loading";
 
 export const Room = () => {
   const { getTypeRoomState } = useContext(AppContext);
-
-  if (!getTypeRoomState || getTypeRoomState.length === 0) {
+  if (!getTypeRoomState) {
     return (
       <LoadingBaseStyle>
         <ReactLoading
@@ -19,6 +18,13 @@ export const Room = () => {
           width={150}
         />
       </LoadingBaseStyle>
+    );
+  }
+  if (getTypeRoomState.length === 0) {
+    return (
+      <StyledRoom>
+        <h2>Não Há Quartos no momento</h2>
+      </StyledRoom>
     );
   }
 
