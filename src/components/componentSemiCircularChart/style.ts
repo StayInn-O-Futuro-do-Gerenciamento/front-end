@@ -11,7 +11,8 @@ export const SemiCircularChartMain = styled.div`
   width: 396px;
   height: 340px;
 
-  h3 {
+  h3,
+  h2 {
     font-size: var(--font-size3);
     color: var(--grey-700);
     font-weight: var(--text-weight500);

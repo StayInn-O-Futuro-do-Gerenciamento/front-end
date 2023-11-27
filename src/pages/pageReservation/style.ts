@@ -22,6 +22,8 @@ export const ReservationMain = styled.div`
     cursor: pointer;
     list-style: none;
     padding: 0;
+    /* width: 300px; */
+    /* margin: 0 auto; */
     li {
       padding: 0 8px;
       margin: 0 4px;
