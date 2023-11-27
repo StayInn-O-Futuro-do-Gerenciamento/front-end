@@ -158,7 +158,7 @@ export const Sidebar = () => {
       </div>
       <p className="copyrigth">
         <img src={logo} alt="logo sistema" />
-        StayInn @2023
+        StayINN @2023
       </p>
     </SideBarMain>
   );
