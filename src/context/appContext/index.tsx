@@ -15,6 +15,7 @@ import {
 } from "../../schemas/schemaRoom";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { tUpdateGuestData } from "../../schemas/schemaGuest";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -53,12 +54,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   );
   const [getRoomId, setGetRoomId] = useState(null as any);
   const [getTypeRoomId, setGetTypeRoomId] = useState(null as any);
+  const [getGuestId, setGetGuestId] = useState(null as any);
   const [getReservationId, setReservationId] = useState(null as any);
   const [getOfferId, setOfferId] = useState(null as any);
   const [loadingButton, setLoadingButton] = useState(false);
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
-  const [test, setTest] = useState();
   const [fetchUpdateData, setFetchUpdateData] = useState();
   const [darkMode, setDarkMode] = useState(false);
   const [qrCodeWpp, setQrCodeWpp] = useState("");
@@ -125,6 +126,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       case "offerId":
         setOfferId(value);
         break;
+      case "getGuestId":
+        setGetGuestId(value);
+        break;
     }
   };
 
@@ -189,6 +193,31 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       });
       const responseGuest = await api.get(`/guest?pageSize=2000`);
       setGetGuestState(responseGuest.data);
+
+      toast.success("Cadastro de hóspede com sucesso!");
+
+      handleChangeFunction("modalCreateGuest", false);
+    } catch (error) {
+      toast.error("Não foi possivel concluir o cadastro!");
+    }
+  };
+
+  console.log(getGuestId);
+
+  const updateGuest = async (data: tUpdateGuestData) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const responseUpdateGuest = await api.patch(
+        `/guest/${getGuestId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token!)}`,
+          },
+        }
+      );
+      setGetGuestState(responseUpdateGuest.data);
 
       toast.success("Cadastro de hóspede com sucesso!");
 
@@ -549,6 +578,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         createInstance,
         qrCodeWpp,
         instanceWpp,
+        updateGuest,
+        getGuestId,
       }}
     >
       {children}

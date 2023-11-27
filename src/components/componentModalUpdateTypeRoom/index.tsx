@@ -13,8 +13,7 @@ import { Input } from "../componentInput";
 import { useContext } from "react";
 
 export const ModalUpdateTypeRoom = () => {
-  const { handleChangeFunction, updateTypeRoom, fetchUpdateData } =
-    useContext(AppContext);
+  const { handleChangeFunction, updateTypeRoom } = useContext(AppContext);
 
   const { register, handleSubmit } = useForm<tUpdateTypeRoomData>({});
 
