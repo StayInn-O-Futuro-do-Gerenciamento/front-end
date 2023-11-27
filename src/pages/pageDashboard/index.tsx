@@ -20,6 +20,8 @@ export const Dashboard = () => {
     setGetGuestState,
     setGetHistoryState,
     setGetOfferState,
+    getOfferState,
+    updateOfferAuto,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -49,7 +51,21 @@ export const Dashboard = () => {
 
       const responseOffer = await api.get(`/offer`);
       setGetOfferState(responseOffer.data);
+      if (getOfferState) {
+        getOfferState.forEach((offer: any) => {
+          const actualDate = new Date();
+          const offerDate = new Date(offer.finishDate);
+          if (offerDate < actualDate) {
+            console.log(offer);
+            if (offer.typeRoom.length > 0) {
+              console.log("aaa");
+              updateOfferAuto({ typeRoom: null }, offer.id);
+            }
+          }
+        });
+      }
     };
+
     getOverview();
   }, []);
 

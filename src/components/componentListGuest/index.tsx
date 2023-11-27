@@ -21,6 +21,7 @@ export const ComponentListGuest = () => {
   const [selectedButton, setSelectedButton] = useState("all");
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const userType = localStorage.getItem("userType");
 
   useEffect(() => {
     fetchData();
@@ -127,9 +128,11 @@ export const ComponentListGuest = () => {
             <img src={searchButton} alt="" />
             <input placeholder="Search by room number" type="text" />
           </div>
-          <div onClick={() => handleChangeFunction("modalCreateGuest", true)}>
-            <p>Cadastrar hospedes</p>
-          </div>
+          {JSON.parse(userType!) == "Attendant" && (
+            <div onClick={() => handleChangeFunction("modalCreateGuest", true)}>
+              <p>Cadastrar hospedes</p>
+            </div>
+          )}
         </div>
       </div>
       <TableStyled>

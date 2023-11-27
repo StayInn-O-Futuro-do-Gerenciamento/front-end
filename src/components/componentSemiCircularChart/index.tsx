@@ -19,7 +19,7 @@ interface Room {
 export const SemiCircularChart = () => {
   const { getRoomState } = useContext(AppContext);
 
-  if (!getRoomState || getRoomState.length === 0) {
+  if (!getRoomState) {
     return (
       <LoadingBaseStyle>
         <ReactLoading
@@ -29,6 +29,13 @@ export const SemiCircularChart = () => {
           width={150}
         />
       </LoadingBaseStyle>
+    );
+  }
+  if (getRoomState.length === 0) {
+    return (
+      <SemiCircularChartMain>
+        <h2>Não Há Quartos no momento</h2>
+      </SemiCircularChartMain>
     );
   }
 

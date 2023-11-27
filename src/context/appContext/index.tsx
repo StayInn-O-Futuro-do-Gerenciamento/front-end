@@ -508,6 +508,25 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       toast.error("Erro ao atualizar a oferta!");
     }
   };
+  const updateOfferAuto = async (data: any, id: any) => {
+    const token = localStorage.getItem("token");
+
+    try {
+      const responseGetOffer = await api.patch(`offer/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
+      const responseOffer = await api.get(`/reservation`);
+      setGetReservationState(responseOffer.data);
+      handleChangeFunction("updateReservation", false);
+      console.log(responseOffer.data);
+      // toast.success("Oferta atualizada com sucesso!");
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao atualizar a oferta!");
+    }
+  };
 
   const createInstance = async () => {
     try {
@@ -580,6 +599,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         instanceWpp,
         updateGuest,
         getGuestId,
+        updateOfferAuto,
       }}
     >
       {children}

@@ -35,7 +35,8 @@ export const Sidebar = () => {
     navigate(buttonId);
   };
   const logout = () => {
-    localStorage.clear();
+    localStorage.removeItem("userType");
+    localStorage.removeItem("token");
     navigate("/");
   };
 
@@ -131,8 +132,10 @@ export const Sidebar = () => {
                 <img src={Attendant} alt="Cadastro de Atendentes" />
                 <p>+ Atendentes</p>
               </li>
-              <li onClick={() => navigate("/wpp")}>
-                {/* <img src={wppImg} alt="Conectar WhatsApp" /> */}
+              <li
+                onClick={() => handleButtonClick("/wpp")}
+                className={selectedButton === "/wpp" ? "selected-btn" : ""}
+              >
                 <PiWhatsappLogo
                   className="typeRoom"
                   style={{ width: 30, height: 30, color: `#667085` }}
