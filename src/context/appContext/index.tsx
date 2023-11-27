@@ -272,7 +272,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
 
-      const responseListInstance = await api.get(`wpp`);
+      const responseListInstance = await api.get(`/wpp`);
       setInstanceWpp(responseListInstance.data.instanceName);
     };
 
