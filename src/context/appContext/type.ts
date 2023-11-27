@@ -98,7 +98,7 @@ export interface iAppContext {
   getHistoryState: any;
   getOfferState: any;
   registerGuest: (data: iGuestData) => void;
-  updateGuest: (data: tUpdateGuestData) => void;
+  updateGuest: (data: any) => void;
   getTypeRoomPaginationState: any;
   getTypeRoomSearchState: any;
   getRoomId: any;

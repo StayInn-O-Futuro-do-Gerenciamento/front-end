@@ -26,8 +26,34 @@ export const ModalUpdateGuest = () => {
     // resolver: zodResolver(updateGuestSchemas),
   });
 
-  const onSubmit = (data: tUpdateGuestData) => {
-    updateGuest(data);
+  const onSubmit = (data: any) => {
+    const {
+      phoneNumbers: phone1,
+      phoneNumbers2: phone2,
+      ...requestData
+    } = data;
+    const guestData: iGuestData = {
+      ...requestData,
+      phoneNumbers: [phone1, phone2],
+    };
+
+    const dataBody = Object.fromEntries(
+      Object.entries(guestData).filter(([key, value]) => {
+        if (Array.isArray(value)) {
+          return value.filter((item) => item !== "").length > 0;
+        } else if (typeof value === "object" && value !== null) {
+          return Object.values(value).filter((item) => item !== "").length > 0;
+        }
+
+        return value !== "" && value !== undefined;
+      })
+    );
+
+    if (Object.keys(dataBody).length > 0) {
+      updateGuest(dataBody);
+    } else {
+      console.log("Objeto vazio, não enviado.");
+    }
   };
   console.log(fetchUpdateData);
   return (
