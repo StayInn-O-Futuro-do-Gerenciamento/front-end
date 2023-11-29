@@ -25,7 +25,6 @@ export const ModalAddRoom = () => {
     data.typeRoom.price = Number(data.typeRoom.price);
     data.typeRoom.roomTypeQuantity = Number(data.typeRoom.roomTypeQuantity);
     data.typeRoom.personCount = Number(data.typeRoom.personCount);
-    console.log(data);
     createRoom(data);
   };
 

@@ -14,7 +14,6 @@ export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
   const [currentUrl, setCurrentUrl] = useState<string>("");
 
   useEffect(() => {
-    // Obter a URL completa
     const currentUrl = window.location.pathname;
 
     setCurrentUrl(currentUrl);
@@ -37,7 +36,7 @@ export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
         <p>Oasis</p>
       </div>
       {children}
-      <p className="direitos">Todos os direitos reservados StayInn @2023</p>
+      <p className="direitos">Todos os direitos reservados StayINN @2023</p>
     </ComponentModalPageHotelCreateStyle>
   );
 };

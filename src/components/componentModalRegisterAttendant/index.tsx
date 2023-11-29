@@ -22,7 +22,6 @@ export const ModalRegisterAttendat = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log(data);
     createAttendant(data);
   };
 

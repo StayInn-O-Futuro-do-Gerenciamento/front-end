@@ -25,7 +25,6 @@ export const ModalUpdateReservation = () => {
     if (Object.keys(dataBody).length > 0) {
       updateReservation(dataBody);
     } else {
-      console.log("Objeto vazio, não enviado.");
     }
   };
 
