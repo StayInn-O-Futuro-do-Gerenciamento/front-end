@@ -8,16 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const { darkMode } = useContext(AppContext);
   const mode = localStorage.getItem("darkMode");
+  const modeColor = localStorage.getItem("colorMode");
 
   let darkTheme = darkMode === true ? "dark" : "light";
 
   if (mode) {
     darkTheme = JSON.parse(mode) === true ? "dark" : "light";
   }
-
-  const themeObject = {
-    mode: darkTheme as "dark" | "light",
-  };
 
   return (
     <>
@@ -34,7 +31,7 @@ function App() {
         theme={darkTheme as "dark" | "light"}
       />
 
-      <GlobalStyle theme={themeObject} />
+      <GlobalStyle theme={JSON.parse(modeColor!)} />
       <RoutesMain />
     </>
   );

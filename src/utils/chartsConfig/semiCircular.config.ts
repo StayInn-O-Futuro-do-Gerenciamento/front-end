@@ -1,5 +1,6 @@
 const yAxisLabelColor = "var(--grey-700)";
 const barAxisLabelColor = "var(--grey-50)";
+const barAxisColor = "var(--orange-400)";
 
 export const options: ApexCharts.ApexOptions = {
   chart: {
@@ -7,7 +8,7 @@ export const options: ApexCharts.ApexOptions = {
     type: "radialBar",
   },
 
-  colors: ["#F9A63A"],
+  colors: [barAxisColor],
 
   plotOptions: {
     radialBar: {
@@ -25,7 +26,7 @@ export const options: ApexCharts.ApexOptions = {
         name: {
           offsetY: -30,
           show: false,
-          color: "#F9A63A",
+          color: barAxisColor,
           fontSize: "13px",
         },
         value: {

@@ -37,7 +37,7 @@ export const ComponentModalPageLoginCreate: React.FC<childrenForm> = ({
 
       <div className="logo">
         <img src={logo} alt="" />
-        <p>Oasis</p>
+        <p>StayINN</p>
       </div>
       {children}
       <p className="direitos">Todos os direitos reservados StayINN @2023</p>

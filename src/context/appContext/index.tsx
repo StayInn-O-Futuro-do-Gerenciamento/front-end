@@ -61,13 +61,21 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
   const [fetchUpdateData, setFetchUpdateData] = useState();
-  const [darkMode, setDarkMode] = useState(false);
+
   const [qrCodeWpp, setQrCodeWpp] = useState("");
   const [instanceWpp, setInstanceWpp] = useState("");
 
+  const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
     setDarkMode(!darkMode);
+  };
+
+  const [colorMode, setColorMode] = useState("light");
+  const toggleColorMode = (color: string) => {
+    localStorage.setItem("colorMode", JSON.stringify(color));
+
+    setColorMode(color);
   };
 
   const handleChangeFunction = (state: string, value: boolean | any) => {
@@ -601,6 +609,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         updateGuest,
         getGuestId,
         updateOfferAuto,
+        toggleColorMode,
+        colorMode,
+        setColorMode,
       }}
     >
       {children}

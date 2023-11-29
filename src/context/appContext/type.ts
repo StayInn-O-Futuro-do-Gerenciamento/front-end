@@ -129,4 +129,7 @@ export interface iAppContext {
   instanceWpp: string;
   getGuestId: string;
   updateOfferAuto: (data: any, id: any) => void;
+  toggleColorMode: (color: string) => void;
+  colorMode: string;
+  setColorMode: React.Dispatch<React.SetStateAction<string>>;
 }
