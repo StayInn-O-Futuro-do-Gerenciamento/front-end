@@ -52,10 +52,9 @@ export const ModalUpdateGuest = () => {
     if (Object.keys(dataBody).length > 0) {
       updateGuest(dataBody);
     } else {
-      console.log("Objeto vazio, não enviado.");
     }
   };
-  console.log(fetchUpdateData);
+
   return (
     <ContainerModal>
       <div className="modalUpdateGuest">

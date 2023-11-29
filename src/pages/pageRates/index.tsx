@@ -25,9 +25,7 @@ export const Rate = () => {
         const actualDate = new Date();
         const offerDate = new Date(offer.finishDate);
         if (offerDate < actualDate) {
-          console.log(offer);
           if (offer.typeRoom.length > 0) {
-            console.log("aaa");
             updateOfferAuto({ typeRoom: null }, offer.id);
           }
         }
