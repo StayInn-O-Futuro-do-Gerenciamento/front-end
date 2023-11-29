@@ -61,13 +61,21 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [user, setUser] = useState<iUser | null>(null);
   const [hotel, setHotel] = useState<iHotel | null>(null);
   const [fetchUpdateData, setFetchUpdateData] = useState();
-  const [darkMode, setDarkMode] = useState(false);
+
   const [qrCodeWpp, setQrCodeWpp] = useState("");
   const [instanceWpp, setInstanceWpp] = useState("");
 
+  const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
     setDarkMode(!darkMode);
+  };
+
+  const [colorMode, setColorMode] = useState("light");
+  const toggleColorMode = (color: string) => {
+    localStorage.setItem("colorMode", JSON.stringify(color));
+
+    setColorMode(color);
   };
 
   const handleChangeFunction = (state: string, value: boolean | any) => {
@@ -163,9 +171,14 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   };
 
   const createHotel = async (data: iHotel) => {
+    const token = localStorage.getItem("token");
     try {
       setLoadingButton(true);
-      const responseCreate = await api.post("/hotel", data);
+      const responseCreate = await api.post("/hotel", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(token!)}`,
+        },
+      });
       setHotel(responseCreate.data);
       navigate("/dashboard");
 
@@ -526,8 +539,11 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       setLoadingButton(true);
       const responseInstance = await api.post(`/wpp`);
       setQrCodeWpp(responseInstance.data);
+
+      toast.success("Instancia criada com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Erro na criação da instância!");
     } finally {
       setLoadingButton(false);
     }
@@ -593,6 +609,9 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         updateGuest,
         getGuestId,
         updateOfferAuto,
+        toggleColorMode,
+        colorMode,
+        setColorMode,
       }}
     >
       {children}

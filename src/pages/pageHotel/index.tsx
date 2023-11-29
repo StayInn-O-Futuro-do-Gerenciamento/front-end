@@ -26,7 +26,11 @@ export const PageHotel = () => {
 
   const navigate = useNavigate();
 
-  if (hotel && JSON.parse(typeToken!) === "Attendant") {
+  if (
+    hotel &&
+    JSON.parse(typeToken!) === "Attendant" &&
+    JSON.parse(typeToken!) === "Manager"
+  ) {
     navigate("/");
   }
 

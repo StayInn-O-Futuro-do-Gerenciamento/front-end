@@ -3,7 +3,7 @@ import { ApexOptions } from "apexcharts";
 const currentMonthIndex = new Date().getMonth();
 const xAxisLabelColor = "var(--grey-700)";
 const yAxisLabelColor = "var(--grey-700)";
-const barAxisLabelColor = "var(--grey-50)";
+const barAxisLabelColor = "var(--orange-400)";
 
 export const months = [
   "JAN",
@@ -81,7 +81,7 @@ export const options: ApexOptions = {
     },
   },
   fill: {
-    colors: ["#F9A63A"],
+    colors: [barAxisLabelColor],
     type: "gradient",
     gradient: {
       type: "vertical",
