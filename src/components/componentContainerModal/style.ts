@@ -11,10 +11,6 @@ export const StyledContainerModal = styled.main`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
 
-  button {
-    color: var(--grey-700);
-  }
-
   .modalUpdateRoom {
     width: 352px;
     border-radius: var(--border-radius);
