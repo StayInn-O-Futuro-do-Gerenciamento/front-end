@@ -31,9 +31,7 @@ export const ModalUpdateTypeRoom = () => {
 
     if (Object.keys(dataBody).length > 0) {
       updateTypeRoom(dataBody);
-      console.log(dataBody);
     } else {
-      console.log("Objeto vazio, não enviado.");
     }
   };
   return (

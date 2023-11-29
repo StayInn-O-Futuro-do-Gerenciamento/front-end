@@ -11,9 +11,6 @@ import ReactLoading from "react-loading";
 export const CalendarComponent = () => {
   const { handleChangeFunction, getReservationState } = useContext(AppContext);
   const [headerFormatted, setHeaderFormatted] = useState(false);
-  useEffect(() => {
-    console.log("getReservationState atualizado:", getReservationState);
-  }, [getReservationState]);
 
   if (!getReservationState) {
     return (
@@ -78,8 +75,6 @@ export const CalendarComponent = () => {
       updatedData.name = title;
       updatedData.type = "Checkout";
     }
-
-    console.log(updatedData);
   };
 
   return (

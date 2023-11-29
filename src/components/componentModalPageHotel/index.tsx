@@ -14,7 +14,6 @@ export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
   const [currentUrl, setCurrentUrl] = useState<string>("");
 
   useEffect(() => {
-    // Obter a URL completa
     const currentUrl = window.location.pathname;
 
     setCurrentUrl(currentUrl);

@@ -202,8 +202,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
     }
   };
 
-  console.log(getGuestId);
-
   const updateGuest = async (data: tUpdateGuestData) => {
     const token = localStorage.getItem("token");
 
@@ -354,8 +352,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       setGetTypeRoomState(responseTypeRoom.data);
       toast.success("Tipo de quarto alterado com sucesso!");
       setModalUpdateTypeRoom(false);
-
-      console.log(responseUpdateTypeRoom);
     } catch (error) {
       console.log(error);
       toast.error("Erro no alteração do tipo de quarto.");
@@ -519,8 +515,6 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseOffer = await api.get(`/reservation`);
       setGetReservationState(responseOffer.data);
       handleChangeFunction("updateReservation", false);
-      console.log(responseOffer.data);
-      // toast.success("Oferta atualizada com sucesso!");
     } catch (error) {
       console.log(error);
       toast.error("Erro ao atualizar a oferta!");

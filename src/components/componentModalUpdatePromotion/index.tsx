@@ -33,7 +33,6 @@ export const ModalUpdatePromotion = () => {
     if (Object.keys(dataBody).length > 0) {
       updateOffer(dataBody);
     } else {
-      console.log("Objeto vazio, não enviado.");
     }
   };
 
