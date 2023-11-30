@@ -65,6 +65,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
   const [qrCodeWpp, setQrCodeWpp] = useState("");
   const [instanceWpp, setInstanceWpp] = useState("");
 
+  const [randomColor, setRandomColor] = useState({});
+
   const [darkMode, setDarkMode] = useState(false);
   const toggleDarkMode = () => {
     localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -283,8 +285,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       const responseRoompagination = await api.get(`/room?page=1&pageSize=10`);
       setGetTypeRoomPaginationState(responseRoompagination.data);
 
-      const responseListInstance = await api.get(`/wpp`);
-      setInstanceWpp(responseListInstance.data.instanceName);
+      // const responseListInstance = await api.get(`/wpp`);
+      // setInstanceWpp(responseListInstance.data.instanceName);
     };
 
     getOverview();
@@ -612,6 +614,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         toggleColorMode,
         colorMode,
         setColorMode,
+        randomColor,
+        setRandomColor,
       }}
     >
       {children}

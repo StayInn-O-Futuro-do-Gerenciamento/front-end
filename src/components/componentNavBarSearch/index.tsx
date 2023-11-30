@@ -82,23 +82,125 @@
 //   );
 // };
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavBarSearchStyle } from "./style";
 import searchImg from "../../assets/navbar/Search.svg";
 import { LiaUserCircle } from "react-icons/lia";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AppContext } from "../../context/appContext";
+import tinycolor from "tinycolor2";
 
 export const NavBarSearch = () => {
-  const { darkMode, toggleColorMode, toggleDarkMode } = useContext(AppContext);
+  const { darkMode, toggleColorMode, toggleDarkMode, setRandomColor } =
+    useContext(AppContext);
+  const [inputColor, setInputColor] = useState("#f79009");
 
   const mode = localStorage.getItem("darkMode");
-
   let darkTheme = darkMode;
 
   if (mode) {
     darkTheme = JSON.parse(mode);
   }
+
+  // const generateShadesOfColor = (color: tinycolor.ColorInput | undefined) => {
+  //   const colorObj = tinycolor(color);
+  //   const shades = [];
+
+  //   shades.push(colorObj.toHexString()); // Posição 400: cor escolhida
+
+  //   for (let i = 1; i <= 4; i++) {
+  //     const shade = colorObj
+  //       .clone()
+  //       .lighten(i * 10)
+  //       .toHexString();
+  //     shades.unshift(shade); // Posições intermediárias entre 400 e 50 (mais claro)
+  //   }
+
+  //   for (let i = 1; i <= 5; i++) {
+  //     const shade = colorObj
+  //       .clone()
+  //       .darken(i * 10)
+  //       .toHexString();
+  //     shades.push(shade); // Posições intermediárias entre 400 e 900 (mais escuro)
+  //   }
+
+  //   shades.splice(5, 1); // Remove a cor na posição 0
+
+  //   return shades;
+  // };
+
+  // const handleColorChange = (event: any) => {
+  //   setInputColor(event.target.value);
+  //   const colorPalette = generateShadesOfColor(event.target.value);
+
+  //   const customProperties = colorPalette.reduce((acc, shade, index) => {
+  //     return {
+  //       ...acc,
+  //       [`--orange-${index === 0 ? "50" : index * 100}`]: shade, // Ajuste para iniciar em 50 e evitar a cor 0
+  //     };
+  //   }, {});
+
+  //   setRandomColor(customProperties);
+  //   localStorage.setItem(
+  //     "customColorPalette",
+  //     JSON.stringify(customProperties)
+  //   );
+  // };
+
+  const generateShadesOfColor = (color: tinycolor.ColorInput | undefined) => {
+    const colorObj = tinycolor(color);
+    const shades = [];
+
+    shades.push(colorObj.toHexString());
+
+    for (let i = 1; i <= 6; i++) {
+      const shade = colorObj
+        .clone()
+        .lighten(i * 5)
+        .toHexString();
+      shades.unshift(shade);
+    }
+
+    for (let i = 1; i <= 5; i++) {
+      const shade = colorObj
+        .clone()
+        .darken(i * 6)
+        .toHexString();
+      shades.push(shade);
+    }
+
+    if (JSON.parse(mode!) === true) {
+      shades.reverse();
+    }
+
+    shades.shift();
+
+    return shades;
+  };
+
+  const handleColorChange = (event: any) => {
+    setInputColor(event.target.value);
+    const colorPalette = generateShadesOfColor(event.target.value);
+
+    const customProperties = {
+      "--orange-50": colorPalette[0],
+      "--orange-100": colorPalette[1],
+      "--orange-200": colorPalette[2],
+      "--orange-300": colorPalette[3],
+      "--orange-400": colorPalette[4],
+      "--orange-500": colorPalette[5],
+      "--orange-600": colorPalette[6],
+      "--orange-700": colorPalette[7],
+      "--orange-800": colorPalette[8],
+      "--orange-900": colorPalette[9],
+    };
+
+    setRandomColor(customProperties);
+    localStorage.setItem(
+      "customColorPalette",
+      JSON.stringify(customProperties)
+    );
+  };
 
   return (
     <NavBarSearchStyle>
@@ -132,7 +234,7 @@ export const NavBarSearch = () => {
         </div>
 
         <div className="themes">
-          {darkTheme === false ? (
+          {/* {darkTheme === false ? (
             <div className="buttonColorsW">
               <button
                 className="bb"
@@ -162,7 +264,14 @@ export const NavBarSearch = () => {
                 onClick={() => toggleColorMode("dark/green")}
               ></button>
             </div>
-          )}
+          )} */}
+          <input
+            type="color"
+            name="color"
+            id="color"
+            value={inputColor}
+            onChange={handleColorChange}
+          />
         </div>
 
         <LiaUserCircle className="iconUser" />
