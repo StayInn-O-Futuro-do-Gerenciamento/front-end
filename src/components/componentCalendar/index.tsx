@@ -7,10 +7,13 @@ import { useContext, useEffect, useState } from "react";
 import moment from "moment";
 import { AppContext } from "../../context/appContext";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const CalendarComponent = () => {
   const { handleChangeFunction, getReservationState } = useContext(AppContext);
-  const [headerFormatted, setHeaderFormatted] = useState(false);
+  const { t, i18n } = useTranslation(["calendar"]);
+
+  const lang = i18n.language.toLowerCase();
 
   if (!getReservationState) {
     return (
@@ -56,7 +59,14 @@ export const CalendarComponent = () => {
   };
 
   const dayHeaderContent = (arg: any) => {
-    const dateText = arg.text.split(" ")[1].split("/")[0];
+    let dateText;
+    if (lang === "en") {
+      const matches = arg.text.match(/\/(\d{1,2})/);
+      dateText = matches ? matches[1] : "";
+    } else {
+      dateText = arg.text.split(" ")[1].split("/")[0];
+    }
+
     return <span>{dateText}</span>;
   };
 
@@ -81,12 +91,12 @@ export const CalendarComponent = () => {
     <CalendarMain>
       <div className="info">
         <div>
-          <p>Checkin</p>
-          <p>Checkout</p>
+          <p>{t("checkinLabel")}</p>
+          <p>{t("checkoutLabel")}</p>
         </div>
 
         <button onClick={() => handleChangeFunction("createReservation", true)}>
-          Criar Reserva
+          {t("createReservationButton")}
         </button>
       </div>
       <FullCalendar
@@ -101,12 +111,9 @@ export const CalendarComponent = () => {
           year: "numeric",
           month: "long",
         }}
-        locale={"pt-br"}
+        locale={lang === "en" ? "en" : "pt-br"}
         buttonText={{
-          today: "Hoje",
-          month: "Mês",
-          week: "Semana",
-          day: "Dia",
+          today: t("todayButton"),
         }}
         height={727}
         events={events}

@@ -15,8 +15,8 @@
     },
     "reservationBar": {
         "createReservation": "Create Reservation"
-      },
-      "overview": {
+    },
+    "overview": {
         "heading": "Overview",
         "today": "Today",
         "checkIn": "Check-in",
@@ -25,16 +25,16 @@
         "inHotel": "In the hotel",
         "availableRooms": "Available rooms",
         "occupiedRooms": "Occupied rooms"
-      },
-      "room": {
+    },
+    "room": {
         "noRoomsMessage": "No rooms available at the moment",
         "heading": "Rooms"
-      },
-      "roomCard": {
+    },
+    "roomCard": {
         "day": "Day",
         "price": "$"
-      }, 
-      "statusRoom": {
+    }, 
+    "statusRoom": {
         "title": "Room Status",
         "noRoomsMessage": "No rooms available at the moment",
         "occupiedRooms": {
@@ -49,13 +49,68 @@
           "dirty": "Dirty",
           "maintenance": "Under Maintenance"
         }
-      },
-      "barChart": {
+    },
+    "barChart": {
         "title": "Occupancy Status"
-      },
-      "semiCircularChart": {
+    },
+    "semiCircularChart": {
         "noRoomsMessage": "No Rooms at the moment",
         "occupiedLabel": "Occupied",
         "freeLabel": "Free"
+    },
+    "calendar": {
+        "checkinLabel": "Checkin",
+        "checkoutLabel": "Checkout",
+        "createReservationButton": "Create Reservation",
+        "todayButton": "Today"
+    },
+    "filterReservation": {
+        "allRooms": "All Rooms",
+        "adultsLabel": "Adults",
+        "childrenLabel": "Children",
+        "checkAvailabilityButtonText": "Check Availability",
+        "attendantWarning": "Call an attendant to make a reservation"
+    },
+    "roomFilteredList":{
+        "room": "Room",
+        "type": "Type",
+        "floor": "Floor",
+        "roomDescription": "Room Description",
+        "available": "Available",
+        "numberOfPeople": "Number of People",
+        "status": "Status"
+    },
+    "componentListGuest": {
+      "allGuestsButton": "All Guests",
+      "guestsWithReservationsButton": "Guests with Reservations",
+      "searchPlaceholder": "Search by room number",
+      "createGuestButton": "Create Guest",
+      "tableHeaders": {
+        "name": "Name",
+        "nationality": "Nationality",
+        "number": "Number",
+        "rg": "RG",
+        "totalPaid": "Total Paid"
       }
+    },
+    "componentAddRoom": {
+      "allRoomsButton": "All Rooms",
+      "availableRoomsButton": "Available Rooms",
+      "bookedRoomsButton": "Booked Rooms",
+      "addRoomsButton": "Add Rooms"
+    },
+    "offers":{
+      "all": "All",
+      "ongoing": "Ongoing",
+      "finished": "Finished",
+      "full": "Full",
+      "scheduled": "Scheduled",
+      "name": "Name",
+      "startDate": "Start Date",
+      "finishDate": "Finish Date",
+      "roomType": "Room Type",
+      "availableRooms": "Available Rooms",
+      "status": "Status",
+      "addPromotion": "Add Promotion"
+    }
   }

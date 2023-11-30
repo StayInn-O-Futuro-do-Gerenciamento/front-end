@@ -2,10 +2,12 @@ import { FilterMain } from "./style";
 import { useContext, useState } from "react";
 import Back from "../../assets/Chevron left.svg";
 import { AppContext } from "../../context/appContext";
+import { useTranslation } from "react-i18next";
 
 export const FilterReservation = () => {
   const { handleChangeFunction, getTypeRoomState } = useContext(AppContext);
   const userType = localStorage.getItem("userType");
+  const { t } = useTranslation(["filterReservation"]);
 
   if (!getTypeRoomState) {
     return (
@@ -73,7 +75,7 @@ export const FilterReservation = () => {
               className={selectedButton === "all" ? "selected-btn" : ""}
               onClick={() => handleButtonClick("all")}
             >
-              Todos os Quartos
+              {t("allRooms")}
             </li>
             {getTypeRoomState.map((type: any) => (
               <li
@@ -110,14 +112,14 @@ export const FilterReservation = () => {
           </form>
           <div className="filter-peoples">
             <div>
-              <p className="filter-name">Adultos</p>
+              <p className="filter-name"> {t("adultsLabel")}</p>
               <button onClick={() => addOrRemove("Adult", "minus")}>-</button>
               <p className="filter-number">{numberAdults}</p>
               <button onClick={() => addOrRemove("Adult", "More")}>+</button>
             </div>
 
             <div>
-              <p className="filter-name">Crianças</p>
+              <p className="filter-name"> {t("childrenLabel")}</p>
               <button onClick={() => addOrRemove("Children", "minus")}>
                 -
               </button>
@@ -128,11 +130,11 @@ export const FilterReservation = () => {
         </div>
         {JSON.parse(userType!) == "Attendant" && (
           <button className="check-rooms" onClick={handleCheckAvailability}>
-            Checar Disponibilidade
+            {t("checkAvailabilityButtonText")}
           </button>
         )}
         {JSON.parse(userType!) !== "Attendant" && (
-          <h3 className="Warning">Chame um atendente para reservar</h3>
+          <h3 className="Warning">{t("attendantWarning")}</h3>
         )}
       </div>
     </FilterMain>

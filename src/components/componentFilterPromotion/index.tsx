@@ -7,6 +7,7 @@ import { AppContext } from "../../context/appContext";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const FilterPromotion = () => {
   const { handleChangeFunction, getOfferState, updateOfferAuto } =
@@ -16,6 +17,8 @@ export const FilterPromotion = () => {
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
   const userType = localStorage.getItem("userType");
+  const { t, i18n } = useTranslation(["offers"]);
+  const lang = i18n.language.toLowerCase();
 
   useEffect(() => {
     if (getOfferState) {
@@ -131,7 +134,7 @@ export const FilterPromotion = () => {
             buttonVariation="filterButton"
             onClick={() => handleButtonClick("all")}
           >
-            Todas
+            {t("all")}
           </Button>
           <Button
             className={selectedButton === "ongoing" ? "selected-btn" : ""}
@@ -139,7 +142,7 @@ export const FilterPromotion = () => {
             buttonVariation="filterButton"
             onClick={() => handleButtonClick("ongoing")}
           >
-            Em andamento
+            {t("ongoing")}
           </Button>
           <Button
             className={selectedButton === "finished" ? "selected-btn" : ""}
@@ -147,7 +150,7 @@ export const FilterPromotion = () => {
             buttonVariation="filterButton"
             onClick={() => handleButtonClick("finished")}
           >
-            Finalizadas
+            {t("finished")}
           </Button>
           <Button
             className={selectedButton === "full" ? "selected-btn" : ""}
@@ -155,7 +158,7 @@ export const FilterPromotion = () => {
             buttonVariation="filterButton"
             onClick={() => handleButtonClick("full")}
           >
-            Cheio
+            {t("full")}
           </Button>
           <Button
             className={selectedButton === "scheduled" ? "selected-btn" : ""}
@@ -163,7 +166,7 @@ export const FilterPromotion = () => {
             buttonVariation="filterButton"
             onClick={() => handleButtonClick("scheduled")}
           >
-            Programadas
+            {t("scheduled")}
           </Button>
         </div>
         {JSON.parse(userType!) !== "Attendant" && (
@@ -173,19 +176,19 @@ export const FilterPromotion = () => {
             onClick={() => handleChangeFunction("modalCreatePromotion", true)}
             className="offer"
           >
-            Adicionar oferta
+            {t("addPromotion")}
           </Button>
         )}
       </div>
       <TableStyled>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Data de inicio</th>
-            <th>Data final</th>
-            <th>Tipo do Quarto</th>
-            <th>Quartos disponiveis</th>
-            <th>Status</th>
+            <th> {t("name")} </th>
+            <th> {t("startDate")} </th>
+            <th> {t("finishDate")} </th>
+            <th> {t("roomType")} </th>
+            <th> {t("availableRooms")} </th>
+            <th> {t("status")} </th>
             <th></th>
           </tr>
         </thead>

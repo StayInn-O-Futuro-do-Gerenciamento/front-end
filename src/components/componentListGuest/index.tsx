@@ -7,6 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const ComponentListGuest = () => {
   const {
@@ -15,6 +16,8 @@ export const ComponentListGuest = () => {
     getFrankstainHistoryPrice,
     getReservationState,
   } = useContext(AppContext);
+  const { t, i18n } = useTranslation(["componentListGuest"]);
+  const lang = i18n.language.toLowerCase();
 
   const [gestAll, setGestAll] = useState<any>([]);
   const [filteredGuests, setFilteredGuests] = useState<any>([]);
@@ -25,7 +28,7 @@ export const ComponentListGuest = () => {
 
   useEffect(() => {
     fetchData();
-  }, [getGuestState, getFrankstainHistoryPrice]);
+  }, [getGuestState, getFrankstainHistoryPrice, lang]);
 
   const fetchData = async () => {
     if (!getGuestState) {
@@ -41,7 +44,7 @@ export const ComponentListGuest = () => {
         nacionalidade: element.nationality,
         rg: element.rg,
         number: element.phoneNumbers[0],
-        totalPago: `R$ ${price}`,
+        totalPago: lang === "en" ? `$ ${price}` : `R$ ${price}`,
       };
     });
 
@@ -73,12 +76,12 @@ export const ComponentListGuest = () => {
       ).guests[0];
 
       guestsWithReservations.push({
-        id: element.id,
+        id: guestInfo.id,
         name: guestInfo.name,
         nacionalidade: guestInfo.nationality,
         rg: guestInfo.rg,
         number: guestInfo.phoneNumbers[0],
-        totalPago: `R$ ${totalPrice}`,
+        totalPago: lang === "en" ? `$ ${totalPrice}` : `R$ ${totalPrice}`,
       });
     }
 
@@ -116,23 +119,23 @@ export const ComponentListGuest = () => {
             className={selectedButton === "all" ? "selected-btn" : ""}
             onClick={handleShowAllGuests}
           >
-            Todos os Hóspedes
+            {t("allGuestsButton")}
           </button>
           <button
             className={selectedButton === "reservation" ? "selected-btn" : ""}
             onClick={handleShowGuestsWithReservations}
           >
-            Hóspedes com Reservas
+            {t("guestsWithReservationsButton")}
           </button>
         </div>
         <div>
           <div>
             <img src={searchButton} alt="" />
-            <input placeholder="Search by room number" type="text" />
+            <input placeholder={t("searchPlaceholder")} type="text" />
           </div>
           {JSON.parse(userType!) == "Attendant" && (
             <div onClick={() => handleChangeFunction("modalCreateGuest", true)}>
-              <p>Cadastrar hospedes</p>
+              <p>{t("createGuestButton")}</p>
             </div>
           )}
         </div>
@@ -140,11 +143,11 @@ export const ComponentListGuest = () => {
       <TableStyled>
         <thead>
           <tr>
-            <th>Nome</th>
-            <th>Nacionalidade</th>
-            <th>Numero</th>
-            <th>RG</th>
-            <th>Total Pago</th>
+            <th>{t("tableHeaders.name")}</th>
+            <th>{t("tableHeaders.nationality")}</th>
+            <th>{t("tableHeaders.number")}</th>
+            <th>{t("tableHeaders.rg")}</th>
+            <th>{t("tableHeaders.totalPaid")}</th>
             <th></th>
           </tr>
         </thead>

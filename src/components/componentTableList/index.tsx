@@ -43,11 +43,14 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
         const statusPromotion = itemWithoutId["trueRoomStatusesCount"];
         let statusColor = "";
 
-        if (status === "Limpo") {
+        if (status === "Limpo" || status === "Clean") {
           statusColor = "clean";
-        } else if (status === "Sujo") {
+        } else if (status === "Sujo" || status === "Dirty") {
           statusColor = "dirty";
-        } else if (status === "Em Manutenção") {
+        } else if (
+          status === "Em Manutenção" ||
+          status === "Under Maintenance"
+        ) {
           statusColor = "WIP";
         }
         if (statusPromotion == "Programada") {

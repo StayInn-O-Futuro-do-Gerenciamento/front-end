@@ -6,7 +6,7 @@
       "rooms": "Quartos",
       "offers": "Promoções",
       "roomType": "Tipo de Quarto",
-      "reservationList": "Lista de Reservas",
+      "reservationList": "Lista Reservas",
       "login": "Login",
       "addAttendants": "+ Atendentes",
       "whatsapp": "WhatsApp",
@@ -15,8 +15,8 @@
     },
     "reservationBar": {
        "createReservation": "Criar Reserva"
-      },
-      "overview": {
+    },
+    "overview": {
         "heading": "Visão geral",
         "today": "Hoje",
         "checkIn": "Check-in",
@@ -25,16 +25,16 @@
         "inHotel": "No hotel",
         "availableRooms": "Quartos disponíveis",
         "occupiedRooms": "Quartos ocupados"
-      },
-      "room": {
+    },
+    "room": {
         "noRoomsMessage": "Não há quartos no momento",
         "heading": "Quartos"
-      },
-      "roomCard": {
+    },
+    "roomCard": {
         "day": "Dia",
         "price": "R$"
-      },
-      "statusRoom": {
+    },
+    "statusRoom": {
         "title": "Status dos Quartos",
         "noRoomsMessage": "Não há quartos no momento",
         "occupiedRooms": {
@@ -49,13 +49,68 @@
           "dirty": "Sujos",
           "maintenance": "Em manutenção"
         }
-      },
-      "barChart": {
+    },
+    "barChart": {
         "title": "Status da Ocupação"
-      },
-      "semiCircularChart": {
+    },
+    "semiCircularChart": {
         "noRoomsMessage": "Não Há Quartos no momento",
         "occupiedLabel": "Ocupados",
         "freeLabel": "Livres"
+    },
+    "calendar": {
+        "checkinLabel": "Checkin",
+        "checkoutLabel": "Checkout",
+        "createReservationButton": "Criar Reserva",
+        "todayButton": "Hoje"
+    },
+    "filterReservation": {
+      "allRooms": "Todos os Quartos",
+      "adultsLabel": "Adultos",
+      "childrenLabel": "Crianças",
+      "checkAvailabilityButtonText": "Checar Disponibilidade",
+      "attendantWarning": "Chame um atendente para reservar"
+    },
+    "roomFilteredList":{
+      "room": "Quarto",
+      "type": "Tipo",
+      "floor": "Andar",
+      "roomDescription": "Descrição do Quarto",
+      "available": "Disponível",
+      "numberOfPeople": "Quantidade de Pessoas",
+      "status": "Status"
+    },
+    "componentListGuest": {
+      "allGuestsButton": "Todos os Hóspedes",
+      "guestsWithReservationsButton": "Hóspedes com Reservas",
+      "searchPlaceholder": "Buscar por número",
+      "createGuestButton": "Cadastrar Hóspede",
+      "tableHeaders": {
+        "name": "Nome",
+        "nationality": "Nacionalidade",
+        "number": "Número",
+        "rg": "RG",
+        "totalPaid": "Total Pago"
       }
+    },
+    "componentAddRoom": {
+      "allRoomsButton": "Todos os Quartos",
+      "availableRoomsButton": "Quartos Disponíveis",
+      "bookedRoomsButton": "Quartos Reservados",
+      "addRoomsButton": "Adicionar Quartos"
+    },
+    "offers":{
+      "all": "Todas",
+      "ongoing": "Em Andamento",
+      "finished": "Finalizadas",
+      "full": "Cheio",
+      "scheduled": "Programadas",
+      "name": "Nome",
+      "startDate": "Data de Início",
+      "finishDate": "Data Final",
+      "roomType": "Tipo do Quarto",
+      "availableRooms": "Quartos Disponíveis",
+      "status": "Status",
+      "addPromotion": "Adicionar Oferta"
+    }
   }

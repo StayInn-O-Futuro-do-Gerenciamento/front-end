@@ -1,4 +1,4 @@
 import { useTranslation } from "react-i18next";
- const { t } = useTranslation(["nome da chave"]);
-
- {t("price")}
+ const { t, i18n } = useTranslation(["nome da chave"]);
+ const lang = i18n.language.toLowerCase();
+{t("price")}  
