@@ -1,17 +1,24 @@
 import { useEffect, useState, useContext } from "react";
 import ReactApexChart from "react-apexcharts";
 import {
-  months,
-  reorderedMonths,
+  monthsPT,
+  monthsEN,
+  reorderedMonthsPT,
+  reorderedMonthsEN,
   updateChartOptions,
 } from "../../utils/chartsConfig/bar.config";
 import { BarMain, LoadingBaseStyle } from "./style";
 import { AppContext } from "../../context/appContext";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const BarChart = () => {
   const { getHistoryState } = useContext(AppContext);
-  const [options, setOptions] = useState(updateChartOptions("#f9a63a"));
+  const { t, i18n } = useTranslation(["barChart"]);
+  const [options, setOptions] = useState(
+    updateChartOptions("#f9a63a", i18n.language.toLowerCase())
+  );
+  const lang = i18n.language.toLowerCase();
 
   const colorMode = localStorage.getItem("colorMode");
   useEffect(() => {
@@ -44,9 +51,9 @@ export const BarChart = () => {
         color = "#f9a63a";
     }
 
-    const updatedOptions = updateChartOptions(color);
+    const updatedOptions = updateChartOptions(color, lang);
     setOptions(updatedOptions);
-  }, [colorMode]);
+  }, [colorMode, lang]);
 
   if (!getHistoryState) {
     return (
@@ -68,19 +75,23 @@ export const BarChart = () => {
     reservationsByMonth[checkinMonth]++;
   });
 
-  const reorderedReservationsByMonth = reorderedMonths.map((month) => {
-    const monthIndex = months.indexOf(month);
+  console.log(lang);
+  const reorderedMonths = lang === "en" ? reorderedMonthsEN : reorderedMonthsPT;
+  const listMonths = lang === "en" ? monthsEN : monthsPT;
+
+  const reorderedReservationsByMonth = reorderedMonths.map((month: any) => {
+    const monthIndex = listMonths.indexOf(month);
     return reservationsByMonth[monthIndex];
   });
   const totalReservations = getHistoryState.length;
 
-  const percentageByMonth = reorderedReservationsByMonth.map((count) =>
+  const percentageByMonth = reorderedReservationsByMonth.map((count: any) =>
     ((count / totalReservations) * 100).toFixed(2)
   );
   const series = [
     {
       name: "Reservas",
-      data: percentageByMonth.map((percentage, index) => ({
+      data: percentageByMonth.map((percentage: any, index: any) => ({
         x: reorderedMonths[index],
         y: percentage,
       })),
@@ -89,7 +100,7 @@ export const BarChart = () => {
 
   return (
     <BarMain>
-      <h3>Status da Ocupação</h3>
+      <h3> {t("title")}</h3>
 
       <ReactApexChart
         options={options}

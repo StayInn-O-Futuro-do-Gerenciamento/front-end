@@ -4,7 +4,7 @@ const currentMonthIndex = new Date().getMonth();
 const xAxisLabelColor = "var(--grey-700)";
 const yAxisLabelColor = "var(--grey-700)";
 
-export const months = [
+export const monthsPT = [
   "JAN",
   "FEV",
   "MAR",
@@ -19,12 +19,33 @@ export const months = [
   "DEZ",
 ];
 
-export const reorderedMonths = [
-  ...months.slice(currentMonthIndex + 1),
-  ...months.slice(0, currentMonthIndex + 1),
+export const monthsEN = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+export const reorderedMonthsPT = [
+  ...monthsPT.slice(currentMonthIndex + 1),
+  ...monthsPT.slice(0, currentMonthIndex + 1),
 ];
 
-export const updateChartOptions = (cor: string): ApexOptions => {
+export const reorderedMonthsEN = [
+  ...monthsEN.slice(currentMonthIndex + 1),
+  ...monthsEN.slice(0, currentMonthIndex + 1),
+];
+
+export const updateChartOptions = (cor: string, lang: string): ApexOptions => {
+  const reorderedMonths = lang === "en" ? reorderedMonthsEN : reorderedMonthsPT;
+
   const options: ApexOptions = {
     chart: {
       type: "bar",

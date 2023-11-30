@@ -418,6 +418,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
         },
       });
       toast.success("Cadastro de Atendente com sucesso!");
+      handleChangeFunction("modalRegisterAttendant", false);
     } catch (error) {
       console.log(error);
       toast.error("Erro ao cadastrar o atendente.");

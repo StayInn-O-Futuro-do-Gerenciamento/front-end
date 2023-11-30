@@ -1,0 +1,61 @@
+{
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "reservations": "Reservations",
+      "guests": "Guests",
+      "rooms": "Rooms",
+      "offers": "Offers",
+      "roomType": "Room Type",
+      "reservationList": "Reservation List",
+      "login": "Login",
+      "addAttendants": "Add Attendants",
+      "whatsapp": "WhatsApp",
+      "logout": "Logout",
+      "copyright": "StayINN @2023"
+    },
+    "reservationBar": {
+        "createReservation": "Create Reservation"
+      },
+      "overview": {
+        "heading": "Overview",
+        "today": "Today",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "totalPeople": "Total people",
+        "inHotel": "In the hotel",
+        "availableRooms": "Available rooms",
+        "occupiedRooms": "Occupied rooms"
+      },
+      "room": {
+        "noRoomsMessage": "No rooms available at the moment",
+        "heading": "Rooms"
+      },
+      "roomCard": {
+        "day": "Day",
+        "price": "$"
+      }, 
+      "statusRoom": {
+        "title": "Room Status",
+        "noRoomsMessage": "No rooms available at the moment",
+        "occupiedRooms": {
+          "title": "Occupied Rooms",
+          "clean": "Clean",
+          "dirty": "Dirty",
+          "maintenance": "Under Maintenance"
+        },
+        "availableRooms": {
+          "title": "Available Rooms",
+          "clean": "Clean",
+          "dirty": "Dirty",
+          "maintenance": "Under Maintenance"
+        }
+      },
+      "barChart": {
+        "title": "Occupancy Status"
+      },
+      "semiCircularChart": {
+        "noRoomsMessage": "No Rooms at the moment",
+        "occupiedLabel": "Occupied",
+        "freeLabel": "Free"
+      }
+  }

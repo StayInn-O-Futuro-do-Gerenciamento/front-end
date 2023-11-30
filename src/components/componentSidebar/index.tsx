@@ -5,7 +5,6 @@ import Hotel from "../../assets/sidebar/Hotels.svg";
 import Report from "../../assets/sidebar/Report.svg";
 import Reservation from "../../assets/sidebar/Reservation.svg";
 import Room from "../../assets/sidebar/Room.svg";
-import wppImg from "../../assets/wpp-img.svg";
 import { SideBarMain } from "./style";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -16,6 +15,7 @@ import { ModalRegisterAttendat } from "../componentModalRegisterAttendant";
 import { LuBedDouble, LuListChecks, LuLogIn, LuLogOut } from "react-icons/lu";
 import logo from "../../assets/sidebar/Logo.svg";
 import { PiWhatsappLogo } from "react-icons/pi";
+import { useTranslation } from "react-i18next";
 
 export const Sidebar = () => {
   const location = useLocation();
@@ -29,6 +29,7 @@ export const Sidebar = () => {
   const navigate = useNavigate();
 
   const userType = localStorage.getItem("userType");
+  const { t } = useTranslation("sidebar");
 
   const handleButtonClick = (buttonId: string) => {
     setSelectedButton(buttonId);
@@ -55,35 +56,35 @@ export const Sidebar = () => {
             onClick={() => handleButtonClick("/dashboard")}
           >
             <img src={Dashboard} alt="Dashboard" />
-            <p>Dashboard</p>
+            <p>{t("dashboard")}</p>
           </li>
           <li
             className={selectedButton === "/reservation" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("/reservation")}
           >
             <img src={Reservation} alt="Reservas" />
-            <p>Reservas</p>
+            <p>{t("reservations")}</p>
           </li>
           <li
             className={selectedButton === "/guests" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("/guests")}
           >
             <img src={Report} alt="Hóspede" />
-            <p>Hóspedes</p>
+            <p>{t("guests")}</p>
           </li>
           <li
             className={selectedButton === "/rooms" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("/rooms")}
           >
             <img src={Room} alt="Quartos" />
-            <p>Quartos</p>
+            <p>{t("rooms")}</p>
           </li>
           <li
             className={selectedButton === "/offers" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("/offers")}
           >
             <img src={Deals} alt="Promoções" />
-            <p>Promoções</p>
+            <p>{t("offers")}</p>
           </li>
           <li
             className={selectedButton === "/rates" ? "selected-btn" : ""}
@@ -93,7 +94,7 @@ export const Sidebar = () => {
               className="typeRoom"
               style={{ width: 30, height: 30, color: `#667085` }}
             />
-            <p>Tipo de Quarto</p>
+            <p>{t("roomType")}</p>
           </li>
           <li
             className={
@@ -105,11 +106,11 @@ export const Sidebar = () => {
               className="typeRoom"
               style={{ width: 30, height: 30, color: `#667085` }}
             />
-            <p>Lista Reservas</p>
+            <p>{t("reservationList")}</p>
           </li>
         </ul>
         <ul>
-          {JSON.parse(userType!) == "Manager" && (
+          {JSON.parse(userType!) === "Manager" && (
             <>
               <li
                 className={
@@ -121,7 +122,7 @@ export const Sidebar = () => {
                   className="typeRoom"
                   style={{ width: 30, height: 30, color: `#667085` }}
                 />
-                <p>Login</p>
+                <p>{t("login")}</p>
               </li>
               <li
                 className={selectedButton === "Attendant" ? "selected-btn" : ""}
@@ -130,7 +131,7 @@ export const Sidebar = () => {
                 }
               >
                 <img src={Attendant} alt="Cadastro de Atendentes" />
-                <p>+ Atendentes</p>
+                <p>{t("addAttendants")}</p>
               </li>
               <li
                 onClick={() => handleButtonClick("/wpp")}
@@ -140,7 +141,7 @@ export const Sidebar = () => {
                   className="typeRoom"
                   style={{ width: 30, height: 30, color: `#667085` }}
                 />
-                <p>WhatsApp</p>
+                <p>{t("whatsapp")}</p>
               </li>
             </>
           )}
@@ -152,13 +153,13 @@ export const Sidebar = () => {
               className="typeRoom"
               style={{ width: 30, height: 30, color: `#667085` }}
             />
-            <p>Logout</p>
+            <p>{t("logout")}</p>
           </li>
         </ul>
       </div>
       <p className="copyrigth">
         <img src={logo} alt="logo sistema" />
-        StayINN @2023
+        {t("copyright")}
       </p>
     </SideBarMain>
   );

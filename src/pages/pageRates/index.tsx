@@ -14,6 +14,7 @@ export const Rate = () => {
     getOfferState,
     updateOfferAuto,
   } = useContext(AppContext);
+  const userType = localStorage.getItem("userType");
   useEffect(() => {
     let token: string = "";
     const local = localStorage.getItem("token");
@@ -42,7 +43,9 @@ export const Rate = () => {
   }, []);
   return (
     <RateMain>
-      {modalUpdateTypeRoom && <ModalUpdateTypeRoom />}
+      {JSON.parse(userType!) !== "Attendant" && modalUpdateTypeRoom && (
+        <ModalUpdateTypeRoom />
+      )}
       <Sidebar />
       <div className="mainContet">
         <NavBarSearch />

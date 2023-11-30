@@ -88,10 +88,15 @@ import searchImg from "../../assets/navbar/Search.svg";
 import { LiaUserCircle } from "react-icons/lia";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AppContext } from "../../context/appContext";
+import { useTranslation } from "react-i18next";
 
 export const NavBarSearch = () => {
   const { darkMode, toggleColorMode, toggleDarkMode } = useContext(AppContext);
+  const { i18n } = useTranslation(["reservationBar", "sidebar"]);
 
+  const changeLanguage = (language: any) => {
+    i18n.changeLanguage(language);
+  };
   const mode = localStorage.getItem("darkMode");
 
   let darkTheme = darkMode;
@@ -105,6 +110,8 @@ export const NavBarSearch = () => {
       <div className="div1">
         <img src={searchImg} alt="" />
         <input type="text" placeholder="Procure por quartos e ofertas" />
+        <button onClick={() => changeLanguage("en")}>EN</button>
+        <button onClick={() => changeLanguage("pt")}>PT</button>
       </div>
       <div className="div2">
         <div>

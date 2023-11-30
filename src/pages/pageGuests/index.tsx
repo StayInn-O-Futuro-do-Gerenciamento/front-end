@@ -11,6 +11,7 @@ import { api } from "../../services/api";
 export const Guest = () => {
   const { modalUpdateGuest, modalCreateGuest, setGetGuestState } =
     useContext(AppContext);
+  const userType = localStorage.getItem("userType");
   useEffect(() => {
     let token: string = "";
     const local = localStorage.getItem("token");
@@ -27,7 +28,9 @@ export const Guest = () => {
   }, []);
   return (
     <GuestMain>
-      {modalUpdateGuest && <ModalUpdateGuest />}
+      {JSON.parse(userType!) === "Attendant" && modalUpdateGuest && (
+        <ModalUpdateGuest />
+      )}
       {modalCreateGuest && <ModalRegisterGuest />}
       <Sidebar />
       <div className="mainContet">

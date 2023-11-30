@@ -11,6 +11,7 @@ import { api } from "../../services/api";
 export const Offer = () => {
   const { modalCretePromotion, modalUpdatePromotion, setGetOfferState } =
     useContext(AppContext);
+  const userType = localStorage.getItem("userType");
 
   useEffect(() => {
     let token: string = "";
@@ -29,7 +30,9 @@ export const Offer = () => {
   return (
     <OfferMain>
       {modalCretePromotion && <ModalPromotion />}
-      {modalUpdatePromotion && <ModalUpdatePromotion />}
+      {JSON.parse(userType!) !== "Attendant" && modalUpdatePromotion && (
+        <ModalUpdatePromotion />
+      )}
       <Sidebar />
       <div className="mainContet">
         <NavBarSearch />

@@ -26,6 +26,7 @@ export const Reservation = () => {
   const roomsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const maxVisibleButtons = 3;
+  const userType = localStorage.getItem("userType");
   useEffect(() => {
     setCurrentPage(1);
     let token: string = "";
@@ -41,6 +42,7 @@ export const Reservation = () => {
     };
     getReserva();
   }, [getTypeRoomSearchState]);
+
   if (!getRoomState) {
     return (
       <ReservationMain>
@@ -130,7 +132,9 @@ export const Reservation = () => {
   return (
     <ReservationMain>
       {modalUpdateTypeRoom && <ModalUpdateTypeRoom />}
-      {modalScheduleReservation && <ModalScheduleReservation />}
+      {JSON.parse(userType!) === "Attendant" && modalScheduleReservation && (
+        <ModalScheduleReservation />
+      )}
       <Sidebar />
       {!createReservation && (
         <div className="mainContet">
