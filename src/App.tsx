@@ -29,6 +29,7 @@ function App() {
   const { darkMode } = useContext(AppContext);
   const mode = localStorage.getItem("darkMode");
   const modeColor = localStorage.getItem("colorMode");
+  const storedPaletteColor = localStorage.getItem("customColorPalette");
 
   let darkTheme = darkMode === true ? "dark" : "light";
 
@@ -51,7 +52,10 @@ function App() {
         theme={darkTheme as "dark" | "light"}
       />
 
-      <GlobalStyle theme={JSON.parse(modeColor!)} />
+      <GlobalStyle
+        theme={JSON.parse(modeColor!)}
+        paletteColor={JSON.parse(storedPaletteColor!)}
+      />
       <RoutesMain />
     </>
   );

@@ -132,4 +132,6 @@ export interface iAppContext {
   toggleColorMode: (color: string) => void;
   colorMode: string;
   setColorMode: React.Dispatch<React.SetStateAction<string>>;
+  randomColor: any;
+  setRandomColor: React.Dispatch<React.SetStateAction<any>>;
 }

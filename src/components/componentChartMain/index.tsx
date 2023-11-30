@@ -21,31 +21,17 @@ export const BarChart = () => {
   const lang = i18n.language.toLowerCase();
 
   const colorMode = localStorage.getItem("colorMode");
+  const root = document.documentElement;
+  const orange400 = getComputedStyle(root).getPropertyValue("--orange-400");
   useEffect(() => {
     let color;
 
     switch (JSON.parse(colorMode!)) {
       case "light":
+        color = orange400;
+        break;
       case "dark":
-        color = "#f9a63a";
-        break;
-      case "light/blue":
-        color = "#448df2";
-        break;
-      case "light/red":
-        color = "#f36960";
-        break;
-      case "light/green":
-        color = "#41c588";
-        break;
-      case "dark/blue":
-        color = "#1570ef";
-        break;
-      case "dark/red":
-        color = "#f04438";
-        break;
-      case "dark/green":
-        color = "#12b76a";
+        color = orange400;
         break;
       default:
         color = "#f9a63a";
@@ -53,7 +39,7 @@ export const BarChart = () => {
 
     const updatedOptions = updateChartOptions(color, lang);
     setOptions(updatedOptions);
-  }, [colorMode, lang]);
+  }, [colorMode, lang, orange400]);
 
   if (!getHistoryState) {
     return (
@@ -75,7 +61,6 @@ export const BarChart = () => {
     reservationsByMonth[checkinMonth]++;
   });
 
-  console.log(lang);
   const reorderedMonths = lang === "en" ? reorderedMonthsEN : reorderedMonthsPT;
   const listMonths = lang === "en" ? monthsEN : monthsPT;
 

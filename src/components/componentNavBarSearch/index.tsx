@@ -1,109 +1,91 @@
-// import { NavBarSearchStyle } from "./style";
-// import searchImg from "../../assets/navbar/Search.svg";
-// import { LiaUserCircle } from "react-icons/lia";
-// import { useContext } from "react";
-// import { AppContext } from "../../context/appContext";
-// import Switch from "react-switch";
-// import { MdDarkMode } from "react-icons/md";
-// import { MdLightMode } from "react-icons/md";
-
-// export const NavBarSearch = () => {
-//   const { darkMode, toggleDarkMode, colorMode, toggleColorMode } =
-//     useContext(AppContext);
-//   const mode = localStorage.getItem("darkMode");
-
-//   let darkTheme = darkMode;
-
-//   if (mode) {
-//     darkTheme = JSON.parse(mode);
-//   }
-
-//   return (
-//     <NavBarSearchStyle>
-//       <div className="div1">
-//         <img src={searchImg} alt="" />
-//         <input type="text" placeholder="Procure por quartos e ofertas" />
-//       </div>
-//       <div className="div2">
-//         <label>
-//           <Switch
-//             checked={!darkTheme}
-//             onChange={toggleDarkMode}
-//             onColor="#858d9d"
-//             onHandleColor="#48505e"
-//             handleDiameter={30}
-//             boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-//             height={20}
-//             width={45}
-//             uncheckedIcon={false}
-//             checkedIcon={false}
-//             uncheckedHandleIcon={
-//               <div
-//                 style={{
-//                   display: "flex",
-//                   justifyContent: "center",
-//                   alignItems: "center",
-//                   height: "100%",
-//                   color: "#2b2f38",
-//                 }}
-//               >
-//                 <MdLightMode />
-//               </div>
-//             }
-//             checkedHandleIcon={
-//               <div
-//                 style={{
-//                   display: "flex",
-//                   justifyContent: "center",
-//                   alignItems: "center",
-//                   height: "100%",
-//                   color: "#ffffff",
-//                 }}
-//               >
-//                 <MdDarkMode />
-//               </div>
-//             }
-//             className="react-switch"
-//             id="material-switch"
-//           />
-//         </label>
-
-//         <>
-//           {darkTheme === false ? (
-//             <button onClick={() => toggleColorMode("light/blue")}>Blue</button>
-//           ) : (
-//             <button onClick={() => toggleColorMode("dark/blue")}>Blue</button>
-//           )}
-//         </>
-
-//         <LiaUserCircle className="iconUser" />
-//       </div>
-//     </NavBarSearchStyle>
-//   );
-// };
-
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { NavBarSearchStyle } from "./style";
 import searchImg from "../../assets/navbar/Search.svg";
 import { LiaUserCircle } from "react-icons/lia";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AppContext } from "../../context/appContext";
+import tinycolor from "tinycolor2";
 import { useTranslation } from "react-i18next";
+import { hexToCSSFilter } from "hex-to-css-filter";
 
 export const NavBarSearch = () => {
-  const { darkMode, toggleColorMode, toggleDarkMode } = useContext(AppContext);
+  const { setRandomColor, darkMode, toggleColorMode, toggleDarkMode } =
+    useContext(AppContext);
+  const root = document.documentElement;
+  const orange400 = getComputedStyle(root).getPropertyValue("--orange-400");
+  const [inputColor, setInputColor] = useState(orange400);
+
   const { i18n } = useTranslation(["reservationBar", "sidebar"]);
 
   const changeLanguage = (language: any) => {
     i18n.changeLanguage(language);
   };
   const mode = localStorage.getItem("darkMode");
-
   let darkTheme = darkMode;
 
   if (mode) {
     darkTheme = JSON.parse(mode);
   }
+
+  const generateShadesOfColor = (color: tinycolor.ColorInput | undefined) => {
+    const colorObj = tinycolor(color);
+    const shades = [];
+
+    shades.push(colorObj.toHexString());
+
+    for (let i = 1; i <= 6; i++) {
+      const shade = colorObj
+        .clone()
+        .lighten(i * 5)
+        .toHexString();
+      shades.unshift(shade);
+    }
+
+    for (let i = 1; i <= 5; i++) {
+      const shade = colorObj
+        .clone()
+        .darken(i * 6)
+        .toHexString();
+      shades.push(shade);
+    }
+
+    if (JSON.parse(mode!) === true) {
+      shades.reverse();
+    }
+
+    shades.shift();
+
+    return {
+      colorPalette: shades,
+    };
+  };
+
+  const handleColorChange = (event: any) => {
+    setInputColor(event.target.value);
+    const { colorPalette } = generateShadesOfColor(event.target.value);
+
+    const cssFilter = hexToCSSFilter(colorPalette[4]);
+
+    const customProperties = {
+      "--orange-50": colorPalette[0],
+      "--orange-100": colorPalette[1],
+      "--orange-200": colorPalette[2],
+      "--orange-300": colorPalette[3],
+      "--orange-400": colorPalette[4],
+      "--orange-500": colorPalette[5],
+      "--orange-600": colorPalette[6],
+      "--orange-700": colorPalette[7],
+      "--orange-800": colorPalette[8],
+      "--orange-900": colorPalette[9],
+      "--svg-color-orange": cssFilter.filter,
+    };
+
+    setRandomColor(customProperties);
+    localStorage.setItem(
+      "customColorPalette",
+      JSON.stringify(customProperties)
+    );
+  };
 
   return (
     <NavBarSearchStyle>
@@ -139,37 +121,13 @@ export const NavBarSearch = () => {
         </div>
 
         <div className="themes">
-          {darkTheme === false ? (
-            <div className="buttonColorsW">
-              <button
-                className="bb"
-                onClick={() => toggleColorMode("light/blue")}
-              ></button>
-              <button
-                className="br"
-                onClick={() => toggleColorMode("light/red")}
-              ></button>
-              <button
-                className="bg"
-                onClick={() => toggleColorMode("light/green")}
-              ></button>
-            </div>
-          ) : (
-            <div className="buttonColorsD">
-              <button
-                className="bb"
-                onClick={() => toggleColorMode("dark/blue")}
-              ></button>
-              <button
-                className="br"
-                onClick={() => toggleColorMode("dark/red")}
-              ></button>
-              <button
-                className="bg"
-                onClick={() => toggleColorMode("dark/green")}
-              ></button>
-            </div>
-          )}
+          <input
+            type="color"
+            name="color"
+            id="color"
+            value={orange400}
+            onChange={handleColorChange}
+          />
         </div>
 
         <LiaUserCircle className="iconUser" />
