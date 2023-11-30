@@ -1,9 +1,10 @@
 // import { StyledOverview } from "./style";
 import More from "../../assets/More.svg";
 import { StyledCardRoom } from "./styled";
+import { useTranslation } from "react-i18next";
 export const CardRoom = ({ quartos }: any) => {
   const offer = quartos.offer == null ? "outFipe" : "lowestPriceFipe";
-
+  const { t } = useTranslation(["roomCard"]);
   let num = 0;
   quartos.rooms.forEach((room: any) => {
     if (room.available === false) {
@@ -23,7 +24,11 @@ export const CardRoom = ({ quartos }: any) => {
           <span className="occupied">{num}</span>/{quartos.roomTypeQuantity}
         </p>
         <p className="pPrice">
-          <span>R${quartos.price}</span> /Dia
+          <span>
+            {t("price")}
+            {quartos.price}
+          </span>{" "}
+          /{t("day")}
         </p>
       </div>
     </StyledCardRoom>

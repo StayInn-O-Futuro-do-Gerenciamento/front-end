@@ -1,0 +1,61 @@
+{
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "reservations": "Reservas",
+      "guests": "Hóspedes",
+      "rooms": "Quartos",
+      "offers": "Promoções",
+      "roomType": "Tipo de Quarto",
+      "reservationList": "Lista de Reservas",
+      "login": "Login",
+      "addAttendants": "+ Atendentes",
+      "whatsapp": "WhatsApp",
+      "logout": "Logout",
+      "copyright": "StayINN @2023"
+    },
+    "reservationBar": {
+       "createReservation": "Criar Reserva"
+      },
+      "overview": {
+        "heading": "Visão geral",
+        "today": "Hoje",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "totalPeople": "Total de pessoas",
+        "inHotel": "No hotel",
+        "availableRooms": "Quartos disponíveis",
+        "occupiedRooms": "Quartos ocupados"
+      },
+      "room": {
+        "noRoomsMessage": "Não há quartos no momento",
+        "heading": "Quartos"
+      },
+      "roomCard": {
+        "day": "Dia",
+        "price": "R$"
+      },
+      "statusRoom": {
+        "title": "Status dos Quartos",
+        "noRoomsMessage": "Não há quartos no momento",
+        "occupiedRooms": {
+          "title": "Quartos ocupados",
+          "clean": "Limpos",
+          "dirty": "Sujos",
+          "maintenance": "Em manutenção"
+        },
+        "availableRooms": {
+          "title": "Quartos disponíveis",
+          "clean": "Limpos",
+          "dirty": "Sujos",
+          "maintenance": "Em manutenção"
+        }
+      },
+      "barChart": {
+        "title": "Status da Ocupação"
+      },
+      "semiCircularChart": {
+        "noRoomsMessage": "Não Há Quartos no momento",
+        "occupiedLabel": "Ocupados",
+        "freeLabel": "Livres"
+      }
+  }

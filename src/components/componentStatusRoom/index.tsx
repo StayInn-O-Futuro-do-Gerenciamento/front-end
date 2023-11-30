@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { LoadingBaseStyle, StyledStatusRoom } from "./style";
 import { AppContext } from "../../context/appContext";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const StatusRoom = () => {
   const { getRoomState } = useContext(AppContext);
+  const { t } = useTranslation(["statusRoom"]);
 
   if (!getRoomState) {
     return (
@@ -22,7 +24,7 @@ export const StatusRoom = () => {
   if (getRoomState.length === 0) {
     return (
       <StyledStatusRoom>
-        <h2>Não Há Quartos no momento</h2>
+        <h2> {t("noRoomsMessage")}</h2>
       </StyledStatusRoom>
     );
   }
@@ -63,36 +65,37 @@ export const StatusRoom = () => {
 
   return (
     <StyledStatusRoom>
-      <h3>Status dos Quartos</h3>
+      <h3>{t("title")}</h3>
       <div className="container">
         <div className="occupied">
           <div className="titleOccupied">
-            <h5>Quartos ocupados</h5>
+            <h5>{t("occupiedRooms.title")}</h5>
             <span>{ocupados}</span>
           </div>
           <div className="other">
-            <p>Limpos</p> <span>{ocupadoLimpo}</span>
+            <p>{t("occupiedRooms.clean")}</p> <span>{ocupadoLimpo}</span>
           </div>
           <div className="other">
-            <p>Sujos</p> <span>{ocupadoSujo}</span>
+            <p>{t("occupiedRooms.dirty")}</p> <span>{ocupadoSujo}</span>
           </div>
           <div className="other">
-            <p>Em manutenção</p> <span>{ocupadoManutencao}</span>
+            <p>{t("occupiedRooms.maintenance")}</p>{" "}
+            <span>{ocupadoManutencao}</span>
           </div>
         </div>
         <div className="available">
           <div className="titleAvailable">
-            <h5>Quartos disponíveis</h5>
+            <h5>{t("availableRooms.title")}</h5>
             <span>{disponiveis}</span>
           </div>
           <div className="other">
-            <p>Limpos</p> <span>{limpos}</span>
+            <p>{t("availableRooms.clean")}</p> <span>{limpos}</span>
           </div>
           <div className="other">
-            <p>Sujos</p> <span>{sujos}</span>
+            <p>{t("availableRooms.dirty")}</p> <span>{sujos}</span>
           </div>
           <div className="other">
-            <p>Em manutenção</p> <span>{manutencao}</span>
+            <p>{t("availableRooms.maintenance")}</p> <span>{manutencao}</span>
           </div>
         </div>
       </div>

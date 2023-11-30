@@ -1,14 +1,16 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../componentButton";
 import { StyledReservationBar } from "./style";
 import moment from "moment";
 import "moment/dist/locale/pt-br";
-import { AppContext } from "../../context/appContext";
+
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const ReservationBar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const { handleChangeFunction } = useContext(AppContext);
+
+  const { i18n, t } = useTranslation(["reservationBar", "sidebar"]);
 
   const navigate = useNavigate();
 
@@ -19,11 +21,17 @@ export const ReservationBar = () => {
 
     return () => clearInterval(timer);
   }, []);
-  moment.locale("pt-br");
-  const formattedDate = moment(currentDate).format(
-    "dddd, D [de] MMMM [de] YYYY, HH:mm:ss"
-  );
 
+  let formattedDate;
+  if (i18n.language === "pt") {
+    moment.locale("pt-br");
+    formattedDate = moment(currentDate).format(
+      "dddd, D [de] MMMM [de] YYYY, HH:mm:ss"
+    );
+  } else {
+    moment.locale("en");
+    formattedDate = moment(currentDate).format("dddd, MMMM D, YYYY, HH:mm:ss");
+  }
   return (
     <StyledReservationBar>
       <div className="containerDateHour">
@@ -35,7 +43,7 @@ export const ReservationBar = () => {
         onClick={() => navigate("/reservation")}
         className="cResevation"
       >
-        Criar reserva
+        {t("createReservation")}
       </Button>
     </StyledReservationBar>
   );

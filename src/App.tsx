@@ -4,6 +4,26 @@ import { GlobalStyle } from "./style/global";
 import { AppContext } from "./context/appContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+import ptTranslation from "../src/translations/pt/global.json";
+import enTranslation from "../src/translations/en/global.json";
+
+i18n
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    resources: {
+      en: enTranslation,
+      pt: ptTranslation,
+    },
+    lng: "pt",
+    fallbackLng: "en",
+    interpolation: {
+      escapeValue: false,
+    },
+  });
 
 function App() {
   const { darkMode } = useContext(AppContext);

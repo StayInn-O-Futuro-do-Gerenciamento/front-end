@@ -1,0 +1,4 @@
+import { useTranslation } from "react-i18next";
+ const { t } = useTranslation(["nome da chave"]);
+
+ {t("price")}
