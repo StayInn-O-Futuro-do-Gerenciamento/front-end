@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { LoadingBaseStyle, StyledOverview } from "./style";
 import { AppContext } from "../../context/appContext";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const Overview = () => {
   const { getReservationState, getRoomState, hotel } = useContext(AppContext);
+  const { t } = useTranslation(["overview"]);
 
   if (!getReservationState || !getRoomState) {
     return (
@@ -62,34 +64,34 @@ export const Overview = () => {
   return (
     <StyledOverview>
       <div>
-        <h3>Visão geral</h3>
+        <h3>{t("heading")}</h3>
       </div>
       <div className="infoHotel">
         <div className="infos">
           <div className="infoDetail">
-            <span>Hoje</span>
-            <p>Check-in</p>
+            <span>{t("today")}</span>
+            <p>{t("checkIn")}</p>
           </div>
           <span>{todaysCheckIns.length}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
-            <span>Hoje</span>
-            <p>Check-out</p>
+            <span>{t("today")}</span>
+            <p>{t("checkOut")}</p>
           </div>
           <span>{todaysCheckOuts.length}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
-            <span>Total de pessoas</span>
-            <p>No hotel</p>
+            <span>{t("totalPeople")}</span>
+            <p>{t("inHotel")}</p>
           </div>
           <span>{totalAdults + totalKids}</span>
         </div>
         <div className="infos">
           <div className="infoDetail">
-            <span>Total</span>
-            <p>Quartos disponiveis</p>
+            <span>{t("total")}</span>
+            <p>{t("availableRooms")}</p>
           </div>
           <span>
             {availableRooms.length === 0 ? roomCount : availableRooms.length}
@@ -97,8 +99,8 @@ export const Overview = () => {
         </div>
         <div className="infos">
           <div className="infoDetail">
-            <span>Total</span>
-            <p>Quartos ocupados</p>
+            <span>{t("total")}</span>
+            <p>{t("occupiedRooms")}</p>
           </div>
           <span>{unavailableRooms.length}</span>
         </div>

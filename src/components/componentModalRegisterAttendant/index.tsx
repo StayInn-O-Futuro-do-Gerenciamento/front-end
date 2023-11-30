@@ -53,7 +53,7 @@ export const ModalRegisterAttendat = () => {
             <></>
           )}
           <Input
-            type="text"
+            type="password"
             placeholder="Senha do atendente"
             label="Senha"
             register={register("password")}

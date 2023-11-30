@@ -1,4 +1,4 @@
-import { createGlobalStyle, css, DefaultTheme } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 interface ColorPalette {
   [key: string]: string;

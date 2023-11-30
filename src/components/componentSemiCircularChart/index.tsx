@@ -5,6 +5,7 @@ import ReactApexChart from "react-apexcharts";
 import anime from "animejs";
 import { AppContext } from "../../context/appContext";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 interface FloorInfo {
   floor: string;
@@ -18,7 +19,8 @@ interface Room {
 
 export const SemiCircularChart = () => {
   const { getRoomState } = useContext(AppContext);
-
+  const { t, i18n } = useTranslation(["semiCircularChart"]);
+  const lang = i18n.language.toLowerCase();
   if (!getRoomState) {
     return (
       <LoadingBaseStyle>
@@ -34,16 +36,23 @@ export const SemiCircularChart = () => {
   if (getRoomState.length === 0) {
     return (
       <SemiCircularChartMain>
-        <h2>Não Há Quartos no momento</h2>
+        <h2>{t("noRoomsMessage")}</h2>
       </SemiCircularChartMain>
     );
   }
+  const adjustFloorKey = (floor: any, language: any) => {
+    if (language === "en") {
+      return `Floor ${floor.split(" ")[1]}`;
+    }
+
+    return floor;
+  };
 
   const createFloorInfo = (rooms: Room[]) => {
-    const floors = {};
+    const floors: any = {};
 
     rooms.forEach((room: any) => {
-      const floor = room.floor;
+      const floor = adjustFloorKey(room.floor, lang);
 
       if (!floors[floor]) {
         floors[floor] = {
@@ -87,7 +96,7 @@ export const SemiCircularChart = () => {
       });
     }, 3000);
     return () => clearInterval(interval);
-  }, [currentFloorIndex]);
+  }, [currentFloorIndex, lang]);
 
   function calculateOccupancyPercentage(floor: any): number {
     if (!floor) return 0;
@@ -103,11 +112,11 @@ export const SemiCircularChart = () => {
       <div className="div-subtitle">
         <div className="occupied-point">
           <div className="orange-point"></div>
-          <p>Ocupados</p>
+          <p>{t("occupiedLabel")}</p>
         </div>
         <div>
           <div className="grey-point"></div>
-          <p>Livres</p>
+          <p>{t("freeLabel")}</p>
         </div>
       </div>
 

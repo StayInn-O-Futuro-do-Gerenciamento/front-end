@@ -5,9 +5,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import { AppContext } from "../../context/appContext";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const Room = () => {
   const { getTypeRoomState } = useContext(AppContext);
+  const { t } = useTranslation(["room"]);
   if (!getTypeRoomState) {
     return (
       <LoadingBaseStyle>
@@ -23,14 +25,14 @@ export const Room = () => {
   if (getTypeRoomState.length === 0) {
     return (
       <StyledRoom>
-        <h2>Não Há Quartos no momento</h2>
+        <h2>{t("noRoomsMessage")}</h2>
       </StyledRoom>
     );
   }
 
   return (
     <StyledRoom>
-      <h3>Quartos</h3>
+      <h3>{t("heading")}</h3>
 
       <Swiper
         pagination={true}
