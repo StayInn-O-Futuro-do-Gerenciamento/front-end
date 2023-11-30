@@ -72,56 +72,18 @@ export const NavBarSearchStyle = styled.div`
       }
     }
     .themes {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .buttonColorsW {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        .bb {
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-          background-color: #448df2;
-        }
-        .br {
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-          background-color: #f36960;
-        }
-        .bg {
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-          background-color: #41c588;
-        }
-      }
-      .buttonColorsD {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
+      input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        border: none;
+        appearance: none;
+        background-color: transparent;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
 
-        .bb {
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-          background-color: #1570ef;
-        }
-        .br {
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-          background-color: #f04438;
-        }
-        .bg {
-          width: 20px;
-          height: 20px;
-          border-radius: 100%;
-          background-color: #12b76a;
+        &::-webkit-color-swatch {
+          border-radius: 10px;
         }
       }
     }

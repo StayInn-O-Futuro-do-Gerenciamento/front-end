@@ -37,7 +37,6 @@ function App() {
     darkTheme = JSON.parse(mode) === true ? "dark" : "light";
   }
 
-  // console.log(randomColor);
   return (
     <>
       <ToastContainer

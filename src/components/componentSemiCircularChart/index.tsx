@@ -16,11 +16,41 @@ interface Room {
   available: boolean;
   floor: string;
 }
+const adjustFloorKey = (floor: any, language: any) => {
+  if (language === "en") {
+    return `Floor ${floor.split(" ")[1]}`;
+  }
+
+  return floor;
+};
+const createFloorInfo = (rooms: Room[], lang: any) => {
+  const floors: any = {};
+
+  rooms.forEach((room: any) => {
+    const floor = adjustFloorKey(room.floor, lang);
+
+    if (!floors[floor]) {
+      floors[floor] = {
+        floor,
+        occupied: 0,
+        free: 0,
+      };
+    }
+
+    if (room.available) {
+      floors[floor].free += 1;
+    } else {
+      floors[floor].occupied += 1;
+    }
+  });
+
+  const floorInfoArray: FloorInfo[] = Object.values(floors);
+
+  return floorInfoArray;
+};
 
 export const SemiCircularChart = () => {
   const { getRoomState } = useContext(AppContext);
-  const { t, i18n } = useTranslation(["semiCircularChart"]);
-  const lang = i18n.language.toLowerCase();
   if (!getRoomState) {
     return (
       <LoadingBaseStyle>
@@ -33,49 +63,9 @@ export const SemiCircularChart = () => {
       </LoadingBaseStyle>
     );
   }
-  if (getRoomState.length === 0) {
-    return (
-      <SemiCircularChartMain>
-        <h2>{t("noRoomsMessage")}</h2>
-      </SemiCircularChartMain>
-    );
-  }
-  const adjustFloorKey = (floor: any, language: any) => {
-    if (language === "en") {
-      return `Floor ${floor.split(" ")[1]}`;
-    }
-
-    return floor;
-  };
-
-  const createFloorInfo = (rooms: Room[]) => {
-    const floors: any = {};
-
-    rooms.forEach((room: any) => {
-      const floor = adjustFloorKey(room.floor, lang);
-
-      if (!floors[floor]) {
-        floors[floor] = {
-          floor,
-          occupied: 0,
-          free: 0,
-        };
-      }
-
-      if (room.available) {
-        floors[floor].free += 1;
-      } else {
-        floors[floor].occupied += 1;
-      }
-    });
-
-    const floorInfoArray: FloorInfo[] = Object.values(floors);
-
-    return floorInfoArray;
-  };
-
-  const floorInfo: FloorInfo[] = createFloorInfo(getRoomState);
-
+  const { t, i18n } = useTranslation(["semiCircularChart"]);
+  const lang = i18n.language.toLowerCase();
+  const floorInfo: FloorInfo[] = createFloorInfo(getRoomState, lang);
   const [currentFloorIndex, setCurrentFloorIndex] = useState(0);
   const [series, setSeries] = useState([
     calculateOccupancyPercentage(floorInfo[0]),
@@ -97,6 +87,14 @@ export const SemiCircularChart = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, [currentFloorIndex, lang]);
+
+  if (getRoomState.length === 0) {
+    return (
+      <SemiCircularChartMain>
+        <h2>{t("noRoomsMessage")}</h2>
+      </SemiCircularChartMain>
+    );
+  }
 
   function calculateOccupancyPercentage(floor: any): number {
     if (!floor) return 0;

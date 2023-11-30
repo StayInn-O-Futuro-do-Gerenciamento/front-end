@@ -6,11 +6,14 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AppContext } from "../../context/appContext";
 import tinycolor from "tinycolor2";
 import { useTranslation } from "react-i18next";
+import { hexToCSSFilter } from "hex-to-css-filter";
 
 export const NavBarSearch = () => {
   const { setRandomColor, darkMode, toggleColorMode, toggleDarkMode } =
     useContext(AppContext);
-  const [inputColor, setInputColor] = useState("#f79009");
+  const root = document.documentElement;
+  const orange400 = getComputedStyle(root).getPropertyValue("--orange-400");
+  const [inputColor, setInputColor] = useState(orange400);
 
   const { i18n } = useTranslation(["reservationBar", "sidebar"]);
 
@@ -52,12 +55,16 @@ export const NavBarSearch = () => {
 
     shades.shift();
 
-    return shades;
+    return {
+      colorPalette: shades,
+    };
   };
 
   const handleColorChange = (event: any) => {
     setInputColor(event.target.value);
-    const colorPalette = generateShadesOfColor(event.target.value);
+    const { colorPalette } = generateShadesOfColor(event.target.value);
+
+    const cssFilter = hexToCSSFilter(colorPalette[4]);
 
     const customProperties = {
       "--orange-50": colorPalette[0],
@@ -70,6 +77,7 @@ export const NavBarSearch = () => {
       "--orange-700": colorPalette[7],
       "--orange-800": colorPalette[8],
       "--orange-900": colorPalette[9],
+      "--svg-color-orange": cssFilter.filter,
     };
 
     setRandomColor(customProperties);
@@ -117,7 +125,7 @@ export const NavBarSearch = () => {
             type="color"
             name="color"
             id="color"
-            value={inputColor}
+            value={orange400}
             onChange={handleColorChange}
           />
         </div>
