@@ -37,17 +37,31 @@ export const ComponentAddRoom = () => {
     const isEnglish = lang === "en";
 
     const mapStatusToEnglish = (status: string) => {
-      const statusMap: any = {
+      const statusMapES: any = {
+        Limpo: "Limpio",
+        Sujo: "Sucio",
+        "Em Manutenção": "En Mantenimiento",
+      };
+
+      const statusMapEN: any = {
         Limpo: "Clean",
         Sujo: "Dirty",
         "Em Manutenção": "Under Maintenance",
       };
 
-      return statusMap[status] || status;
+      if (lang === "en") {
+        return statusMapEN[status] || status;
+      } else if (lang === "es") {
+        return statusMapES[status] || status;
+      } else {
+        return status;
+      }
     };
     const adjustFloorKey = (floor: any) => {
       if (isEnglish) {
         return `Floor ${floor.split(" ")[1]}`;
+      } else if (lang === "es") {
+        return `Piso ${floor.split(" ")[1]}`;
       }
 
       return floor;
@@ -63,11 +77,15 @@ export const ComponentAddRoom = () => {
         ? room.available
           ? "Yes"
           : "No"
+        : lang === "es"
+        ? room.available
+          ? "Sí"
+          : "No"
         : room.available
         ? "Sim"
         : "Não",
       personCount: room.typeRoom.personCount,
-      status: isEnglish ? mapStatusToEnglish(room.status) : room.status,
+      status: mapStatusToEnglish(room.status),
     };
   });
 
@@ -82,7 +100,10 @@ export const ComponentAddRoom = () => {
 
   if (selectedButton === "availableRoom") {
     let availabe = formattedDataArray.filter(
-      (room: any) => room.disponivel === "Sim" || room.disponivel === "Yes"
+      (room: any) =>
+        room.disponivel === "Sim" ||
+        room.disponivel === "Yes" ||
+        room.disponivel === "Sí"
     );
     currentRooms = availabe.slice(indexOfFirstRoom, indexOfLastRoom);
     totalPages = Math.ceil(availabe.length / roomsPerPage);
@@ -123,7 +144,9 @@ export const ComponentAddRoom = () => {
             {
               formattedDataArray.filter(
                 (room: any) =>
-                  room.disponivel === "Sim" || room.disponivel === "Yes"
+                  room.disponivel === "Sim" ||
+                  room.disponivel === "Yes" ||
+                  room.disponivel === "Sí"
               ).length
             }
             )

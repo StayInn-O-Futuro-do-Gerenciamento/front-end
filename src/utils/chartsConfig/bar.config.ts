@@ -33,6 +33,20 @@ export const monthsEN = [
   "NOV",
   "DEC",
 ];
+export const monthsES = [
+  "ENE",
+  "FEB",
+  "MAR",
+  "ABR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DIC",
+];
 export const reorderedMonthsPT = [
   ...monthsPT.slice(currentMonthIndex + 1),
   ...monthsPT.slice(0, currentMonthIndex + 1),
@@ -43,8 +57,19 @@ export const reorderedMonthsEN = [
   ...monthsEN.slice(0, currentMonthIndex + 1),
 ];
 
+export const reorderedMonthsES = [
+  ...monthsES.slice(currentMonthIndex + 1),
+  ...monthsES.slice(0, currentMonthIndex + 1),
+];
+
 export const updateChartOptions = (cor: string, lang: string): ApexOptions => {
-  const reorderedMonths = lang === "en" ? reorderedMonthsEN : reorderedMonthsPT;
+  const reorderedMonths =
+    lang === "en"
+      ? reorderedMonthsEN
+      : lang === "es"
+      ? reorderedMonthsES
+      : reorderedMonthsPT;
+  // const reorderedMonths = lang === "en" ? reorderedMonthsEN : reorderedMonthsPT;
 
   const options: ApexOptions = {
     chart: {

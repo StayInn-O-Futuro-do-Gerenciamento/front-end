@@ -47,18 +47,32 @@ export const FilterPromotion = () => {
         let status = "";
 
         if (today < offerStartDate) {
-          status = lang === "en" ? "Scheduled" : "Programada";
+          status =
+            lang === "en"
+              ? "Scheduled"
+              : lang === "es"
+              ? "Programada"
+              : "Programada";
         } else if (today >= offerStartDate && today <= offerFinishDate) {
           status =
             availableRoomsCount > 0
               ? lang === "en"
                 ? "Valid"
+                : lang === "es"
+                ? "Válida"
                 : "Válida"
               : lang === "en"
               ? "Full"
+              : lang === "es"
+              ? "Lleno"
               : "Cheio";
         } else {
-          status = lang === "en" ? "Finished" : "Finalizada";
+          status =
+            lang === "en"
+              ? "Finished"
+              : lang === "es"
+              ? "Finalizada"
+              : "Finalizada";
         }
 
         return {

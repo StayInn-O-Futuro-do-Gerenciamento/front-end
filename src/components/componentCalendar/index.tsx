@@ -111,7 +111,7 @@ export const CalendarComponent = () => {
           year: "numeric",
           month: "long",
         }}
-        locale={lang === "en" ? "en" : "pt-br"}
+        locale={lang === "en" ? "en" : "es" ? "es" : "pt-br"}
         buttonText={{
           today: t("todayButton"),
         }}

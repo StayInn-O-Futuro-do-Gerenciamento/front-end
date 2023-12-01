@@ -49,15 +49,26 @@ export const ComponentListRateRoom = () => {
             Restrito: "Restricted",
             "Sem Reembolso": "No Refund",
           };
+          const spanishTranslation: any = {
+            Flexível: "Flexible",
+            Restrito: "Restringido",
+            "Sem Reembolso": "Sin reembolso",
+          };
 
-          return statusMap[status] || status;
+          if (lang === "en") {
+            return statusMap[status] || status;
+          } else if (lang === "es") {
+            return spanishTranslation[status] || status;
+          } else {
+            return status;
+          }
         };
 
         return {
           id: roomType.id,
           name: roomType.name,
           offerName: roomType.offer ? roomType.offer.offerName : null,
-          rate: isEnglish ? mapStatusToEnglish(roomType.rate) : roomType.rate,
+          rate: mapStatusToEnglish(roomType.rate),
           description: roomType.description,
           price: isEnglish ? `$ ${roomType.price}` : `R$ ${roomType.price}`,
           discount:

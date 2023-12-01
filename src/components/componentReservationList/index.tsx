@@ -44,7 +44,7 @@ export const ComponentListReservation = () => {
     }
     const peopleCount =
       Number(reservation.numberAdults) + Number(reservation.numberKids);
-    moment.locale(isEnglish ? "en" : "pt-br");
+    moment.locale(isEnglish ? "en" : lang === "es" ? "es" : "pt-br");
     const formattedCheckin = moment(reservation.checkin).format(
       isEnglish ? "MMMM DD, YYYY" : "DD [de] MMMM [de] YYYY"
     );
@@ -56,6 +56,8 @@ export const ComponentListReservation = () => {
     const adjustFloorKey = (floor: any) => {
       if (isEnglish) {
         return `Floor ${floor.split(" ")[1]}`;
+      } else if (lang === "es") {
+        return `Piso ${floor.split(" ")[1]}`;
       }
 
       return floor;

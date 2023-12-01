@@ -43,13 +43,18 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
         const statusPromotion = itemWithoutId["trueRoomStatusesCount"];
         let statusColor = "";
 
-        if (status === "Limpo" || status === "Clean") {
+        if (status === "Limpo" || status === "Clean" || status === "Limpio") {
           statusColor = "clean";
-        } else if (status === "Sujo" || status === "Dirty") {
+        } else if (
+          status === "Sujo" ||
+          status === "Dirty" ||
+          status === "Sucio"
+        ) {
           statusColor = "dirty";
         } else if (
           status === "Em Manutenção" ||
-          status === "Under Maintenance"
+          status === "Under Maintenance" ||
+          status === "En Mantenimiento"
         ) {
           statusColor = "WIP";
         }
@@ -65,7 +70,11 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
           statusPromotion === "Finished"
         ) {
           statusColor = "finished";
-        } else if (statusPromotion == "Cheio" || statusPromotion === "Full") {
+        } else if (
+          statusPromotion == "Cheio" ||
+          statusPromotion === "Full" ||
+          statusPromotion === "Lleno"
+        ) {
           statusColor = "full";
         }
 
