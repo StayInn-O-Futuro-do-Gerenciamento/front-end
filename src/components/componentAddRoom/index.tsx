@@ -6,6 +6,7 @@ import { AppContext } from "../../context/appContext";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const ComponentAddRoom = () => {
   const [selectedButton, setSelectedButton] = useState("allRooms");
@@ -17,6 +18,8 @@ export const ComponentAddRoom = () => {
     setSelectedButton(buttonId);
   };
   const userType = localStorage.getItem("userType");
+  const { t, i18n } = useTranslation(["componentAddRoom"]);
+  const lang = i18n.language.toLowerCase();
 
   if (!getRoomState) {
     return (
@@ -30,17 +33,61 @@ export const ComponentAddRoom = () => {
       </LoadingBaseStyle>
     );
   }
+  const formattedDataArray = getRoomState.map((room: any) => {
+    const isEnglish = lang === "en";
 
-  const formattedDataArray = getRoomState.map((room: any) => ({
-    id: room.id,
-    roomNumber: room.roomNumber,
-    roomType: room.typeRoom.name,
-    roomFloor: room.floor,
-    roomFacilitys: room.typeRoom.confort,
-    disponivel: room.available ? "Sim" : "Não",
-    personCount: room.typeRoom.personCount,
-    status: room.status,
-  }));
+    const mapStatusToEnglish = (status: string) => {
+      const statusMapES: any = {
+        Limpo: "Limpio",
+        Sujo: "Sucio",
+        "Em Manutenção": "En Mantenimiento",
+      };
+
+      const statusMapEN: any = {
+        Limpo: "Clean",
+        Sujo: "Dirty",
+        "Em Manutenção": "Under Maintenance",
+      };
+
+      if (lang === "en") {
+        return statusMapEN[status] || status;
+      } else if (lang === "es") {
+        return statusMapES[status] || status;
+      } else {
+        return status;
+      }
+    };
+    const adjustFloorKey = (floor: any) => {
+      if (isEnglish) {
+        return `Floor ${floor.split(" ")[1]}`;
+      } else if (lang === "es") {
+        return `Piso ${floor.split(" ")[1]}`;
+      }
+
+      return floor;
+    };
+
+    return {
+      id: room.id,
+      roomNumber: room.roomNumber,
+      roomType: room.typeRoom.name,
+      roomFloor: adjustFloorKey(room.floor),
+      roomFacilitys: room.typeRoom.confort,
+      disponivel: isEnglish
+        ? room.available
+          ? "Yes"
+          : "No"
+        : lang === "es"
+        ? room.available
+          ? "Sí"
+          : "No"
+        : room.available
+        ? "Sim"
+        : "Não",
+      personCount: room.typeRoom.personCount,
+      status: mapStatusToEnglish(room.status),
+    };
+  });
 
   const indexOfLastRoom = currentPage * roomsPerPage;
   const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
@@ -53,13 +100,16 @@ export const ComponentAddRoom = () => {
 
   if (selectedButton === "availableRoom") {
     let availabe = formattedDataArray.filter(
-      (room) => room.disponivel === "Sim"
+      (room: any) =>
+        room.disponivel === "Sim" ||
+        room.disponivel === "Yes" ||
+        room.disponivel === "Sí"
     );
     currentRooms = availabe.slice(indexOfFirstRoom, indexOfLastRoom);
     totalPages = Math.ceil(availabe.length / roomsPerPage);
   } else if (selectedButton === "booked") {
     let unavailable = formattedDataArray.filter(
-      (room) => room.disponivel === "Não"
+      (room: any) => room.disponivel === "Não" || room.disponivel === "No"
     );
     currentRooms = unavailable.slice(indexOfFirstRoom, indexOfLastRoom);
     totalPages = Math.ceil(unavailable.length / roomsPerPage);
@@ -82,7 +132,7 @@ export const ComponentAddRoom = () => {
             className={selectedButton === "allRooms" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("allRooms")}
           >
-            Todas os Quartos({formattedDataArray.length})
+            {t("allRoomsButton")}({formattedDataArray.length})
           </Button>
           <Button
             type="button"
@@ -90,10 +140,14 @@ export const ComponentAddRoom = () => {
             className={selectedButton === "availableRoom" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("availableRoom")}
           >
-            Quartos disponiveis(
+            {t("availableRoomsButton")}(
             {
-              formattedDataArray.filter((room) => room.disponivel === "Sim")
-                .length
+              formattedDataArray.filter(
+                (room: any) =>
+                  room.disponivel === "Sim" ||
+                  room.disponivel === "Yes" ||
+                  room.disponivel === "Sí"
+              ).length
             }
             )
           </Button>
@@ -103,10 +157,12 @@ export const ComponentAddRoom = () => {
             className={selectedButton === "booked" ? "selected-btn" : ""}
             onClick={() => handleButtonClick("booked")}
           >
-            Quatos Reservados(
+            {t("bookedRoomsButton")}(
             {
-              formattedDataArray.filter((room) => room.disponivel === "Não")
-                .length
+              formattedDataArray.filter(
+                (room: any) =>
+                  room.disponivel === "Não" || room.disponivel === "No"
+              ).length
             }
             )
           </Button>
@@ -118,7 +174,7 @@ export const ComponentAddRoom = () => {
               buttonVariation="buttonCreate"
               onClick={() => handleChangeFunction("modalCreateRoom", true)}
             >
-              Adicionar Quartos
+              {t("addRoomsButton")}
             </Button>
           </div>
         )}

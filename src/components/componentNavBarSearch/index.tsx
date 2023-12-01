@@ -1,11 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavBarSearchStyle } from "./style";
-import searchImg from "../../assets/navbar/Search.svg";
 import { LiaUserCircle } from "react-icons/lia";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AppContext } from "../../context/appContext";
 import tinycolor from "tinycolor2";
 import { useTranslation } from "react-i18next";
+import Brazil from "../../assets/flags/brazil.png";
+import USA from "../../assets/flags/united-states.png";
+import Spain from "../../assets/flags/spain.png";
 import { HexToCssConfiguration, hexToCSSFilter } from "hex-to-css-filter";
 
 export const NavBarSearch = () => {
@@ -16,9 +18,11 @@ export const NavBarSearch = () => {
   const [inputColor, setInputColor] = useState(orange400);
 
   const { i18n } = useTranslation(["reservationBar", "sidebar"]);
+  const lang = i18n.language.toLowerCase();
 
   const changeLanguage = (language: any) => {
     i18n.changeLanguage(language);
+    localStorage.setItem("lang", language);
   };
   const mode = localStorage.getItem("darkMode");
   let darkTheme = darkMode;
@@ -95,10 +99,22 @@ export const NavBarSearch = () => {
   return (
     <NavBarSearchStyle>
       <div className="div1">
-        <img src={searchImg} alt="" />
-        <input type="text" placeholder="Procure por quartos e ofertas" />
-        <button onClick={() => changeLanguage("en")}>EN</button>
-        <button onClick={() => changeLanguage("pt")}>PT</button>
+        <img
+          src={Brazil}
+          onClick={() => changeLanguage("pt")}
+          className={lang === "pt" ? "btnFlag-active" : "btnFlag"}
+        />
+        <img
+          src={USA}
+          onClick={() => changeLanguage("en")}
+          className={lang === "en" ? "btnFlag-active" : "btnFlag"}
+        />
+
+        <img
+          src={Spain}
+          onClick={() => changeLanguage("es")}
+          className={lang === "es" ? "btnFlag-active" : "btnFlag"}
+        />
       </div>
       <div className="div2">
         <div>

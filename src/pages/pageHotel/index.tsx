@@ -11,6 +11,7 @@ import {
   registerHotelSchemas,
   registerHotelData,
 } from "../../schemas/schemaHotel";
+import { useTranslation } from "react-i18next";
 
 export const PageHotel = () => {
   const { createHotel, loadingButton, hotel } = useContext(AppContext);
@@ -23,7 +24,7 @@ export const PageHotel = () => {
   });
 
   const typeToken = localStorage.getItem("userType");
-
+  const { t } = useTranslation(["modal"]);
   const navigate = useNavigate();
 
   if (
@@ -42,12 +43,12 @@ export const PageHotel = () => {
     <PageHotelStyle>
       <ComponentModalPageHotelCreate>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Criar um hotel</h2>
+          <h2>{t("titleCreateHotel")} </h2>
           <Input
-            placeholder="Digite nome do Hotel"
+            placeholder={t("name")}
             type="text"
             register={register("name")}
-            label="Hotel"
+            label={t("name")}
           />
           {errors.name ? (
             <span className="errorMessage">{errors.name.message}</span>
@@ -55,10 +56,10 @@ export const PageHotel = () => {
             <></>
           )}
           <Input
-            placeholder="Ex: Rua das alamedas"
+            placeholder={t("street")}
             type="text"
             register={register("street")}
-            label="Rua"
+            label={t("street")}
           />
           {errors.street ? (
             <span className="errorMessage">{errors.street.message}</span>
@@ -66,10 +67,10 @@ export const PageHotel = () => {
             <></>
           )}
           <Input
-            placeholder="Ex: 234"
+            placeholder={t("number")}
             type="text"
             register={register("number")}
-            label="Número"
+            label={t("number")}
           />
           {errors.number ? (
             <span className="errorMessage">{errors.number.message}</span>
@@ -77,10 +78,10 @@ export const PageHotel = () => {
             <></>
           )}
           <Input
-            placeholder="Ex: 07845-255"
+            placeholder={t("zipCode")}
             type="text"
             register={register("zipCode")}
-            label="Cep"
+            label={t("zipCode")}
           />
           {errors.zipCode ? (
             <span className="errorMessage">{errors.zipCode.message}</span>
@@ -88,10 +89,10 @@ export const PageHotel = () => {
             <></>
           )}
           <Input
-            placeholder="Ex: Jaraguá"
+            placeholder={t("city")}
             type="text"
             register={register("city")}
-            label="Cidade"
+            label={t("city")}
           />
           {errors.city ? (
             <span className="errorMessage">{errors.city.message}</span>
@@ -99,10 +100,10 @@ export const PageHotel = () => {
             <></>
           )}
           <Input
-            placeholder="Ex: Numero de quartos"
+            placeholder={t("numberRoomsTotal")}
             type="number"
             register={register("numberRoomsTotal")}
-            label="Numero total de quartos"
+            label={t("numberRoomsTotal")}
           />
           {errors.numberRoomsTotal ? (
             <span className="errorMessage">
@@ -112,10 +113,10 @@ export const PageHotel = () => {
             <></>
           )}
           <Input
-            placeholder="Ex: Quantidade de quartos por andar"
+            placeholder={t("roomsPerFloor")}
             type="number"
             register={register("roomsPerFloor")}
-            label="Quantidade de quartos por andar"
+            label={t("roomsPerFloor")}
           />
           {errors.roomsPerFloor ? (
             <span className="errorMessage">{errors.roomsPerFloor.message}</span>
@@ -128,7 +129,7 @@ export const PageHotel = () => {
             type="submit"
             disabled={loadingButton}
           >
-            {loadingButton ? "Carregando.." : "Criar hotel"}
+            {loadingButton ? t("loading") : t("createHotel")}
           </Button>
         </form>
       </ComponentModalPageHotelCreate>

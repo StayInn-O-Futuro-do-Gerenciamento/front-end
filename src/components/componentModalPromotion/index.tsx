@@ -10,12 +10,14 @@ import { addOfferSchemas } from "../../schemas/schemaOffer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 export const ModalPromotion = () => {
   const { handleChangeFunction, getTypeRoomState, createOffer } =
     useContext(AppContext);
   const [selectedTypeRoom, setSelectedTypeRoom] =
     useState("Selecionar Hospede");
+  const { t } = useTranslation(["modal"]);
 
   if (!getTypeRoomState) {
     return (
@@ -47,7 +49,7 @@ export const ModalPromotion = () => {
     <ContainerModal>
       <div className="modalPromotion">
         <HeaderModal>
-          Adicionar oferta
+          {t("header")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -59,8 +61,8 @@ export const ModalPromotion = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
-            label="Nome"
-            placeholder="Nome da oferta"
+            label={t("offerName")}
+            placeholder={t("offerName")}
             register={register("offerName")}
           />
           {errors.offerName ? (
@@ -69,11 +71,11 @@ export const ModalPromotion = () => {
             <></>
           )}
           <label>
-            <strong>Descrição</strong>
+            <strong>{t("offerDescription")} </strong>
           </label>
           <textarea
             {...register("offerDescription")}
-            placeholder="Descrição da oferta"
+            placeholder={t("offerDescription")}
           ></textarea>
           {errors.offerDescription ? (
             <span className="errorMessage">
@@ -84,8 +86,8 @@ export const ModalPromotion = () => {
           )}
           <Input
             type="number"
-            label="Desconto"
-            placeholder="R$ 20"
+            label={t("discount")}
+            placeholder={t("discount")}
             register={register("discount")}
           />
           {errors.discount ? (
@@ -95,7 +97,7 @@ export const ModalPromotion = () => {
           )}
           <Input
             type="date"
-            label="Data de início"
+            label={t("startDate")}
             register={register("startDate")}
           />
           {errors.startDate ? (
@@ -105,7 +107,7 @@ export const ModalPromotion = () => {
           )}
           <Input
             type="date"
-            label="Data de término"
+            label={t("finishDate")}
             register={register("finishDate")}
           />
           {errors.finishDate ? (
@@ -115,7 +117,7 @@ export const ModalPromotion = () => {
           )}
 
           <label className="labelSelect" htmlFor="">
-            <strong>Tipo de quarto</strong>
+            <strong>{t("typeRoom")}</strong>
           </label>
           <select {...register("typeRoom")} name="typeRoom">
             {getTypeRoomState.map((typeRoom: any, index: any) => (
@@ -133,10 +135,10 @@ export const ModalPromotion = () => {
                 handleChangeFunction("modalCreatePromotion", false)
               }
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button type="submit" buttonVariation="saveModal">
-              Salvar
+              {t("btnSave")}
             </Button>
           </ContainerButtonModal>
         </Form>

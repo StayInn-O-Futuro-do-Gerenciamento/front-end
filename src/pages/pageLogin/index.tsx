@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerLoginSchemas } from "../../schemas/schemaLogin";
+import { useTranslation } from "react-i18next";
 
 interface iFormInput {
   name: string;
@@ -20,7 +21,7 @@ export const PageLogin = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<iFormInput>({ resolver: zodResolver(registerLoginSchemas) });
-
+  const { t } = useTranslation(["modal"]);
   const onSubmit = (data: iFormInput) => {
     loginUser(data);
   };
@@ -31,10 +32,10 @@ export const PageLogin = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Login</h2>
           <Input
-            placeholder="Digite seu usuário"
+            placeholder={t("user")}
             type="text"
             register={register("name")}
-            label="Usuario"
+            label={t("user")}
           />
           {errors.name ? (
             <span className="errorMessage">{errors.name.message}</span>
@@ -42,8 +43,8 @@ export const PageLogin = () => {
             <></>
           )}
           <Input
-            label="Senha"
-            placeholder="Digite sua senha"
+            label={t("password")}
+            placeholder={t("password")}
             type="password"
             register={register("password")}
           />
@@ -57,7 +58,7 @@ export const PageLogin = () => {
             type="submit"
             disabled={loadingButton}
           >
-            {loadingButton ? "Carregando.." : "Efetuar Login"}
+            {loadingButton ? t("loading") : t("login")}
           </Button>
         </form>
       </ComponentModalPageLoginCreate>

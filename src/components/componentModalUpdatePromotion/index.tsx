@@ -7,11 +7,12 @@ import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { AppContext } from "../../context/appContext";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 export const ModalUpdatePromotion = () => {
   const { handleChangeFunction, getTypeRoomState, updateOffer } =
     useContext(AppContext);
-
+  const { t } = useTranslation(["modal"]);
   if (!getTypeRoomState) {
     return (
       <ContainerModal>
@@ -40,7 +41,7 @@ export const ModalUpdatePromotion = () => {
     <ContainerModal>
       <div className="modalPromotion">
         <HeaderModal>
-          Atualizar oferta
+          {t("headerUpdate")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -52,31 +53,31 @@ export const ModalUpdatePromotion = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
-            label="Nome"
-            placeholder="Nome da oferta"
+            label={t("offerName")}
+            placeholder={t("offerName")}
             register={register("offerName")}
           />
           <label>
-            <strong>Descrição</strong>
+            <strong>{t("offerDescription")} </strong>
           </label>
           <textarea
             {...register("offerDescription")}
-            placeholder="Descrição da oferta"
+            placeholder={t("offerDescription")}
           ></textarea>
           <Input
             type="number"
-            label="Desconto"
-            placeholder="0%"
+            label={t("discount")}
+            placeholder={t("discount")}
             register={register("discount")}
           />
           <Input
             type="date"
-            label="Data de início"
+            label={t("startDate")}
             register={register("startDate")}
           />
           <Input
             type="date"
-            label="Data de término"
+            label={t("finishDate")}
             register={register("finishDate")}
           />
 
@@ -88,10 +89,10 @@ export const ModalUpdatePromotion = () => {
                 handleChangeFunction("modalUpdatePromotion", false)
               }
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button type="submit" buttonVariation="saveModal">
-              Salvar
+              {t("btnSave")}
             </Button>
           </ContainerButtonModal>
         </Form>

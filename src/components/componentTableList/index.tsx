@@ -43,20 +43,38 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
         const statusPromotion = itemWithoutId["trueRoomStatusesCount"];
         let statusColor = "";
 
-        if (status === "Limpo") {
+        if (status === "Limpo" || status === "Clean" || status === "Limpio") {
           statusColor = "clean";
-        } else if (status === "Sujo") {
+        } else if (
+          status === "Sujo" ||
+          status === "Dirty" ||
+          status === "Sucio"
+        ) {
           statusColor = "dirty";
-        } else if (status === "Em Manutenção") {
+        } else if (
+          status === "Em Manutenção" ||
+          status === "Under Maintenance" ||
+          status === "En Mantenimiento"
+        ) {
           statusColor = "WIP";
         }
-        if (statusPromotion == "Programada") {
+        if (
+          statusPromotion == "Programada" ||
+          statusPromotion === "Scheduled"
+        ) {
           statusColor = "scheduled";
-        } else if (statusPromotion == "Válida") {
+        } else if (statusPromotion == "Válida" || statusPromotion === "Valid") {
           statusColor = "onGoing";
-        } else if (statusPromotion == "Finalizada") {
+        } else if (
+          statusPromotion == "Finalizada" ||
+          statusPromotion === "Finished"
+        ) {
           statusColor = "finished";
-        } else if (statusPromotion == "Cheio") {
+        } else if (
+          statusPromotion == "Cheio" ||
+          statusPromotion === "Full" ||
+          statusPromotion === "Lleno"
+        ) {
           statusColor = "full";
         }
 

@@ -9,9 +9,11 @@ import { Input } from "../componentInput";
 import { useContext } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { tAddRoomData, addRoomSchemas } from "../../schemas/schemaRoom";
+import { useTranslation } from "react-i18next";
 
 export const ModalAddRoom = () => {
   const { handleChangeFunction, createRoom } = useContext(AppContext);
+  const { t } = useTranslation(["modal"]);
 
   const {
     register,
@@ -32,7 +34,7 @@ export const ModalAddRoom = () => {
     <ContainerModal>
       <div className="modalAddRoom">
         <HeaderModal>
-          Adicionar quarto{" "}
+          {t("addRoom")}
           <Button
             type="button"
             buttonVariation="closeModal"
@@ -47,7 +49,7 @@ export const ModalAddRoom = () => {
               <Input
                 type="text"
                 placeholder="Ex: vip"
-                label="Tipo de quarto"
+                label={t("roomTypeLabel")}
                 register={register("typeRoom.name")}
               />
               {errors.typeRoom?.name ? (
@@ -59,8 +61,8 @@ export const ModalAddRoom = () => {
               )}
               <Input
                 type="text"
-                placeholder="Descrição do quarto"
-                label="Descrição"
+                placeholder={t("descriptionLabel")}
+                label={t("descriptionLabel")}
                 register={register("typeRoom.description")}
               />
               {errors.typeRoom?.description ? (
@@ -73,7 +75,7 @@ export const ModalAddRoom = () => {
               <Input
                 type="text"
                 placeholder="Ex: frigobar, hidromassagem"
-                label="Conforto"
+                label={t("confortLabel")}
                 register={register("typeRoom.confort")}
               />
               {errors.typeRoom?.confort ? (
@@ -84,15 +86,15 @@ export const ModalAddRoom = () => {
                 <></>
               )}
               <label>
-                <strong>Status</strong>
+                <strong>{t("statusLabel")}</strong>
               </label>
               <select {...register("status")} name="status">
                 <option disabled selected>
-                  Selecionar status
+                  {t("selectStatus")}
                 </option>
-                <option value="Limpo">Limpo</option>
-                <option value="Sujo">Sujo</option>{" "}
-                <option value="Em Manutenção">Em Manutenção</option>
+                <option value="Limpo">{t("cleanStatus")}</option>
+                <option value="Sujo">{t("dirtyStatus")}</option>{" "}
+                <option value="Em Manutenção">{t("maintenanceStatus")}</option>
               </select>
               {errors.status ? (
                 <span className="errorMessage">{errors.status.message}</span>
@@ -103,8 +105,8 @@ export const ModalAddRoom = () => {
             <div className="div2">
               <Input
                 type="number"
-                placeholder="Preço do quarto"
-                label="Preço"
+                placeholder={t("priceLabel")}
+                label={t("priceLabel")}
                 register={register("typeRoom.price")}
               />
               {errors.typeRoom?.price ? (
@@ -116,8 +118,8 @@ export const ModalAddRoom = () => {
               )}
               <Input
                 type="number"
-                placeholder="Contagem de pessoas"
-                label="Pessoas"
+                placeholder={t("peopleCountLabel")}
+                label={t("peopleCountLabel")}
                 register={register("typeRoom.personCount")}
               />
               {errors.typeRoom?.personCount ? (
@@ -130,8 +132,8 @@ export const ModalAddRoom = () => {
 
               <Input
                 type="number"
-                placeholder="Número de quartos"
-                label="Número de quartos"
+                placeholder={t("roomQuantityLabel")}
+                label={t("roomQuantityLabel")}
                 register={register("typeRoom.roomTypeQuantity")}
               />
               {errors.typeRoom?.roomTypeQuantity ? (
@@ -142,15 +144,15 @@ export const ModalAddRoom = () => {
                 <></>
               )}
               <label>
-                <strong>Política de cancelamento</strong>
+                <strong>{t("cancelPolicyLabel")}</strong>
               </label>
               <select {...register("typeRoom.rate")} name="rate">
                 {/* <option disabled selected>
               Selecionar política
             </option> */}
-                <option value="Flexível">Flexível</option>
-                <option value="Restrito">Restrito</option>{" "}
-                <option value="Sem Reembolso">Sem reembolso</option>
+                <option value="Flexível">{t("flexiblePolicy")}</option>
+                <option value="Restrito">{t("restrictedPolicy")}</option>{" "}
+                <option value="Sem Reembolso">{t("noRefundPolicy")}</option>
               </select>
 
               {errors.typeRoom?.rate ? (
@@ -169,10 +171,10 @@ export const ModalAddRoom = () => {
               type="button"
               onClick={() => handleChangeFunction("modalCreateRoom", false)}
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button buttonVariation="saveModal" type="submit">
-              Adicionar
+              {t("btnAdd")}
             </Button>
           </ContainerButtonModal>
         </Form>

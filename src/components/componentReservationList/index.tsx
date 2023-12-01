@@ -8,11 +8,14 @@ import ReactLoading from "react-loading";
 import { ComponentListReservationStyle, LoadingBaseStyle } from "./style";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export const ComponentListReservation = () => {
   const { getReservationState, deleteReservation } = useContext(AppContext);
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const { t, i18n } = useTranslation(["reservationList"]);
+  const lang = i18n.language.toLowerCase();
 
   if (!getReservationState) {
     return (
@@ -28,6 +31,7 @@ export const ComponentListReservation = () => {
   }
 
   const reservationData = getReservationState.map((reservation: any) => {
+    const isEnglish = lang === "en";
     const actualDate = new Date();
     const reservationCheckout = new Date(reservation.checkout);
 
@@ -40,15 +44,24 @@ export const ComponentListReservation = () => {
     }
     const peopleCount =
       Number(reservation.numberAdults) + Number(reservation.numberKids);
-
+    moment.locale(isEnglish ? "en" : lang === "es" ? "es" : "pt-br");
     const formattedCheckin = moment(reservation.checkin).format(
-      "DD [de] MMMM [de] YYYY"
+      isEnglish ? "MMMM DD, YYYY" : "DD [de] MMMM [de] YYYY"
     );
     const formattedCheckout = moment(reservation.checkout).format(
-      "DD [de] MMMM [de] YYYY"
+      isEnglish ? "MMMM DD, YYYY" : "DD [de] MMMM [de] YYYY"
     );
     const guest = reservation.guests[0].name;
 
+    const adjustFloorKey = (floor: any) => {
+      if (isEnglish) {
+        return `Floor ${floor.split(" ")[1]}`;
+      } else if (lang === "es") {
+        return `Piso ${floor.split(" ")[1]}`;
+      }
+
+      return floor;
+    };
     return {
       id: reservation.id,
       guest: guest,
@@ -56,8 +69,10 @@ export const ComponentListReservation = () => {
       checkout: formattedCheckout,
       peopleQuantity: peopleCount,
       room: reservation.rooms.roomNumber,
-      floor: reservation.rooms.floor,
-      price: `R$ ${Number(reservation.rooms.typeRoom.price).toFixed(2)}`,
+      floor: adjustFloorKey(reservation.rooms.floor),
+      price: isEnglish
+        ? `$ ${Number(reservation.rooms.typeRoom.price).toFixed(2)}`
+        : `R$ ${Number(reservation.rooms.typeRoom.price).toFixed(2)}`,
       feedBack: reservation.feedBack,
     };
   });
@@ -76,14 +91,14 @@ export const ComponentListReservation = () => {
       <div></div>
       <TableStyled>
         <thead>
-          <th>Hospede</th>
-          <th>Checkin</th>
-          <th>Checkout</th>
-          <th>Pessoas no quarto</th>
-          <th>Quarto</th>
-          <th>Andar</th>
-          <th>Preço</th>
-          <th>FeedBack</th>
+          <th>{t("guest")}</th>
+          <th>{t("checkin")}</th>
+          <th>{t("checkout")}</th>
+          <th>{t("peopleQuantity")}</th>
+          <th>{t("room")}</th>
+          <th>{t("floor")}</th>
+          <th>{t("price")}</th>
+          <th>{t("feedBack")}</th>
           <th></th>
         </thead>
         <ComponentTableList

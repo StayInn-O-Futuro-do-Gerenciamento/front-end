@@ -7,11 +7,14 @@ import { AppContext } from "../../context/appContext";
 import { ModalUpdateGuest } from "../../components/componentModalUpdateGuest";
 import { ModalRegisterGuest } from "../../components/componentModalRegisterGuest";
 import { api } from "../../services/api";
+import { useTranslation } from "react-i18next";
 
 export const Guest = () => {
   const { modalUpdateGuest, modalCreateGuest, setGetGuestState } =
     useContext(AppContext);
   const userType = localStorage.getItem("userType");
+  const { i18n } = useTranslation(["offers"]);
+  const lang = i18n.language.toLowerCase();
   useEffect(() => {
     let token: string = "";
     const local = localStorage.getItem("token");
@@ -25,7 +28,7 @@ export const Guest = () => {
       setGetGuestState(responseGuest.data);
     };
     getHospede();
-  }, []);
+  }, [lang]);
   return (
     <GuestMain>
       {JSON.parse(userType!) === "Attendant" && modalUpdateGuest && (

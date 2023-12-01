@@ -19,6 +19,8 @@ interface Room {
 const adjustFloorKey = (floor: any, language: any) => {
   if (language === "en") {
     return `Floor ${floor.split(" ")[1]}`;
+  } else if (language === "es") {
+    return `Piso ${floor.split(" ")[1]}`;
   }
 
   return floor;

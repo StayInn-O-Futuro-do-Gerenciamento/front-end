@@ -7,6 +7,7 @@ import { AppContext } from "../../context/appContext";
 import { useContext } from "react";
 import { registerRegisterManagerSchemas } from "../../schemas/schemaRoom/schemaRegister";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 interface iFormInput {
   name: string;
@@ -22,7 +23,7 @@ export const PageRegister = () => {
   } = useForm<iFormInput>({
     resolver: zodResolver(registerRegisterManagerSchemas),
   });
-
+  const { t } = useTranslation(["modal"]);
   const onSubmit = (data: iFormInput) => {
     registerManager(data);
   };
@@ -31,12 +32,12 @@ export const PageRegister = () => {
     <PageLoginStyle>
       <ComponentModalPageLoginCreate>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Cadastro</h2>
+          <h2>{t("register")} </h2>
           <Input
-            placeholder="Digite seu usuário"
+            placeholder={t("user")}
             type="text"
             register={register("name")}
-            label="Usuario"
+            label={t("user")}
           />
           {errors.name ? (
             <span className="errorMessage">{errors.name.message}</span>
@@ -44,8 +45,8 @@ export const PageRegister = () => {
             <></>
           )}
           <Input
-            label="Senha"
-            placeholder="Digite sua senha"
+            label={t("password")}
+            placeholder={t("password")}
             type="password"
             register={register("password")}
           />
@@ -55,7 +56,7 @@ export const PageRegister = () => {
             <></>
           )}
           <Button buttonVariation="buttonCreate" type="submit">
-            Cadastrar
+            {t("register")}
           </Button>
         </form>
       </ComponentModalPageLoginCreate>

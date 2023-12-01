@@ -6,7 +6,7 @@
       "rooms": "Quartos",
       "offers": "Promoções",
       "roomType": "Tipo de Quarto",
-      "reservationList": "Lista de Reservas",
+      "reservationList": "Lista Reservas",
       "login": "Login",
       "addAttendants": "+ Atendentes",
       "whatsapp": "WhatsApp",
@@ -15,8 +15,8 @@
     },
     "reservationBar": {
        "createReservation": "Criar Reserva"
-      },
-      "overview": {
+    },
+    "overview": {
         "heading": "Visão geral",
         "today": "Hoje",
         "checkIn": "Check-in",
@@ -25,16 +25,16 @@
         "inHotel": "No hotel",
         "availableRooms": "Quartos disponíveis",
         "occupiedRooms": "Quartos ocupados"
-      },
-      "room": {
+    },
+    "room": {
         "noRoomsMessage": "Não há quartos no momento",
         "heading": "Quartos"
-      },
-      "roomCard": {
+    },
+    "roomCard": {
         "day": "Dia",
         "price": "R$"
-      },
-      "statusRoom": {
+    },
+    "statusRoom": {
         "title": "Status dos Quartos",
         "noRoomsMessage": "Não há quartos no momento",
         "occupiedRooms": {
@@ -49,13 +49,171 @@
           "dirty": "Sujos",
           "maintenance": "Em manutenção"
         }
-      },
-      "barChart": {
+    },
+    "barChart": {
         "title": "Status da Ocupação"
-      },
-      "semiCircularChart": {
+    },
+    "semiCircularChart": {
         "noRoomsMessage": "Não Há Quartos no momento",
         "occupiedLabel": "Ocupados",
         "freeLabel": "Livres"
+    },
+    "calendar": {
+        "checkinLabel": "Checkin",
+        "checkoutLabel": "Checkout",
+        "createReservationButton": "Criar Reserva",
+        "todayButton": "Hoje"
+    },
+    "filterReservation": {
+      "allRooms": "Todos os Quartos",
+      "adultsLabel": "Adultos",
+      "childrenLabel": "Crianças",
+      "checkAvailabilityButtonText": "Checar Disponibilidade",
+      "attendantWarning": "Chame um atendente para reservar"
+    },
+    "roomFilteredList":{
+      "room": "Quarto",
+      "type": "Tipo",
+      "floor": "Andar",
+      "roomDescription": "Descrição do Quarto",
+      "available": "Disponível",
+      "numberOfPeople": "Quantidade de Pessoas",
+      "status": "Status"
+    },
+    "componentListGuest": {
+      "allGuestsButton": "Todos os Hóspedes",
+      "guestsWithReservationsButton": "Hóspedes com Reservas",
+      "searchPlaceholder": "Buscar por número",
+      "createGuestButton": "Cadastrar Hóspede",
+      "tableHeaders": {
+        "name": "Nome",
+        "nationality": "Nacionalidade",
+        "number": "Número",
+        "rg": "RG",
+        "totalPaid": "Total Pago"
       }
+    },
+    "componentAddRoom": {
+      "allRoomsButton": "Todos os Quartos",
+      "availableRoomsButton": "Quartos Disponíveis",
+      "bookedRoomsButton": "Quartos Reservados",
+      "addRoomsButton": "Adicionar Quartos"
+    },
+    "offers":{
+      "all": "Todas",
+      "ongoing": "Em Andamento",
+      "finished": "Finalizadas",
+      "full": "Cheio",
+      "scheduled": "Programadas",
+      "name": "Nome",
+      "startDate": "Data de Início",
+      "finishDate": "Data Final",
+      "roomType": "Tipo do Quarto",
+      "availableRooms": "Quartos Disponíveis",
+      "status": "Status",
+      "addPromotion": "Adicionar Oferta"
+    },
+    "typeRooms":{
+      "roomType": "Tipo de Quarto",
+      "offer": "Oferta",
+      "cancellationPolicy": "Política de Cancelamento",
+      "description": "Descrição",
+      "roomPrice": "Preço do Quarto",
+      "offerDiscount": "Desconto da Oferta",
+      "totalToPay": "Total a Pagar",
+      "totalRooms": "Total de Quartos",
+      "availableRooms": "Disponíveis"
+    },
+    "reservationList":{
+      "guest": "Hóspede",
+      "checkin": "Checkin",
+      "checkout": "Checkout",
+      "peopleQuantity": "Pessoas no quarto",
+      "room": "Quarto",
+      "floor": "Andar",
+      "price": "Preço",
+      "feedBack": "FeedBack"
+    },
+    "modal":{
+      "scheduledReservation": "Agendar Reserva",
+      "selectGuest":"Selecionar Hóspede",
+      "btnCancel": "Cancelar",
+      "btnSave":"Salvar",
+      "btnSchedule": "Agendar",
+      "btnAddContact":"Adicionar Contanto",
+      "btnRemoveContact":"Remover Contanto",
+      "btnEraseAllContacts":"Limpar Todos",
+      "btnAdd":"Adicionar",
+      "btnExclude":"Excluir",
+      "titleReservation":"Atualizar Reserva",
+      "titleAddGuest" :"Cadastrar hospede",
+      "titleUpdateGuest":"Atualizar Hospede",
+      "name": "Nome",
+      "rg": "RG",
+      "cpf": "CPF",
+      "passport": "Passaporte",
+      "nationality": "Nacionalidade",
+      "guestContact":"Contato do hospede",
+      "phoneNumber": "Celular 1",
+      "phoneNumber2": "Celular 2",
+      "emergencyContact": "Contato de emergência",
+      "emergencyContactName": "Nome do contato",
+      "emergencyContactNumber": "Número do contato",
+      "street": "Rua",
+      "residenceNumber": "Número da residência",
+      "city": "Cidade",
+      "state": "Estado",
+      "zipCode": "CEP",
+      "addRoom":"Adicionar Quarto",
+      "updateRoom":"Atualizar Quarto",
+      "roomTypeLabel": "Tipo de quarto",
+      "descriptionLabel": "Descrição",
+      "confortLabel": "Conforto",
+      "statusLabel": "Status",
+      "selectStatus": "Selecionar status",
+      "cleanStatus": "Limpo",
+      "dirtyStatus": "Sujo",
+      "maintenanceStatus": "Em Manutenção",
+      "priceLabel": "Preço",
+      "peopleCountLabel": "Pessoas",
+      "roomQuantityLabel": "Número de quartos",
+      "cancelPolicyLabel": "Política de cancelamento",
+      "selectPolicy": "Selecionar política",
+      "flexiblePolicy": "Flexível",
+      "restrictedPolicy": "Restrito",
+      "noRefundPolicy": "Sem Reembolso",
+      "availability":"Disponibilidade",
+      "availableLabel":"Disponível",
+      "occupiedLabel":"Ocupado",
+      "header": "Adicionar oferta",
+      "headerUpdate": "Atualizar oferta",
+      "offerName": "Nome",
+      "offerDescription": "Descrição",
+      "discount": "Desconto",
+      "startDate": "Data de início",
+      "finishDate": "Data de término",
+      "typeRoom": "Tipo de quarto",
+      "updateTypeRoom":"Atualizar Tipo de quarto",
+      "number": "Número",
+      "numberRoomsTotal": "Número Total de Quartos",
+      "roomsPerFloor": "Número de Quartos por Andar",
+      "loading": "Carregando...",
+      "createHotel": "Criar Hotel",
+      "titleCreateHotel": "Criar um Hotel",
+      "copyright": "Todos os direitos reservados StayINN @2023",
+      "register":"Cadastrar",
+      "user":"Usuario",
+      "password":"senha",
+      "registerAttendant": "Registrar atendente",
+      "login": "Efetuar Login"
+    },
+    "wpp":{
+      "connectWhatsApp": "Conectar WhatsApp",
+      "connectedWhatsApp": "WhatsApp Conectado",
+      "sendConfirmationMessage": "Envie mensagens de confirmação para seus hóspedes!",
+      "clickConnectButton": "1. Clique no botão de conectar WhatsApp",
+      "scanQRCode": "2. Escaneie o QRcode",
+      "connectWhatsAppButton": "Conectar WhatsApp",
+      "loading": "Carregando.."
+    }
   }

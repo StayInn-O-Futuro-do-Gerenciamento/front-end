@@ -7,12 +7,14 @@ import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 export const ModalUpdateReservation = () => {
   const { handleChangeFunction, updateReservation, deleteReservation } =
     useContext(AppContext);
 
   const { register, handleSubmit } = useForm<any>({});
+  const { t } = useTranslation(["modal"]);
 
   const onSubmit = (data: any) => {
     if (data.feedBack !== "") {
@@ -32,7 +34,7 @@ export const ModalUpdateReservation = () => {
     <ContainerModal>
       <div className="modalUpdateRoom">
         <HeaderModal>
-          Atualizar Reserva{" "}
+          {t("titleReservation")}
           <Button
             type="button"
             buttonVariation="closeModal"
@@ -59,17 +61,17 @@ export const ModalUpdateReservation = () => {
               buttonVariation="cancelModal"
               onClick={() => handleChangeFunction("updateReservation", false)}
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button type="submit" buttonVariation="saveModal">
-              Salvar
+              {t("btnSave")}
             </Button>
             <Button
               type="button"
               buttonVariation="deleteGuest"
               onClick={() => deleteReservation()}
             >
-              Excluir
+              {t("btnExclude")}
             </Button>
           </ContainerButtonModal>
         </Form>

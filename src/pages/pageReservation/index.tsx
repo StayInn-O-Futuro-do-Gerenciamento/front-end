@@ -12,6 +12,7 @@ import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
 import { api } from "../../services/api";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const Reservation = () => {
   const {
@@ -22,6 +23,8 @@ export const Reservation = () => {
     getTypeRoomSearchState,
     setGetReservationState,
   } = useContext(AppContext);
+  const { i18n } = useTranslation();
+  const lang = i18n.language.toLowerCase();
 
   const roomsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
@@ -62,28 +65,74 @@ export const Reservation = () => {
     );
   }
 
-  const formattedDataArray = getRoomState.map((room: any) => ({
-    id: room.id,
-    roomNumber: room.roomNumber,
-    roomType: room.typeRoom.name,
-    roomFloor: room.floor,
-    roomFacilitys: room.typeRoom.confort,
-    disponivel: room.available ? "Sim" : "Não",
-    personCount: room.typeRoom.personCount,
-    status: room.status,
-  }));
+  const formattedDataArray = getRoomState.map((room: any) => {
+    const isEnglish = lang === "en";
+
+    const mapStatusToEnglish = (status: string) => {
+      const statusMapES: any = {
+        Limpo: "Limpio",
+        Sujo: "Sucio",
+        "Em Manutenção": "En Mantenimiento",
+      };
+
+      const statusMapEN: any = {
+        Limpo: "Clean",
+        Sujo: "Dirty",
+        "Em Manutenção": "Under Maintenance",
+      };
+
+      if (lang === "en") {
+        return statusMapEN[status] || status;
+      } else if (lang === "es") {
+        return statusMapES[status] || status;
+      } else {
+        return status;
+      }
+    };
+    const adjustFloorKey = (floor: any) => {
+      if (isEnglish) {
+        return `Floor ${floor.split(" ")[1]}`;
+      } else if (lang === "es") {
+        return `Piso ${floor.split(" ")[1]}`;
+      }
+
+      return floor;
+    };
+
+    return {
+      id: room.id,
+      roomNumber: room.roomNumber,
+      roomType: room.typeRoom.name,
+      roomFloor: adjustFloorKey(room.floor),
+      roomFacilitys: room.typeRoom.confort,
+      disponivel: isEnglish
+        ? room.available
+          ? "Yes"
+          : "No"
+        : lang === "es"
+        ? room.available
+          ? "Sí"
+          : "No"
+        : room.available
+        ? "Sim"
+        : "Não",
+      personCount: room.typeRoom.personCount,
+      status: mapStatusToEnglish(room.status),
+    };
+  });
 
   let filteredRooms = formattedDataArray;
 
   if (getTypeRoomSearchState) {
     filteredRooms = formattedDataArray.filter((room: any) => {
+      const isEnglish = lang === "en";
       const { roomType, disponivel, personCount } = room;
       const {
         typeRoom: filterTypeRoom,
         numberAdults,
         numberChildrens,
       } = getTypeRoomSearchState;
-
+      console.log(room);
       if (filterTypeRoom === "all") {
         return true;
       }
@@ -96,10 +145,13 @@ export const Reservation = () => {
         return false;
       }
 
-      if (disponivel !== "Sim") {
+      if (isEnglish && disponivel !== "Yes") {
         return false;
       }
 
+      if (!isEnglish && disponivel !== "Sim") {
+        return false;
+      }
       const totalPersons = numberAdults + numberChildrens;
       if (totalPersons && totalPersons > personCount) {
         return false;

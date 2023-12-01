@@ -6,6 +6,8 @@ import {
   reorderedMonthsPT,
   reorderedMonthsEN,
   updateChartOptions,
+  reorderedMonthsES,
+  monthsES,
 } from "../../utils/chartsConfig/bar.config";
 import { BarMain, LoadingBaseStyle } from "./style";
 import { AppContext } from "../../context/appContext";
@@ -61,8 +63,14 @@ export const BarChart = () => {
     reservationsByMonth[checkinMonth]++;
   });
 
-  const reorderedMonths = lang === "en" ? reorderedMonthsEN : reorderedMonthsPT;
-  const listMonths = lang === "en" ? monthsEN : monthsPT;
+  const reorderedMonths =
+    lang === "en"
+      ? reorderedMonthsEN
+      : lang === "es"
+      ? reorderedMonthsES
+      : reorderedMonthsPT;
+  const listMonths =
+    lang === "en" ? monthsEN : lang === "es" ? monthsES : monthsPT;
 
   const reorderedReservationsByMonth = reorderedMonths.map((month: any) => {
     const monthIndex = listMonths.indexOf(month);
