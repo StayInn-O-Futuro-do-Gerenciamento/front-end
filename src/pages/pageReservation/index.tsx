@@ -52,7 +52,7 @@ export const Reservation = () => {
           <LoadingBaseStyle>
             <ReactLoading
               type={"spinningBubbles"}
-              color={" #f9a63a"}
+              color={"var(--orange-400)"}
               height={233}
               width={150}
             />
@@ -131,7 +131,6 @@ export const Reservation = () => {
 
   return (
     <ReservationMain>
-      {modalUpdateTypeRoom && <ModalUpdateTypeRoom />}
       {JSON.parse(userType!) === "Attendant" && modalScheduleReservation && (
         <ModalScheduleReservation />
       )}

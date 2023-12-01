@@ -91,7 +91,7 @@ export const ComponentListGuest = () => {
       <LoadingBaseStyle>
         <ReactLoading
           type={"spinningBubbles"}
-          color={" #f9a63a"}
+          color={"var(--orange-400)"}
           height={233}
           width={150}
         />
