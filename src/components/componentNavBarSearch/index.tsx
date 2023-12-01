@@ -7,6 +7,8 @@ import { AppContext } from "../../context/appContext";
 import tinycolor from "tinycolor2";
 import { useTranslation } from "react-i18next";
 import { hexToCSSFilter } from "hex-to-css-filter";
+import Brazil from "../../assets/flags/brazil.png";
+import USA from "../../assets/flags/united-states.png";
 
 export const NavBarSearch = () => {
   const { setRandomColor, darkMode, toggleColorMode, toggleDarkMode } =
@@ -16,6 +18,7 @@ export const NavBarSearch = () => {
   const [inputColor, setInputColor] = useState(orange400);
 
   const { i18n } = useTranslation(["reservationBar", "sidebar"]);
+  const lang = i18n.language.toLowerCase();
 
   const changeLanguage = (language: any) => {
     i18n.changeLanguage(language);
@@ -90,10 +93,17 @@ export const NavBarSearch = () => {
   return (
     <NavBarSearchStyle>
       <div className="div1">
-        <img src={searchImg} alt="" />
-        <input type="text" placeholder="Procure por quartos e ofertas" />
-        <button onClick={() => changeLanguage("en")}>EN</button>
-        <button onClick={() => changeLanguage("pt")}>PT</button>
+        <img
+          src={USA}
+          onClick={() => changeLanguage("en")}
+          className={lang === "en" ? "btnFlag-active" : "btnFlag"}
+        />
+
+        <img
+          src={Brazil}
+          onClick={() => changeLanguage("pt")}
+          className={lang === "pt" ? "btnFlag-active" : "btnFlag"}
+        />
       </div>
       <div className="div2">
         <div>

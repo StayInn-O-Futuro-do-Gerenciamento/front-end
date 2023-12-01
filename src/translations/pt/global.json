@@ -112,5 +112,32 @@
       "availableRooms": "Quartos Disponíveis",
       "status": "Status",
       "addPromotion": "Adicionar Oferta"
+    },
+    "typeRooms":{
+      "roomType": "Tipo de Quarto",
+      "offer": "Oferta",
+      "cancellationPolicy": "Política de Cancelamento",
+      "description": "Descrição",
+      "roomPrice": "Preço do Quarto",
+      "offerDiscount": "Desconto da Oferta",
+      "totalToPay": "Total a Pagar",
+      "totalRooms": "Total de Quartos",
+      "availableRooms": "Disponíveis"
+    },
+    "reservationList":{
+      "guest": "Hóspede",
+      "checkin": "Checkin",
+      "checkout": "Checkout",
+      "peopleQuantity": "Pessoas no quarto",
+      "room": "Quarto",
+      "floor": "Andar",
+      "price": "Preço",
+      "feedBack": "FeedBack"
+    },
+    "modal":{
+      "scheduledReservation": "Agendar Reserva",
+      "selectGuest":"Selecionar Hóspede",
+      "btnCancel": "Cancelar",
+      "btnSchedule": "Agendar"
     }
   }

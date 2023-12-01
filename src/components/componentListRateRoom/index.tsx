@@ -6,11 +6,14 @@ import { AppContext } from "../../context/appContext";
 import Left from "../../assets/Chevron left.svg";
 import Right from "../../assets/Chevron right.svg";
 import ReactLoading from "react-loading";
+import { useTranslation } from "react-i18next";
 
 export const ComponentListRateRoom = () => {
   const { getTypeRoomState } = useContext(AppContext);
   const roomsPerPage = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  const { t, i18n } = useTranslation(["typeRooms"]);
+  const lang = i18n.language.toLowerCase();
 
   if (!getTypeRoomState) {
     return (
@@ -27,6 +30,7 @@ export const ComponentListRateRoom = () => {
 
   const extractedData = getTypeRoomState
     ? getTypeRoomState.map((roomType: any) => {
+        const isEnglish = lang === "en";
         const availableRoomsCount = roomType.rooms.filter(
           (room: any) => room.available
         ).length;
@@ -39,19 +43,28 @@ export const ComponentListRateRoom = () => {
             totalPrice -= (totalPrice * discount) / 100;
           }
         }
+        const mapStatusToEnglish = (status: string) => {
+          const statusMap: any = {
+            Flexível: "Flexible",
+            Restrito: "Restricted",
+            "Sem Reembolso": "No Refund",
+          };
+
+          return statusMap[status] || status;
+        };
 
         return {
           id: roomType.id,
           name: roomType.name,
           offerName: roomType.offer ? roomType.offer.offerName : null,
-          rate: roomType.rate,
+          rate: isEnglish ? mapStatusToEnglish(roomType.rate) : roomType.rate,
           description: roomType.description,
-          price: `R$ ${roomType.price}`,
+          price: isEnglish ? `$ ${roomType.price}` : `R$ ${roomType.price}`,
           discount:
             roomType.offer && roomType.offer.discount
               ? `${roomType.offer.discount}%`
               : null,
-          totalPriceToPay: `R$ ${totalPrice}`,
+          totalPriceToPay: isEnglish ? `$ ${totalPrice}` : `R$ ${totalPrice}`,
           roomTypeQuantity: roomType.roomTypeQuantity,
           availableRoomsCount: availableRoomsCount,
         };
@@ -72,15 +85,15 @@ export const ComponentListRateRoom = () => {
       <div></div>
       <TableStyled>
         <thead>
-          <th>Tipo de Quarto</th>
-          <th>Oferta</th>
-          <th>Politica de cancelamento</th>
-          <th>Descrição</th>
-          <th>Preço do Quarto</th>
-          <th>Desconto da Oferta</th>
-          <th>Total a Pagar</th>
-          <th>Total de Quartos</th>
-          <th>Disponíveis</th>
+          <th>{t("roomType")}</th>
+          <th>{t("offer")}</th>
+          <th>{t("cancellationPolicy")}</th>
+          <th>{t("description")}</th>
+          <th>{t("roomPrice")}</th>
+          <th>{t("offerDiscount")}</th>
+          <th>{t("totalToPay")}</th>
+          <th>{t("totalRooms")}</th>
+          <th>{t("availableRooms")}</th>
           <th></th>
         </thead>
         <ComponentTableList

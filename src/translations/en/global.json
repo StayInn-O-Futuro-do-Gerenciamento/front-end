@@ -112,5 +112,32 @@
       "availableRooms": "Available Rooms",
       "status": "Status",
       "addPromotion": "Add Promotion"
+    },
+    "typeRooms" :{
+      "roomType": "Room Type",
+      "offer": "Offer",
+      "cancellationPolicy": "Cancellation Policy",
+      "description": "Description",
+      "roomPrice": "Room Price",
+      "offerDiscount": "Offer Discount",
+      "totalToPay": "Total to Pay",
+      "totalRooms": "Total Rooms",
+      "availableRooms": "Available Rooms"
+    },
+    "reservationList":{
+      "guest": "Guest",
+      "checkin": "Checkin",
+      "checkout": "Checkout",
+      "peopleQuantity": "People in Room",
+      "room": "Room",
+      "floor": "Floor",
+      "price": "Price",
+      "feedBack": "FeedBack"
+    },
+    "modal":{
+      "scheduledReservation": "Scheduled Reservation",
+      "selectGuest":"Select Guest",
+      "btnCancel": "Cancel",
+      "btnSchedule": "Schedule"
     }
   }

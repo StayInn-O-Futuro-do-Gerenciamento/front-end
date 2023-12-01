@@ -7,23 +7,24 @@ export const NavBarSearchStyle = styled.div`
   justify-content: space-between;
   .div1 {
     display: flex;
-    align-items: center;
-    width: 300px;
+
     background-color: var(--grey-50);
-    padding: 10px;
+    padding: 0 15px;
     border-radius: 10px;
     max-height: 40px;
-    gap: 10px;
-    input {
-      border: none;
-      width: 100%;
-      background-color: transparent;
+    gap: 20px;
+    .btnFlag {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border-bottom: 1px solid transparent;
     }
-    input::placeholder {
-      border: none;
-    }
-    input:focus {
-      outline: none;
+    .btnFlag-active {
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--grey-900);
     }
   }
   .div2 {

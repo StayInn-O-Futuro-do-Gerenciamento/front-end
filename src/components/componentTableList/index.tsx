@@ -53,13 +53,19 @@ export const ComponentTableList = ({ list, modalName, typeList }: any) => {
         ) {
           statusColor = "WIP";
         }
-        if (statusPromotion == "Programada") {
+        if (
+          statusPromotion == "Programada" ||
+          statusPromotion === "Scheduled"
+        ) {
           statusColor = "scheduled";
-        } else if (statusPromotion == "Válida") {
+        } else if (statusPromotion == "Válida" || statusPromotion === "Valid") {
           statusColor = "onGoing";
-        } else if (statusPromotion == "Finalizada") {
+        } else if (
+          statusPromotion == "Finalizada" ||
+          statusPromotion === "Finished"
+        ) {
           statusColor = "finished";
-        } else if (statusPromotion == "Cheio") {
+        } else if (statusPromotion == "Cheio" || statusPromotion === "Full") {
           statusColor = "full";
         }
 

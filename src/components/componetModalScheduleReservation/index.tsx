@@ -5,11 +5,13 @@ import { ContainerModal } from "../componentContainerModal";
 import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export const ModalScheduleReservation = () => {
   const { handleChangeFunction, getGuestState, scheduleReservation } =
     useContext(AppContext);
   const [selectedGuest, setSelectedGuest] = useState("Selecionar Hospede");
+  const { t } = useTranslation(["modal"]);
 
   if (!getGuestState) {
     return (
@@ -33,7 +35,7 @@ export const ModalScheduleReservation = () => {
     <ContainerModal>
       <div className="modalScheduleReservation">
         <HeaderModal>
-          Agendar reserva
+          {t("scheduledReservation")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -47,7 +49,7 @@ export const ModalScheduleReservation = () => {
         <Form>
           <select name="guest" id="guest" onChange={handleGuestChange}>
             <option disabled selected>
-              Selecionar hospede
+              {t("selectGuest")}
             </option>
             {getGuestState.map((guest, index) => (
               <option key={index} value={guest.id}>
@@ -65,14 +67,14 @@ export const ModalScheduleReservation = () => {
                 handleChangeFunction("roomId", null);
               }}
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button
               type="button"
               buttonVariation="saveModal"
               onClick={createReservation}
             >
-              Agendar
+              {t("btnSchedule")}
             </Button>
           </ContainerButtonModal>
         </Form>

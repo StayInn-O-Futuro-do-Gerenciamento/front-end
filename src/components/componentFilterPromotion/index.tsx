@@ -47,11 +47,18 @@ export const FilterPromotion = () => {
         let status = "";
 
         if (today < offerStartDate) {
-          status = "Programada";
+          status = lang === "en" ? "Scheduled" : "Programada";
         } else if (today >= offerStartDate && today <= offerFinishDate) {
-          status = availableRoomsCount > 0 ? "Válida" : "Cheio";
+          status =
+            availableRoomsCount > 0
+              ? lang === "en"
+                ? "Valid"
+                : "Válida"
+              : lang === "en"
+              ? "Full"
+              : "Cheio";
         } else {
-          status = "Finalizada";
+          status = lang === "en" ? "Finished" : "Finalizada";
         }
 
         return {
@@ -67,7 +74,7 @@ export const FilterPromotion = () => {
 
       setPromotions(processedPromotions);
     }
-  }, [getOfferState]);
+  }, [getOfferState, lang]);
 
   const filteredPromotions = useMemo(() => {
     setCurrentPage(1);
@@ -77,13 +84,25 @@ export const FilterPromotion = () => {
 
     return promotions.filter((promotion: any) => {
       if (selectedButton === "ongoing") {
-        return promotion.trueRoomStatusesCount === "Válida";
+        return (
+          promotion.trueRoomStatusesCount === "Válida" ||
+          promotion.trueRoomStatusesCount === "Valid"
+        );
       } else if (selectedButton === "finished") {
-        return promotion.trueRoomStatusesCount === "Finalizada";
+        return (
+          promotion.trueRoomStatusesCount === "Finalizada" ||
+          promotion.trueRoomStatusesCount === "Finished"
+        );
       } else if (selectedButton === "full") {
-        return promotion.trueRoomStatusesCount === "Cheio";
+        return (
+          promotion.trueRoomStatusesCount === "Cheio" ||
+          promotion.trueRoomStatusesCount === "Full"
+        );
       } else if (selectedButton === "scheduled") {
-        return promotion.trueRoomStatusesCount === "Programada";
+        return (
+          promotion.trueRoomStatusesCount === "Programada" ||
+          promotion.trueRoomStatusesCount === "Scheduled"
+        );
       } else {
         return true;
       }
@@ -109,7 +128,7 @@ export const FilterPromotion = () => {
 
   const formatDate = (dateString: any) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("pt-BR");
+    return date.toLocaleDateString(lang === "en" ? "en" : "pt-BR");
   };
 
   const indexOfLastRoom = currentPage * roomsPerPage;
