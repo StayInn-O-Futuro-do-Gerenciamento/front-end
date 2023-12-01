@@ -1,0 +1,219 @@
+{
+    "sidebar": {
+      "dashboard": "Tablero",
+      "reservations": "Reservas",
+      "guests": "Huéspedes",
+      "rooms": "Habitaciones",
+      "offers": "Ofertas",
+      "roomType": "Tipo de Habitación",
+      "reservationList": "Lista de Reservas",
+      "login": "Iniciar sesión",
+      "addAttendants": "+ Asistentes",
+      "whatsapp": "WhatsApp",
+      "logout": "Cerrar sesión",
+      "copyright": "StayINN @2023"
+    },
+    "reservationBar": {
+      "createReservation": "Crear Reserva"
+    },
+    "overview": {
+      "heading": "Visión general",
+      "today": "Hoy",
+      "checkIn": "Registro de entrada",
+      "checkOut": "Registro de salida",
+      "totalPeople": "Total de personas",
+      "inHotel": "En el hotel",
+      "availableRooms": "Habitaciones disponibles",
+      "occupiedRooms": "Habitaciones ocupadas"
+    },
+    "room": {
+      "noRoomsMessage": "No hay habitaciones en este momento",
+      "heading": "Habitaciones"
+    },
+    "roomCard": {
+      "day": "Día",
+      "price": "R$"
+    },
+    "statusRoom": {
+      "title": "Estado de las Habitaciones",
+      "noRoomsMessage": "No hay habitaciones en este momento",
+      "occupiedRooms": {
+        "title": "Habitaciones ocupadas",
+        "clean": "Limpias",
+        "dirty": "Sucias",
+        "maintenance": "En mantenimiento"
+      },
+      "availableRooms": {
+        "title": "Habitaciones disponibles",
+        "clean": "Limpias",
+        "dirty": "Sucias",
+        "maintenance": "En mantenimiento"
+      }
+    },
+    "barChart": {
+      "title": "Estado de Ocupación"
+    },
+    "semiCircularChart": {
+      "noRoomsMessage": "No hay habitaciones en este momento",
+      "occupiedLabel": "Ocupadas",
+      "freeLabel": "Libres"
+    },
+    "calendar": {
+      "checkinLabel": "Registro de entrada",
+      "checkoutLabel": "Registro de salida",
+      "createReservationButton": "Crear Reserva",
+      "todayButton": "Hoy"
+    },
+    "filterReservation": {
+      "allRooms": "Todas las Habitaciones",
+      "adultsLabel": "Adultos",
+      "childrenLabel": "Niños",
+      "checkAvailabilityButtonText": "Verificar Disponibilidad",
+      "attendantWarning": "Llame a un asistente para reservar"
+    },
+    "roomFilteredList": {
+      "room": "Habitación",
+      "type": "Tipo",
+      "floor": "Piso",
+      "roomDescription": "Descripción de la Habitación",
+      "available": "Disponible",
+      "numberOfPeople": "Número de Personas",
+      "status": "Estado"
+    },
+    "componentListGuest": {
+      "allGuestsButton": "Todos los Huéspedes",
+      "guestsWithReservationsButton": "Huéspedes con Reservas",
+      "searchPlaceholder": "Buscar por número",
+      "createGuestButton": "Registrar Huésped",
+      "tableHeaders": {
+        "name": "Nombre",
+        "nationality": "Nacionalidad",
+        "number": "Número",
+        "rg": "RG",
+        "totalPaid": "Total Pagado"
+      }
+    },
+    "componentAddRoom": {
+      "allRoomsButton": "Todas las Habitaciones",
+      "availableRoomsButton": "Habitaciones Disponibles",
+      "bookedRoomsButton": "Habitaciones Reservadas",
+      "addRoomsButton": "Agregar Habitaciones"
+    },
+    "offers": {
+      "all": "Todas",
+      "ongoing": "En Curso",
+      "finished": "Finalizadas",
+      "full": "Lleno",
+      "scheduled": "Programadas",
+      "name": "Nombre",
+      "startDate": "Fecha de Inicio",
+      "finishDate": "Fecha de Finalización",
+      "roomType": "Tipo de Habitación",
+      "availableRooms": "Habitaciones Disponibles",
+      "status": "Estado",
+      "addPromotion": "Agregar Oferta"
+    },
+    "typeRooms": {
+      "roomType": "Tipo de Habitación",
+      "offer": "Oferta",
+      "cancellationPolicy": "Política de Cancelación",
+      "description": "Descripción",
+      "roomPrice": "Precio de la Habitación",
+      "offerDiscount": "Descuento de la Oferta",
+      "totalToPay": "Total a Pagar",
+      "totalRooms": "Total de Habitaciones",
+      "availableRooms": "Disponibles"
+    },
+    "reservationList": {
+      "guest": "Huésped",
+      "checkin": "Registro de entrada",
+      "checkout": "Registro de salida",
+      "peopleQuantity": "Personas en la habitación",
+      "room": "Habitación",
+      "floor": "Piso",
+      "price": "Precio",
+      "feedBack": "Comentario"
+    },
+    "modal": {
+      "scheduledReservation": "Agendar Reserva",
+      "selectGuest": "Seleccionar Huésped",
+      "btnCancel": "Cancelar",
+      "btnSave": "Guardar",
+      "btnSchedule": "Agendar",
+      "btnAddContact": "Agregar Contacto",
+      "btnRemoveContact": "Eliminar Contacto",
+      "btnEraseAllContacts": "Borrar Todos",
+      "btnAdd": "Agregar",
+      "btnExclude": "Excluir",
+      "titleReservation": "Actualizar Reserva",
+      "titleAddGuest": "Registrar huésped",
+      "titleUpdateGuest": "Actualizar Huésped",
+      "name": "Nombre",
+      "rg": "RG",
+      "cpf": "CPF",
+      "passport": "Pasaporte",
+      "nationality": "Nacionalidad",
+      "guestContact": "Contacto del huésped",
+      "phoneNumber": "Teléfono 1",
+      "phoneNumber2": "Teléfono 2",
+      "emergencyContact": "Contacto de emergencia",
+      "emergencyContactName": "Nombre del contacto",
+      "emergencyContactNumber": "Número del contacto",
+      "street": "Calle",
+      "residenceNumber": "Número de residencia",
+      "city": "Ciudad",
+      "state": "Estado",
+      "zipCode": "Código postal",
+      "addRoom": "Agregar Habitación",
+      "updateRoom": "Actualizar Habitación",
+      "roomTypeLabel": "Tipo de habitación",
+      "descriptionLabel": "Descripción",
+      "confortLabel": "Comodidad",
+      "statusLabel": "Estado",
+      "selectStatus": "Seleccionar estado",
+      "cleanStatus": "Limpio",
+      "dirtyStatus": "Sucio",
+      "maintenanceStatus": "En Mantenimiento",
+      "priceLabel": "Precio",
+      "peopleCountLabel": "Personas",
+      "roomQuantityLabel": "Número de habitaciones",
+      "cancelPolicyLabel": "Política de cancelación",
+      "selectPolicy": "Seleccionar política",
+      "flexiblePolicy": "Flexible",
+      "restrictedPolicy": "Restringido",
+      "noRefundPolicy": "Sin Reembolso",
+      "availability": "Disponibilidad",
+      "availableLabel": "Disponible",
+      "occupiedLabel": "Ocupado",
+      "header": "Agregar oferta",
+      "headerUpdate": "Actualizar oferta",
+      "offerName": "Nombre",
+      "offerDescription": "Descripción",
+      "discount": "Descuento",
+      "startDate": "Fecha de inicio",
+      "finishDate": "Fecha de finalización",
+      "typeRoom": "Tipo de habitación",
+      "updateTypeRoom": "Actualizar Tipo de habitación",
+      "number": "Número",
+      "numberRoomsTotal": "Número Total de Habitaciones",
+      "roomsPerFloor": "Número de Habitaciones por Piso",
+      "loading": "Cargando...",
+      "createHotel": "Crear Hotel",
+      "titleCreateHotel": "Crear un Hotel",
+      "copyright": "Todos los derechos reservados StayINN @2023",
+      "register":"Registrarse",
+      "user": "Usuario",
+      "password": "Contraseña",
+      "registerAttendant": "Registrar asistente",
+      "login": "Iniciar sesión"
+    },
+    "wpp":{
+        "connectWhatsApp": "Conectar WhatsApp",
+        "connectedWhatsApp": "WhatsApp Conectado",
+        "sendConfirmationMessage": "Envía mensajes de confirmación a tus huéspedes",
+        "clickConnectButton": "1. Haz clic en el botón de conectar WhatsApp",
+        "scanQRCode": "2. Escanea el código QR",
+        "connectWhatsAppButton": "Conectar WhatsApp",
+        "loading": "Cargando.."
+      }
+  }

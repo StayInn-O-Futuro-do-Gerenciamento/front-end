@@ -16,6 +16,7 @@ import {
 import moment from "moment";
 import { toast } from "react-toastify";
 import { tUpdateGuestData } from "../../schemas/schemaGuest";
+import { useTranslation } from "react-i18next";
 
 export const AppContext = createContext({} as iAppContext);
 
@@ -79,6 +80,8 @@ export const AppProviders = ({ children }: iAppContextProps) => {
 
     setColorMode(color);
   };
+
+  const { i18n } = useTranslation();
 
   const handleChangeFunction = (state: string, value: boolean | any) => {
     switch (state) {
@@ -250,7 +253,7 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       navigate("/");
     }
   };
-
+  const storageLang = localStorage.getItem("lang");
   useEffect(() => {
     const getOverview = async () => {
       let token: string = "";
@@ -288,9 +291,12 @@ export const AppProviders = ({ children }: iAppContextProps) => {
       // const responseListInstance = await api.get(`/wpp`);
       // setInstanceWpp(responseListInstance.data.instanceName);
     };
+    if (storageLang) {
+      i18n.changeLanguage(storageLang);
+    }
 
     getOverview();
-  }, []);
+  }, [storageLang]);
 
   const getFrankstainHistoryPrice = (id: any) => {
     const guestHistory = getHistoryState.filter(

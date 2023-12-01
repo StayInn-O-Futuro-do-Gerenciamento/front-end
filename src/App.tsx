@@ -9,6 +9,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import ptTranslation from "../src/translations/pt/global.json";
 import enTranslation from "../src/translations/en/global.json";
+import esTranslation from "../src/translations/es/global.json";
 
 i18n
   .use(initReactI18next)
@@ -17,6 +18,7 @@ i18n
     resources: {
       en: enTranslation,
       pt: ptTranslation,
+      es: esTranslation,
     },
     lng: "pt",
     fallbackLng: "en",

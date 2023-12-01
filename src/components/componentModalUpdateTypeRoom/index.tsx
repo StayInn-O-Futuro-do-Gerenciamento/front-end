@@ -11,10 +11,11 @@ import { Form } from "../componentForm";
 import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 export const ModalUpdateTypeRoom = () => {
   const { handleChangeFunction, updateTypeRoom } = useContext(AppContext);
-
+  const { t } = useTranslation(["modal"]);
   const { register, handleSubmit } = useForm<tUpdateTypeRoomData>({});
 
   const onSubmit = (data: tUpdateTypeRoomData) => {
@@ -38,7 +39,7 @@ export const ModalUpdateTypeRoom = () => {
     <ContainerModal>
       <div className="modalUpdateTypeRoom">
         <HeaderModal>
-          Atualizar tipo de quarto{" "}
+          {t("updateTypeRoom")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -50,46 +51,46 @@ export const ModalUpdateTypeRoom = () => {
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
-            label="Nome"
-            placeholder="Nome do tipo do quarto"
+            label={t("name")}
+            placeholder={t("name")}
             type="text"
             register={register("name")}
           />
 
           <Input
-            label="Descrição"
-            placeholder="Descrição de quarto"
+            label={t("descriptionLabel")}
+            placeholder={t("descriptionLabel")}
             type="text"
             register={register("description")}
           />
 
           <Input
             type="number"
-            placeholder="Contagem de pessoas"
-            label="Pessoas"
+            placeholder={t("peopleCountLabel")}
+            label={t("peopleCountLabel")}
             register={register("personCount")}
           />
           <Input
-            label="Conforto"
-            placeholder="Conforto do tipo de quarto"
+            label={t("confortLabel")}
+            placeholder={t("confortLabel")}
             type="text"
             register={register("confort")}
           />
 
           <Input
-            label="Preço"
-            placeholder="Preço do quarto"
+            label={t("priceLabel")}
+            placeholder={t("priceLabel")}
             type="number"
             register={register("price")}
           />
 
           <label>
-            <strong>Política de cancelamento</strong>
+            <strong>{t("cancelPolicyLabel")} </strong>
           </label>
           <select className="" {...register("rate")}>
-            <option value="Flexível">Flexível</option>
-            <option value="Restrito">Restrito</option>{" "}
-            <option value="Sem reembolso">Sem reembolso</option>
+            <option value="Flexível">{t("flexiblePolicy")} </option>
+            <option value="Restrito">{t("restrictedPolicy")} </option>{" "}
+            <option value="Sem reembolso">{t("noRefundPolicy")} </option>
           </select>
 
           <ContainerButtonModal>
@@ -98,10 +99,10 @@ export const ModalUpdateTypeRoom = () => {
               type="button"
               onClick={() => handleChangeFunction("modalUpdateTypeRoom", false)}
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button buttonVariation="saveModal" type="submit">
-              Salvar
+              {t("btnSave")}
             </Button>
           </ContainerButtonModal>
         </Form>

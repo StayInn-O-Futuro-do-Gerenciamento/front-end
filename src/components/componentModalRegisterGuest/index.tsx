@@ -13,11 +13,13 @@ import {
   registerGuestSchemas,
 } from "../../schemas/schemaGuest";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 export const ModalRegisterGuest = () => {
   const { handleChangeFunction, registerGuest } = useContext(AppContext);
   const [indexes, setIndexes] = useState<any>([]) as any;
   const [counter, setCounter] = useState<any>(0) as any;
+  const { t } = useTranslation(["modal"]);
 
   const {
     register,
@@ -65,7 +67,7 @@ export const ModalRegisterGuest = () => {
     <ContainerModal>
       <div className="modalRegisterGuest">
         <HeaderModal>
-          Cadastrar hospede{" "}
+          {t("titleAddGuest")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -79,9 +81,9 @@ export const ModalRegisterGuest = () => {
           <div className="formRegisterGuest">
             <div className="guestData">
               <Input
-                label="Nome"
+                label={t("name")}
                 type="text"
-                placeholder="Nome do hospede"
+                placeholder={t("name")}
                 register={register("name")}
               />
               {errors.name ? (
@@ -90,9 +92,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="RG"
+                label={t("rg")}
                 type="number"
-                placeholder="RG do hospede"
+                placeholder={t("rg")}
                 register={register("rg")}
               />
               {errors.rg ? (
@@ -101,9 +103,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="CPF"
+                label={t("cpf")}
                 type="number"
-                placeholder="CPF do hospede"
+                placeholder={t("cpf")}
                 register={register("cpf")}
               />
               {errors.cpf ? (
@@ -112,9 +114,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="PASSPORT"
+                label={t("passport")}
                 type="number"
-                placeholder="PASSPORT do hospede"
+                placeholder={t("passport")}
                 register={register("passport")}
               />
               {errors.passport ? (
@@ -123,9 +125,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="Nacionalidade"
+                label={t("nationality")}
                 type="text"
-                placeholder="Nacionalidade do hospede"
+                placeholder={t("nationality")}
                 register={register("nationality")}
               />
               {errors.nationality ? (
@@ -137,13 +139,13 @@ export const ModalRegisterGuest = () => {
               )}
 
               <div>
-                <h5>Contato do hospede</h5>
+                <h5>{t("guestContact")}</h5>
               </div>
               <div className="phoneNumber">
                 <div>
                   <Input
                     type="number"
-                    placeholder="Celular 1"
+                    placeholder={t("phoneNumber")}
                     register={register("phoneNumbers")}
                   />
                   {errors.phoneNumbers ? (
@@ -157,7 +159,7 @@ export const ModalRegisterGuest = () => {
                 <div>
                   <Input
                     type="number"
-                    placeholder="Celular 2"
+                    placeholder={t("phoneNumber2")}
                     register={register("phoneNumbers2")}
                   />
                   {errors.phoneNumbers2 ? (
@@ -171,7 +173,7 @@ export const ModalRegisterGuest = () => {
               </div>
 
               <label htmlFor="">
-                <strong>Contato de emergência</strong>
+                <strong>{t("emergencyContact")} </strong>
               </label>
               <div className="emergencyContacts">
                 <button
@@ -179,13 +181,14 @@ export const ModalRegisterGuest = () => {
                   onClick={addEmergencyContact}
                   className="contactBase"
                 >
-                  Adicionar Contanto
+                  {t("btnAddContact")}
                 </button>
                 {indexes.map((index: any) => (
                   <div key={index}>
                     <Input
+                      label={t("emergencyContactName")}
                       type="text"
-                      placeholder="Nome do contato"
+                      placeholder={t("emergencyContactName")}
                       register={register(`emergencyContacts.${index}.name`)}
                     />
                     {errors.emergencyContacts?.[index]?.name && (
@@ -195,8 +198,9 @@ export const ModalRegisterGuest = () => {
                     )}
 
                     <Input
+                      label={t("emergencyContactNumber")}
                       type="number"
-                      placeholder="Número do contato"
+                      placeholder={t("emergencyContactNumber")}
                       register={register(
                         `emergencyContacts.${index}.phoneNumber`
                       )}
@@ -211,7 +215,7 @@ export const ModalRegisterGuest = () => {
                       onClick={removeEmergencyContact(index)}
                       className="removeContact"
                     >
-                      Remover Contanto
+                      {t("btnRemoveContact")}
                     </button>
                   </div>
                 ))}
@@ -220,15 +224,15 @@ export const ModalRegisterGuest = () => {
                   onClick={clearEmergencyContact}
                   className="contactBase"
                 >
-                  Limpar Contatos
+                  {t("btnEraseAllContacts")}
                 </button>
               </div>
             </div>
             <div className="guestAddress">
               <Input
-                label="Rua"
+                label={t("street")}
                 type="text"
-                placeholder="Rua do hospede"
+                placeholder={t("street")}
                 register={register("address.street")}
               />
               {errors.address?.street ? (
@@ -239,9 +243,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="Número da residência"
+                label={t("residenceNumber")}
                 type="number"
-                placeholder="Número da residência do hospede"
+                placeholder={t("residenceNumber")}
                 register={register("address.number")}
               />
               {errors.address?.number ? (
@@ -252,9 +256,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="Cidade"
+                label={t("city")}
                 type="text"
-                placeholder="Cidade do hospede"
+                placeholder={t("city")}
                 register={register("address.city")}
               />
               {errors.address?.city ? (
@@ -265,9 +269,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="Estado"
+                label={t("state")}
                 type="text"
-                placeholder="Estado que o hospede reside"
+                placeholder={t("state")}
                 register={register("address.state")}
               />
               {errors.address?.state ? (
@@ -278,9 +282,9 @@ export const ModalRegisterGuest = () => {
                 <></>
               )}
               <Input
-                label="CEP"
+                label={t("zipCode")}
                 type="text"
-                placeholder="CEP do hospede"
+                placeholder={t("zipCode")}
                 register={register("address.zipCode")}
               />
               {errors.address?.zipCode ? (
@@ -298,10 +302,10 @@ export const ModalRegisterGuest = () => {
               type="button"
               onClick={() => handleChangeFunction("modalCreateGuest", false)}
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button buttonVariation="saveModal" type="submit">
-              Salvar
+              {t("btnSave")}
             </Button>
           </ContainerButtonModal>
         </Form>

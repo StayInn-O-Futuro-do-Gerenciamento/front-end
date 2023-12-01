@@ -9,10 +9,11 @@ import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { useContext } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 export const ModalRegisterAttendat = () => {
   const { createAttendant, handleChangeFunction } = useContext(AppContext);
-
+  const { t } = useTranslation(["modal"]);
   const {
     register,
     handleSubmit,
@@ -29,7 +30,7 @@ export const ModalRegisterAttendat = () => {
     <ContainerModal>
       <div className="modalAddAttendat">
         <HeaderModal>
-          Registrar atendente{" "}
+          {t("registerAttendant")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -43,8 +44,8 @@ export const ModalRegisterAttendat = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
-            placeholder="Nome do atendente"
-            label="Nome"
+            placeholder={t("name")}
+            label={t("name")}
             register={register("name")}
           />
           {errors.name ? (
@@ -54,8 +55,8 @@ export const ModalRegisterAttendat = () => {
           )}
           <Input
             type="password"
-            placeholder="Senha do atendente"
-            label="Senha"
+            placeholder={t("password")}
+            label={t("password")}
             register={register("password")}
           />
           {errors.password ? (
@@ -71,10 +72,10 @@ export const ModalRegisterAttendat = () => {
                 handleChangeFunction("modalRegisterAttendant", false)
               }
             >
-              Cancelar
+              {t("btnCancel")}
             </Button>
             <Button type="submit" buttonVariation="saveModal">
-              Cadastrar
+              {t("register")}
             </Button>
           </ContainerButtonModal>
         </Form>

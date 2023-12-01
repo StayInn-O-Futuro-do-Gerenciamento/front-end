@@ -7,17 +7,14 @@ import { HeaderModal } from "../componentHeaderModal";
 import { Input } from "../componentInput";
 import { AppContext } from "../../context/appContext";
 import { useForm } from "react-hook-form";
-import {
-  tUpdateGuestData,
-  updateGuestSchemas,
-} from "../../schemas/schemaGuest";
+import { tUpdateGuestData } from "../../schemas/schemaGuest";
 import { iGuestData } from "../../context/appContext/type";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslation } from "react-i18next";
 
 export const ModalUpdateGuest = () => {
   const { handleChangeFunction, updateGuest, fetchUpdateData, getGuestId } =
     useContext(AppContext);
-
+  const { t } = useTranslation(["modal"]);
   const {
     register,
     handleSubmit,
@@ -59,7 +56,7 @@ export const ModalUpdateGuest = () => {
     <ContainerModal>
       <div className="modalUpdateGuest">
         <HeaderModal>
-          Atualizar Hospede{" "}
+          {t("titleUpdateGuest")}
           <Button
             buttonVariation="closeModal"
             type="button"
@@ -74,14 +71,14 @@ export const ModalUpdateGuest = () => {
             <div className="guestData">
               <Input
                 type="text"
-                label="Nome"
+                label={t("name")}
                 placeholder="Pode alterar"
                 register={register("name")}
                 defaultValue={fetchUpdateData.name}
               />
               <Input
                 type="text"
-                label="RG"
+                label={t("rg")}
                 placeholder="3245678901"
                 register={register("rg")}
                 defaultValue={fetchUpdateData.rg}
@@ -89,7 +86,7 @@ export const ModalUpdateGuest = () => {
               />
               <Input
                 type="text"
-                label="CPF"
+                label={t("cpf")}
                 placeholder="12345678901"
                 register={register("cpf")}
                 defaultValue={fetchUpdateData.cpf}
@@ -97,72 +94,82 @@ export const ModalUpdateGuest = () => {
               />
               <Input
                 type="text"
-                label="PASSPORT"
+                label={t("passport")}
                 placeholder="123563"
                 register={register("passport")}
                 defaultValue={fetchUpdateData.passPort}
               />
               <Input
                 type="text"
-                label="Nacionalidade"
+                label={t("nationality")}
                 placeholder="Brasileiro"
                 register={register("nationality")}
                 defaultValue={fetchUpdateData.nationality}
               />
               <label className="labelContat" htmlFor="">
-                <strong>Contato do hospede</strong>
+                <strong>{t("guestContact")}</strong>
               </label>
               <div className="phoneNumber">
                 <Input
                   type="number"
-                  placeholder="Celular 1"
+                  placeholder={t("phoneNumber")}
                   register={register("phoneNumbers")}
                   defaultValue={fetchUpdateData.phoneNumber}
                 />
                 <Input
                   type="number"
-                  placeholder="Celular 2"
+                  placeholder={t("phoneNumber2")}
                   register={register("phoneNumbers2")}
                   defaultValue={fetchUpdateData.phoneNumber2}
                 />
               </div>
               <label className="labelContat" htmlFor="">
-                <strong>Contato de emergência</strong>
+                <strong>{t("emergencyContact")}</strong>
               </label>
               <div className="emergencyContacts">
-                <Input type="text" placeholder="Nome do contato" />
-                <Input type="number" placeholder="Número do contato" />
+                <Input type="text" placeholder={t("emergencyContactName")} />
+                <Input
+                  type="number"
+                  placeholder={t("emergencyContactNumber")}
+                />
               </div>
               <div className="emergencyContacts">
-                <Input type="text" placeholder="Nome do contato" />
-                <Input type="number" placeholder="Número do contato" />
+                <Input type="text" placeholder={t("emergencyContactName")} />
+                <Input
+                  type="number"
+                  placeholder={t("emergencyContactNumber")}
+                />
               </div>
             </div>
             <div className="guestAddress">
-              <Input label="Rua" type="text" placeholder="Rua do hospede" />
               <Input
-                label="Número da residência"
+                label={t("street")}
+                type="text"
+                placeholder="Rua do hospede"
+              />
+              <Input
+                label={t("residenceNumber")}
                 type="number"
                 placeholder="Número da residência do hospede"
                 register={register("address.number")}
                 // defaultValue={fetchUpdateData.address.number}
               />
               <Input
-                label="Cidade"
+                label={t("city")}
                 type="text"
                 placeholder="Cidade do hospede"
                 register={register("address.city")}
                 // defaultValue={fetchUpdateData.address.city}
               />
               <Input
-                label="Estado"
+                label={t("state")}
                 type="text"
                 placeholder="Estado que o hospede reside"
                 register={register("address.state")}
                 // defaultValue={fetchUpdateData.address.state}
               />
               <Input
-                label="CEP"
+                label={t("zipCode")}
                 type="text"
                 placeholder="CEP do hospede"
                 register={register("address.zipCode")}
@@ -173,11 +180,8 @@ export const ModalUpdateGuest = () => {
 
           <ContainerButtonModal>
             <Button buttonVariation="saveModal" type="submit">
-              Salvar
+              {t("btnSave")}
             </Button>
-            {/* <Button buttonVariation="deleteGuest" type="button">
-              Deletar hospede
-            </Button> */}
           </ContainerButtonModal>
         </Form>
       </div>

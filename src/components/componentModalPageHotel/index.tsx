@@ -2,6 +2,7 @@ import { ComponentModalPageHotelCreateStyle } from "./style";
 import logo from "../../assets/sidebar/Logo.svg";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 interface childrenForm {
   children: ReactNode;
@@ -12,7 +13,7 @@ export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
 }) => {
   const navigate = useNavigate();
   const [currentUrl, setCurrentUrl] = useState<string>("");
-
+  const { t } = useTranslation(["modal"]);
   useEffect(() => {
     const currentUrl = window.location.pathname;
 
@@ -36,7 +37,7 @@ export const ComponentModalPageHotelCreate: React.FC<childrenForm> = ({
         <p>StayINN</p>
       </div>
       {children}
-      <p className="direitos">Todos os direitos reservados StayINN @2023</p>
+      <p className="direitos">{t("copyright")} </p>
     </ComponentModalPageHotelCreateStyle>
   );
 };
