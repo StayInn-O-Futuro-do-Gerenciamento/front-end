@@ -63,6 +63,8 @@ export const ComponentModalPageHotelCreateStyle = styled.div`
     margin: 0 auto;
     img {
       width: 35px;
+
+      filter: var(--svg-color-orange);
     }
     p {
       font-size: 25px;

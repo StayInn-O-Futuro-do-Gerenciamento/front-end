@@ -93,6 +93,8 @@ export const SideBarMain = styled.section`
     img {
       width: 20px;
       height: 15px;
+
+      filter: var(--svg-color-orange);
     }
   }
 `;

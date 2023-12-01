@@ -89,6 +89,7 @@ ${({ theme, paletteColor }) => {
             color: var(--grey-700);
           }
         }
+
         :root {
           --grey-00: #ffffff;
           --grey-50: #f0f1f3;

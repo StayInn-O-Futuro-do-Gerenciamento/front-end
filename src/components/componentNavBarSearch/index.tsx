@@ -6,9 +6,9 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { AppContext } from "../../context/appContext";
 import tinycolor from "tinycolor2";
 import { useTranslation } from "react-i18next";
-import { hexToCSSFilter } from "hex-to-css-filter";
 import Brazil from "../../assets/flags/brazil.png";
 import USA from "../../assets/flags/united-states.png";
+import { HexToCssConfiguration, hexToCSSFilter } from "hex-to-css-filter";
 
 export const NavBarSearch = () => {
   const { setRandomColor, darkMode, toggleColorMode, toggleDarkMode } =
@@ -63,11 +63,16 @@ export const NavBarSearch = () => {
     };
   };
 
+  const config: HexToCssConfiguration = {
+    acceptanceLossPercentage: 1,
+    maxChecks: 10,
+  };
+
   const handleColorChange = (event: any) => {
     setInputColor(event.target.value);
     const { colorPalette } = generateShadesOfColor(event.target.value);
 
-    const cssFilter = hexToCSSFilter(colorPalette[4]);
+    const cssFilter = hexToCSSFilter(colorPalette[4], config);
 
     const customProperties = {
       "--orange-50": colorPalette[0],
