@@ -46,6 +46,10 @@ export const ComponentModalPageLoginCreateStyle = styled.div`
   input {
     height: 55px;
   }
+
+  input:focus {
+    backgroud-color: blue;
+  }
   input::placeholder {
     font-size: var(--font-size4);
   }
@@ -64,6 +68,8 @@ export const ComponentModalPageLoginCreateStyle = styled.div`
     margin: 0 auto;
     img {
       width: 60px;
+
+      filter: var(--svg-color-orange);
     }
     p {
       font-size: 35px;
